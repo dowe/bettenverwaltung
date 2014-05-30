@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="file:///C:/PROGRAM FILES (X86)/MICROSOFT VISUAL STUDIO 12.0/COMMON7/IDE/EXTENSIONS/MICROSOFT/ARCHITECTURE TOOLS/EXTENSIBILITY/Logging/CodeGenLog.xslt"?>
+<Log xmlns="http://schemas.microsoft.com/VisualStudio/2010/CodeGen.RE.Log" Label="Codegenerierungs-/Texttransformationsprotokoll">
+  <MessageClass Name="Message" Label="Meldung" Option="Informationsmeldungen anzeigen" />
+  <MessageClass Name="Warning" Label="Warnung" Option="Warnungen anzeigen" />
+  <MessageClass Name="Error" Label="Fehler" Option="Fehler anzeigen" />
+  <MessageClass Name="Property" Label="Eigenschaft" Option="Metadaten anzeigen" />
+  <MessageClass Name="Diagnostic" Label="Meldung" Option="Diagnosemeldungen anzeigen" />
+  <Message Timestamp="2014-05-30T09:38:46" Importance="High" Text="Die Codegenerierung oder Texttransformation wurde gestartet." />
+  <Message Timestamp="2014-05-30T09:38:46" Importance="Diagnostic" Text="Name = InterfaceTemplate" />
+  <Message Timestamp="2014-05-30T09:38:46" Importance="Diagnostic" Text="Überschreiben = True" />
+  <Message Timestamp="2014-05-30T09:38:46" Importance="Diagnostic" Text="ProjectPath = ..\UML_ModelLib\UML_ModelLib.csproj" />
+  <Message Timestamp="2014-05-30T09:38:46" Importance="Diagnostic" Text="TargetDirectory = GeneratedCode\{PackageStructure}" />
+  <Message Timestamp="2014-05-30T09:38:46" Importance="Diagnostic" Text="TargetName = {Name}" />
+  <Message Timestamp="2014-05-30T09:38:46" Importance="Diagnostic" Text="TemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 12.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\InterfaceTemplate.t4" />
+  <Message Timestamp="2014-05-30T09:38:46" Importance="Diagnostic" Text="ResolvedTemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 12.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\InterfaceTemplate.t4" />
+  <Message Timestamp="2014-05-30T09:38:46" Importance="Medium" Text="Die Textvorlagenbindung von UML_Model: 'InterfaceTemplate' wendet InterfaceTemplate.t4 an für: 'UML_Model::Bettenverwaltung::IController' -  (Interface) " />
+  <Message Timestamp="2014-05-30T09:38:56" Importance="Medium" Text="'UML_Model::Bettenverwaltung::IController' -  (Interface) : Erfolg (Datei erstellt) - C:\Users\dominik\Documents\Visual Studio 2013\Projects\Bettenverwaltung\UML_ModelLib\GeneratedCode\Bettenverwaltung\IController.cs" />
+  <Message Timestamp="2014-05-30T09:38:57" Importance="High" Text="Die Codegenerierung ist abgeschlossen. Fehler: 0. Warnungen: 0." />
+</Log>

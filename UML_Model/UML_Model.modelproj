@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9182218c-e1b5-496c-bf21-665bb641e1c2}</ProjectGuid>
+    <ArchitectureToolsVersion>2.0.0.0</ArchitectureToolsVersion>
+    <Name>UML_Model</Name>
+    <RootNamespace>UML_Model</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
+  <ItemGroup>
+    <Content Include="Sequences\RelocationAccept.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Sequences\RelocationAccept.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Sequences\RelocationAccept.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="Sequences\RelocationCancel.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Sequences\RelocationCancel.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Sequences\RelocationCancel.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="Sequences\PatientAdd.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Sequences\PatientAdd.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Sequences\PatientAdd.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="Sequences\Page_Load.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Sequences\Page_Load.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Sequences\Page_Load.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="Sequences\RelocationConfirm.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Sequences\RelocationConfirm.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Sequences\RelocationConfirm.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="Sequences\SearchPatient.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Sequences\SearchPatient.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Sequences\SearchPatient.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="Sequences\UpdateNotifications.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Sequences\UpdateNotifications.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Sequences\UpdateNotifications.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="Sequences\UpdateOverview.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Sequences\UpdateOverview.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Sequences\UpdateOverview.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="Sequences\PatientDismiss.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Sequences\PatientDismiss.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Sequences\PatientDismiss.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="Sequences\PatientDisplay.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Sequences\PatientDisplay.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Sequences\PatientDisplay.sequencediagram</DependentUpon>
+    </Content>
+    <Folder Include="ModelDefinition\" />
+    <Content Include="Classes.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Classes.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Classes.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="ModelDefinition\Package_1722.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\UML_Model.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Folder Include="Sequences" />
+  </ItemGroup>
+</Project>
