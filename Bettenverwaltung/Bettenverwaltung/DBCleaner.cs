@@ -12,8 +12,8 @@ namespace Bettenverwaltung
 	using System.Text;
     using System.Threading;
 
-	public class DBCleaner
-	{
+	public class DBCleaner           //Diese Klasse wird einmalig als Thread ausgeführt. Sie schließt die Säuberung der Betten nach 2 Stunden ab
+    {                                //und bricht Rückverlegungen ab, die schon zu lange angenommen aber nicht abgeschlossen sind.
 		private Thread thread
 		{
 			get;
@@ -25,7 +25,7 @@ namespace Bettenverwaltung
 			get;
 			set;
 		}
-
+        
 		public virtual void Start()
 		{
 			throw new System.NotImplementedException();
@@ -36,9 +36,9 @@ namespace Bettenverwaltung
 			throw new System.NotImplementedException();
 		}
 
-        public virtual void Clean()
-        {
-            throw new System.NotImplementedException();
+        public virtual void Clean()                     //Diese Funktion wird als Thread ausgeführt. Sie überprüft die Säuberungs-Timestamps der Bettenobjekte und 
+        {                                               //schließt die Säuberung ab falls 2 Stunden vergangen sind. Je nachdem müssen dann noch inaktive Rückverlegungsobjekte auf aktiv gesetzt werden.  
+            throw new System.NotImplementedException(); //Dann werden alle angenommen Rückverlegungsobjekte überprüft und abgebrochen falls die Zeit überschritten wurde.
         }
 
 		public DBCleaner()

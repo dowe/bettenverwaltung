@@ -11,7 +11,7 @@ namespace Bettenverwaltung
 	using System.Linq;
 	using System.Text;
 
-	public class History
+	public class History                                                //Hier wird die Verlegungshistorie des Patienten gespreichert. Jede History Klasse ist einem Patienten zugeordnet.
 	{
 		private int historyId
 		{
@@ -19,29 +19,29 @@ namespace Bettenverwaltung
 			set;
 		}
 
-		public virtual IEnumerable<HistoryItem> HistoryItem
+		public virtual List<HistoryItem> HistoryItem
 		{
 			get;
 			set;
 		}
 
-		public virtual HistoryItem GetHistoryItem(int index)
+		public virtual HistoryItem GetHistoryItem(int index)            //Der History-Eintragmit dem index wird zurückgegeben
 		{
 			throw new System.NotImplementedException();
 		}
 
-		public virtual int GetSize()
+		public virtual int GetSize()                                    //Die Anzahl der History-Items in der Liste wird zurückgegeben
 		{
 			throw new System.NotImplementedException();
 		}
 
-		public virtual void InsertHistoryItem(HistoryItem i)
+		public virtual void InsertHistoryItem(HistoryItem i)            //Das Angegebene HistroyItem wird hinten in die Liste eingetragen
 		{
 			throw new System.NotImplementedException();
 		}
 
-		public History(int historyId, int historyItemId)
-		{
+		public History(int historyId, int historyItemId)                //Ein neues History-Objekt wird angelegt und das Erste History-Item
+		{                                                               //für die Patientenaufnahme in die Liste eingefügt.
 		}
 
 	}

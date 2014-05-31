@@ -31,18 +31,18 @@ namespace Bettenverwaltung
 			set;
 		}
 
-		public static HistoryItem CreateEntryItem(int historyItemId)
+		public static HistoryItem CreateEntryItem(int historyItemId)                                    //Ein History-Item für die Patientenaufnahme wird erstellt
 		{
 			throw new System.NotImplementedException();
 		}
 
-		public static HistoryItem CreateRelocationItem(int historyItemId, int sourceBed, int destBed)
+		public static HistoryItem CreateRelocationItem(int historyItemId, int sourceBed, int destBed)   //Ein History-Item für eine Verlegung wird erstellt
 		{
 			throw new System.NotImplementedException();
 		}
 
-		public HistoryItem(int id, string text)
-		{
+		public HistoryItem(int id, string text)                                                         //Konstruktor für HistoryItem. Wird nur von den beiden oberen statischen Methoden genutzt.
+		{                                                                                               //Text und id werden gespeichert sowie die aktuelle Zeit in timestamp.
 		}
 
 	}
