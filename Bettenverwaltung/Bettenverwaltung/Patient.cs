@@ -11,36 +11,36 @@ namespace Bettenverwaltung
 	using System.Linq;
 	using System.Text;
 
-	public class Patient
+    public class Patient                                     //Klasse zum speichern der Patientendaten. Alle Daten könne via getter-Methoden gelesen werden, jedoch nicht geändert werden.
 	{
-		private int patId
+		public int patId
 		{
 			get;
-			set;
+			private set;
 		}
 
-		private string lastname
+		public string lastname
 		{
 			get;
-			set;
+			private set;
 		}
 
-		private string firstname
+		public string firstname
 		{
 			get;
-			set;
+			private set;
 		}
 
-		private DateTime birthday
+		public DateTime birthday
 		{
 			get;
-			set;
+			private set;
 		}
 
-		private bool isFemale
+		public bool isFemale
 		{
 			get;
-			set;
+			private set;
 		}
 
 		public virtual History History
@@ -54,8 +54,8 @@ namespace Bettenverwaltung
 			throw new System.NotImplementedException();
 		}
 
-		public Patient(string firstname, string lastname, DateTime Birthday, bool isFemale, int patId, int historyId, int historyItemId)
-		{
+		public Patient(string firstname, string lastname, DateTime Birthday, bool isFemale, int patId, int historyId, int historyItemId)    //Konstruktor: Der Patient wird aus den Übergabewerten erstellt. Die ID wird aus dem Wert des letzten
+        {                                                                                                                                   //DB eintrags generiert. Es wird ebenfalls eine neue Historie für den Patienten anglegt.
 		}
 
 	}
