@@ -13,15 +13,21 @@ namespace Bettenverwaltung
 
         private Button[] bedButtons = new Button[NUMBER_OF_BEDS];
 
-		public virtual Controller Controller
-		{
-			private get;
-			private set;
-		}
+        private IController controller;
+
+        public _Default()
+        {
+            this.controller = new Controller();
+        }
+
+        public _Default(IController controller)
+        {
+            this.controller = controller;
+        }
 
 		protected virtual void Page_Load(object sender, EventArgs e)
 		{
-			throw new System.NotImplementedException();
+			//throw new System.NotImplementedException();
 		}
 
 		private void InitBeds()

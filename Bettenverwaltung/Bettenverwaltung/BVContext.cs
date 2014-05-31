@@ -6,38 +6,39 @@
 //------------------------------------------------------------------------------
 namespace Bettenverwaltung
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Text;
+    using System;
+    using System.Collections.Generic;
+    using System.Data.Entity;
+    using System.Linq;
+    using System.Text;
 
 	public class BVContext
 	{
-		public virtual DBSet<Relocation> Relocations
+		public virtual DbSet<Relocation> Relocations
 		{
 			get;
 			set;
 		}
 
-		public virtual DBSet<Bed> Beds
+		public virtual DbSet<Bed> Beds
 		{
 			get;
 			set;
 		}
 
-		public virtual DBSet<Patient> Patients
+		public virtual DbSet<Patient> Patients
 		{
 			get;
 			set;
 		}
 
-		public virtual DBSet<History> Histories
+		public virtual DbSet<History> Histories
 		{
 			get;
 			set;
 		}
 
-		public virtual DBSet<HistoryItem> HistoryItems
+		public virtual DbSet<HistoryItem> HistoryItems
 		{
 			get;
 			set;

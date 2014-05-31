@@ -33,13 +33,13 @@ namespace Bettenverwaltung
 			set;
 		}
 
-		public virtual IBedRelocation IBedRelocation
+		public virtual IBedRelocation sourceBed
 		{
 			get;
 			set;
 		}
 
-		public virtual IBedRelocation IBedRelocation
+		public virtual IBedRelocation destinationBed
 		{
 			get;
 			set;
