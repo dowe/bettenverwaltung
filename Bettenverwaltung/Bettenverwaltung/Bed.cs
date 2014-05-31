@@ -11,7 +11,7 @@ namespace Bettenverwaltung
 	using System.Linq;
 	using System.Text;
 
-	public class Bed : IBedCleaner, IBedView, IBedRelocation
+	public class Bed : IBedCleaner, IBedView, IBedRelocation      //Datenbankobjekt für die Betten des KHs
 	{
 		private int bedId
 		{
@@ -19,7 +19,7 @@ namespace Bettenverwaltung
             set { bedId = value; }
 		}
 
-		private int station
+		private int station                                     //0 Pediatrie, 1 Gynäkologie, 2 Innere Medizin, 3 Orthopädie
 		{
 			get;
 			set;
@@ -43,8 +43,8 @@ namespace Bettenverwaltung
 			set;
 		}
 
-		public virtual void SetPatient(Patient patient)
-		{
+		public virtual void SetPatient(Patient patient)             //legt eine Patienten in das Bett, Exception falls sich schon ein Patient in dem Bett
+		{                                                           //befindet oder es gesperrt ist.
 			throw new System.NotImplementedException();
 		}
 
@@ -58,17 +58,17 @@ namespace Bettenverwaltung
 			throw new System.NotImplementedException();
 		}
 
-		public virtual void StartCleaning()
+		public virtual void StartCleaning()                     //setzt die cleaningtime des Bettenobjekts. Das Bett ist für diese Zeit gesperrt.
 		{
 			throw new System.NotImplementedException();
 		}
 
-		public virtual void StopCleaning()
+		public virtual void StopCleaning()                      //setzt die cleaningtime zurück auf null. Diese Funktion wird nur vom DB_Cleaner verwendet
 		{
 			throw new System.NotImplementedException();
 		}
 
-		public virtual DateTime GetCleaningTime()
+		public virtual DateTime GetCleaningTime()               //überprüfung der cleaingtime. Wird nur vom DB_Cleaner verwendet.
 		{
 			throw new System.NotImplementedException();
 		}
@@ -78,7 +78,7 @@ namespace Bettenverwaltung
 			throw new System.NotImplementedException();
 		}
 
-		public virtual EStation GetStation()
+		public virtual EStation GetStation()                    //Map den Integer der Datenbank auf das Enum EStation (siehe dazu Kommentar der Variable Station oben)
 		{
 			throw new System.NotImplementedException();
 		}

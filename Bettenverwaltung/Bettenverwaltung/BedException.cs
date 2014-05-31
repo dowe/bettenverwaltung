@@ -11,8 +11,8 @@ namespace Bettenverwaltung
 	using System.Linq;
 	using System.Text;
 
-	public class BedException
-	{
+	public class BedException      //Standartexeption der Bettenverwaltung. Wird von versch. Klassen geworfen   
+	{                              //und von der View ausgegeben.
 		public string message;
 
 		public virtual string Message
@@ -20,6 +20,11 @@ namespace Bettenverwaltung
 			get;
 			set;
 		}
+
+        public BedException(String mess)
+        {
+            this.message = mess;
+        }
 
 	}
 }
