@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" dslVersion="1.0.0.0" Id="d95f9d92-9d79-48c8-acaf-d5972b96a1dd" name="Classes" linkedPackageId="419a246f-15d6-4a58-960c-27ff4dd4dd9e" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="d95f9d92-9d79-48c8-acaf-d5972b96a1dd" name="Classes" linkedPackageId="419a246f-15d6-4a58-960c-27ff4dd4dd9e" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
   <appliedStereotypesInternal>
     <stereotypeInstance Id="c642b0f8-db41-4527-b152-9f48b4ef2d94" name="namespace" profile="CSharpProfile">
       <elementDefinition Id="6326d658-e0b4-44b5-b174-b9551f594e4c" />
@@ -2747,7 +2747,7 @@
             </class>
           </packageHasNamedElement>
           <packageHasNamedElement>
-            <class Id="e79e7823-e8fa-420d-ba3b-a18e57a29c71" name="View" isAbstract="false" isLeaf="false" isActiveClass="false">
+            <class Id="e79e7823-e8fa-420d-ba3b-a18e57a29c71" name="_Default" isAbstract="false" isLeaf="false" isActiveClass="false">
               <appliedStereotypesInternal>
                 <stereotypeInstance Id="3b175968-0507-4622-99d1-7b918eb70454" name="class" profile="CSharpProfile">
                   <elementDefinition Id="1af6ed8c-9aa3-4952-bf4e-2d4c4f942734" />
@@ -4314,6 +4314,22 @@
                         <elementDefinition Id="4acb67af-04c7-4fe2-a2a6-f52cafbe0860" />
                         <type_NamedElement>
                           <referencedTypeMoniker Id="7de70d05-527e-4a56-8ecd-1e9b6745d59e" LastKnownName="void" />
+                        </type_NamedElement>
+                      </parameter>
+                    </operationHasOwnedParameters>
+                  </ownedParameters>
+                </operation>
+                <operation Id="e2b77e84-3fb8-4349-9152-601efeaeae6f" name="_Default" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+                  <elementDefinition Id="95717178-d3a8-4ab3-96d0-3f185b0f8239" />
+                </operation>
+                <operation Id="93ab350c-9d0d-44ec-be14-3710b0d7421e" name="_Default" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+                  <elementDefinition Id="ea29d693-f884-429b-b972-ed569879c130" />
+                  <ownedParameters>
+                    <operationHasOwnedParameters>
+                      <parameter Id="dd0fe2ef-1787-43ec-8622-984030f3cf8a" name="controller" direction="In" isUnique="false">
+                        <elementDefinition Id="abeaa5e9-62e9-47ea-ac8c-2d0d33ac6c84" />
+                        <type_NamedElement>
+                          <referencedTypeMoniker Id="29602123-e7dd-488e-b9ae-d50877d249cb" LastKnownName="IController" />
                         </type_NamedElement>
                       </parameter>
                     </operationHasOwnedParameters>
@@ -7560,7 +7576,7 @@
                 <enumerationLiteral Id="b422df99-d6a3-451f-b886-8323f0d83795" name="Orthopädie">
                   <elementDefinition Id="daa29a02-0e23-4008-a0ca-365ec8b950ca" />
                 </enumerationLiteral>
-                <enumerationLiteral Id="c18e6af3-9ddc-46c1-8bff-af46c1d51af6" name="Pediatrie">
+                <enumerationLiteral Id="c18e6af3-9ddc-46c1-8bff-af46c1d51af6" name="Paediatrie">
                   <elementDefinition Id="fe0ed0d7-db95-4529-889b-d51145aed46c" />
                 </enumerationLiteral>
                 <enumerationLiteral Id="ccc6c161-67d5-4b65-8148-c10ae89f63fb" name="Gynäkologie">
@@ -7662,7 +7678,7 @@
                   </appliedStereotypesInternal>
                   <elementDefinition Id="e5822f23-d8f7-4f5e-bb18-147804430519" />
                   <type_NamedElement>
-                    <referencedTypeMoniker Id="a2becb6c-a9ec-42cc-b5f8-1b51b09da159" LastKnownName="DBSet&lt;Relocation&gt;" />
+                    <referencedTypeMoniker Id="cdddfb44-f295-4131-be5a-1312f7464e7d" LastKnownName="DbSet&lt;Relocation&gt;" />
                   </type_NamedElement>
                 </property>
                 <property Id="6704747a-734d-4af0-95d0-dd6d2ee572c5" name="Beds" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
@@ -7717,7 +7733,7 @@
                   </appliedStereotypesInternal>
                   <elementDefinition Id="73f6de0a-f0e1-4a1e-b274-7f16c15b42fc" />
                   <type_NamedElement>
-                    <referencedTypeMoniker Id="4f0ec67f-6439-4e63-84b1-f05c47c28c5f" LastKnownName="DBSet&lt;Bed&gt;" />
+                    <referencedTypeMoniker Id="252108dd-e8c4-4330-b574-eb3c52aad90a" LastKnownName="DbSet&lt;Bed&gt;" />
                   </type_NamedElement>
                 </property>
                 <property Id="66426af9-d91e-4b5c-8102-d70c2a53c02a" name="Patients" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
@@ -7772,7 +7788,7 @@
                   </appliedStereotypesInternal>
                   <elementDefinition Id="c2a03d9b-dd62-48f5-9bad-a5f8652d3a3b" />
                   <type_NamedElement>
-                    <referencedTypeMoniker Id="b9f4125e-2341-4e44-942b-60945c16d745" LastKnownName="DBSet&lt;Patient&gt;" />
+                    <referencedTypeMoniker Id="7a7e58e0-1526-41f5-9a87-f97d812f37c1" LastKnownName="DbSet&lt;Patient&gt;" />
                   </type_NamedElement>
                 </property>
                 <property Id="27fbc2b8-9a04-4542-a79f-8f959f63172c" name="Histories" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
@@ -7827,7 +7843,7 @@
                   </appliedStereotypesInternal>
                   <elementDefinition Id="4becbeae-0c22-49c8-b0d0-d744ac275b45" />
                   <type_NamedElement>
-                    <referencedTypeMoniker Id="f51cb816-477c-4bb6-a164-50fcc52c7971" LastKnownName="DBSet&lt;History&gt;" />
+                    <referencedTypeMoniker Id="254b3c22-5ba1-4860-a0cf-5c119a2988cc" LastKnownName="DbSet&lt;History&gt;" />
                   </type_NamedElement>
                 </property>
                 <property Id="01d9f6a5-2231-4393-9350-d8c7a87f9785" name="HistoryItems" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
@@ -7882,7 +7898,7 @@
                   </appliedStereotypesInternal>
                   <elementDefinition Id="d2ca45e8-3d40-4e16-aecd-abf25a68118e" />
                   <type_NamedElement>
-                    <referencedTypeMoniker Id="fdf37a28-0fec-43f8-89d9-484ad6327b5f" LastKnownName="DBSet&lt;HistoryItem&gt;" />
+                    <referencedTypeMoniker Id="f8e98f60-80d1-42d5-b298-b615eb5b4fac" LastKnownName="DbSet&lt;HistoryItem&gt;" />
                   </type_NamedElement>
                 </property>
               </ownedAttributesInternal>
@@ -8557,31 +8573,6 @@
       </referencedType>
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <referencedType Id="a2becb6c-a9ec-42cc-b5f8-1b51b09da159" name="DBSet&lt;Relocation&gt;" isAbstract="false" isLeaf="false" cachedFullName="DBSet&lt;Relocation&gt;">
-        <elementDefinition Id="6a0ba0d7-1190-46c0-93ad-cc9fa858ecaf" />
-      </referencedType>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <referencedType Id="4f0ec67f-6439-4e63-84b1-f05c47c28c5f" name="DBSet&lt;Bed&gt;" isAbstract="false" isLeaf="false" cachedFullName="DBSet&lt;Bed&gt;">
-        <elementDefinition Id="734960f7-ab76-4f00-b699-f8597b8cdd6d" />
-      </referencedType>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <referencedType Id="b9f4125e-2341-4e44-942b-60945c16d745" name="DBSet&lt;Patient&gt;" isAbstract="false" isLeaf="false" cachedFullName="DBSet&lt;Patient&gt;">
-        <elementDefinition Id="8eb32069-936b-45b9-b520-e01037da6cfa" />
-      </referencedType>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <referencedType Id="f51cb816-477c-4bb6-a164-50fcc52c7971" name="DBSet&lt;History&gt;" isAbstract="false" isLeaf="false" cachedFullName="DBSet&lt;History&gt;">
-        <elementDefinition Id="2c421204-09ce-408f-88ec-08c5b84fe55d" />
-      </referencedType>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <referencedType Id="fdf37a28-0fec-43f8-89d9-484ad6327b5f" name="DBSet&lt;HistoryItem&gt;" isAbstract="false" isLeaf="false" cachedFullName="DBSet&lt;HistoryItem&gt;">
-        <elementDefinition Id="93b73d3a-4770-4930-a95d-20510aec4566" />
-      </referencedType>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
       <referencedType Id="5524d491-d6b5-4374-a894-bc846c2ae8ad" name="Patient" isAbstract="false" isLeaf="false" cachedFullName="UML_Model::Bettenverwaltung::Patient">
         <elementDefinition Id="72c3b03c-bcf3-455b-bad5-b5a7e958caab" />
       </referencedType>
@@ -8664,6 +8655,36 @@
     <packageHasNamedElement>
       <referencedType Id="2b7ee8b5-8dd9-4d5c-ae66-8411d2beab32" name="String" isAbstract="false" isLeaf="false" cachedFullName="String">
         <elementDefinition Id="59259974-6d55-42c6-b7bd-763d77ac8ef9" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="29602123-e7dd-488e-b9ae-d50877d249cb" name="IController" isAbstract="false" isLeaf="false" cachedFullName="UML_Model::Bettenverwaltung::IController">
+        <elementDefinition Id="cec1c071-d679-4205-ab64-dbf2156dd98e" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="252108dd-e8c4-4330-b574-eb3c52aad90a" name="DbSet&lt;Bed&gt;" isAbstract="false" isLeaf="false" cachedFullName="DbSet&lt;Bed&gt;">
+        <elementDefinition Id="562169ed-746e-4064-8645-12797530790b" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="254b3c22-5ba1-4860-a0cf-5c119a2988cc" name="DbSet&lt;History&gt;" isAbstract="false" isLeaf="false" cachedFullName="DbSet&lt;History&gt;">
+        <elementDefinition Id="613423ee-19c4-498e-a5b9-9339243a43a2" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="f8e98f60-80d1-42d5-b298-b615eb5b4fac" name="DbSet&lt;HistoryItem&gt;" isAbstract="false" isLeaf="false" cachedFullName="DbSet&lt;HistoryItem&gt;">
+        <elementDefinition Id="7241d065-a033-44b3-b3cc-5e5ac8bc8360" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="7a7e58e0-1526-41f5-9a87-f97d812f37c1" name="DbSet&lt;Patient&gt;" isAbstract="false" isLeaf="false" cachedFullName="DbSet&lt;Patient&gt;">
+        <elementDefinition Id="b980acce-45d8-41e1-b54d-f1e7bff67ce2" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="cdddfb44-f295-4131-be5a-1312f7464e7d" name="DbSet&lt;Relocation&gt;" isAbstract="false" isLeaf="false" cachedFullName="DbSet&lt;Relocation&gt;">
+        <elementDefinition Id="3cb73a6e-845c-4a76-a07e-fb7beaaf5116" />
       </referencedType>
     </packageHasNamedElement>
   </packagedElements>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner"
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
   dslVersion="1.0.0.0"
   Id="1c64403c-a378-4eeb-a755-3ee65be51f0d"
   name="Bettenverwaltung" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
@@ -3512,7 +3512,7 @@
     <packageHasNamedElement>
       <class
         Id="2221a0ae-1abd-4c83-a659-17d900182592"
-        name="View"
+        name="_Default"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
@@ -5750,6 +5750,39 @@
                       Id="8d00c9b1-996b-4f80-a104-b3340bb7a102"
                       LastKnownName="void"
                       LastKnownLocation="UML_Model.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="95717178-d3a8-4ab3-96d0-3f185b0f8239"
+            name="_Default"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="ea29d693-f884-429b-b972-ed569879c130"
+            name="_Default"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="abeaa5e9-62e9-47ea-ac8c-2d0d33ac6c84"
+                  name="controller"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <interfaceMoniker
+                      Id="cec1c071-d679-4205-ab64-dbf2156dd98e"
+                      LastKnownName="IController"
+                      LastKnownLocation="Package_1722.uml" />
                   </type_NamedElement>
                 </parameter>
               </operationHasOwnedParameters>
@@ -10196,7 +10229,7 @@
             name="Orthopädie" />
           <enumerationLiteral
             Id="fe0ed0d7-db95-4529-889b-d51145aed46c"
-            name="Pediatrie" />
+            name="Paediatrie" />
           <enumerationLiteral
             Id="412efb10-a1d3-4166-be51-78df50cc8f9d"
             name="Gynäkologie" />
@@ -10339,8 +10372,8 @@
             </appliedStereotypesInternal>
             <type_NamedElement>
               <undefinedTypeMoniker
-                Id="6a0ba0d7-1190-46c0-93ad-cc9fa858ecaf"
-                LastKnownName="DBSet&lt;Relocation&gt;"
+                Id="3cb73a6e-845c-4a76-a07e-fb7beaaf5116"
+                LastKnownName="DbSet&lt;Relocation&gt;"
                 LastKnownLocation="Package_1722.uml" />
             </type_NamedElement>
           </property>
@@ -10414,8 +10447,8 @@
             </appliedStereotypesInternal>
             <type_NamedElement>
               <undefinedTypeMoniker
-                Id="734960f7-ab76-4f00-b699-f8597b8cdd6d"
-                LastKnownName="DBSet&lt;Bed&gt;"
+                Id="562169ed-746e-4064-8645-12797530790b"
+                LastKnownName="DbSet&lt;Bed&gt;"
                 LastKnownLocation="Package_1722.uml" />
             </type_NamedElement>
           </property>
@@ -10489,8 +10522,8 @@
             </appliedStereotypesInternal>
             <type_NamedElement>
               <undefinedTypeMoniker
-                Id="8eb32069-936b-45b9-b520-e01037da6cfa"
-                LastKnownName="DBSet&lt;Patient&gt;"
+                Id="b980acce-45d8-41e1-b54d-f1e7bff67ce2"
+                LastKnownName="DbSet&lt;Patient&gt;"
                 LastKnownLocation="Package_1722.uml" />
             </type_NamedElement>
           </property>
@@ -10564,8 +10597,8 @@
             </appliedStereotypesInternal>
             <type_NamedElement>
               <undefinedTypeMoniker
-                Id="2c421204-09ce-408f-88ec-08c5b84fe55d"
-                LastKnownName="DBSet&lt;History&gt;"
+                Id="613423ee-19c4-498e-a5b9-9339243a43a2"
+                LastKnownName="DbSet&lt;History&gt;"
                 LastKnownLocation="Package_1722.uml" />
             </type_NamedElement>
           </property>
@@ -10639,8 +10672,8 @@
             </appliedStereotypesInternal>
             <type_NamedElement>
               <undefinedTypeMoniker
-                Id="93b73d3a-4770-4930-a95d-20510aec4566"
-                LastKnownName="DBSet&lt;HistoryItem&gt;"
+                Id="7241d065-a033-44b3-b3cc-5e5ac8bc8360"
+                LastKnownName="DbSet&lt;HistoryItem&gt;"
                 LastKnownLocation="Package_1722.uml" />
             </type_NamedElement>
           </property>
@@ -11554,6 +11587,31 @@
           </operation>
         </ownedOperations>
       </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="562169ed-746e-4064-8645-12797530790b"
+        name="DbSet&lt;Bed&gt;" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="613423ee-19c4-498e-a5b9-9339243a43a2"
+        name="DbSet&lt;History&gt;" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="7241d065-a033-44b3-b3cc-5e5ac8bc8360"
+        name="DbSet&lt;HistoryItem&gt;" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="b980acce-45d8-41e1-b54d-f1e7bff67ce2"
+        name="DbSet&lt;Patient&gt;" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="3cb73a6e-845c-4a76-a07e-fb7beaaf5116"
+        name="DbSet&lt;Relocation&gt;" />
     </packageHasNamedElement>
   </packagedElements>
 </package>
