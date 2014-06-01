@@ -19,6 +19,13 @@ namespace Bettenverwaltung
 
 		void SetInRelocation(bool status);
 
+        bool IsEmpty();
+
+        bool IsGettingCleaned();
+
+        bool IsInRelocation();
+
+        int GetBedId();
 	}
 }
 
