@@ -11,15 +11,17 @@ namespace Bettenverwaltung
 	using System.Linq;
 	using System.Text;
 
+   
 	public class Bed : IBedCleaner, IBedView, IBedRelocation      //Datenbankobjekt für die Betten des KHs
 	{
+        
 		private int bedId
 		{
 			get { return bedId; }
             set { bedId = value; }
 		}
 
-		private int station                                     //0 Pediatrie, 1 Gynäkologie, 2 Innere Medizin, 3 Orthopädie
+		private int station                                     //0 Innere_Medizin 1 Orthopädie 2 Pediatrie 3 Gynäkologie
 		{
 			get;
 			set;
