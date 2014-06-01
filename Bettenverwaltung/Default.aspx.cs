@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -15,6 +16,10 @@ namespace Bettenverwaltung
 
         private IController controller;
 
+        //Entity Test
+        //**********************************************
+        BVContext db;
+        //**********************************************
         public _Default()
         {
             this.controller = new Controller();
@@ -25,110 +30,125 @@ namespace Bettenverwaltung
             this.controller = controller;
         }
 
-		protected virtual void Page_Load(object sender, EventArgs e)
-		{
-			//throw new System.NotImplementedException();
-		}
+        protected virtual void Page_Load(object sender, EventArgs e)
+        {
+            db = new BVContext();
+            Bed b0 = new Bed();
+            b0.bedId = 0;
+            db.Beds.Add(b0);
+            Bed b1 = new Bed();
+            b1.bedId = 1;
+            db.Beds.Add(b1);
 
-		private void InitBeds()
-		{
-			throw new System.NotImplementedException();
-		}
+            db.SaveChanges();
 
-		protected virtual void Bed_Buttons_Click(object sender, EventArgs e)
-		{
-			throw new System.NotImplementedException();
-		}
+            var beds = from b in db.Beds orderby b.bedId select b;
+            foreach (var bed in beds)
+            {
+                Console.WriteLine(bed.bedId.ToString() + bed.Patient.ToString());
+            }
+            //throw new System.NotImplementedException();
+        }
 
-		protected virtual void Dismiss_Patient_Click(object sender, EventArgs e)
-		{
-			throw new System.NotImplementedException();
-		}
+        private void InitBeds()
+        {
+            throw new System.NotImplementedException();
+        }
 
-		protected virtual void Add_Patient_Click(object sender, EventArgs e)
-		{
-			throw new System.NotImplementedException();
-		}
+        protected virtual void Bed_Buttons_Click(object sender, EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
 
-		protected virtual void Search_Click(object sender, EventArgs e)
-		{
-			throw new System.NotImplementedException();
-		}
+        protected virtual void Dismiss_Patient_Click(object sender, EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
 
-		protected virtual void Tab_Details_Click(object sender, EventArgs e)
-		{
-			throw new System.NotImplementedException();
-		}
+        protected virtual void Add_Patient_Click(object sender, EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
 
-		protected virtual void Tab_Search_Click(object sender, EventArgs e)
-		{
-			throw new System.NotImplementedException();
-		}
+        protected virtual void Search_Click(object sender, EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
 
-		protected virtual void Tab_Add_Click(object sender, EventArgs e)
-		{
-			throw new System.NotImplementedException();
-		}
+        protected virtual void Tab_Details_Click(object sender, EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
 
-		protected virtual void Accept_Relocation_Click(object sender, EventArgs e)
-		{
-			throw new System.NotImplementedException();
-		}
+        protected virtual void Tab_Search_Click(object sender, EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
 
-		protected virtual void Cancel_Relocation_Click(object sender, EventArgs e)
-		{
-			throw new System.NotImplementedException();
-		}
+        protected virtual void Tab_Add_Click(object sender, EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
 
-		protected virtual void Confirm_Relocation_Click(object sender, EventArgs e)
-		{
-			throw new System.NotImplementedException();
-		}
+        protected virtual void Accept_Relocation_Click(object sender, EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
 
-		protected virtual void Search_Item_Click(object sender, EventArgs e)
-		{
-			throw new System.NotImplementedException();
-		}
+        protected virtual void Cancel_Relocation_Click(object sender, EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
 
-		private void InitRelocations()
-		{
-			throw new System.NotImplementedException();
-		}
+        protected virtual void Confirm_Relocation_Click(object sender, EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
 
-		protected virtual void Update_Overview_Tick(object sender, EventArgs e)
-		{
-			throw new System.NotImplementedException();
-		}
+        protected virtual void Search_Item_Click(object sender, EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
 
-		protected virtual void Update_Notification_Tick(object sender, EventArgs e)
-		{
-			throw new System.NotImplementedException();
-		}
+        private void InitRelocations()
+        {
+            throw new System.NotImplementedException();
+        }
 
-		protected virtual void Print_Error_Message(BedException e)
-		{
-			throw new System.NotImplementedException();
-		}
+        protected virtual void Update_Overview_Tick(object sender, EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
 
-		private void CheckPatientInput()
-		{
-			throw new System.NotImplementedException();
-		}
+        protected virtual void Update_Notification_Tick(object sender, EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
 
-		private int GetAcceptedRelocationId()
-		{
-			throw new System.NotImplementedException();
-		}
+        protected virtual void Print_Error_Message(BedException e)
+        {
+            throw new System.NotImplementedException();
+        }
 
-		private void SetAcceptedRelocationId(int? id)
-		{
-			throw new System.NotImplementedException();
-		}
+        private void CheckPatientInput()
+        {
+            throw new System.NotImplementedException();
+        }
 
-		private void DisplayBed(IBedView bed)
-		{
-			throw new System.NotImplementedException();
-		}
+        private int GetAcceptedRelocationId()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void SetAcceptedRelocationId(int? id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void DisplayBed(IBedView bed)
+        {
+            throw new System.NotImplementedException();
+        }
 
         private void SwitchToDetailsTab()
         {

@@ -6,58 +6,58 @@
 //------------------------------------------------------------------------------
 namespace Bettenverwaltung
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Text;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
 
     public class Patient                                     //Klasse zum speichern der Patientendaten. Alle Daten könne via getter-Methoden gelesen werden, jedoch nicht geändert werden.
-	{
-		public int patId
-		{
-			get;
-			private set;
-		}
+    {
+        public int patId
+        {
+            get;
+            private set;
+        }
 
-		public string lastname
-		{
-			get;
-			private set;
-		}
+        public string lastname
+        {
+            get;
+            private set;
+        }
 
-		public string firstname
-		{
-			get;
-			private set;
-		}
+        public string firstname
+        {
+            get;
+            private set;
+        }
 
-		public DateTime birthday
-		{
-			get;
-			private set;
-		}
+        public DateTime birthday
+        {
+            get;
+            private set;
+        }
 
-		public bool isFemale
-		{
-			get;
-			private set;
-		}
+        public bool isFemale
+        {
+            get;
+            private set;
+        }
 
-		public virtual History History
-		{
-			get;
-			private set;
-		}
+        public virtual History History
+        {
+            get;
+            private set;
+        }
 
-		public virtual History GetHistory()
-		{
-			throw new System.NotImplementedException();
-		}
+        public virtual History GetHistory()
+        {
+            throw new System.NotImplementedException();
+        }
 
-		public Patient(string firstname, string lastname, DateTime Birthday, bool isFemale, int patId, int historyId, int historyItemId)    //Konstruktor: Der Patient wird aus den Übergabewerten erstellt. Die ID wird aus dem Wert des letzten
+        public Patient(string firstname, string lastname, DateTime Birthday, bool isFemale, int patId, int historyId, int historyItemId)    //Konstruktor: Der Patient wird aus den Übergabewerten erstellt. Die ID wird aus dem Wert des letzten
         {                                                                                                                                   //DB eintrags generiert. Es wird ebenfalls eine neue Historie für den Patienten anglegt.
-		}
+        }
 
-	}
+    }
 }
 

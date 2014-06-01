@@ -6,105 +6,105 @@
 //------------------------------------------------------------------------------
 namespace Bettenverwaltung
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Text;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
 
-   
-	public class Bed : IBedCleaner, IBedView, IBedRelocation      //Datenbankobjekt für die Betten des KHs
-	{
-        
-		private int bedId
-		{
-			get { return bedId; }
-            set { bedId = value; }
-		}
 
-		private int station                                     //0 Innere_Medizin 1 Orthopädie 2 Pediatrie 3 Gynäkologie
-		{
-			get;
-			set;
-		}
+    public class Bed : IBedCleaner, IBedView, IBedRelocation      //Datenbankobjekt für die Betten des KHs
+    {
 
-		private bool inRelocation
-		{
-			get;
-			set;
-		}
+        public int bedId
+        {
+            get;
+            set;
+        }
 
-		private DateTime cleaningTime
-		{
-			get;
-			set;
-		}
+        public int station                                     //0 Innere_Medizin 1 Orthopädie 2 Pediatrie 3 Gynäkologie
+        {
+            get;
+            set;
+        }
 
-		public virtual Patient Patient
-		{
-			get;
-			set;
-		}
+        public bool inRelocation
+        {
+            get;
+            set;
+        }
 
-		public virtual void SetPatient(Patient patient)             //legt eine Patienten in das Bett, Exception falls sich schon ein Patient in dem Bett
-		{                                                           //befindet oder es gesperrt ist.
-			throw new System.NotImplementedException();
-		}
+        public DateTime cleaningTime
+        {
+            get;
+            set;
+        }
 
-		public virtual Patient RemovePatient()
-		{
-			throw new System.NotImplementedException();
-		}
+        public virtual Patient Patient
+        {
+            get;
+            set;
+        }
 
-		public virtual void SetInRelocation(bool status)
-		{
-			throw new System.NotImplementedException();
-		}
+        public virtual void SetPatient(Patient patient)             //legt eine Patienten in das Bett, Exception falls sich schon ein Patient in dem Bett
+        {                                                           //befindet oder es gesperrt ist.
+            throw new System.NotImplementedException();
+        }
 
-		public virtual void StartCleaning()                     //setzt die cleaningtime des Bettenobjekts. Das Bett ist für diese Zeit gesperrt.
-		{
-			throw new System.NotImplementedException();
-		}
+        public virtual Patient RemovePatient()
+        {
+            throw new System.NotImplementedException();
+        }
 
-		public virtual void StopCleaning()                      //setzt die cleaningtime zurück auf null. Diese Funktion wird nur vom DB_Cleaner verwendet
-		{
-			throw new System.NotImplementedException();
-		}
+        public virtual void SetInRelocation(bool status)
+        {
+            throw new System.NotImplementedException();
+        }
 
-		public virtual DateTime GetCleaningTime()               //überprüfung der cleaingtime. Wird nur vom DB_Cleaner verwendet.
-		{
-			throw new System.NotImplementedException();
-		}
+        public virtual void StartCleaning()                     //setzt die cleaningtime des Bettenobjekts. Das Bett ist für diese Zeit gesperrt.
+        {
+            throw new System.NotImplementedException();
+        }
 
-		public virtual Patient GetPatient()
-		{
-			throw new System.NotImplementedException();
-		}
+        public virtual void StopCleaning()                      //setzt die cleaningtime zurück auf null. Diese Funktion wird nur vom DB_Cleaner verwendet
+        {
+            throw new System.NotImplementedException();
+        }
 
-		public virtual EStation GetStation()                    //Map den Integer der Datenbank auf das Enum EStation (siehe dazu Kommentar der Variable Station oben)
-		{
-			throw new System.NotImplementedException();
-		}
+        public virtual DateTime GetCleaningTime()               //überprüfung der cleaingtime. Wird nur vom DB_Cleaner verwendet.
+        {
+            throw new System.NotImplementedException();
+        }
 
-		public virtual int GetBedId()
-		{
-			throw new System.NotImplementedException();
-		}
+        public virtual Patient GetPatient()
+        {
+            throw new System.NotImplementedException();
+        }
 
-		public virtual bool IsEmpty()
-		{
-			throw new System.NotImplementedException();
-		}
+        public virtual EStation GetStation()                    //Map den Integer der Datenbank auf das Enum EStation (siehe dazu Kommentar der Variable Station oben)
+        {
+            throw new System.NotImplementedException();
+        }
 
-		public virtual bool IsGettingCleaned()
-		{
-			throw new System.NotImplementedException();
-		}
+        public virtual int GetBedId()
+        {
+            throw new System.NotImplementedException();
+        }
 
-		public virtual bool IsInRelocation()
-		{
-			throw new System.NotImplementedException();
-		}
+        public virtual bool IsEmpty()
+        {
+            throw new System.NotImplementedException();
+        }
 
-	}
+        public virtual bool IsGettingCleaned()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public virtual bool IsInRelocation()
+        {
+            throw new System.NotImplementedException();
+        }
+
+    }
 }
 

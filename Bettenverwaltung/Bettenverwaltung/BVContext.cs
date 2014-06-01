@@ -12,38 +12,43 @@ namespace Bettenverwaltung
     using System.Linq;
     using System.Text;
 
-	public class BVContext
-	{
-		public virtual DbSet<Relocation> Relocations
-		{
-			get;
-			set;
-		}
+    public class BVContext : DbContext
+    {
+        public BVContext()
+            :base("BVContext")
+        {
 
-		public virtual DbSet<Bed> Beds
-		{
-			get;
-			set;
-		}
+        }
+        public virtual DbSet<Relocation> Relocations
+        {
+            get;
+            set;
+        }
 
-		public virtual DbSet<Patient> Patients
-		{
-			get;
-			set;
-		}
+        public virtual DbSet<Bed> Beds
+        {
+            get;
+            set;
+        }
 
-		public virtual DbSet<History> Histories
-		{
-			get;
-			set;
-		}
+        public virtual DbSet<Patient> Patients
+        {
+            get;
+            set;
+        }
 
-		public virtual DbSet<HistoryItem> HistoryItems
-		{
-			get;
-			set;
-		}
+        public virtual DbSet<History> Histories
+        {
+            get;
+            set;
+        }
 
-	}
+        public virtual DbSet<HistoryItem> HistoryItems
+        {
+            get;
+            set;
+        }
+
+    }
 }
 
