@@ -27,12 +27,26 @@ namespace Bettenverwaltung
 
 		protected virtual void Page_Load(object sender, EventArgs e)
 		{
+            // TEST
+            not0.Style.Add("display", "none");
+            not1.Style.Add("display", "none");
+            // END TEST
+            InitBeds();
 			//throw new System.NotImplementedException();
 		}
 
 		private void InitBeds()
 		{
-			throw new System.NotImplementedException();
+			//throw new System.NotImplementedException();
+            // TEST
+            for (int i = 0; i < 50; i++)
+            {
+                LinkButton btn = new LinkButton();
+                btn.CssClass = "btnBedOccupied";
+                btn.Click += Bed_Buttons_Click;
+                btn.ID = i.ToString();
+                divStationPaediatrie.Controls.Add(btn);
+            }
 		}
 
 		protected virtual void Bed_Buttons_Click(object sender, EventArgs e)

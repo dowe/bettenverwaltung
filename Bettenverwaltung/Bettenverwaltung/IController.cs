@@ -27,7 +27,7 @@ namespace Bettenverwaltung
 
 		List<Relocation> GetActiveRelocationList();
 
-		IEnumerable<IBedView> GetBettList();
+		List<IBedView> GetBettList();
 
 		List<IBedView> SearchPatient(string term);
 
