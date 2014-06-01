@@ -66,7 +66,7 @@ namespace Bettenverwaltung
 
 		public virtual void SetActive(IBedRelocation bed)       //Diese Funktion wird aufgerufen wenn eine Rückverlegung möglich ist.
 		{                                                       //Das Zielbett wird eingetragen jedoch noch nicht gesperrt.
-			if(!bed.isEmpty()||bed.IsGettingCleaned()||bed.IsInRelocation())
+			if(!bed.IsEmpty()||bed.IsGettingCleaned()||bed.IsInRelocation())
             {
                 throw new BedException("Das Zielbett für die Verlegung ist bereits gesperrt.");
             }
