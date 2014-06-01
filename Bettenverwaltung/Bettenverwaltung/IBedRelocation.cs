@@ -24,6 +24,8 @@ namespace Bettenverwaltung
         bool IsGettingCleaned();
 
         bool IsInRelocation();
+
+        int GetBedId();
 	}
 }
 
