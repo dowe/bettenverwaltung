@@ -15,7 +15,7 @@ namespace Bettenverwaltung
 	{
 		void StopCleaning();
 
-		DateTime GetCleaningTime();
+		DateTime? GetCleaningTime();
 
 	}
 }
