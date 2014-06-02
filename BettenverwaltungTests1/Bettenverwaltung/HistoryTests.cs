@@ -28,8 +28,8 @@ namespace Bettenverwaltung.Tests
             //initialize a History
             History hist = new History(0, 0);
 
-            Assert.AreEqual(hist.HistoryItem[0].historyItemId, 0);
-
+            HistoryItem item = hist.GetHistoryItem(0);
+            Assert.AreEqual(item.historyItemId, 0);
         }
        
 
