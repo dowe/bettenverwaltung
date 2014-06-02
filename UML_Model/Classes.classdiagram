@@ -7573,7 +7573,7 @@
                 <enumerationLiteral Id="63c87435-e995-4c88-bc82-b6ede505f704" name="Innere_Medizin">
                   <elementDefinition Id="e1c4a17c-413a-431e-9fc1-f261e9a836c4" />
                 </enumerationLiteral>
-                <enumerationLiteral Id="b422df99-d6a3-451f-b886-8323f0d83795" name="Orthopädie">
+                <enumerationLiteral Id="b422df99-d6a3-451f-b886-8323f0d83795" name="Orthopaedie">
                   <elementDefinition Id="daa29a02-0e23-4008-a0ca-365ec8b950ca" />
                 </enumerationLiteral>
                 <enumerationLiteral Id="c18e6af3-9ddc-46c1-8bff-af46c1d51af6" name="Paediatrie">

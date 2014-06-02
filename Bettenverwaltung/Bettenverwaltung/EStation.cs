@@ -14,7 +14,7 @@ namespace Bettenverwaltung
 	public enum EStation
 	{
 		Innere_Medizin,
-		Orthopädie,
+		Orthopaedie,
 		Paediatrie,
 		Gynaekologie,
 	}
