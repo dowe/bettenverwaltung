@@ -48,7 +48,15 @@ namespace Bettenverwaltung
 
 		public virtual void SetPatient(Patient patient)             //legt eine Patienten in das Bett, Exception falls sich schon ein Patient in dem Bett
 		{                                                           //befindet oder es gesperrt ist.
-            this.Patient = patient;
+            if (this.Patient == null && this.cleaningTime == null)
+            {
+                this.Patient = patient;
+            }
+            else
+            {
+                String str = "Bett " + this.bedId + " bereits belegt";
+                throw new BedException(str);
+            }
 		}
 
 		public virtual Patient RemovePatient()
@@ -61,30 +69,43 @@ namespace Bettenverwaltung
             }
             else
             {
-                throw new BedException("Bett ist bereits leer.");
+                String str = "Bett " + this.bedId + " ist bereits leer.";
+                throw new BedException(str);
             }
 		}
 
 		public virtual void SetInRelocation(bool status)
 		{
-            this.inRelocation = status;
+            if (this.inRelocation == true && status == true)
+            {
+                String str = "Bett " + this.bedId + " bereits für Verlegung geplant.";
+                throw new BedException(str);
+            }
+            else
+                this.inRelocation = status;
 		}
 
 		public virtual void StartCleaning()                     //setzt die cleaningtime des Bettenobjekts. Das Bett ist für diese Zeit gesperrt.
 		{
-			
-            if(this.cleaningTime == null)
-            this.cleaningTime = DateTime.Now;
+
+            if (this.cleaningTime == null)
+                this.cleaningTime = DateTime.Now;
             else
-                throw new BedException("Bett wird bereits gereinigt.");
+            {
+                String str = "Bett " + this.bedId + " wird bereits gereinigt";
+                throw new BedException(str);
+            }
 		}
 
 		public virtual void StopCleaning()                      //setzt die cleaningtime zurück auf null. Diese Funktion wird nur vom DB_Cleaner verwendet
 		{
-            if(this.cleaningTime != null)
+            if (this.cleaningTime != null)
                 this.cleaningTime = null;
             else
-                throw new BedException("Bett ist bereits rein.");
+            {
+                String str = "Bett " + this.bedId + " ist schon sauber";
+                throw new BedException(str);
+            }
 		}
 
 		public virtual DateTime? GetCleaningTime()               //überprüfung der cleaingtime. Wird nur vom DB_Cleaner verwendet.
@@ -119,7 +140,7 @@ namespace Bettenverwaltung
 		public virtual bool IsGettingCleaned()
 		{
             bool ret = true;
-            if (this.cleaningTime == null)   //compares with 1/1/0001 00:00 which means, not in cleaning
+            if (this.cleaningTime == null)
                 ret = false;
             return ret;
 		}
