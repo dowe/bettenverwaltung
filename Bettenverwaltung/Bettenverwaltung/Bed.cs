@@ -6,15 +6,16 @@
 //------------------------------------------------------------------------------
 namespace Bettenverwaltung
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Text;
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using System.Text;
 
    
 	public class Bed : IBedCleaner, IBedView, IBedRelocation      //Datenbankobjekt für die Betten des KHs
 	{
-
+        [Key]
         public int bedId
         {
             get;

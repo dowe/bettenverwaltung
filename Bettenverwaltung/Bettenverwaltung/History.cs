@@ -6,13 +6,15 @@
 //------------------------------------------------------------------------------
 namespace Bettenverwaltung
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Text;
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using System.Text;
 
 	public class History                                                //Hier wird die Verlegungshistorie des Patienten gespreichert. Jede History Klasse ist einem Patienten zugeordnet.
 	{
+        [Key]
         public int historyId
 		{
 			get;
