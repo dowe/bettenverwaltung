@@ -50,7 +50,7 @@ namespace Bettenverwaltung
             var beds = from b in db.Beds orderby b.bedId select b;
             foreach (var bed in beds)
             {
-                Console.WriteLine(bed.bedId.ToString() + bed.Patient.ToString());
+                Console.WriteLine(bed.bedId.ToString() + bed.Patient);
             }
 			//throw new System.NotImplementedException();
 		}

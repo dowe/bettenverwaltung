@@ -14,21 +14,22 @@ namespace Bettenverwaltung
 
 	public class Relocation
 	{
-		private int station
-		{
-			get;
-			set;
-		}
         [Key]
-		private int relocationId
+        public int relocationId
+        {
+            get;
+            set;
+        }
+
+		public int station
 		{
 			get;
 			set;
 		}
 
-		private bool accepted;
+		public bool accepted;
 
-		private DateTime? timestamp
+		public DateTime? timestamp
 		{
 			get;
 			set;
