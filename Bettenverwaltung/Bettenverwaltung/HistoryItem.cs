@@ -6,26 +6,22 @@
 //------------------------------------------------------------------------------
 namespace Bettenverwaltung
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Text;
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+    using System.Text;
 
 	public class HistoryItem
 	{
-		private DateTime timestamp
+
+        public string text
 		{
 			get;
 			set;
 		}
 
-		private string text
-		{
-			get;
-			set;
-		}
-
-		private int historyItemId
+        public int historyItemId
 		{
 			get;
 			set;
@@ -33,16 +29,26 @@ namespace Bettenverwaltung
 
 		public static HistoryItem CreateEntryItem(int historyItemId)                                    //Ein History-Item für die Patientenaufnahme wird erstellt
 		{
-			throw new System.NotImplementedException();
+            DateTime dat1 = DateTime.Now;
+            CultureInfo culture = new CultureInfo("de-DE");     //German Date format
+            String patRegisteredText = dat1.ToString("g", culture) + "  :  Patient aufgenommen";
+            HistoryItem historyItem = new HistoryItem(historyItemId, patRegisteredText);
+            return historyItem;
 		}
 
 		public static HistoryItem CreateRelocationItem(int historyItemId, int sourceBed, int destBed)   //Ein History-Item für eine Verlegung wird erstellt
 		{
-			throw new System.NotImplementedException();
+            DateTime dat1 = DateTime.Now;
+            CultureInfo culture = new CultureInfo("de-DE");     //German Date format
+            String relocText = dat1.ToString("g", culture) + "  :  Verlegung des Patienten von Bett " + sourceBed + " nach Bett " + destBed;
+            HistoryItem historyItem = new HistoryItem(historyItemId, relocText);
+            return historyItem;
 		}
 
 		public HistoryItem(int id, string text)                                                         //Konstruktor für HistoryItem. Wird nur von den beiden oberen statischen Methoden genutzt.
-		{                                                                                               //Text und id werden gespeichert sowie die aktuelle Zeit in timestamp.
+		{
+            this.historyItemId = id;
+            this.text = text;//Text und id werden gespeichert sowie die aktuelle Zeit in timestamp.
 		}
 
 	}

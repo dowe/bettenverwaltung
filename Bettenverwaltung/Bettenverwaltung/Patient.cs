@@ -16,46 +16,53 @@ namespace Bettenverwaltung
 		public int patId
 		{
 			get;
-			private set;
+			set;
 		}
 
 		public string lastname
 		{
 			get;
-			private set;
+			set;
 		}
 
 		public string firstname
 		{
 			get;
-			private set;
+			set;
 		}
 
 		public DateTime birthday
 		{
 			get;
-			private set;
+			set;
 		}
 
 		public bool isFemale
 		{
 			get;
-			private set;
+			set;
 		}
 
 		public virtual History History
 		{
 			get;
-			private set;
+			set;
 		}
 
 		public virtual History GetHistory()
 		{
-			throw new System.NotImplementedException();
+            return this.History;
 		}
 
 		public Patient(string firstname, string lastname, DateTime Birthday, bool isFemale, int patId, int historyId, int historyItemId)    //Konstruktor: Der Patient wird aus den Übergabewerten erstellt. Die ID wird aus dem Wert des letzten
-        {                                                                                                                                   //DB eintrags generiert. Es wird ebenfalls eine neue Historie für den Patienten anglegt.
+        {     
+                                                                                                                              //DB eintrags generiert. Es wird ebenfalls eine neue Historie für den Patienten anglegt.
+            this.firstname = firstname;
+            this.lastname = lastname;
+            this.birthday = birthday;
+            this.isFemale = isFemale;
+            this.patId = patId;
+            this.History = new History(historyId, historyItemId);
 		}
 
 	}
