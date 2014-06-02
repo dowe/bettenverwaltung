@@ -7579,7 +7579,7 @@
                 <enumerationLiteral Id="c18e6af3-9ddc-46c1-8bff-af46c1d51af6" name="Paediatrie">
                   <elementDefinition Id="fe0ed0d7-db95-4529-889b-d51145aed46c" />
                 </enumerationLiteral>
-                <enumerationLiteral Id="ccc6c161-67d5-4b65-8148-c10ae89f63fb" name="Gynäkologie">
+                <enumerationLiteral Id="ccc6c161-67d5-4b65-8148-c10ae89f63fb" name="Gynaekologie">
                   <elementDefinition Id="412efb10-a1d3-4166-be51-78df50cc8f9d" />
                 </enumerationLiteral>
               </ownedLiterals>

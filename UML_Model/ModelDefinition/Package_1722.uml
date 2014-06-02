@@ -10232,7 +10232,7 @@
             name="Paediatrie" />
           <enumerationLiteral
             Id="412efb10-a1d3-4166-be51-78df50cc8f9d"
-            name="Gynäkologie" />
+            name="Gynaekologie" />
         </ownedLiterals>
       </enumeration>
     </packageHasNamedElement>

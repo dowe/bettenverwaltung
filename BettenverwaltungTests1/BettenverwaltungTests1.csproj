@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7E6D1FEA-F416-4F23-88DA-E1D70F30C822}</ProjectGuid>
+    <ProjectGuid>{44BB1B54-4DFF-4840-AB23-4CDA6851B268}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UnitTests</RootNamespace>
-    <AssemblyName>UnitTests</AssemblyName>
+    <RootNamespace>BettenverwaltungTests1</RootNamespace>
+    <AssemblyName>BettenverwaltungTests1</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -50,12 +50,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="Bettenverwaltung\HistoryItemTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bettenverwaltung\Bettenverwaltung.csproj">
-      <Project>{c83439dd-032d-422c-8272-7bbe4ecdd1e1}</Project>
+      <Project>{C83439DD-032D-422C-8272-7BBE4ECDD1E1}</Project>
       <Name>Bettenverwaltung</Name>
     </ProjectReference>
   </ItemGroup>

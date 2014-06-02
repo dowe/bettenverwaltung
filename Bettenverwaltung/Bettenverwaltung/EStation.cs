@@ -15,7 +15,7 @@ namespace Bettenverwaltung
 	{
 		Innere_Medizin,
 		Orthopädie,
-		Pediatrie,
-		Gynäkologie,
+		Paediatrie,
+		Gynaekologie,
 	}
 }

@@ -29,10 +29,16 @@ namespace Bettenverwaltung
                     "~/Scripts/WebForms/MsAjax/MicrosoftAjaxTimer.js",
                     "~/Scripts/WebForms/MsAjax/MicrosoftAjaxWebForms.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jqueryJs").Include(
+                            "~/Scripts/jquery-1.10.2.min.js"));
+
             // Verwenden Sie die Entwicklungsversion von Modernizr als Entwicklungs- und Lerngrundlage. Wenn Sie dann
             // bereit für die Produktion sind, verwenden Sie das Buildtool unter "http://modernizr.com", um nur die benötigten Tests auszuwählen.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                             "~/Scripts/modernizr-*"));
+
+            bundles.Add(new ScriptBundle("~/bundles/viewJs").Include(
+                            "~/Scripts/viewScripts.js"));
 
             ScriptManager.ScriptResourceMapping.AddDefinition(
                 "respond",
