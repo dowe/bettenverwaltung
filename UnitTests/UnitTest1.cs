@@ -11,10 +11,10 @@ namespace UnitTests
         public void patientTest()
         {
             Patient pat = new Patient("Peter", "Enis", new DateTime(), false, 0, 0, 0);
-            Assert.Equals(pat.firstname, "Peter");
-            Assert.Equals(pat.lastname, "Enis");
-            Assert.Equals(pat.birthday, new DateTime());
-            Assert.Equals(pat.History.HistoryItem[0].historyItemId, 0);
+            Assert.AreEqual(pat.firstname, "Peter");
+            Assert.AreEqual(pat.lastname, "Enis");
+            Assert.AreEqual(pat.birthday, new DateTime());
+            Assert.AreEqual(pat.History.HistoryItem[0].historyItemId, 0);
         }
 
         [TestMethod]
@@ -27,18 +27,18 @@ namespace UnitTests
             bed.inRelocation = true;
             bed.station = 0;
             bed.bedId = 0;
-            bed.cleaningTime = new DateTime();
+            bed.cleaningTime = null;
 
             //isGettingCleaned()
             Assert.IsFalse(bed.IsGettingCleaned(), "Bed getting cleaned?", null);
 
             //startCleaning
             bed.StartCleaning();
-            Assert.AreNotEqual(bed.cleaningTime, new DateTime());
+            Assert.AreNotEqual(bed.cleaningTime, null);
 
             //stopCleaning
-            bed.StartCleaning();
-            Assert.Equals(bed.cleaningTime, new DateTime());
+            bed.StopCleaning();
+            Assert.AreEqual(bed.cleaningTime, null);
 
             //SetInRelocation
             bed.SetInRelocation(false);
@@ -48,15 +48,14 @@ namespace UnitTests
             Assert.IsFalse(bed.IsInRelocation());
 
             //Get/Set/Remove Patient
-            Assert.Equals(bed.GetPatient(), pat);
+            Assert.AreEqual(bed.GetPatient(), pat);
             pat = bed.RemovePatient();
             Assert.IsNull(bed.GetPatient());
             bed.SetPatient(pat);
-            Assert.Equals(pat, bed.Patient);
+            Assert.AreEqual(pat, bed.Patient);
 
             //Exceptions
-            bed.RemovePatient();
-            Assert.IsNull(bed.RemovePatient());
+            Assert.AreEqual(bed.RemovePatient(), pat);
 
             //IsEmpty
             Assert.IsTrue(bed.IsEmpty());
@@ -68,22 +67,22 @@ namespace UnitTests
             History hist = new History(0, 0);
 
             //GetSize
-            Assert.Equals(hist.GetSize(), 1);
+            Assert.AreEqual(hist.GetSize(), 1);
 
             //GetHistoryItem
-            Assert.Equals(hist.HistoryItem[0].historyItemId, 0);
+            Assert.AreEqual(hist.HistoryItem[0].historyItemId, 0);
 
             //InserHistoryItem
-            HistoryItem item = HistoryItem.CreateEntryItem(1);
+            HistoryItem item = HistoryItem.CreateRelocationItem(1,2,3);
             hist.InsertHistoryItem(item);
-            Assert.Equals(hist.HistoryItem[1].historyItemId, 1);
+            Assert.AreEqual(hist.HistoryItem[1].historyItemId, 1);
 
             //GetSize
-            Assert.Equals(hist.GetSize(), 2);
+            Assert.AreEqual(hist.GetSize(), 2);
         }
 
         [TestMethod]
-        public void historyTest()
+        public void historyItemTest()
         {
             //CreateEntryItem
             HistoryItem item = HistoryItem.CreateEntryItem(0);

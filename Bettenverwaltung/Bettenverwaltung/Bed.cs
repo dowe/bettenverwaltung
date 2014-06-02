@@ -14,12 +14,12 @@ namespace Bettenverwaltung
    
 	public class Bed : IBedCleaner, IBedView, IBedRelocation      //Datenbankobjekt für die Betten des KHs
 	{
-        
-		public int bedId
-		{
-			get { return bedId; }
-            set { bedId = value; }
-		}
+
+        public int bedId
+        {
+            get;
+            set;
+        }
 
         public int station                                     //0 Innere_Medizin 1 Orthopädie 2 Pediatrie 3 Gynäkologie
 		{
@@ -109,7 +109,7 @@ namespace Bettenverwaltung
 		public virtual bool IsEmpty()
 		{
             bool ret = false;
-            if (this.Patient != null)
+            if (this.Patient == null)
                 ret = true;
 
             return ret;
@@ -118,7 +118,7 @@ namespace Bettenverwaltung
 		public virtual bool IsGettingCleaned()
 		{
             bool ret = true;
-            if (this.cleaningTime.Equals(new DateTime()))   //compares with 1/1/0001 00:00 which means, not in cleaning
+            if (this.cleaningTime == null)   //compares with 1/1/0001 00:00 which means, not in cleaning
                 ret = false;
             return ret;
 		}
