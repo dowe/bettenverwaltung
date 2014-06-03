@@ -13,21 +13,21 @@ namespace Bettenverwaltung
 
 	public class Relocation
 	{
-		private int station
+		public int station
 		{
 			get;
 			set;
 		}
 
-		private int relocationId
+		public int relocationId
 		{
 			get;
 			set;
 		}
 
-		private bool accepted;
+		public bool accepted;
 
-		private DateTime? timestamp
+		public DateTime? timestamp
 		{
 			get;
 			set;
@@ -68,21 +68,29 @@ namespace Bettenverwaltung
 		{                                                       //Das Zielbett wird eingetragen jedoch noch nicht gesperrt.
 			if(!bed.IsEmpty()||bed.IsGettingCleaned()||bed.IsInRelocation())
             {
-                throw new BedException("Das Zielbett für die Verlegung ist bereits gesperrt.");
+                throw new BedException("Das Zielbett der Verlegung ist bereits gesperrt.");
+            }
+            if(this.destinationBed != null)
+            {
+                throw new BedException("Die Verlegung ist bereits aktiv");
             }
             this.destinationBed = bed;
 		}
 
 		public virtual void SetInactive()                   //Das Zielbett wird wieder auf Null gesetzt. Die Rückverlegung ist inaktiv.
 		{
+            if(this.destinationBed == null)
+            {
+                throw new BedException("Die Verlegung ist nicht aktiv");
+            }
             this.destinationBed = null;
 		}
 
 		public virtual bool ExecuteRelocation(int historyItemId) //Führt die Rückverlegung durch.
 		{
-            if(this.accepted == false)
+            if(this.accepted == false || this.destinationBed == null)
             {
-                throw new BedException("Die auszuführende Verlegung ist nicht angenommen");
+                throw new BedException("Die auszuführende Verlegung ist nicht angenommen/aktiv");
             }
             Patient Patient = sourceBed.RemovePatient();         //Patient wird aus dem Bett entfernt und zurückgegeben.
             destinationBed.SetInRelocation(false);
@@ -133,6 +141,10 @@ namespace Bettenverwaltung
 
 		public virtual void SetUnaccepted()                 //die Rückverlegung wird abgebrochen.
 		{
+            if(this.accepted == false)
+            {
+                throw new BedException("Die Verlegung ist nicht angenommen.");
+            }
             this.accepted = false;
             destinationBed.SetInRelocation(false);          //Das Bett wird entsperrt.
             this.timestamp = null;                          //setzt Annahmezeit auf null.

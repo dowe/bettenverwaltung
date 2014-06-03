@@ -54,6 +54,7 @@
     <Compile Include="Bettenverwaltung\HistoryItemTests.cs" />
     <Compile Include="Bettenverwaltung\HistoryTests.cs" />
     <Compile Include="Bettenverwaltung\PatientTests.cs" />
+    <Compile Include="Bettenverwaltung\RelocationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
