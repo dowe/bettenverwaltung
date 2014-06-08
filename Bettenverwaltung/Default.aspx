@@ -9,13 +9,13 @@
                     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
                     <asp:UpdatePanel ID="divOverview" runat="server" class="divOverview">
                         <ContentTemplate>
-                            <asp:Panel ID="divStationPaediatrie" runat="server" CssClass="divOverviewStation">
+                            <asp:Panel ID="divStationPaediatrie" runat="server" CssClass="divOverviewStation marginRight">
                                 <h2>Pädiatrie</h2>
                             </asp:Panel>
-                            <asp:Panel ID="divStationGynaekologie" runat="server" CssClass="divOverviewStation">
+                            <asp:Panel ID="divStationGynaekologie" runat="server" CssClass="divOverviewStation marginRight">
                                 <h2>Gynäkologie</h2>
                             </asp:Panel>
-                            <asp:Panel ID="divStationInnereMedizin" runat="server" CssClass="divOverviewStation">
+                            <asp:Panel ID="divStationInnereMedizin" runat="server" CssClass="divOverviewStation marginRight">
                                 <h2>Innere Medizin</h2>
                             </asp:Panel>
                             <asp:Panel ID="divStationOrthopaedie" runat="server" CssClass="divOverviewStation">
@@ -27,7 +27,9 @@
                         <asp:LinkButton ID="btnTabDetails" runat="server" OnClick="Tab_Details_Click" CssClass="btnTabActive">Details</asp:LinkButton><asp:LinkButton ID="btnTabSearch" runat="server" OnClick="Tab_Search_Click" CssClass="btnTabInactive">Suche</asp:LinkButton><asp:LinkButton ID="btnTabAdd" runat="server" OnClick="Tab_Add_Click" CssClass="btnTabInactive">Neuer Patient</asp:LinkButton>
                         <div class="divTabs">
                             <asp:Panel ID="divTabDetails" runat="server" CssClass="divTabActive">
-                                Details
+                                <div class="divTabContent">
+
+                                </div>
                             </asp:Panel>
                             <asp:Panel ID="divTabSearch" runat="server" CssClass="divTabInactive">
                                 Search

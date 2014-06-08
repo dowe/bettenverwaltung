@@ -26,8 +26,7 @@ h2 {
 
 /* GREY color for this divs */
 .divOverview,
-.divTabActive,
-.divTabInactive,
+.divTabs,
 .divNotList,
 .btnTabActive {
     background-color: #D8D8D8;
@@ -35,7 +34,7 @@ h2 {
 
 /* LIGHT BLUE color for this divs */
 .divNotListItem,
-.divForm,
+.divTabContent,
 .divOverviewStation,
 .btnTabInactive {
     background-color: #4BACC6;
@@ -53,7 +52,7 @@ body,
 .divOverview,
 .divTabs,
 .divNotList,
-.divdivForm,
+.divTabContent,
 .divOverviewStation,
 .divNotListItem,
 .btnAcceptRel,
@@ -99,25 +98,26 @@ body,
     height: 342px;
     padding-top: 21px;
     padding-bottom: 21px;
-}
-
-.divOverview > .divOverviewStation:first-child {
-    margin-left: 21px;
+    padding-left: 21px;
+    padding-right: 21px;
 }
 
 .divOverviewStation {
     height: 335px;
-    width: 153px;
-    margin-right: 21px;
+    width: 150px;
     float: left;
     padding: 2px;
     text-align: center;
 }
 
+.marginRight {
+    margin-right: 21px;
+}
+
 .divOverview,
 .divTabActive,
 .divTabInactive {
-    width: 749px;
+    /*width: 749px;*/
 }
 
 .btnBedOccupied,
@@ -162,6 +162,7 @@ body,
 /* Div containing all divTab divs */
 .divTabs {
     position: relative;
+
 }
 
 .btnTabActive,
@@ -195,16 +196,28 @@ body,
 .divTabInactive {
     position: absolute;
     top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
 }
 
 .divTabInactive {
     display: none;
 }
 
+.divTabContent {
+
+    height: 240px;
+    margin-top: 21px;
+    margin-left: 21px;
+    margin-right: 21px;
+    margin-bottom: 21px;
+}
+
 /* The div on the right side for the notification list */
 .divRight {
-    float: right;
-    margin-left: 21px;
+    float: left;
+    margin-left: 24px;
 }
 
 .divNotList {
