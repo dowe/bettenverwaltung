@@ -76,6 +76,33 @@ namespace Bettenverwaltung {
         protected global::System.Web.UI.WebControls.Panel divStationOrthopaedie;
         
         /// <summary>
+        /// btnTabDetails-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnTabDetails;
+        
+        /// <summary>
+        /// btnTabSearch-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnTabSearch;
+        
+        /// <summary>
+        /// btnTabAdd-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnTabAdd;
+        
+        /// <summary>
         /// divTabDetails-Steuerelement
         /// </summary>
         /// <remarks>
@@ -83,6 +110,24 @@ namespace Bettenverwaltung {
         /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel divTabDetails;
+        
+        /// <summary>
+        /// divTabSearch-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel divTabSearch;
+        
+        /// <summary>
+        /// divTabAdd-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel divTabAdd;
         
         /// <summary>
         /// UpdatePanel1-Steuerelement

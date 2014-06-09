@@ -10226,7 +10226,7 @@
             name="Innere_Medizin" />
           <enumerationLiteral
             Id="daa29a02-0e23-4008-a0ca-365ec8b950ca"
-            name="Orthopädie" />
+            name="Orthopaedie" />
           <enumerationLiteral
             Id="fe0ed0d7-db95-4529-889b-d51145aed46c"
             name="Paediatrie" />

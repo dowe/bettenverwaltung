@@ -12,6 +12,12 @@ namespace Bettenverwaltung
     {
         private const int NUMBER_OF_BEDS = 200;
 
+        // Css Classes
+        private const String CSS_CLASS_BTN_ACTIVE = "btnTabActive";
+        private const String CSS_CLASS_BTN_INACTIVE = "btnTabInactive";
+        private const String CSS_CLASS_DIV_ACTIVE = "divTabActive";
+        private const String CSS_CLASS_DIV_INACTIVE = "divTabInactive";
+
         private Button[] bedButtons = new Button[NUMBER_OF_BEDS];
 
         private IController controller;
@@ -32,6 +38,10 @@ namespace Bettenverwaltung
 
 		protected virtual void Page_Load(object sender, EventArgs e)
 		{
+            if (!IsPostBack)
+            {
+                SwitchToDetailsTab();
+            }
             // TEST
             not0.Style.Add("display", "none");
             not1.Style.Add("display", "none");
@@ -91,17 +101,17 @@ namespace Bettenverwaltung
 
 		protected virtual void Tab_Details_Click(object sender, EventArgs e)
 		{
-			throw new System.NotImplementedException();
+            SwitchToDetailsTab();
 		}
 
 		protected virtual void Tab_Search_Click(object sender, EventArgs e)
 		{
-			throw new System.NotImplementedException();
+            SwitchToSearchTab();
 		}
 
 		protected virtual void Tab_Add_Click(object sender, EventArgs e)
 		{
-			throw new System.NotImplementedException();
+            SwitchToAddTab();
 		}
 
 		protected virtual void Accept_Relocation_Click(object sender, EventArgs e)
@@ -166,17 +176,35 @@ namespace Bettenverwaltung
 
         private void SwitchToDetailsTab()
         {
-            throw new System.NotImplementedException();
+            btnTabDetails.CssClass = CSS_CLASS_BTN_ACTIVE;
+            btnTabSearch.CssClass = CSS_CLASS_BTN_INACTIVE;
+            btnTabAdd.CssClass = CSS_CLASS_BTN_INACTIVE;
+
+            divTabDetails.CssClass = CSS_CLASS_DIV_ACTIVE;
+            divTabSearch.CssClass = CSS_CLASS_DIV_INACTIVE;
+            divTabAdd.CssClass = CSS_CLASS_DIV_INACTIVE;
         }
 
         private void SwitchToSearchTab()
         {
-            throw new System.NotImplementedException();
+            btnTabDetails.CssClass = CSS_CLASS_BTN_INACTIVE;
+            btnTabSearch.CssClass = CSS_CLASS_BTN_ACTIVE;
+            btnTabAdd.CssClass = CSS_CLASS_BTN_INACTIVE;
+
+            divTabDetails.CssClass = CSS_CLASS_DIV_INACTIVE;
+            divTabSearch.CssClass = CSS_CLASS_DIV_ACTIVE;
+            divTabAdd.CssClass = CSS_CLASS_DIV_INACTIVE;
         }
 
         private void SwitchToAddTab()
         {
-            throw new System.NotImplementedException();
+            btnTabDetails.CssClass = CSS_CLASS_BTN_INACTIVE;
+            btnTabSearch.CssClass = CSS_CLASS_BTN_INACTIVE;
+            btnTabAdd.CssClass = CSS_CLASS_BTN_ACTIVE;
+
+            divTabDetails.CssClass = CSS_CLASS_DIV_INACTIVE;
+            divTabSearch.CssClass = CSS_CLASS_DIV_INACTIVE;
+            divTabAdd.CssClass = CSS_CLASS_DIV_ACTIVE;
         }
     }
 }

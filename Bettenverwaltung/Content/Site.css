@@ -7,7 +7,6 @@
 
 a {
     text-decoration: none;
-    font-weight: bold;
     color: #FFFFFF;
 }
 
@@ -25,23 +24,19 @@ h2 {
     font-weight: bold;
 }
 
-/* Standard padding for this divs */
-.divTab,
-.divForm {
-    padding: 21px;
-}
-
 /* GREY color for this divs */
 .divOverview,
-.divTab,
-.divNotList {
+.divTabs,
+.divNotList,
+.btnTabActive {
     background-color: #D8D8D8;
 }
 
 /* LIGHT BLUE color for this divs */
 .divNotListItem,
-.divForm,
-.divOverviewStation {
+.divTabContent,
+.divOverviewStation,
+.btnTabInactive {
     background-color: #4BACC6;
 }
 
@@ -55,9 +50,9 @@ body,
 
 /* 2px white border for this divs */
 .divOverview,
-.divTab,
+.divTabs,
 .divNotList,
-.divdivForm,
+.divTabContent,
 .divOverviewStation,
 .divNotListItem,
 .btnAcceptRel,
@@ -66,20 +61,31 @@ body,
 .btnBedOccupied,
 .btnBedCleaning,
 .btnBedWrongStation,
-.btnBedFree {
+.btnBedFree,
+.btnTabActive,
+.btnTabInactive {
     border-width: 2px;
     border-style: solid;
     border-color: #FFFFFF;
 }
 
 /* Center the divContent horizontally */
-.divContent {
-    width: 1052px;
-    height: 800px;
-    position:absolute;
-    margin-left: -526px;
-    top: 21px;
+.divCenter {
+    position: absolute;
+    top: 10px;
     left: 50%;
+    width: 1052px;
+    margin-left: -526px;
+}
+
+
+.divContent {
+    margin-bottom: 21px;
+}
+
+.divContent,
+.divRight {
+    height: 713px;
 }
 
 /* The div for divOverview and divTabs */
@@ -89,23 +95,29 @@ body,
 
 /* Div showing the stations */
 .divOverview {
-    width: 749px;
     height: 342px;
     padding-top: 21px;
     padding-bottom: 21px;
-}
-
-.divOverview > .divOverviewStation:first-child {
-    margin-left: 21px;
+    padding-left: 21px;
+    padding-right: 21px;
 }
 
 .divOverviewStation {
-    width: 153px;
     height: 335px;
-    margin-right: 21px;
+    width: 150px;
     float: left;
     padding: 2px;
     text-align: center;
+}
+
+.marginRight {
+    margin-right: 21px;
+}
+
+.divOverview,
+.divTabActive,
+.divTabInactive {
+    /*width: 749px;*/
 }
 
 .btnBedOccupied,
@@ -143,23 +155,69 @@ body,
     border-color: #000000;
 }
 
+.divTabsContainer {
+    margin-top: 21px;
+}
+
 /* Div containing all divTab divs */
 .divTabs {
-    margin-top: 21px;
-    width: 765px;
+    position: relative;
+
+}
+
+.btnTabActive,
+.btnTabInactive {
+    padding-left: 4px;
+    padding-right: 12px;
+    padding-top: 0px;
+    padding-bottom: 2px;
+    border-top-right-radius: 21px;
+    font-size: 10pt;
+    transition: background-color linear 0.1s;
+}
+
+.btnTabActive {
+    color: #000000;
+}
+
+.btnTabInactive:hover {
+    background-color: #31859B;
+    transition: background-color linear 0.1s;
+}
+
+.divTabs,
+.divTabActive,
+.divTabInactive {
     height: 285px;
 }
 
 /* TODO */
-.divTab {
+.divTabActive,
+.divTabInactive {
     position: absolute;
     top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+}
+
+.divTabInactive {
+    display: none;
+}
+
+.divTabContent {
+
+    height: 240px;
+    margin-top: 21px;
+    margin-left: 21px;
+    margin-right: 21px;
+    margin-bottom: 21px;
 }
 
 /* The div on the right side for the notification list */
 .divRight {
-    float: right;
-    height: 100%;
+    float: left;
+    margin-left: 24px;
 }
 
 .divNotList {
@@ -190,6 +248,7 @@ body,
     float: right;
     right: 0px;
     margin-top: 4px;
+    margin-right: -4px;
     transition: background-color linear 0.1s;
 }
 .btnAcceptRel:hover,
