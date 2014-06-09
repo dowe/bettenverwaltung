@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -52,7 +49,7 @@ namespace Bettenverwaltung
             b0.bedId = 0;
             db.Beds.Add(b0);
             Bed b1 = new Bed();
-            b1.bedId = 1;
+            b1.bedId = 200;
             db.Beds.Add(b1);
 
             db.SaveChanges();
@@ -60,8 +57,14 @@ namespace Bettenverwaltung
             var beds = from b in db.Beds orderby b.bedId select b;
             foreach (var bed in beds)
             {
-                Console.WriteLine(bed.bedId.ToString());
+                Console.WriteLine(bed.bedId);
             }
+
+            Patient p1 = new Patient("peter", "enis", DateTime.Today, true, 25, 0, 0);
+            db.Patients.Add(p1);
+            db.SaveChanges();
+            Patient patients = db.Patients.Find(25);
+            Console.WriteLine(patients.patId);
 			//throw new System.NotImplementedException();
 		}
 
