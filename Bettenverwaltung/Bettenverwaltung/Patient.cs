@@ -56,6 +56,11 @@ namespace Bettenverwaltung
             return this.History;
         }
 
+        public Patient()
+        {
+
+        }
+
         public Patient(string firstname, string lastname, DateTime Birthday, bool isFemale, int patId, int historyId, int historyItemId)    //Konstruktor: Der Patient wird aus den Übergabewerten erstellt. Die ID wird aus dem Wert des letzten
         {
             //DB eintrags generiert. Es wird ebenfalls eine neue Historie für den Patienten anglegt.
@@ -66,7 +71,6 @@ namespace Bettenverwaltung
             this.patId = patId;
             this.History = new History(historyId, historyItemId);
         }
-
     }
 }
 

@@ -63,8 +63,11 @@ namespace Bettenverwaltung
             Patient p1 = new Patient("peter", "enis", DateTime.Today, true, 25, 0, 0);
             db.Patients.Add(p1);
             db.SaveChanges();
-            Patient patients = db.Patients.Find(25);
-            Console.WriteLine(patients.patId);
+            var patients = from p in db.Patients where p.patId.Equals(25) select p;
+            foreach (var patient in patients)
+            {
+                Console.WriteLine(patient.patId);
+            }
 			//throw new System.NotImplementedException();
 		}
 

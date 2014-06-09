@@ -47,6 +47,11 @@ namespace Bettenverwaltung
 			set;
 		}
 
+        public Relocation()
+        {
+
+        }
+
 		public Relocation(IBedRelocation bed, EStation station, int relId) //Konstruktor: Die übergebenen Werte werden zugewiesen
 		{                                                                  //weitere Werte werden zunächst mit null oder false initialisiert.
             this.sourceBed = bed;

@@ -12,43 +12,47 @@ namespace Bettenverwaltung
     using System.Linq;
     using System.Text;
 
-	public class History                                                //Hier wird die Verlegungshistorie des Patienten gespreichert. Jede History Klasse ist einem Patienten zugeordnet.
-	{
+    public class History                                                //Hier wird die Verlegungshistorie des Patienten gespreichert. Jede History Klasse ist einem Patienten zugeordnet.
+    {
         [Key]
         public int historyId
-		{
-			get;
-			set;
-		}
+        {
+            get;
+            set;
+        }
 
-		public virtual List<HistoryItem> HistoryItem
-		{
-			get;
-			set;
-		}
+        public virtual List<HistoryItem> HistoryItem
+        {
+            get;
+            set;
+        }
 
-		public virtual HistoryItem GetHistoryItem(int index)            //Der History-Eintragmit dem index wird zurückgegeben
-		{
+        public virtual HistoryItem GetHistoryItem(int index)            //Der History-Eintragmit dem index wird zurückgegeben
+        {
             return HistoryItem[index];
-		}
+        }
 
-		public virtual int GetSize()                                    //Die Anzahl der History-Items in der Liste wird zurückgegeben
-		{
+        public virtual int GetSize()                                    //Die Anzahl der History-Items in der Liste wird zurückgegeben
+        {
             return HistoryItem.Count;
-		}
+        }
 
-		public virtual void InsertHistoryItem(HistoryItem i)            //Das Angegebene HistroyItem wird hinten in die Liste eingetragen
-		{
+        public virtual void InsertHistoryItem(HistoryItem i)            //Das Angegebene HistroyItem wird hinten in die Liste eingetragen
+        {
             HistoryItem.Add(i);
-		}
+        }
 
-		public History(int historyId, int historyItemId)                //Ein neues History-Objekt wird angelegt und das Erste History-Item
-		{
+        public History()
+        {
+
+        }
+
+        public History(int historyId, int historyItemId)                //Ein neues History-Objekt wird angelegt und das Erste History-Item
+        {
             this.historyId = historyId;
             HistoryItem = new List<HistoryItem>();
             this.HistoryItem.Add(Bettenverwaltung.HistoryItem.CreateEntryItem(historyItemId));//für die Patientenaufnahme in die Liste eingefügt.
-		}
-
-	}
+        }
+    }
 }
 
