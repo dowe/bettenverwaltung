@@ -48,7 +48,6 @@ namespace Bettenverwaltung
             get;
             set;
         }
-
     }
 }
 
