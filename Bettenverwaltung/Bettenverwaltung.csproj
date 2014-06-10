@@ -174,7 +174,6 @@
     <Compile Include="Bettenverwaltung\History.cs" />
     <Compile Include="Bettenverwaltung\HistoryItem.cs" />
     <Compile Include="Bettenverwaltung\IBedCleaner.cs" />
-    <Compile Include="Bettenverwaltung\IBedRelocation.cs" />
     <Compile Include="Bettenverwaltung\IBedView.cs" />
     <Compile Include="Bettenverwaltung\IController.cs" />
     <Compile Include="Bettenverwaltung\Patient.cs" />

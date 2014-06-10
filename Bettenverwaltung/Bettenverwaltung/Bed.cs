@@ -13,7 +13,7 @@ namespace Bettenverwaltung
     using System.Text;
 
    
-	public class Bed : IBedCleaner, IBedView, IBedRelocation      //Datenbankobjekt für die Betten des KHs
+	public class Bed : IBedCleaner, IBedView      //Datenbankobjekt für die Betten des KHs
 	{
         [Key]
         public int bedId

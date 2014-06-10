@@ -35,13 +35,13 @@ namespace Bettenverwaltung
 			set;
 		}
 
-		public virtual IBedRelocation sourceBed
+		public virtual Bed sourceBed
 		{
 			get;
 			set;
 		}
 
-		public virtual IBedRelocation destinationBed
+		public virtual Bed destinationBed
 		{
 			get;
 			set;
@@ -52,7 +52,7 @@ namespace Bettenverwaltung
 
         }
 
-		public Relocation(IBedRelocation bed, EStation station, int relId) //Konstruktor: Die übergebenen Werte werden zugewiesen
+		public Relocation(Bed bed, EStation station, int relId) //Konstruktor: Die übergebenen Werte werden zugewiesen
 		{                                                                  //weitere Werte werden zunächst mit null oder false initialisiert.
             this.sourceBed = bed;
             this.station = (int)station;
@@ -71,7 +71,7 @@ namespace Bettenverwaltung
             return (EStation)station;
         }
 
-		public virtual void SetActive(IBedRelocation bed)       //Diese Funktion wird aufgerufen wenn eine Rückverlegung möglich ist.
+		public virtual void SetActive(Bed bed)       //Diese Funktion wird aufgerufen wenn eine Rückverlegung möglich ist.
 		{                                                       //Das Zielbett wird eingetragen jedoch noch nicht gesperrt.
 			if(!bed.IsEmpty()||bed.IsGettingCleaned()||bed.IsInRelocation())
             {
@@ -131,12 +131,12 @@ namespace Bettenverwaltung
             this.timestamp = (DateTime.Now.ToString());                  //Zeitpunkt der Annahme wird gesetzt.
 		}
 
-		public virtual IBedRelocation GetSourceBed()
+		public virtual Bed GetSourceBed()
 		{
             return sourceBed;
 		}
 
-		public virtual IBedRelocation GetDestinationBed()
+		public virtual Bed GetDestinationBed()
 		{
             return destinationBed;
 		}
