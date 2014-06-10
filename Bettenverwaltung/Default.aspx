@@ -28,14 +28,62 @@
                         <div class="divTabs">
                             <asp:Panel ID="divTabDetails" runat="server" CssClass="divTabActive">
                                 <div class="divTabContent">
-
+                                    <div class="divFormLeft">
+                                        <div style="float:left;">
+                                            PatientenId:<br /><br />
+                                            Name:<br /><br />
+                                            Geschlecht:<br /><br />
+                                            Geburtsdatum:<br /><br />
+                                            Korrekte Station:<br /><br />
+                                        </div>
+                                        <div style="float:right; right: 0; margin-right:30px;">
+                                            <asp:TextBox ID="txtBoxDetailsPatId" runat="server" ReadOnly="true" BackColor="LightGray"></asp:TextBox><br /><br />
+                                            <asp:TextBox ID="txtBoxDetailsPatName" runat="server" ReadOnly="true" BackColor="LightGray"></asp:TextBox><br /><br />
+                                            <asp:TextBox ID="txtBoxDetailsPatGender" runat="server" ReadOnly="true" BackColor="LightGray"></asp:TextBox><br /><br />
+                                            <asp:TextBox ID="txtBoxDetailsPatBirthday" runat="server" ReadOnly="true" BackColor="LightGray"></asp:TextBox><br /><br />
+                                            <asp:TextBox ID="txtBoxDetailsPatCorrectStation" runat="server" ReadOnly="true" BackColor="LightGray"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <div class="divFormRight">
+                                        <div style="float:left;">
+                                            BettId:<br /><br />
+                                            Station des Bettes:<br /><br />
+                                        </div>
+                                        <div style="float:right; right: 0;">
+                                            <asp:TextBox ID="txtBoxDetailsBedId" runat="server" ReadOnly="true" BackColor="LightGray"></asp:TextBox><br /><br />
+                                            <asp:TextBox ID="txtBoxDetailsBedStation" runat="server" ReadOnly="true" BackColor="LightGray"></asp:TextBox><br /><br /><br /><br /><br /><br />
+                                        </div>
+                                        <asp:LinkButton runat="server" ID="btnDetailsDismiss" CssClass="btnFormSubmit">Dismiss</asp:LinkButton>
+                                    </div>
                                 </div>
                             </asp:Panel>
                             <asp:Panel ID="divTabSearch" runat="server" CssClass="divTabInactive">
-                                Search
+                                <div class="divTabContent">
+                                </div>
                             </asp:Panel>
                             <asp:Panel ID="divTabAdd" runat="server" CssClass="divTabInactive">
-                                Add Patient
+                                <div class="divTabContent">
+                                    <div class="divFormLeft">
+                                        <div style="float:left;">
+                                            PatientenId:<br /><br />
+                                            Name:<br /><br />
+                                            Geschlecht:<br /><br />
+                                            Geburtsdatum:<br /><br />
+                                            Korrekte Station:<br /><br />
+                                        </div>
+                                        <div style="float:right; right: 0; margin-right:30px;">
+                                            <asp:TextBox ID="txtBoxAddPatId" runat="server"></asp:TextBox><br /><br />
+                                            <asp:TextBox ID="txtBoxAddPatName" runat="server"></asp:TextBox><br /><br />
+                                            <asp:TextBox ID="txtBoxAddPatGender" runat="server"></asp:TextBox><br /><br />
+                                            <asp:TextBox ID="txtBoxAddPatBirthday" runat="server"></asp:TextBox><br /><br />
+                                            <asp:TextBox ID="txtBoxAddPatCorrectStation" runat="server"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <div class="divFormRight">
+                                        <br /><br /><br /><br /><br /><br /><br /><br />
+                                        <asp:LinkButton runat="server" ID="btnAddConfirm" CssClass="btnFormSubmit">Patient hinzufügen</asp:LinkButton>
+                                    </div>
+                                </div>
                             </asp:Panel>
                         </div>
 
