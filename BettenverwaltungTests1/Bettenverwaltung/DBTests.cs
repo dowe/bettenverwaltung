@@ -22,8 +22,13 @@ namespace BettenverwaltungTests1.Bettenverwaltung
             Patient p1 = new Patient("peter","enis",dt,true,25,0,0);
             db.Patients.Add(p1);
             db.SaveChanges();
-            Patient patients = db.Patients.Find(25);
-            Assert.AreEqual(patients.patId,25);
+            Patient[] patients = db.Patients.Where(p => p.lastname == "enis").ToArray();
+
+            Assert.AreEqual(patients[0].lastname, "enis");
+            foreach (var pat in patients)
+            {
+                Assert.AreEqual(pat.lastname, "enis");
+            }
         }
 
         [TestMethod]
@@ -41,7 +46,7 @@ namespace BettenverwaltungTests1.Bettenverwaltung
             var beds = from b in db.Beds orderby b.bedId select b;
             foreach (var bed in beds)
             {
-                Console.WriteLine(bed.bedId.ToString());
+                Assert.AreEqual(bed.cleaningTime, null);
             }
         }
     }
