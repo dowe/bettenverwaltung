@@ -1,0 +1,7 @@
+Daniel: Controller: getRelocation, getInacativeRElocationList, getActiveRelocList, Accept/CancelRelocation
+
+Dominik: DBCleaner, initDb Projekt,
+
+Christoph: Controller: Search, Dismiss, DisplayPatient, getBedList
+
+Ole: View: Search, Validation
