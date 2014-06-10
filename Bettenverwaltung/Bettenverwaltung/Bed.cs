@@ -34,7 +34,7 @@ namespace Bettenverwaltung
 			set;
 		}
 
-        public DateTime? cleaningTime
+        public String cleaningTime
 		{
 			get;
 			set;
@@ -89,7 +89,7 @@ namespace Bettenverwaltung
 		{
 
             if (this.cleaningTime == null)
-                this.cleaningTime = DateTime.Now;
+                this.cleaningTime = DateTime.Now.ToString();
             else
             {
                 String str = "Bett " + this.bedId + " wird bereits gereinigt";
@@ -110,7 +110,7 @@ namespace Bettenverwaltung
 
 		public virtual DateTime? GetCleaningTime()               //überprüfung der cleaingtime. Wird nur vom DB_Cleaner verwendet.
 		{
-            return this.cleaningTime;
+            return DateTime.Parse(this.cleaningTime);
 		}
 
 		public virtual Patient GetPatient()

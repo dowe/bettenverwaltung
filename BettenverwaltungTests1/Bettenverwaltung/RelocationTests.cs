@@ -47,7 +47,7 @@ namespace Bettenverwaltung.Tests
         {
             Relocation Test = new Relocation(new Bed(), EStation.Gynaekologie, 1);
             Bed Bed = new Bed();
-            Bed.cleaningTime = DateTime.Now;
+            Bed.cleaningTime = (DateTime.Now.ToString());
             Test.SetActive(Bed);  //Exception
         }
 

@@ -33,7 +33,7 @@ namespace Bettenverwaltung
             set;
         }
 
-        public DateTime birthday
+        public string birthday
         {
             get;
             set;
@@ -61,12 +61,12 @@ namespace Bettenverwaltung
 
         }
 
-        public Patient(string firstname, string lastname, DateTime Birthday, bool isFemale, int patId, int historyId, int historyItemId)    //Konstruktor: Der Patient wird aus den Übergabewerten erstellt. Die ID wird aus dem Wert des letzten
+        public Patient(string firstname, string lastname, DateTime birthday, bool isFemale, int patId, int historyId, int historyItemId)    //Konstruktor: Der Patient wird aus den Übergabewerten erstellt. Die ID wird aus dem Wert des letzten
         {
             //DB eintrags generiert. Es wird ebenfalls eine neue Historie für den Patienten anglegt.
             this.firstname = firstname;
             this.lastname = lastname;
-            this.birthday = birthday;
+            this.birthday = birthday.ToString();
             this.isFemale = isFemale;
             this.patId = patId;
             this.History = new History(historyId, historyItemId);

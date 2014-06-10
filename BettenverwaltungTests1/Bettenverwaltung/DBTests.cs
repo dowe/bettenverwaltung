@@ -18,7 +18,8 @@ namespace BettenverwaltungTests1.Bettenverwaltung
         [TestMethod]
         public void DBPatientTest()
         {
-            Patient p1 = new Patient("peter","enis",DateTime.Now,true,25,0,0);
+            DateTime dt = new DateTime(2000,5,7);
+            Patient p1 = new Patient("peter","enis",dt,true,25,0,0);
             db.Patients.Add(p1);
             db.SaveChanges();
             Patient patients = db.Patients.Find(25);

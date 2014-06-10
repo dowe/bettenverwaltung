@@ -29,7 +29,7 @@ namespace Bettenverwaltung
 
 		public bool accepted;
 
-		public DateTime? timestamp
+		public string timestamp
 		{
 			get;
 			set;
@@ -128,7 +128,7 @@ namespace Bettenverwaltung
             }
             this.accepted = true;
             destinationBed.SetInRelocation(true);           //Das Bett wird gesperrt.
-            this.timestamp = DateTime.Now;                  //Zeitpunkt der Annahme wird gesetzt.
+            this.timestamp = (DateTime.Now.ToString());                  //Zeitpunkt der Annahme wird gesetzt.
 		}
 
 		public virtual IBedRelocation GetSourceBed()
@@ -143,7 +143,7 @@ namespace Bettenverwaltung
 
 		public virtual DateTime? GetTimestamp()
 		{
-            return timestamp;
+            return DateTime.Parse(timestamp);
 		}
 
 		public virtual void SetUnaccepted()                 //die Rückverlegung wird abgebrochen.

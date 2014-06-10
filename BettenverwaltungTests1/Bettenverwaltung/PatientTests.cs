@@ -16,7 +16,7 @@ namespace Bettenverwaltung.Tests
             Patient pat = new Patient("Peter", "Enis", new DateTime(), false, 0, 0, 0);
             Assert.AreEqual(pat.firstname, "Peter");
             Assert.AreEqual(pat.lastname, "Enis");
-            Assert.AreEqual(pat.birthday, new DateTime());
+            Assert.AreEqual(pat.birthday, new DateTime().ToString());
             Assert.AreEqual(pat.History.HistoryItem[0].historyItemId, 0);
         }
 

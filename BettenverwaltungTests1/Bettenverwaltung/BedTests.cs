@@ -102,7 +102,7 @@ namespace Bettenverwaltung.Tests
             bed.inRelocation = true;
             bed.station = 0;
             bed.bedId = 0;
-            bed.cleaningTime = DateTime.Now;
+            bed.cleaningTime = (DateTime.Now.ToString());
 
             bed.StopCleaning();
             Assert.IsNull(bed.cleaningTime);
@@ -116,14 +116,12 @@ namespace Bettenverwaltung.Tests
         {
             Bed bed = new Bed();
             //initialize bed
-            Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false, 0, 0, 0);
-            bed.Patient = pat;
             bed.inRelocation = true;
             bed.station = 0;
             bed.bedId = 0;
-            bed.cleaningTime = new DateTime();
+            bed.cleaningTime = new DateTime().ToString();
 
-            Assert.AreEqual(bed.GetCleaningTime(), bed.cleaningTime);
+            Assert.AreEqual(bed.GetCleaningTime(), DateTime.Parse(bed.cleaningTime));
         }
 
         [TestMethod()]
@@ -201,7 +199,7 @@ namespace Bettenverwaltung.Tests
             bed.cleaningTime = null;
 
             Assert.IsFalse(bed.IsGettingCleaned());
-            bed.cleaningTime = DateTime.Now;
+            bed.cleaningTime = (DateTime.Now.ToString());
             Assert.IsTrue(bed.IsGettingCleaned());
         }
 
