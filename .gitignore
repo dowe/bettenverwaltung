@@ -156,3 +156,5 @@ $RECYCLE.BIN/
 .DS_Store
 # Database files
 /Bettenverwaltung/App_Data/
+# app config unit tests für db file ort
+/BettenverwaltungTests1/app.config
