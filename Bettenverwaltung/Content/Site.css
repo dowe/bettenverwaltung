@@ -3,6 +3,7 @@
     padding: 0px;
     color: #FFFFFF;
     font-family: Calibri;
+    font-size: 12pt;
 }
 
 a {
@@ -45,7 +46,8 @@ body,
 .btnAcceptRel,
 .btnCancelRel,
 .btnConfirmRel,
-.btnFormSubmit {
+.btnFormSubmit,
+.divSearchResultListItem {
     background-color: #31859B;
 }
 
@@ -56,6 +58,7 @@ body,
 .divTabContent,
 .divOverviewStation,
 .divNotListItem,
+.divSearchResultListItem,
 .btnAcceptRel,
 .btnCancelRel,
 .btnConfirmRel,
@@ -75,9 +78,9 @@ body,
 .divCenter {
     position: absolute;
     top: 10px;
-    left: 50%;
     width: 1052px;
-    margin-left: -526px;
+    /*left: 50%;
+    margin-left: -526px;*/
 }
 
 
@@ -237,10 +240,22 @@ body,
     width: 295px;
 }
 
+.listDetailsPatHistory {
+    max-width: 299px;
+    width: 299px;
+    height: 67px;
+    margin-bottom: 18px;
+}
+
 .divFormRight,
 .btnFormSubmit {
     float: right;
 }
+
+.divSearchResultList {
+    margin-top: 21px;
+}
+
 
 /* The div on the right side for the notification list */
 .divRight {
@@ -261,6 +276,10 @@ body,
     padding-left: 4px;
     padding-right: 4px;
     padding-bottom: 26px;
+}
+
+.divNotListItem,
+.divSearchResultListItem {
     border-top-right-radius: 21px;
 }
 
@@ -285,7 +304,7 @@ body,
 }
 
 .btnFormSubmit {
-    margin-top: -4px;
+    margin-top: -2px;
 }
 
 .btnAcceptRel,

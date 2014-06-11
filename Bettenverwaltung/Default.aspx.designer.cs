@@ -175,6 +175,15 @@ namespace Bettenverwaltung {
         protected global::System.Web.UI.WebControls.TextBox txtBoxDetailsBedStation;
         
         /// <summary>
+        /// ListBox1-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox ListBox1;
+        
+        /// <summary>
         /// btnDetailsDismiss-Steuerelement
         /// </summary>
         /// <remarks>
@@ -202,22 +211,67 @@ namespace Bettenverwaltung {
         protected global::System.Web.UI.WebControls.Panel divTabAdd;
         
         /// <summary>
-        /// txtBoxAddPatId-Steuerelement
+        /// lblAddPatFirstName-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBoxAddPatId;
+        protected global::System.Web.UI.WebControls.Label lblAddPatFirstName;
         
         /// <summary>
-        /// txtBoxAddPatName-Steuerelement
+        /// lblAddPatLastName-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBoxAddPatName;
+        protected global::System.Web.UI.WebControls.Label lblAddPatLastName;
+        
+        /// <summary>
+        /// lblAddPatGender-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAddPatGender;
+        
+        /// <summary>
+        /// lblAddPatBirthday-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAddPatBirthday;
+        
+        /// <summary>
+        /// lblAddPatStation-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAddPatStation;
+        
+        /// <summary>
+        /// txtBoxAddPatFirstName-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBoxAddPatFirstName;
+        
+        /// <summary>
+        /// txtBoxAddPatLastName-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBoxAddPatLastName;
         
         /// <summary>
         /// txtBoxAddPatGender-Steuerelement
