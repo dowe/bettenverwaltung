@@ -109,7 +109,7 @@ body,
 
 .divOverviewStation {
     height: 335px;
-    width: 150px;
+    width: 142px;
     float: left;
     padding: 2px;
     text-align: center;
@@ -218,24 +218,9 @@ body,
     margin-bottom: 21px;
 }
 
-.divFormLeft {
-    position: relative;
-    width: 310px;
-    float: left;
-    left: 21px;
-    top: 21px;
-    bottom: 21px;
-}
-
-.divFormRight {
-    position: relative;
-    top: 21px;
-    bottom: 21px;
-    margin-right: 21px;
-}
-
 .divFormLeft,
 .divFormRight {
+    position: relative;
     width: 295px;
 }
 
@@ -246,8 +231,11 @@ body,
     margin-bottom: 18px;
 }
 
-.divFormRight,
-.btnFormSubmit {
+.divFormLeft {
+    float: left;
+}
+
+.divFormRight {
     float: right;
 }
 
@@ -258,7 +246,6 @@ body,
 
 /* The div on the right side for the notification list */
 .divRight {
-    float: left;
     margin-left: 24px;
 }
 
@@ -304,7 +291,7 @@ body,
 
 .btnFormSubmit {
     position: absolute;
-    bottom: 0px;
+    bottom: -2px;
     width: 100%;
 }
 

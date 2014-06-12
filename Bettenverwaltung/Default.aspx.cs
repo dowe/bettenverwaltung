@@ -44,7 +44,7 @@ namespace Bettenverwaltung
             not1.Style.Add("display", "none");
             // END TEST
             InitBeds();
-            db = new BVContext();
+            /*db = new BVContext();
             Bed b0 = new Bed();
             b0.bedId = 0;
             db.Beds.Add(b0);
@@ -66,7 +66,7 @@ namespace Bettenverwaltung
             db.SaveChanges();
             Patient patients = db.Patients.Find(25);
             
-			//throw new System.NotImplementedException();
+			//throw new System.NotImplementedException();*/
 		}
 
 		private void InitBeds()

@@ -28,35 +28,37 @@
                         <div class="divTabs">
                             <asp:Panel ID="divTabDetails" runat="server" CssClass="divTabInActive">
                                 <div class="divTabContent">
-                                    <div class="divFormLeft">
-                                        <span class="spanLabel">PatientenId:</span>
-                                        <asp:TextBox ID="txtBoxDetailsPatId" runat="server" ReadOnly="true" BackColor="LightGray"></asp:TextBox><br />
+                                    <div style="margin: 21px;">
+                                        <div class="divFormLeft">
+                                            <span class="spanLabel">PatientenId:</span>
+                                            <asp:TextBox ID="txtBoxDetailsPatId" runat="server" ReadOnly="true" BackColor="LightGray"></asp:TextBox><br />
 
-                                        <span class="spanLabel">Name:</span>
-                                        <asp:TextBox ID="txtBoxDetailsPatName" runat="server" ReadOnly="true" BackColor="LightGray"></asp:TextBox><br />
+                                            <span class="spanLabel">Name:</span>
+                                            <asp:TextBox ID="txtBoxDetailsPatName" runat="server" ReadOnly="true" BackColor="LightGray"></asp:TextBox><br />
 
-                                        <span class="spanLabel">Name:Geschlecht:</span>
-                                        <asp:TextBox ID="txtBoxDetailsPatGender" runat="server" ReadOnly="true" BackColor="LightGray"></asp:TextBox><br />
+                                            <span class="spanLabel">Name:Geschlecht:</span>
+                                            <asp:TextBox ID="txtBoxDetailsPatGender" runat="server" ReadOnly="true" BackColor="LightGray"></asp:TextBox><br />
 
-                                        <span class="spanLabel">Geburtsdatum:</span>
-                                        <asp:TextBox ID="txtBoxDetailsPatBirthday" runat="server" ReadOnly="true" BackColor="LightGray"></asp:TextBox><br />
+                                            <span class="spanLabel">Geburtsdatum:</span>
+                                            <asp:TextBox ID="txtBoxDetailsPatBirthday" runat="server" ReadOnly="true" BackColor="LightGray"></asp:TextBox><br />
 
-                                        <span class="spanLabel">Korrekte Station:</span>
-                                        <asp:TextBox ID="txtBoxDetailsPatCorrectStation" runat="server" ReadOnly="true" BackColor="LightGray"></asp:TextBox><br />
+                                            <span class="spanLabel">Korrekte Station:</span>
+                                            <asp:TextBox ID="txtBoxDetailsPatCorrectStation" runat="server" ReadOnly="true" BackColor="LightGray"></asp:TextBox><br />
 
-                                    </div>
-                                    <div class="divFormRight">
-                                        <span class="spanLabel">BettID:</span>
-                                        <asp:TextBox ID="txtBoxDetailsBedId" runat="server" ReadOnly="true" BackColor="LightGray"></asp:TextBox><br />
+                                        </div>
+                                        <div class="divFormRight">
+                                            <span class="spanLabel">BettID:</span>
+                                            <asp:TextBox ID="txtBoxDetailsBedId" runat="server" ReadOnly="true" BackColor="LightGray"></asp:TextBox><br />
 
-                                        <span class="spanLabel">Station des Bettes:</span>
-                                        <asp:TextBox ID="txtBoxDetailsBedStation" runat="server" ReadOnly="true" BackColor="LightGray"></asp:TextBox><br />
-                      
+                                            <span class="spanLabel">Station des Bettes:</span>
+                                            <asp:TextBox ID="txtBoxDetailsBedStation" runat="server" ReadOnly="true" BackColor="LightGray"></asp:TextBox><br />
 
-                                        <asp:ListBox ID="ListBox1" runat="server" CssClass="listDetailsPatHistory"></asp:ListBox>
-                                        <br />
-                                        <br />
-                                        <asp:LinkButton runat="server" ID="btnDetailsDismiss" CssClass="btnFormSubmit">Dismiss</asp:LinkButton>
+
+                                            <asp:ListBox ID="ListBox1" runat="server" CssClass="listDetailsPatHistory"></asp:ListBox>
+                                            <br />
+                                            <br />
+                                            <asp:LinkButton runat="server" ID="btnDetailsDismiss" CssClass="btnFormSubmit">Dismiss</asp:LinkButton>
+                                        </div>
                                     </div>
                                 </div>
                             </asp:Panel>
@@ -68,32 +70,27 @@
                             </asp:Panel>
                             <asp:Panel ID="divTabAdd" runat="server" CssClass="divTabActive">
                                 <div class="divTabContent">
-                                    <div class="divFormLeft">
-                                        <asp:Label ID="lblAddPatFirstName" runat="server" Text="Vorname:" CssClass="spanLabel"></asp:Label>
-                                        <asp:TextBox ID="txtBoxAddPatFirstName" runat="server"></asp:TextBox><br />
+                                    <div style="margin: 21px;">
+                                        <div class="divFormLeft">
+                                            <asp:Label ID="lblAddPatFirstName" runat="server" Text="Vorname:" CssClass="spanLabel"></asp:Label>
+                                            <asp:TextBox ID="txtBoxAddPatFirstName" runat="server"></asp:TextBox><br />
 
-                                        <asp:Label ID="lblAddPatLastName" runat="server" Text="Nachname:" CssClass="spanLabel"></asp:Label>
-                                        <asp:TextBox ID="txtBoxAddPatLastName" runat="server"></asp:TextBox><br />
+                                            <asp:Label ID="lblAddPatLastName" runat="server" Text="Nachname:" CssClass="spanLabel"></asp:Label>
+                                            <asp:TextBox ID="txtBoxAddPatLastName" runat="server"></asp:TextBox><br />
 
-                                        <asp:Label ID="lblAddPatGender" runat="server" Text="Geschlecht:" CssClass="spanLabel"></asp:Label>
-                                        <asp:TextBox ID="txtBoxAddPatGender" runat="server"></asp:TextBox><br />
+                                            <asp:Label ID="lblAddPatGender" runat="server" Text="Geschlecht:" CssClass="spanLabel"></asp:Label>
+                                            <asp:TextBox ID="txtBoxAddPatGender" runat="server"></asp:TextBox><br />
 
-                                        <asp:Label ID="lblAddPatBirthday" runat="server" Text="Geburtsdatum:" CssClass="spanLabel"></asp:Label>
-                                        <asp:TextBox ID="txtBoxAddPatBirthday" runat="server"></asp:TextBox><br />
+                                            <asp:Label ID="lblAddPatBirthday" runat="server" Text="Geburtsdatum:" CssClass="spanLabel"></asp:Label>
+                                            <asp:TextBox ID="txtBoxAddPatBirthday" runat="server"></asp:TextBox><br />
 
-                                        <asp:Label ID="lblAddPatStation" runat="server" Text="Station:" CssClass="spanLabel"></asp:Label>
-                                        <asp:TextBox ID="txtBoxAddPatCorrectStation" runat="server"></asp:TextBox>
-                                    </div>
-                                    <div class="divFormRight">
-                                        <br />
-                                        <br />
-                                        <br />
-                                        <br />
-                                        <br />
-                                        <br />
-                                        <br />
-                                        <br />
-                                        <asp:LinkButton runat="server" ID="btnAddConfirm" CssClass="btnFormSubmit">Patient hinzufügen</asp:LinkButton>
+                                            <asp:Label ID="lblAddPatStation" runat="server" Text="Station:" CssClass="spanLabel"></asp:Label>
+                                            <asp:TextBox ID="txtBoxAddPatCorrectStation" runat="server"></asp:TextBox>
+                                        </div>
+                                        <div class="divFormRight" style="padding-top: 193px;">
+                                            <asp:LinkButton runat="server" ID="btnAddConfirm" CssClass="btnFormSubmit">Patient hinzufügen</asp:LinkButton>
+                                        </div>
+                                        <div style="clear: both;"></div>
                                     </div>
                                 </div>
                             </asp:Panel>
