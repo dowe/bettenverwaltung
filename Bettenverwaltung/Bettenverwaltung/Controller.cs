@@ -19,6 +19,11 @@ namespace Bettenverwaltung
 			set;
 		}
 
+        public Controller()
+        {
+            BVContext = new BVContext();
+        }
+
         public virtual IBedView AddPatient(string firstname, string lastname, EStation station, DateTime birthday, bool isFemale)   //Legt ein Patientenobjekt an und weist diesem mit FindeBedfor ein Bett zu.
         {                                                                                                                           //Wird von FindBed for null zurückgegeben, wird ein Krankenwagen gerufen.
             throw new System.NotImplementedException();                                                                             //Bei Erfolg wird die Bettenid des Bettes, in dem der Patient nun liegt, zurückgegeben.
@@ -32,8 +37,14 @@ namespace Bettenverwaltung
 		
         public virtual void AcceptRelocation(int relocationId)          //Die Verlegung wird angenommen (noch nicht ausgeführt!). Das Relocation-Objekt mit der Angegebenen ID wird gesucht
 		{                                                               //und dessen annaheme-Funktion ausgefürht.
-			throw new System.NotImplementedException();
-		}
+            Relocation Rel = BVContext.Relocations.Find(relocationId);
+            if(Rel == null)
+            {
+                throw new BedException("Es gibt keine Verlegung mit der ID " + relocationId);
+            }
+            Rel.SetAccepted();
+            BVContext.SaveChanges();		
+        }
 
 		public virtual IBedView DisplayPatient(int bedId)               //Das mit bedId angegeben Bett wird aus der Datenbank geholt und zurückgegeben
 		{
