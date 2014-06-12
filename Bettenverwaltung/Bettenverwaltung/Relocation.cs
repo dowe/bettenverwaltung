@@ -27,7 +27,11 @@ namespace Bettenverwaltung
 			set;
 		}
 
-		public bool accepted;
+		public bool accepted
+        {
+            get;
+            set;
+        }
 
 		public string timestamp
 		{
@@ -52,11 +56,10 @@ namespace Bettenverwaltung
 
         }
 
-		public Relocation(Bed bed, EStation station, int relId) //Konstruktor: Die übergebenen Werte werden zugewiesen
+		public Relocation(Bed bed, EStation station) //Konstruktor: Die übergebenen Werte werden zugewiesen
 		{                                                                  //weitere Werte werden zunächst mit null oder false initialisiert.
             this.sourceBed = bed;
             this.station = (int)station;
-            this.relocationId = relId;
             this.destinationBed = null;
             this.accepted = false;
             this.timestamp = null;

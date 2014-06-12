@@ -59,6 +59,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Bettenverwaltung\BedTests.cs" />
+    <Compile Include="Bettenverwaltung\ControllerTests.cs" />
     <Compile Include="Bettenverwaltung\HistoryItemTests.cs" />
     <Compile Include="Bettenverwaltung\HistoryTests.cs" />
     <Compile Include="Bettenverwaltung\PatientTests.cs" />

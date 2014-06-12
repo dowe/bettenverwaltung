@@ -14,10 +14,9 @@ namespace Bettenverwaltung.Tests
         public void RelocationTest()
         {
             Bed Bed = new Bed();
-            Relocation Test = new Relocation(Bed, EStation.Gynaekologie, 1);
+            Relocation Test = new Relocation(Bed, EStation.Gynaekologie);
             Assert.AreEqual(Bed, Test.sourceBed);
             Assert.AreEqual(3, Test.station);
-            Assert.AreEqual(1, Test.relocationId);
             Assert.AreEqual(false, Test.accepted);
             Assert.AreEqual(null, Test.timestamp);
             Assert.AreEqual(null, Test.destinationBed);
@@ -26,7 +25,7 @@ namespace Bettenverwaltung.Tests
         [TestMethod()]
         public void GetStationTest()
         {
-            Relocation Test = new Relocation(new Bed(), EStation.Innere_Medizin, 1);
+            Relocation Test = new Relocation(new Bed(), EStation.Innere_Medizin);
             Assert.AreEqual(EStation.Innere_Medizin, Test.GetStation());
         }
 
@@ -35,7 +34,7 @@ namespace Bettenverwaltung.Tests
         public void SetActiveTest()
         {
             Bed Bed = new Bed();
-            Relocation Test = new Relocation(new Bed(), EStation.Gynaekologie, 1);
+            Relocation Test = new Relocation(new Bed(), EStation.Gynaekologie);
             Test.SetActive(Bed);
             Assert.AreEqual(Bed, Test.destinationBed);
             Test.SetActive(new Bed());  //Exception
@@ -45,7 +44,7 @@ namespace Bettenverwaltung.Tests
         [ExpectedException(typeof(BedException))]
         public void SetActiveTest_exception1()
         {
-            Relocation Test = new Relocation(new Bed(), EStation.Gynaekologie, 1);
+            Relocation Test = new Relocation(new Bed(), EStation.Gynaekologie);
             Bed Bed = new Bed();
             Bed.cleaningTime = (DateTime.Now.ToString());
             Test.SetActive(Bed);  //Exception
@@ -55,7 +54,7 @@ namespace Bettenverwaltung.Tests
         [ExpectedException(typeof(BedException))]
         public void SetActiveTest_exception2()
         {
-            Relocation Test = new Relocation(new Bed(), EStation.Gynaekologie, 1);
+            Relocation Test = new Relocation(new Bed(), EStation.Gynaekologie);
             Bed Bed = new Bed();
             Bed.inRelocation = true;
             Test.SetActive(Bed); //Exception
@@ -65,7 +64,7 @@ namespace Bettenverwaltung.Tests
         [ExpectedException(typeof(BedException))]
         public void SetActiveTest_exception3()
         {
-            Relocation Test = new Relocation(new Bed(), EStation.Gynaekologie, 1);
+            Relocation Test = new Relocation(new Bed(), EStation.Gynaekologie);
             Bed Bed = new Bed();
             Bed.Patient = new Patient("Peter", "Enis", DateTime.Now, false, 1, 1, 1);
             Test.SetActive(Bed); //Exception
@@ -75,7 +74,7 @@ namespace Bettenverwaltung.Tests
         [ExpectedException(typeof(BedException))]
         public void SetInactiveTest()
         {
-            Relocation Test = new Relocation(new Bed(), EStation.Gynaekologie, 1);
+            Relocation Test = new Relocation(new Bed(), EStation.Gynaekologie);
             Test.SetActive(new Bed());
             Test.SetInactive();
             Assert.AreEqual(null, Test.destinationBed);
@@ -85,7 +84,7 @@ namespace Bettenverwaltung.Tests
         [TestMethod()]
         public void IsActiveTest()
         {
-            Relocation Test = new Relocation(new Bed(), EStation.Gynaekologie, 1);
+            Relocation Test = new Relocation(new Bed(), EStation.Gynaekologie);
             Assert.AreEqual(false, Test.IsActive());
             Test.SetActive(new Bed());
             Assert.AreEqual(true, Test.IsActive());
@@ -94,7 +93,7 @@ namespace Bettenverwaltung.Tests
         [TestMethod()]
         public void IsAcceptedTest()
         {
-            Relocation Test = new Relocation(new Bed(), EStation.Gynaekologie, 1);
+            Relocation Test = new Relocation(new Bed(), EStation.Gynaekologie);
             Assert.AreEqual(false, Test.IsAccepted());
             Test.accepted = true;
             Assert.AreEqual(true, Test.IsAccepted());
@@ -104,7 +103,7 @@ namespace Bettenverwaltung.Tests
         [ExpectedException(typeof(BedException))]
         public void SetAcceptedTest()
         {
-            Relocation Test = new Relocation(new Bed(), EStation.Gynaekologie, 1);
+            Relocation Test = new Relocation(new Bed(), EStation.Gynaekologie);
             Test.SetAccepted(); //Exception
             Bed Bed = new Bed();
             Test.SetActive(Bed);
@@ -118,7 +117,7 @@ namespace Bettenverwaltung.Tests
         [ExpectedException(typeof(BedException))]
         public void SetUnacceptedTest()
         {
-            Relocation Test = new Relocation(new Bed(), EStation.Gynaekologie, 1);
+            Relocation Test = new Relocation(new Bed(), EStation.Gynaekologie);
             Bed Bed = new Bed();
             Test.SetActive(Bed);
             Test.SetAccepted();
@@ -136,7 +135,7 @@ namespace Bettenverwaltung.Tests
             Bed sourceBed = new Bed();
             Patient Pat = new Patient("Peter", "Enis", DateTime.Now, false, 1, 1, 1);
             sourceBed.Patient = Pat;
-            Relocation Test = new Relocation(sourceBed, EStation.Gynaekologie, 1);
+            Relocation Test = new Relocation(sourceBed, EStation.Gynaekologie);
             Bed destBed = new Bed();
             Test.ExecuteRelocation(1);
             Test.SetActive(destBed);
