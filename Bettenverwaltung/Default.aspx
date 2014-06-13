@@ -62,13 +62,21 @@
                                     </div>
                                 </div>
                             </asp:Panel>
-                            <asp:Panel ID="divTabSearch" runat="server" CssClass="divTabInactive">
+                            <asp:Panel ID="divTabSearch" runat="server" CssClass="divTabActive">
                                 <div class="divTabContent">
-                                    <div style="margin: 21px;">
+                                    <div style="margin:21px;">
+                                        <span class="spanLabel">Patientensuche (ID oder Name):</span>
+                                        <asp:TextBox ID="txtBoxSearchQuery" runat="server" CssClass="txtBoxSearchQuery"></asp:TextBox>
+                                        <asp:LinkButton ID="btnSearch" runat="server" CssClass="btnSearch">Suche</asp:LinkButton>
+                                        <asp:Panel ID="divSearchResultList" runat="server" CssClass="divSearchResultList">
+                                            <asp:LinkButton ID="btnSearchResultListItem0" runat="server" CssClass="btnSearchResultListItem">
+                                                <asp:Label ID="lblPatID0" runat="server" Text="1234" CssClass="lblPatId"></asp:Label> - Patrick Ewig, Station Orthopädie
+                                            </asp:LinkButton>
+                                        </asp:Panel>
                                     </div>
                                 </div>
                             </asp:Panel>
-                            <asp:Panel ID="divTabAdd" runat="server" CssClass="divTabActive">
+                            <asp:Panel ID="divTabAdd" runat="server" CssClass="divTabInactive">
                                 <div class="divTabContent">
                                     <div style="margin: 21px;">
                                         <div class="divFormLeft">
@@ -87,7 +95,7 @@
                                             <asp:Label ID="lblAddPatStation" runat="server" Text="Station:" CssClass="spanLabel"></asp:Label>
                                             <asp:TextBox ID="txtBoxAddPatCorrectStation" runat="server"></asp:TextBox>
                                         </div>
-                                        <div class="divFormRight" style="padding-top: 193px;">
+                                        <div class="divFormRight" style="padding-top: 189px;">
                                             <asp:LinkButton runat="server" ID="btnAddConfirm" CssClass="btnFormSubmit">Patient hinzufügen</asp:LinkButton>
                                         </div>
                                         <div style="clear: both;"></div>

@@ -29,6 +29,7 @@ h2 {
 .divOverview,
 .divTabs,
 .divNotList,
+.divSearchResultList,
 .btnTabActive {
     background-color: #D8D8D8;
 }
@@ -47,7 +48,8 @@ body,
 .btnCancelRel,
 .btnConfirmRel,
 .btnFormSubmit,
-.divSearchResultListItem {
+.btnSearch,
+.btnSearchResultListItem {
     background-color: #31859B;
 }
 
@@ -55,10 +57,11 @@ body,
 .divOverview,
 .divTabs,
 .divNotList,
+.divSearchResultList,
 .divTabContent,
 .divOverviewStation,
 .divNotListItem,
-.divSearchResultListItem,
+.btnSearchResultListItem,
 .btnAcceptRel,
 .btnCancelRel,
 .btnConfirmRel,
@@ -68,7 +71,8 @@ body,
 .btnBedFree,
 .btnTabActive,
 .btnTabInactive,
-.btnFormSubmit {
+.btnFormSubmit,
+.btnSearch {
     border-width: 2px;
     border-style: solid;
     border-color: #FFFFFF;
@@ -79,8 +83,8 @@ body,
     position: absolute;
     top: 10px;
     width: 1052px;
-    /*left: 50%;
-    margin-left: -526px;*/
+    left: 50%;
+    margin-left: -526px;
 }
 
 
@@ -109,7 +113,7 @@ body,
 
 .divOverviewStation {
     height: 335px;
-    width: 142px;
+    width: 150px;
     float: left;
     padding: 2px;
     text-align: center;
@@ -196,7 +200,6 @@ body,
     height: 285px;
 }
 
-/* TODO */
 .divTabActive,
 .divTabInactive {
     position: absolute;
@@ -239,14 +242,25 @@ body,
     float: right;
 }
 
+.txtBoxSearchQuery {
+    max-width: 300px;
+    width: 190px;
+}
+
 .divSearchResultList {
-    margin-top: 21px;
+    height: 154px;
+}
+
+.lblPatId {
+    width: 70px;
+    display: inline-block;
 }
 
 
 /* The div on the right side for the notification list */
 .divRight {
     margin-left: 24px;
+    float: left;
 }
 
 .divNotList {
@@ -265,17 +279,22 @@ body,
 }
 
 .divNotListItem,
-.divSearchResultListItem {
+.btnSearchResultListItem {
     border-top-right-radius: 21px;
+}
+
+.btnSearchResultListItem {
+    text-align: left;
+    padding-left: 4px;
 }
 
 /* Dark blue buttons */
 .btnAcceptRel,
 .btnCancelRel,
 .btnConfirmRel,
-.btnFormSubmit {
-    font-size: 12px;
-    text-align: center;
+.btnFormSubmit,
+.btnSearch,
+.btnSearchResultListItem {
     display: block;
     padding-top: 2px;
     padding-bottom: 2px;
@@ -284,15 +303,32 @@ body,
 .btnAcceptRel:hover,
 .btnCancelRel:hover,
 .btnConfirmRel:hover,
-.btnFormSubmit:hover {
+.btnFormSubmit:hover,
+.btnSearch:hover,
+.btnSearchResultListItem:hover {
     background-color: #225C6B;
     transition: background-color linear 0.1s;
 }
 
+.btnAcceptRel,
+.btnCancelRel,
+.btnConfirmRel,
+.btnFormSubmit {
+    font-size: 12px;
+    text-align: center;
+}
+
 .btnFormSubmit {
     position: absolute;
-    bottom: -2px;
+    bottom: -7px;
     width: 100%;
+}
+
+.btnSearch {
+    width: 75px;
+    text-align: center;
+    float: right;
+    margin-top: -2px;
 }
 
 .btnAcceptRel,
@@ -310,7 +346,7 @@ input,
 select,
 textarea {
     color: #000000;
-    max-width: 140px;
+    max-width: 139px;
     /*float: right;*/
     right: 0px;
 }
