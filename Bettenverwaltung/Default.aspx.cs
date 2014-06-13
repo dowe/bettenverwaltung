@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -9,6 +10,11 @@ namespace Bettenverwaltung
     public partial class _Default : Page
     {
         private const int NUMBER_OF_BEDS = 200;
+
+        private const int MAX_VARCHAR_LENGTH = 255;
+
+        private readonly Color INVALID_COLOR =  Color.Yellow;
+        private readonly Color VALID_COLOR =    Color.White;
 
         // Css Classes
         private const String CSS_CLASS_BTN_ACTIVE = "btnTabActive";
@@ -72,15 +78,16 @@ namespace Bettenverwaltung
 
 		private void InitBeds()
 		{
+            return;
             List<IBedView> beds = controller.GetBettList();
 
             beds.Sort(); // make sure the beds are added in correct order
 
             foreach (IBedView bed in beds) {
-                addBed(bed);
+                AddBed(bed);
             }
 		}
-        private void addBed(IBedView bed)
+        private void AddBed(IBedView bed)
         {
             LinkButton btn = new LinkButton();
 
@@ -140,8 +147,156 @@ namespace Bettenverwaltung
 
 		protected virtual void Add_Patient_Click(object sender, EventArgs e)
 		{
-			throw new System.NotImplementedException();
+            if (ValidateAddPatientInput() == true)
+            {
+                // there should not be any parsing errors beyond this point
+                string firstName = txtBoxAddPatFirstName.Text;
+                string lastName = txtBoxAddPatLastName.Text;
+                EStation station;
+                switch (txtBoxAddPatCorrectStation.Text)
+                {
+                    case "Pädiatrie":
+                        station = EStation.Paediatrie;
+                        break;
+                    case "Gynäkologie":
+                        station = EStation.Gynaekologie;
+                        break;
+                    case "Innere Medizin":
+                        station = EStation.Innere_Medizin;
+                        break;
+                    case "Orthopädie":
+                    default:
+                        station = EStation.Orthopaedie;
+                        break;
+                }
+                DateTime birthday = DateTime.Parse(txtBoxAddPatBirthday.Text);
+                bool isFemale = txtBoxAddPatGender.Text.Equals("w");
+
+                IBedView destBed = controller.AddPatient(
+                    firstName,
+                    lastName,
+                    station,
+                    birthday,
+                    isFemale);
+
+                if (destBed == null)
+                {
+                    ShowMessageBox("Es wurde kein geeignetes Bett für den Patienten gefunden. Er muss in ein anderes Krankenhaus verlegt werden.");
+                }
+                else
+                {
+                    DisplayBed(destBed);
+                }
+
+            }
 		}
+
+        private void ResetValidationWarnings()
+        {
+            txtBoxAddPatFirstName.BackColor = VALID_COLOR;
+            txtBoxAddPatFirstName.ToolTip = "";
+
+            txtBoxAddPatLastName.BackColor = VALID_COLOR;
+            txtBoxAddPatLastName.ToolTip = "";
+
+            txtBoxAddPatGender.BackColor = VALID_COLOR;
+            txtBoxAddPatGender.ToolTip = "";
+
+            txtBoxAddPatBirthday.BackColor = VALID_COLOR;
+            txtBoxAddPatBirthday.ToolTip = "";
+
+            txtBoxAddPatCorrectStation.BackColor = VALID_COLOR;
+            txtBoxAddPatCorrectStation.ToolTip = "";
+        }
+
+        private bool ValidateAddPatientInput()
+        {
+            bool res = true;
+
+            ResetValidationWarnings();
+            // validate first name
+            if (!ValidateTextBoxNotEmpty(txtBoxAddPatFirstName))
+            {
+                res = false;
+            }
+            if (txtBoxAddPatFirstName.Text.Length > MAX_VARCHAR_LENGTH)
+            {
+                res = false;
+                txtBoxAddPatFirstName.BackColor = INVALID_COLOR;
+                txtBoxAddPatFirstName.ToolTip = "Darf maximal " + MAX_VARCHAR_LENGTH.ToString() + " Zeichen lang sein.";
+            }
+            
+            // validate last name
+            if (!ValidateTextBoxNotEmpty(txtBoxAddPatLastName))
+            {
+                res = false;
+            }
+            if (txtBoxAddPatLastName.Text.Length > MAX_VARCHAR_LENGTH)
+            {
+                res = false;
+                txtBoxAddPatLastName.BackColor = INVALID_COLOR;
+                txtBoxAddPatLastName.ToolTip = "Darf maximal " + MAX_VARCHAR_LENGTH.ToString() + " Zeichen lang sein.";
+            }
+
+            // validate gender
+            if (!ValidateTextBoxNotEmpty(txtBoxAddPatGender))
+            {
+                res = false;
+            }
+            if (!txtBoxAddPatGender.Text.Equals("m") && !txtBoxAddPatGender.Text.Equals("w"))
+            {
+                res = false;
+                txtBoxAddPatGender.BackColor = INVALID_COLOR;
+                txtBoxAddPatGender.ToolTip = "Muss entweder 'm' oder 'w' sein.";
+            }
+
+            // validate birthday
+            bool parseResult;
+            DateTime parseDate;
+            parseResult = DateTime.TryParse(txtBoxAddPatBirthday.Text, out parseDate);
+            if (!parseResult)
+            {
+                res = false;
+                txtBoxAddPatBirthday.BackColor = INVALID_COLOR;
+                txtBoxAddPatBirthday.ToolTip = "Verwenden Sie das Format 'DD:MM:YYYY'.";
+            }
+
+            // validate station
+            if (!ValidateTextBoxNotEmpty(txtBoxAddPatCorrectStation))
+            {
+                res = false;
+            }
+            if (!txtBoxAddPatCorrectStation.Text.Equals("Pädiatrie") &&
+                !txtBoxAddPatCorrectStation.Text.Equals("Gynäkologie") &&
+                !txtBoxAddPatCorrectStation.Text.Equals("Innere Medizin") &&
+                !txtBoxAddPatCorrectStation.Text.Equals("Orthopädie"))
+            {
+                res = false;
+                txtBoxAddPatCorrectStation.BackColor = INVALID_COLOR;
+                txtBoxAddPatCorrectStation.ToolTip = "Muss eine der Stationen 'Pädiatrie', 'Gynäkologie', 'Innere Medizin' oder 'Orthopädie' sein.";
+            }
+
+            if (res == false)
+            {
+                ShowMessageBox("Bitte überprüfen sie die eingegebenen Daten noch einmal.");
+            }
+            
+            return res;
+        }
+
+        private bool ValidateTextBoxNotEmpty(TextBox box)
+        {
+            bool res = true;
+
+            if (box.Text.Length == 0)
+            {
+                res = false;
+                box.BackColor = INVALID_COLOR;
+                box.ToolTip = "Darf nicht leer sein.";
+            }
+
+            return res;
+        }
 
 		protected virtual void Search_Click(object sender, EventArgs e)
 		{
@@ -254,6 +409,11 @@ namespace Bettenverwaltung
             divTabDetails.CssClass = CSS_CLASS_DIV_INACTIVE;
             divTabSearch.CssClass = CSS_CLASS_DIV_INACTIVE;
             divTabAdd.CssClass = CSS_CLASS_DIV_ACTIVE;
+        }
+
+        private void ShowMessageBox(string message)
+        {
+            System.Web.HttpContext.Current.Response.Write("<script>alert('" + message + "')</script>");
         }
     }
 }

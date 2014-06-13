@@ -96,7 +96,7 @@
                                             <asp:TextBox ID="txtBoxAddPatCorrectStation" runat="server"></asp:TextBox>
                                         </div>
                                         <div class="divFormRight" style="padding-top: 189px;">
-                                            <asp:LinkButton runat="server" ID="btnAddConfirm" CssClass="btnFormSubmit">Patient hinzufügen</asp:LinkButton>
+                                            <asp:LinkButton runat="server" ID="btnAddConfirm" CssClass="btnFormSubmit" OnClick="Add_Patient_Click">Patient hinzufügen</asp:LinkButton>
                                         </div>
                                         <div style="clear: both;"></div>
                                     </div>
