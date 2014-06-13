@@ -153,6 +153,10 @@ body,
     background-color: #C05046;
 }
 
+.btnBedInRelocation {
+    background-color: #D8D8D8;
+}
+
 .btnBedFree {
     background-color: #FFFFFF;
 }

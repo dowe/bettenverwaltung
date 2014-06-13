@@ -13,7 +13,7 @@ namespace Bettenverwaltung
     using System.Text;
 
    
-	public class Bed : IBedCleaner, IBedView      //Datenbankobjekt für die Betten des KHs
+	public class Bed : IBedCleaner, IBedView, IComparable<Bed>      //Datenbankobjekt für die Betten des KHs
 	{
         [Key]
         public int bedId
@@ -150,6 +150,11 @@ namespace Bettenverwaltung
             return this.inRelocation;
 		}
 
-	}
+
+        public int CompareTo(Bed other)
+        {
+            return bedId.CompareTo(other.GetBedId());
+        }
+    }
 }
 

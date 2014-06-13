@@ -2109,6 +2109,61 @@
               </operationHasOwnedParameters>
             </ownedParameters>
           </operation>
+          <operation
+            Id="980a1a51-5979-438f-83b5-4a6fbee50732"
+            name="CompareTo"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="dc1bfc3f-799a-4f75-82af-462732a654cc"
+                  name="Bed"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="eca9ea0f-98a8-4e13-a8fb-16840f18f5f2"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="c5cf185f-763b-464c-80fb-21cc532df3dc"
+                      LastKnownName="int"
+                      LastKnownLocation="UML_Model.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="281a579a-f5e6-4d84-8365-9ccce88b7974"
+            name="CompareTo"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="c40cc663-5b02-445d-a1d7-d7525010fdcd"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="c5cf185f-763b-464c-80fb-21cc532df3dc"
+                      LastKnownName="int"
+                      LastKnownLocation="UML_Model.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
         </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
@@ -7448,6 +7503,30 @@
                     <undefinedTypeMoniker
                       Id="e9caa024-3917-464b-9878-4f7a0dd3caf0"
                       LastKnownName="bool"
+                      LastKnownLocation="UML_Model.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="0e897816-7ad2-4d3a-9f41-2421d1f97c02"
+            name="CompareTo"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="8e2fea2a-a611-4768-b56a-3ae6d8a898b4"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="c5cf185f-763b-464c-80fb-21cc532df3dc"
+                      LastKnownName="int"
                       LastKnownLocation="UML_Model.uml" />
                   </type_NamedElement>
                 </parameter>

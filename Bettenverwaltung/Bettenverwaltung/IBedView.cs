@@ -11,7 +11,7 @@ namespace Bettenverwaltung
 	using System.Linq;
 	using System.Text;
 
-	public interface IBedView 
+	public interface IBedView : IComparable<Bed>
 	{
 		int GetBedId();
 

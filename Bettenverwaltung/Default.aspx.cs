@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -71,17 +72,61 @@ namespace Bettenverwaltung
 
 		private void InitBeds()
 		{
-			//throw new System.NotImplementedException();
-            // TEST
-            for (int i = 0; i < 50; i++)
-            {
-                LinkButton btn = new LinkButton();
-                btn.CssClass = "btnBedOccupied";
-                btn.Click += Bed_Buttons_Click;
-                btn.ID = i.ToString();
-                divStationPaediatrie.Controls.Add(btn);
+            List<IBedView> beds = controller.GetBettList();
+
+            beds.Sort(); // make sure the beds are added in correct order
+
+            foreach (IBedView bed in beds) {
+                addBed(bed);
             }
 		}
+        private void addBed(IBedView bed)
+        {
+            LinkButton btn = new LinkButton();
+
+            // select CssClass
+            if (bed.IsEmpty())
+            {
+                if (bed.IsGettingCleaned()) {
+                    btn.CssClass = "btnBedCleaning";
+                }
+                if (bed.IsInRelocation())
+                {
+                    btn.CssClass = "btnBedInRelocation";
+                }
+                else
+                {
+                    // bed is not part of a relocation and is not getting cleaned
+                    btn.CssClass = "btnBedFree";
+                }
+            }
+            else
+            {
+                // someone is in this bed
+                btn.CssClass = "btnBedOccupied";
+            }
+
+            // assign click event
+            btn.ID = bed.GetBedId().ToString();
+            btn.Click += Bed_Buttons_Click;
+
+            // add to div
+            switch (bed.GetStation())
+            {
+                case EStation.Gynaekologie:
+                    divStationGynaekologie.Controls.Add(btn);
+                    break;
+                case EStation.Innere_Medizin:
+                    divStationInnereMedizin.Controls.Add(btn);
+                    break;
+                case EStation.Orthopaedie:
+                    divStationOrthopaedie.Controls.Add(btn);
+                    break;
+                case EStation.Paediatrie:
+                    divStationPaediatrie.Controls.Add(btn);
+                    break;
+            }
+        }
 
 		protected virtual void Bed_Buttons_Click(object sender, EventArgs e)
 		{

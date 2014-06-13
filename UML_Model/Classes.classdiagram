@@ -1738,6 +1738,37 @@
                     </operationHasOwnedParameters>
                   </ownedParameters>
                 </operation>
+                <operation Id="73c56598-46a8-49c9-b6c0-c1654867c377" name="CompareTo" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+                  <elementDefinition Id="980a1a51-5979-438f-83b5-4a6fbee50732" />
+                  <ownedParameters>
+                    <operationHasOwnedParameters>
+                      <parameter Id="c4466095-16dc-4cf1-a45a-63522d9e2515" name="Bed" direction="In" isUnique="false">
+                        <elementDefinition Id="dc1bfc3f-799a-4f75-82af-462732a654cc" />
+                      </parameter>
+                    </operationHasOwnedParameters>
+                    <operationHasOwnedParameters>
+                      <parameter Id="3e172390-2843-445c-9d3c-8adacb08d7f4" direction="Return" isUnique="false">
+                        <elementDefinition Id="eca9ea0f-98a8-4e13-a8fb-16840f18f5f2" />
+                        <type_NamedElement>
+                          <referencedTypeMoniker Id="2629d5ca-284c-41ba-8654-1aee7c0c6330" LastKnownName="int" />
+                        </type_NamedElement>
+                      </parameter>
+                    </operationHasOwnedParameters>
+                  </ownedParameters>
+                </operation>
+                <operation Id="3816041b-78a2-45b6-aa29-9f22ad0f46f7" name="CompareTo" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+                  <elementDefinition Id="281a579a-f5e6-4d84-8365-9ccce88b7974" />
+                  <ownedParameters>
+                    <operationHasOwnedParameters>
+                      <parameter Id="e190c8a6-ded3-4927-937e-e08a467ae493" direction="Return" isUnique="false">
+                        <elementDefinition Id="c40cc663-5b02-445d-a1d7-d7525010fdcd" />
+                        <type_NamedElement>
+                          <referencedTypeMoniker Id="2629d5ca-284c-41ba-8654-1aee7c0c6330" LastKnownName="int" />
+                        </type_NamedElement>
+                      </parameter>
+                    </operationHasOwnedParameters>
+                  </ownedParameters>
+                </operation>
               </ownedOperationsInternal>
             </class>
           </packageHasNamedElement>
@@ -5571,6 +5602,19 @@
                         <elementDefinition Id="97dee1ca-380a-490b-b00d-e4ab7ad1a158" />
                         <type_NamedElement>
                           <referencedTypeMoniker Id="af266498-298f-4f75-a691-788755b7fa07" LastKnownName="bool" />
+                        </type_NamedElement>
+                      </parameter>
+                    </operationHasOwnedParameters>
+                  </ownedParameters>
+                </operation>
+                <operation Id="3f4e5136-5041-4f2f-b55a-0c6e83fd7856" name="CompareTo" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+                  <elementDefinition Id="0e897816-7ad2-4d3a-9f41-2421d1f97c02" />
+                  <ownedParameters>
+                    <operationHasOwnedParameters>
+                      <parameter Id="267e2e9a-d19a-454d-a9a6-a32a8c94f475" direction="Return" isUnique="false">
+                        <elementDefinition Id="8e2fea2a-a611-4768-b56a-3ae6d8a898b4" />
+                        <type_NamedElement>
+                          <referencedTypeMoniker Id="2629d5ca-284c-41ba-8654-1aee7c0c6330" LastKnownName="int" />
                         </type_NamedElement>
                       </parameter>
                     </operationHasOwnedParameters>
