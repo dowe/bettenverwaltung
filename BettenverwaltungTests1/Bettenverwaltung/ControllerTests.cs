@@ -33,5 +33,51 @@ namespace Bettenverwaltung.Tests
             Rel = db.Relocations.Find(id);
             Assert.AreEqual(true, Rel.IsAccepted());
         }
+
+        [TestMethod()]
+        public void GetActiveRelocationListTest()
+        {
+            BVContext db = new BVContext();
+            db.Relocations.RemoveRange(db.Relocations.ToArray());
+            Patient pat = new Patient("Peter", "Enis", new DateTime(), false, 1, 1, 1);
+            Bed source = new Bed();
+            source.bedId = 1;
+            source.station = 1;
+            source.Patient = pat;
+            Relocation Rel = new Relocation(source, EStation.Paediatrie);
+            Bed dest = new Bed();
+            dest.bedId = 2;
+            dest.station = (int)EStation.Paediatrie;
+            Rel.SetActive(dest);
+            db.Relocations.Add(Rel);
+            db.SaveChanges();
+
+            pat = new Patient("Peter", "Enis", new DateTime(), false, 1, 1, 1);
+            source = new Bed();
+            source.bedId = 1;
+            source.station = 1;
+            source.Patient = pat;
+            Rel = new Relocation(source, EStation.Paediatrie);
+            dest = new Bed();
+            dest.bedId = 2;
+            dest.station = (int)EStation.Paediatrie;
+            Rel.SetActive(dest);
+            db.Relocations.Add(Rel);
+            db.SaveChanges();
+
+            pat = new Patient("Peter", "Enis", new DateTime(), false, 1, 1, 1);
+            source = new Bed();
+            source.bedId = 1;
+            source.station = 1;
+            source.Patient = pat;
+            Rel = new Relocation(source, EStation.Paediatrie);
+            db.Relocations.Add(Rel);
+            db.SaveChanges();
+
+            Controller cont = new Controller();
+            List<Relocation> Rellist = cont.GetActiveRelocationList();
+
+            Assert.AreEqual(2, Rellist.Count);
+        }
     }
 }
