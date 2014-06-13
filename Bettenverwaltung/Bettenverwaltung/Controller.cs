@@ -37,11 +37,7 @@ namespace Bettenverwaltung
 		
         public virtual void AcceptRelocation(int relocationId)          //Die Verlegung wird angenommen (noch nicht ausgeführt!). Das Relocation-Objekt mit der Angegebenen ID wird gesucht
 		{                                                               //und dessen annaheme-Funktion ausgefürht.
-            Relocation Rel = BVContext.Relocations.Find(relocationId);
-            if(Rel == null)
-            {
-                throw new BedException("Es gibt keine Verlegung mit der ID " + relocationId);
-            }
+            Relocation Rel = GetRelocation(relocationId);
             Rel.SetAccepted();
             BVContext.SaveChanges();		
         }
@@ -56,24 +52,33 @@ namespace Bettenverwaltung
 			throw new System.NotImplementedException();                 //Suchterm übereinstimmen. Wird nichts gefunden wird eine leere Liste zurückgegeben.
 		}
 
-		public virtual void ConfirmRelocation(int realocationId)        //Die Rückverlegung mit der angegebenen ID wird bestätigt. Das passende Rückverlegungsobjekt wird in der Datenbank
+		public virtual void ConfirmRelocation(int relocationId)        //Die Rückverlegung mit der angegebenen ID wird bestätigt. Das passende Rückverlegungsobjekt wird in der Datenbank
 		{                                                               //gesucht und die Execute-Funktion aufgerufen
-			throw new System.NotImplementedException();
+            Relocation Rel = GetRelocation(relocationId);
+            Rel.ExecuteRelocation(1);
+            BVContext.SaveChanges();
 		}
 
-        public virtual void CancelRelocation(int realocationId)         //Die Rückverlegung mit der angegebenen ID wird abgebrochen. Das passende Rückverlegungsobjekt wird in der Datenbank
+        public virtual void CancelRelocation(int relocationId)         //Die Rückverlegung mit der angegebenen ID wird abgebrochen. Das passende Rückverlegungsobjekt wird in der Datenbank
         {                                                               //gesucht und dessen Cancel-Funktion aufgerufen.
-			throw new System.NotImplementedException();
+            Relocation Rel = GetRelocation(relocationId);
+            Rel.SetUnaccepted();
+            BVContext.SaveChanges();
 		}
 
         public virtual List<Relocation> GetActiveRelocationList()        //Die Liste aller aktiven Rückverlegungen wird aus der Datenbank geholt und zurückgegeben.
 		{
-			throw new System.NotImplementedException();
+            var Rels = BVContext.Relocations.Where(R => R.destinationBed != null);
+            List<Relocation> LRels = new List<Relocation>(Rels.ToArray());
+            return LRels;
+
 		}
 
 		private Relocation CreateRelocation(int bedId, EStation station)    //Eine Relocation mit für das Angegebene bett in die Zielstation station wird erstellt und zurückgegeben. Wird beim Anlegen eines Patienten eventuell Aufgerufen.
 		{                                                                   //!!!!Ist die nicht unnötig? da kann ich auch gleich den Konstruktor aufrufen oder? !!!!
-			throw new System.NotImplementedException();
+            Relocation Rel = new Relocation(BVContext.Beds.Find(bedId), station);
+            BVContext.Relocations.Add(Rel);
+            return Rel;
 		}
 
 		public virtual List<IBedView> GetBettList()                         //Eine Liste aller Betten wird aus der Datenbank geholt und zurückgegeben.
@@ -83,7 +88,9 @@ namespace Bettenverwaltung
 
         private List<Relocation> GetInactiveRelocationList()            //Die Liste aller inaktiven Rückverlegungen wird aus der Datenbank geholt und zurückgegeben.
 		{
-			throw new System.NotImplementedException();
+            var Rels = BVContext.Relocations.Where(R => R.destinationBed == null);
+            List<Relocation> LRels = new List<Relocation>(Rels.ToArray());
+            return LRels;
 		}
 
 		private Bed FindBedFor(Patient p, EStation station)             //Findet ein passendes Bett für den Patienten. Die Daten werde zunächst auf plausibilität geprüft. Falls der angegebene Patient nicht
@@ -117,9 +124,14 @@ namespace Bettenverwaltung
 			throw new System.NotImplementedException();
 		}
 
-        private void GetRelocation(int relId)                        //Die Relocation mit der Angegebenen ID wird aus der Datenbank gesucht und zurückgegeben.
+        private Relocation GetRelocation(int relId)                        //Die Relocation mit der Angegebenen ID wird aus der Datenbank gesucht und zurückgegeben.
         {
-            throw new System.NotImplementedException();
+            Relocation Rel = BVContext.Relocations.Find(relId);
+            if (Rel == null)
+            {
+                throw new BedException("Es gibt keine Verlegung mit der ID " + relId);
+            }
+            return Rel;
         }
 	}
 }
