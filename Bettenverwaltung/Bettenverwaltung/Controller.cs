@@ -55,7 +55,7 @@ namespace Bettenverwaltung
 		public virtual void ConfirmRelocation(int relocationId)        //Die Rückverlegung mit der angegebenen ID wird bestätigt. Das passende Rückverlegungsobjekt wird in der Datenbank
 		{                                                               //gesucht und die Execute-Funktion aufgerufen
             Relocation Rel = GetRelocation(relocationId);
-            Rel.ExecuteRelocation(1);
+            Rel.ExecuteRelocation();
             BVContext.SaveChanges();
 		}
 

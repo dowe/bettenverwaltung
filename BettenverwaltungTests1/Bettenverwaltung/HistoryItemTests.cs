@@ -13,14 +13,14 @@ namespace Bettenverwaltung.Tests
         [TestMethod()]
         public void CreateRelocationItemTest()
         {
-            HistoryItem item = HistoryItem.CreateRelocationItem(1, 2, 3);
+            HistoryItem item = HistoryItem.CreateRelocationItem(2, 3);
             Assert.IsNotNull(item.text);
         }
 
         [TestMethod()]
         public void CreateEntryItemTest()
         {
-            HistoryItem item = HistoryItem.CreateEntryItem(0);
+            HistoryItem item = HistoryItem.CreateEntryItem();
             Assert.IsNotNull(item.text);
         }
     }

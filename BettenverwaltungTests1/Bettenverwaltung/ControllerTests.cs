@@ -14,7 +14,7 @@ namespace Bettenverwaltung.Tests
         public void AcceptRelocationTest()
         {
             BVContext db = new BVContext();
-            Patient pat = new Patient("Peter", "Enis",new DateTime(),false,1,1,1);
+            Patient pat = new Patient("Peter", "Enis", new DateTime(), false);
             Bed source = new Bed();
             source.bedId = 1;
             source.station = 1;
@@ -39,7 +39,7 @@ namespace Bettenverwaltung.Tests
         {
             BVContext db = new BVContext();
             db.Relocations.RemoveRange(db.Relocations.ToArray());
-            Patient pat = new Patient("Peter", "Enis", new DateTime(), false, 1, 1, 1);
+            Patient pat = new Patient("Peter", "Enis", new DateTime(), false);
             Bed source = new Bed();
             source.bedId = 1;
             source.station = 1;
@@ -52,7 +52,7 @@ namespace Bettenverwaltung.Tests
             db.Relocations.Add(Rel);
             db.SaveChanges();
 
-            pat = new Patient("Peter", "Enis", new DateTime(), false, 1, 1, 1);
+            pat = new Patient("Peter", "Enis", new DateTime(), false);
             source = new Bed();
             source.bedId = 1;
             source.station = 1;
@@ -65,7 +65,7 @@ namespace Bettenverwaltung.Tests
             db.Relocations.Add(Rel);
             db.SaveChanges();
 
-            pat = new Patient("Peter", "Enis", new DateTime(), false, 1, 1, 1);
+            pat = new Patient("Peter", "Enis", new DateTime(), false);
             source = new Bed();
             source.bedId = 1;
             source.station = 1;

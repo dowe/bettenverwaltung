@@ -96,7 +96,7 @@ namespace Bettenverwaltung
             this.destinationBed = null;
 		}
 
-		public virtual bool ExecuteRelocation(int historyItemId) //Führt die Rückverlegung durch.
+		public virtual bool ExecuteRelocation() //Führt die Rückverlegung durch.
 		{
             if(this.accepted == false || this.destinationBed == null)
             {
@@ -105,7 +105,7 @@ namespace Bettenverwaltung
             Patient Patient = sourceBed.RemovePatient();         //Patient wird aus dem Bett entfernt und zurückgegeben.
             destinationBed.SetInRelocation(false);
             destinationBed.SetPatient(Patient);
-            Patient.GetHistory().InsertHistoryItem(HistoryItem.CreateRelocationItem(historyItemId, sourceBed.GetBedId(), destinationBed.GetBedId()));  //Anlegen eines neuen HistoryItems für den Patienent.
+            Patient.GetHistory().InsertHistoryItem(HistoryItem.CreateRelocationItem(sourceBed.GetBedId(), destinationBed.GetBedId()));  //Anlegen eines neuen HistoryItems für den Patienent.
             return true;
         }
 

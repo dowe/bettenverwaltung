@@ -13,9 +13,9 @@ namespace Bettenverwaltung.Tests
         [TestMethod()]
         public void PatientTest()
         {
-            Patient pat = new Patient("Peter", "Enis", new DateTime(), false, 0, 0, 0);
+            Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false);
             Assert.AreEqual(pat.firstname, "Peter");
-            Assert.AreEqual(pat.lastname, "Enis");
+            Assert.AreEqual(pat.lastname, "Mustermann");
             Assert.AreEqual(pat.birthday, new DateTime().ToString());
             Assert.AreEqual(pat.History.HistoryItem[0].historyItemId, 0);
         }
@@ -23,7 +23,7 @@ namespace Bettenverwaltung.Tests
         [TestMethod()]
         public void GetHistoryTest()
         {
-            Patient pat = new Patient("Peter", "Enis", new DateTime(), false, 0, 0, 0);
+            Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false);
             Assert.AreEqual(pat.History, pat.GetHistory());
         }
     }
