@@ -28,21 +28,21 @@ namespace Bettenverwaltung
             set;
         }
 
-        public static HistoryItem CreateEntryItem(int historyItemId)                                    //Ein History-Item für die Patientenaufnahme wird erstellt
+        public static HistoryItem CreateEntryItem()                                    //Ein History-Item für die Patientenaufnahme wird erstellt
         {
             DateTime dat1 = DateTime.Now;
             CultureInfo culture = new CultureInfo("de-DE");     //German Date format
             String patRegisteredText = dat1.ToString("g", culture) + "  :  Patient aufgenommen";
-            HistoryItem historyItem = new HistoryItem(historyItemId, patRegisteredText);
+            HistoryItem historyItem = new HistoryItem(patRegisteredText);
             return historyItem;
         }
 
-        public static HistoryItem CreateRelocationItem(int historyItemId, int sourceBed, int destBed)   //Ein History-Item für eine Verlegung wird erstellt
+        public static HistoryItem CreateRelocationItem(int sourceBed, int destBed)   //Ein History-Item für eine Verlegung wird erstellt
         {
             DateTime dat1 = DateTime.Now;
             CultureInfo culture = new CultureInfo("de-DE");     //German Date format
             String relocText = dat1.ToString("g", culture) + "  :  Verlegung des Patienten von Bett " + sourceBed + " nach Bett " + destBed;
-            HistoryItem historyItem = new HistoryItem(historyItemId, relocText);
+            HistoryItem historyItem = new HistoryItem(relocText);
             return historyItem;
         }
 
@@ -51,9 +51,8 @@ namespace Bettenverwaltung
 
         }
 
-        public HistoryItem(int id, string text)                                                         //Konstruktor für HistoryItem. Wird nur von den beiden oberen statischen Methoden genutzt.
+        public HistoryItem(string text)                                                         //Konstruktor für HistoryItem. Wird nur von den beiden oberen statischen Methoden genutzt.
         {
-            this.historyItemId = id;
             this.text = text;//Text und id werden gespeichert sowie die aktuelle Zeit in timestamp.
         }
     }
