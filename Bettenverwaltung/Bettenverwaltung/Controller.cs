@@ -44,16 +44,15 @@ namespace Bettenverwaltung
             else
             {
                 //look for an active relocation
-                if (bed.IsInRelocation())
+                var reloc = BVContext.Relocations.Where(r => r.sourceBed.bedId == bed.bedId).FirstOrDefault();
+                if (reloc != null)
                 {
-                    Relocation[] reloc = BVContext.Relocations.Where(r => r.sourceBed.bedId == bed.bedId).ToArray();
-                    if (reloc[0] != null)
+                    if (reloc.accepted)
                     {
-                        if (reloc[0].IsAccepted())
-                            reloc[0].SetUnaccepted();
+                        reloc.SetUnaccepted();
                         //delete relocation from DB
-                        BVContext.Relocations.Remove(reloc[0]);
                     }
+                    BVContext.Relocations.Remove(reloc);
                 }
 
                 
@@ -62,10 +61,12 @@ namespace Bettenverwaltung
                 Patient patToRemove = bed.RemovePatient();
                 //delete History and HistoryItems from DB
                 var history = BVContext.Histories.Find(patToRemove.History.historyId);
-                for (int i = 0; i < history.GetSize(); i++ )
+                int size = history.GetSize();
+                for (int i = 0; i < size; i++ )
                 {
-                    BVContext.HistoryItems.Remove(history.GetHistoryItem(i));
+                    BVContext.HistoryItems.Remove(history.GetHistoryItem(0));
                 }
+                BVContext.SaveChanges();
                 BVContext.Histories.Remove(history);
 
                 //delete patient from DB
