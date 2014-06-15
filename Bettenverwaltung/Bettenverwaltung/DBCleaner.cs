@@ -18,6 +18,7 @@ namespace Bettenverwaltung
         {
             t = new Timer(time * 1000);
             t.Elapsed += new System.Timers.ElapsedEventHandler(Clean);
+            db = new BVContext();
         }
 
         public virtual void Start()
@@ -39,7 +40,20 @@ namespace Bettenverwaltung
         /// <param name="e"></param>
         private void Clean(object sender, System.Timers.ElapsedEventArgs e)
         {
-            //throw new System.NotImplementedException();
+            bool cleanedBedFound = false;
+            var beds = db.Beds.Where(b => b.cleaningTime != null);
+            foreach (var bed in beds)
+            {
+                if ((DateTime.Now - bed.GetCleaningTime()) > new TimeSpan(2, 0, 0))
+                {
+                    cleanedBedFound = true;
+                    bed.StopCleaning();
+                }
+            }
+            if (cleanedBedFound)
+            {
+                db.SaveChanges();
+            }
         }
     }
 }
