@@ -158,3 +158,5 @@ $RECYCLE.BIN/
 /Bettenverwaltung/App_Data/
 # app config unit tests für db file ort
 /BettenverwaltungTests1/app.config
+# app config Bed init Project für db file ort
+/BedInit/App.config
