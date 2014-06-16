@@ -106,10 +106,17 @@ namespace Bettenverwaltung
             {
                 //search for name
                 var names = term.Split(new char[] {' '}, 2);
-                string firstName = names[0];
-                string lastName = names[1];
+                if (names.Count() > 1)
+                {
+                    string firstName = names[0];
+                    string lastName = names[1];
 
-                resultList = BVContext.Beds.Where(b => b.Patient.firstname == firstName && b.Patient.lastname == lastName).ToList<IBedView>();
+                    resultList = BVContext.Beds.Where(b => b.Patient.firstname == firstName && b.Patient.lastname == lastName).ToList<IBedView>();
+                }
+                else
+                {
+                    resultList = BVContext.Beds.Where(b => b.Patient.firstname == term || b.Patient.lastname == term).ToList<IBedView>();
+                }
             }
 
             return resultList;

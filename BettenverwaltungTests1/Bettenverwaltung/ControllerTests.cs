@@ -168,14 +168,23 @@ namespace Bettenverwaltung.Tests
             db.Beds.Add(bed3);
             db.SaveChanges();
 
+            //search for existing whole name
             List<IBedView> bedList = control.SearchPatient("Gute Miene");
             Assert.AreEqual(bedList[0].GetPatient().firstname, "Gute");
             Assert.AreEqual(bedList[1].GetPatient().lastname, "Miene");
             Assert.AreEqual(bedList.Count, 2);
 
-            //search by name
+            //search non existing whole name
             bedList = control.SearchPatient("Gute Mine");
             Assert.AreEqual(bedList.Count, 0);
+
+            //search for firstname
+            bedList = control.SearchPatient("Gute");
+            Assert.AreEqual(bedList.Count, 3);
+
+            //search for firstname
+            bedList = control.SearchPatient("Miene");
+            Assert.AreEqual(bedList.Count, 2);
 
             //search by patID
             var pat = db.Patients.Where(p => p.lastname == "nTag").FirstOrDefault();
