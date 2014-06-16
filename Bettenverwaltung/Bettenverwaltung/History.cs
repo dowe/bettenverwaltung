@@ -21,7 +21,7 @@ namespace Bettenverwaltung
             set;
         }
 
-        public virtual List<HistoryItem> HistoryItem
+        public virtual List<HistoryItem> historyItem
         {
             get;
             set;
@@ -29,23 +29,23 @@ namespace Bettenverwaltung
 
         public virtual HistoryItem GetHistoryItem(int index)            //Der History-Eintragmit dem index wird zurückgegeben
         {
-            return HistoryItem[index];
+            return historyItem[index];
         }
 
         public virtual int GetSize()                                    //Die Anzahl der History-Items in der Liste wird zurückgegeben
         {
-            return HistoryItem.Count;
+            return historyItem.Count;
         }
 
         public virtual void InsertHistoryItem(HistoryItem i)            //Das Angegebene HistroyItem wird hinten in die Liste eingetragen
         {
-            HistoryItem.Add(i);
+            historyItem.Add(i);
         }
 
         public History()                //Ein neues History-Objekt wird angelegt und das Erste History-Item
         {
-            HistoryItem = new List<HistoryItem>();
-            this.HistoryItem.Add(Bettenverwaltung.HistoryItem.CreateEntryItem());//für die Patientenaufnahme in die Liste eingefügt.
+            historyItem = new List<HistoryItem>();
+            this.historyItem.Add(Bettenverwaltung.HistoryItem.CreateEntryItem());//für die Patientenaufnahme in die Liste eingefügt.
         }
     }
 }

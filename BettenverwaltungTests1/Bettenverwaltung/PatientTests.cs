@@ -17,14 +17,14 @@ namespace Bettenverwaltung.Tests
             Assert.AreEqual(pat.firstname, "Peter");
             Assert.AreEqual(pat.lastname, "Mustermann");
             Assert.AreEqual(pat.birthday, new DateTime().ToString());
-            Assert.AreEqual(pat.History.HistoryItem[0].historyItemId, 0);
+            Assert.AreEqual(pat.history.historyItem[0].historyItemId, 0);
         }
 
         [TestMethod()]
         public void GetHistoryTest()
         {
             Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false);
-            Assert.AreEqual(pat.History, pat.GetHistory());
+            Assert.AreEqual(pat.history, pat.GetHistory());
         }
     }
 }

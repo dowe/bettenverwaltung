@@ -17,7 +17,7 @@ namespace Bettenverwaltung.Tests
             //initialize a History
             History hist = new History();
 
-            Assert.AreEqual(hist.HistoryItem[0].historyItemId, 0);
+            Assert.AreEqual(hist.historyItem[0].historyItemId, 0);
 
         }
 
@@ -41,7 +41,7 @@ namespace Bettenverwaltung.Tests
 
             HistoryItem item = HistoryItem.CreateRelocationItem(2, 3);
             hist.InsertHistoryItem(item);
-            Assert.IsNotNull(hist.HistoryItem[1].text);
+            Assert.IsNotNull(hist.historyItem[1].text);
 
         }
 

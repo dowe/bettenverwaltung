@@ -45,7 +45,7 @@ namespace Bettenverwaltung
             set;
         }
 
-        public virtual History History
+        public virtual History history
         {
             get;
             set;
@@ -79,7 +79,7 @@ namespace Bettenverwaltung
 
         public virtual History GetHistory()
         {
-            return this.History;
+            return this.history;
         }
 
         public Patient()
@@ -94,7 +94,7 @@ namespace Bettenverwaltung
             this.lastname = lastname;
             this.birthday = birthday.ToString();
             this.isFemale = isFemale;
-            this.History = new History();
+            this.history = new History();
         }
     }
 }

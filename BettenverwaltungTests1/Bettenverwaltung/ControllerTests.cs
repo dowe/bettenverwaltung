@@ -212,7 +212,7 @@ namespace Bettenverwaltung.Tests
             bed1.cleaningTime = null;
             db.Beds.Add(bed1);
             db.SaveChanges();
-            int histItemID = bed1.patient.History.HistoryItem[0].historyItemId;
+            int histItemID = bed1.patient.history.historyItem[0].historyItemId;
             control.DismissPatient(bed1.bedId);
             db = new BVContext();
             var bedResult = db.Beds.Where(b=>b.patient.firstname == "Julius").FirstOrDefault();
