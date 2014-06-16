@@ -32,7 +32,7 @@ namespace Bettenverwaltung
         {
             DateTime dat1 = DateTime.Now;
             CultureInfo culture = new CultureInfo("de-DE");     //German Date format
-            String patRegisteredText = dat1.ToString("g", culture) + "  :  Patient aufgenommen";
+            String patRegisteredText = dat1.ToString("g", culture) + "    Patient aufgenommen";
             HistoryItem historyItem = new HistoryItem(patRegisteredText);
             return historyItem;
         }
@@ -41,7 +41,7 @@ namespace Bettenverwaltung
         {
             DateTime dat1 = DateTime.Now;
             CultureInfo culture = new CultureInfo("de-DE");     //German Date format
-            String relocText = dat1.ToString("g", culture) + "  :  Verlegung des Patienten von Bett " + sourceBed + " nach Bett " + destBed;
+            String relocText = dat1.ToString("g", culture) + "    Verlegung des Patienten von Bett " + sourceBed + " nach Bett " + destBed;
             HistoryItem historyItem = new HistoryItem(relocText);
             return historyItem;
         }

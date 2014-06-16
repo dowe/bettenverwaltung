@@ -66,7 +66,6 @@ namespace Bettenverwaltung
                 {
                     BVContext.HistoryItems.Remove(history.GetHistoryItem(0));
                 }
-                BVContext.SaveChanges();
                 BVContext.Histories.Remove(history);
 
                 //delete patient from DB

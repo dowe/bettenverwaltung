@@ -187,7 +187,7 @@ namespace Bettenverwaltung.Tests
         }
 
         [TestMethod()]
-       // [ExpectedException(typeof(BedException))]
+        [ExpectedException(typeof(BedException))]
         public void DismissPatientTest()
         {
             BVContext db = new BVContext();
@@ -205,7 +205,7 @@ namespace Bettenverwaltung.Tests
             db.SaveChanges();
             int histItemID = bed1.Patient.History.HistoryItem[0].historyItemId;
             control.DismissPatient(bed1.bedId);
-            db.SaveChanges();
+            db = new BVContext();
             var bedResult = db.Beds.Where(b=>b.Patient.firstname == "Julius").FirstOrDefault();
             Assert.IsNull(bedResult, "bed1 testdata existiert noch in der DB");
             var histItem = db.HistoryItems.Find(histItemID);
@@ -227,7 +227,8 @@ namespace Bettenverwaltung.Tests
             db.SaveChanges();
             int relID = Rel.relocationId;
             control.DismissPatient(sourceBed.bedId);
-            db.SaveChanges();
+            db = new BVContext();
+            destBed = db.Beds.Find(destBed.bedId);
             Assert.IsFalse(destBed.inRelocation);
             bedResult = db.Beds.Where(b => b.Patient.firstname == "Thor").FirstOrDefault();
             Assert.IsNull(bedResult, "relBed testdata existiert noch in der DB");
@@ -236,13 +237,13 @@ namespace Bettenverwaltung.Tests
 
 
             //Exception
-           /* Bed bed2 = new Bed();
+            Bed bed2 = new Bed();
             bed2.cleaningTime = new DateTime().ToString();
             bed2.station = (int)EStation.Innere_Medizin;
             bed2.Patient = null;
             db.Beds.Add(bed2);
             db.SaveChanges();
-            control.DismissPatient(bed2.bedId);*/
+            control.DismissPatient(bed2.bedId);
         }
     }
 }
