@@ -51,6 +51,32 @@ namespace Bettenverwaltung
             set;
         }
 
+
+        public virtual int GetPatientId()
+        {
+            return patId;
+        }
+
+        public virtual string GetFirstName()
+        {
+            return firstname;
+        }
+
+        public virtual string GetLastName()
+        {
+            return lastname;
+        }
+
+        public bool IsFemale()
+        {
+            return isFemale;
+        }
+
+        public DateTime GetBirthday()
+        {
+            return DateTime.Parse(birthday);
+        }
+
         public virtual History GetHistory()
         {
             return this.History;

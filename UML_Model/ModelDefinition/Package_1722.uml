@@ -534,6 +534,25 @@
                 LastKnownLocation="UML_Model.uml" />
             </type_NamedElement>
           </property>
+          <property
+            Id="5fe6cc6a-1525-4ebc-9780-7e6f6b2e12f1"
+            name="correctStation"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="c5cf185f-763b-464c-80fb-21cc532df3dc"
+                LastKnownName="int"
+                LastKnownLocation="UML_Model.uml" />
+            </type_NamedElement>
+          </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation
@@ -763,6 +782,126 @@
                     <undefinedTypeMoniker
                       Id="c5cf185f-763b-464c-80fb-21cc532df3dc"
                       LastKnownName="int"
+                      LastKnownLocation="UML_Model.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="66a13633-7047-46b4-be50-1b504ee6b1ff"
+            name="GetBirthday"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="f165e62f-5d80-4a98-a833-c3f29938bdc8"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="11d5f45e-1558-4dec-997e-874061185142"
+                      LastKnownName="DateTime"
+                      LastKnownLocation="UML_Model.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="8e0450e3-552e-421a-99c5-8b013680d43e"
+            name="GetFirstName"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="e1840bed-d07e-4393-aeee-162f46c9118d"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="UML_Model.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="4954e984-300e-45e2-b05c-e623f6cc87a9"
+            name="IsFemale"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="e6e998d1-3965-4550-a05f-a3518455883f"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="18c68fa6-5abb-4b45-8c56-72254f1d57c4"
+                      LastKnownName="boolean"
+                      LastKnownLocation="Package_1722.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="67c8a658-e4bc-4bb1-b473-7107f80a1420"
+            name="GetPatientId"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="b71d386b-960d-40e5-94b7-aeb61a48da80"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="c5cf185f-763b-464c-80fb-21cc532df3dc"
+                      LastKnownName="int"
+                      LastKnownLocation="UML_Model.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="7687b4cb-5a48-4f9b-856f-d731897bab27"
+            name="GetLastName"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="29881039-aed7-437c-8f31-6b5e40ea28bb"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
                       LastKnownLocation="UML_Model.uml" />
                   </type_NamedElement>
                 </parameter>
@@ -11316,6 +11455,16 @@
       <undefinedType
         Id="3cb73a6e-845c-4a76-a07e-fb7beaaf5116"
         name="DbSet&lt;Relocation&gt;" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="9b9749a7-76d1-45ee-8552-8b8e87e2b589"
+        name="string" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="18c68fa6-5abb-4b45-8c56-72254f1d57c4"
+        name="boolean" />
     </packageHasNamedElement>
   </packagedElements>
 </package>

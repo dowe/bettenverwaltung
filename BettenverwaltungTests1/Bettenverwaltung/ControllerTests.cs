@@ -18,7 +18,7 @@ namespace Bettenverwaltung.Tests
             Bed source = new Bed();
             source.bedId = 1;
             source.station = 1;
-            source.Patient = pat;
+            source.patient = pat;
             Relocation Rel = new Relocation(source,EStation.Paediatrie);
             Bed dest = new Bed();
             dest.bedId = 2;
@@ -43,7 +43,7 @@ namespace Bettenverwaltung.Tests
             Bed source = new Bed();
             source.bedId = 1;
             source.station = 1;
-            source.Patient = pat;
+            source.patient = pat;
             Relocation Rel = new Relocation(source, EStation.Paediatrie);
             Bed dest = new Bed();
             dest.bedId = 2;
@@ -56,7 +56,7 @@ namespace Bettenverwaltung.Tests
             source = new Bed();
             source.bedId = 1;
             source.station = 1;
-            source.Patient = pat;
+            source.patient = pat;
             Rel = new Relocation(source, EStation.Paediatrie);
             dest = new Bed();
             dest.bedId = 2;
@@ -69,7 +69,7 @@ namespace Bettenverwaltung.Tests
             source = new Bed();
             source.bedId = 1;
             source.station = 1;
-            source.Patient = pat;
+            source.patient = pat;
             Rel = new Relocation(source, EStation.Paediatrie);
             db.Relocations.Add(Rel);
             db.SaveChanges();

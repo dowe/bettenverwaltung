@@ -20,11 +20,11 @@ namespace Bettenverwaltung.Tests
             bed.inRelocation = true;
             bed.station = 0;
             bed.bedId = 0;
-            bed.Patient = null;
+            bed.patient = null;
             bed.cleaningTime = null;
 
             bed.SetPatient(pat);
-            Assert.AreEqual(pat, bed.Patient);
+            Assert.AreEqual(pat, bed.patient);
 
             //for exception
             bed.SetPatient(pat);
@@ -37,14 +37,14 @@ namespace Bettenverwaltung.Tests
             Bed bed = new Bed();
             //initialize bed
             Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false, 0, 0, 0);
-            bed.Patient = pat;
+            bed.patient = pat;
             bed.inRelocation = true;
             bed.station = 0;
             bed.bedId = 0;
             bed.cleaningTime = null;
 
             bed.RemovePatient();
-            Assert.IsNull(bed.Patient);
+            Assert.IsNull(bed.patient);
 
             //for exception
             bed.RemovePatient();
@@ -57,7 +57,7 @@ namespace Bettenverwaltung.Tests
             Bed bed = new Bed();
             //initialize bed
             Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false, 0, 0, 0);
-            bed.Patient = pat;
+            bed.patient = pat;
             bed.inRelocation = true;
             bed.station = 0;
             bed.bedId = 0;
@@ -78,7 +78,7 @@ namespace Bettenverwaltung.Tests
             Bed bed = new Bed();
             //initialize bed
             Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false, 0, 0, 0);
-            bed.Patient = pat;
+            bed.patient = pat;
             bed.inRelocation = true;
             bed.station = 0;
             bed.bedId = 0;
@@ -98,7 +98,7 @@ namespace Bettenverwaltung.Tests
             Bed bed = new Bed();
             //initialize bed
             Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false, 0, 0, 0);
-            bed.Patient = pat;
+            bed.patient = pat;
             bed.inRelocation = true;
             bed.station = 0;
             bed.bedId = 0;
@@ -130,7 +130,7 @@ namespace Bettenverwaltung.Tests
             Bed bed = new Bed();
             //initialize bed
             Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false, 0, 0, 0);
-            bed.Patient = pat;
+            bed.patient = pat;
             bed.inRelocation = true;
             bed.station = 0;
             bed.bedId = 0;
@@ -145,7 +145,7 @@ namespace Bettenverwaltung.Tests
             Bed bed = new Bed();
             //initialize bed
             Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false, 0, 0, 0);
-            bed.Patient = pat;
+            bed.patient = pat;
             bed.inRelocation = true;
             bed.station = 0;
             bed.bedId = 0;
@@ -160,7 +160,7 @@ namespace Bettenverwaltung.Tests
             Bed bed = new Bed();
             //initialize bed
             Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false, 0, 0, 0);
-            bed.Patient = pat;
+            bed.patient = pat;
             bed.inRelocation = true;
             bed.station = 0;
             bed.bedId = 0;
@@ -175,14 +175,14 @@ namespace Bettenverwaltung.Tests
             Bed bed = new Bed();
             //initialize bed
             Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false, 0, 0, 0);
-            bed.Patient = pat;
+            bed.patient = pat;
             bed.inRelocation = true;
             bed.station = 0;
             bed.bedId = 0;
             bed.cleaningTime = null;
 
             Assert.IsFalse(bed.IsEmpty());
-            bed.Patient = null;
+            bed.patient = null;
             Assert.IsTrue(bed.IsEmpty());
         }
 
@@ -192,7 +192,7 @@ namespace Bettenverwaltung.Tests
             Bed bed = new Bed();
             //initialize bed
             Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false, 0, 0, 0);
-            bed.Patient = pat;
+            bed.patient = pat;
             bed.inRelocation = true;
             bed.station = 0;
             bed.bedId = 0;
@@ -209,7 +209,7 @@ namespace Bettenverwaltung.Tests
             Bed bed = new Bed();
             //initialize bed
             Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false, 0, 0, 0);
-            bed.Patient = pat;
+            bed.patient = pat;
             bed.inRelocation = true;
             bed.station = 0;
             bed.bedId = 0;

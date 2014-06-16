@@ -78,7 +78,7 @@ namespace Bettenverwaltung
 
 		private void InitBeds()
 		{
-            return;
+            return; // For Testing because controller.GetBettList() is not implemented yet
             List<IBedView> beds = controller.GetBettList();
 
             beds.Sort(); // make sure the beds are added in correct order
@@ -137,7 +137,9 @@ namespace Bettenverwaltung
 
 		protected virtual void Bed_Buttons_Click(object sender, EventArgs e)
 		{
-			throw new System.NotImplementedException();
+            LinkButton btnSender = (LinkButton)sender;
+            int id = Int32.Parse(btnSender.ID);
+            DisplayBed(controller.DisplayPatient(id));
 		}
 
 		protected virtual void Dismiss_Patient_Click(object sender, EventArgs e)
@@ -375,7 +377,24 @@ namespace Bettenverwaltung
 
 		private void DisplayBed(IBedView bed)
 		{
-			throw new System.NotImplementedException();
+			//throw new System.NotImplementedException();
+            // display patient if there is one in the bed
+            if (!bed.IsEmpty())
+            {
+                Patient pat = bed.GetPatient();
+                txtBoxDetailsPatId.Text = pat.GetPatientId().ToString();
+                txtBoxDetailsPatName.Text = pat.GetLastName() + ", " + pat.GetFirstName();
+                String genderString;
+                if (pat.IsFemale()) {
+                    genderString = "w";
+                }
+                else {
+                    genderString = "m";
+                }
+                txtBoxDetailsPatGender.Text = genderString;
+                txtBoxDetailsPatBirthday.Text = pat.GetBirthday().ToString();
+                // TODO: station 
+            }
 		}
 
         private void SwitchToDetailsTab()

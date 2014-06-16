@@ -66,7 +66,7 @@ namespace Bettenverwaltung.Tests
         {
             Relocation Test = new Relocation(new Bed(), EStation.Gynaekologie);
             Bed Bed = new Bed();
-            Bed.Patient = new Patient("Peter", "Enis", DateTime.Now, false, 1, 1, 1);
+            Bed.patient = new Patient("Peter", "Enis", DateTime.Now, false, 1, 1, 1);
             Test.SetActive(Bed); //Exception
         }
 
@@ -134,7 +134,7 @@ namespace Bettenverwaltung.Tests
         {
             Bed sourceBed = new Bed();
             Patient Pat = new Patient("Peter", "Enis", DateTime.Now, false, 1, 1, 1);
-            sourceBed.Patient = Pat;
+            sourceBed.patient = Pat;
             Relocation Test = new Relocation(sourceBed, EStation.Gynaekologie);
             Bed destBed = new Bed();
             Test.ExecuteRelocation(1);
@@ -142,7 +142,7 @@ namespace Bettenverwaltung.Tests
             Test.ExecuteRelocation(1);
             Test.SetAccepted();
             Test.ExecuteRelocation(1);
-            Assert.AreEqual(Pat, destBed.Patient);
+            Assert.AreEqual(Pat, destBed.patient);
             Assert.AreEqual(2, Pat.GetHistory().GetSize());
             
         }

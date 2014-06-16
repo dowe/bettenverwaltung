@@ -40,7 +40,7 @@ namespace Bettenverwaltung
 			set;
 		}
 
-		public virtual Patient Patient
+		public virtual Patient patient
 		{
 			get;
 			set;
@@ -48,9 +48,9 @@ namespace Bettenverwaltung
 
 		public virtual void SetPatient(Patient patient)             //legt eine Patienten in das Bett, Exception falls sich schon ein Patient in dem Bett
 		{                                                           //befindet oder es gesperrt ist.
-            if (this.Patient == null && this.cleaningTime == null)
+            if (this.patient == null && this.cleaningTime == null)
             {
-                this.Patient = patient;
+                this.patient = patient;
             }
             else
             {
@@ -61,10 +61,10 @@ namespace Bettenverwaltung
 
 		public virtual Patient RemovePatient()
 		{
-            if (this.Patient != null)
+            if (this.patient != null)
             {
-                Patient temp = this.Patient;
-                this.Patient = null;
+                Patient temp = this.patient;
+                this.patient = null;
                 return temp;
             }
             else
@@ -115,7 +115,7 @@ namespace Bettenverwaltung
 
 		public virtual Patient GetPatient()
 		{
-            return this.Patient;
+            return this.patient;
 		}
 
 		public virtual EStation GetStation()                    //Map den Integer der Datenbank auf das Enum EStation (siehe dazu Kommentar der Variable Station oben)
@@ -131,7 +131,7 @@ namespace Bettenverwaltung
 		public virtual bool IsEmpty()
 		{
             bool ret = false;
-            if (this.Patient == null)
+            if (this.patient == null)
                 ret = true;
 
             return ret;
