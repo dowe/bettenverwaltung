@@ -534,25 +534,6 @@
                 LastKnownLocation="UML_Model.uml" />
             </type_NamedElement>
           </property>
-          <property
-            Id="5fe6cc6a-1525-4ebc-9780-7e6f6b2e12f1"
-            name="correctStation"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="c5cf185f-763b-464c-80fb-21cc532df3dc"
-                LastKnownName="int"
-                LastKnownLocation="UML_Model.uml" />
-            </type_NamedElement>
-          </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation

@@ -590,12 +590,6 @@
                     <referencedTypeMoniker Id="af266498-298f-4f75-a691-788755b7fa07" LastKnownName="bool" />
                   </type_NamedElement>
                 </property>
-                <property Id="da382ac5-0a8e-4f98-b89d-058dc16c9532" name="correctStation" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-                  <elementDefinition Id="5fe6cc6a-1525-4ebc-9780-7e6f6b2e12f1" />
-                  <type_NamedElement>
-                    <referencedTypeMoniker Id="a609a4da-51b7-4a2d-930e-d75e9004dcb0" LastKnownName="int" />
-                  </type_NamedElement>
-                </property>
               </ownedAttributesInternal>
               <ownedOperationsInternal>
                 <operation Id="a232266b-1a0e-4d5b-b88c-f8f23cf8baf2" name="GetHistory" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
@@ -8525,11 +8519,6 @@
     <packageHasNamedElement>
       <referencedType Id="88a6b6a7-ad05-420f-bc4e-3322886c9a3c" name="boolean" isAbstract="false" isLeaf="false" cachedFullName="boolean">
         <elementDefinition Id="18c68fa6-5abb-4b45-8c56-72254f1d57c4" />
-      </referencedType>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <referencedType Id="a609a4da-51b7-4a2d-930e-d75e9004dcb0" name="int" isAbstract="false" isLeaf="false" cachedFullName="int">
-        <elementDefinition Id="c5cf185f-763b-464c-80fb-21cc532df3dc" />
       </referencedType>
     </packageHasNamedElement>
   </packagedElements>
