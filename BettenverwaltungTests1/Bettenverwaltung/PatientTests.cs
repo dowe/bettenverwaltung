@@ -13,18 +13,62 @@ namespace Bettenverwaltung.Tests
         [TestMethod()]
         public void PatientTest()
         {
-            Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false);
+            Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false, EStation.Orthopaedie);
             Assert.AreEqual(pat.firstname, "Peter");
             Assert.AreEqual(pat.lastname, "Mustermann");
             Assert.AreEqual(pat.birthday, new DateTime().ToString());
             Assert.AreEqual(pat.history.historyItem[0].historyItemId, 0);
+            Assert.AreEqual(pat.correctStation, (int)EStation.Orthopaedie);
         }
 
         [TestMethod()]
         public void GetHistoryTest()
         {
-            Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false);
+            Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false, EStation.Orthopaedie);
             Assert.AreEqual(pat.history, pat.GetHistory());
+        }
+
+    
+        [TestMethod]
+        public void GetFirstNameTest()
+        {
+            Patient pat = new Patient("Erfundener", "Name", new DateTime(), false, EStation.Orthopaedie);
+            Assert.AreEqual(pat.GetFirstName(), "Erfundener");
+        }
+
+        [TestMethod]
+        public void GetLastNameTest()
+        {
+            Patient pat = new Patient("Erfundener", "Name", new DateTime(), false, EStation.Orthopaedie);
+            Assert.AreEqual(pat.GetLastName(), "Name");
+        }
+
+        [TestMethod]
+        public void GetBirthdayTest()
+        {
+            Patient pat = new Patient("Erfundener", "Name", new DateTime(1993, 4, 15, 0, 0, 0, 0), false, EStation.Orthopaedie);
+            Assert.IsTrue((new DateTime(1993, 4, 15, 0, 0, 0, 0)).CompareTo(pat.GetBirthday()) == 0);
+        }
+
+        [TestMethod]
+        public void GetPatientIdTest()
+        {
+            Patient pat = new Patient("Erfundener", "Name", new DateTime(1993, 4, 15, 0, 0, 0, 0), false, EStation.Orthopaedie);
+            Assert.AreEqual(pat.GetPatientId(), pat.patId);
+        }
+
+        [TestMethod]
+        public void IsFemaleTest()
+        {
+            Patient pat = new Patient("Erfundener", "Name", new DateTime(1993, 4, 15, 0, 0, 0, 0), false, EStation.Orthopaedie);
+            Assert.IsFalse(pat.IsFemale());
+        }
+
+        [TestMethod]
+        public void GetCorrectStationTest()
+        {
+            Patient pat = new Patient("Erfundener", "Name", new DateTime(1993, 4, 15, 0, 0, 0, 0), false, EStation.Orthopaedie);
+            Assert.AreEqual(pat.GetCorrectStation(), EStation.Orthopaedie);
         }
     }
 }

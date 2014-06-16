@@ -19,7 +19,7 @@ namespace BettenverwaltungTests1.Bettenverwaltung
         public void DBPatientTest()
         {
             DateTime dt = new DateTime(2000, 5, 7);
-            Patient p1 = new Patient("peter", "enis", dt, true);
+            Patient p1 = new Patient("peter", "enis", dt, true, EStation.Orthopaedie);
             db.Patients.Add(p1);
             db.SaveChanges();
             Patient[] patients = db.Patients.Where(p => p.lastname == "enis").ToArray();

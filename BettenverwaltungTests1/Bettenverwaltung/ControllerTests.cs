@@ -25,7 +25,7 @@ namespace Bettenverwaltung.Tests
         public void AcceptRelocationTest()
         {
             BVContext db = new BVContext();
-            Patient pat = new Patient("Peter", "Enis", new DateTime(), false);
+            Patient pat = new Patient("Peter", "Enis", new DateTime(), false, EStation.Orthopaedie);
             Bed source = new Bed();
             source.bedId = 1;
             source.station = 1;
@@ -50,7 +50,7 @@ namespace Bettenverwaltung.Tests
         {
             BVContext db = new BVContext();
             db.Relocations.RemoveRange(db.Relocations.ToArray());
-            Patient pat = new Patient("Peter", "Enis", new DateTime(), false);
+            Patient pat = new Patient("Peter", "Enis", new DateTime(), false, EStation.Orthopaedie);
             Bed source = new Bed();
             source.bedId = 1;
             source.station = 1;
@@ -63,7 +63,7 @@ namespace Bettenverwaltung.Tests
             db.Relocations.Add(Rel);
             db.SaveChanges();
 
-            pat = new Patient("Peter", "Enis", new DateTime(), false);
+            pat = new Patient("Peter", "Enis", new DateTime(), false, EStation.Orthopaedie);
             source = new Bed();
             source.bedId = 1;
             source.station = 1;
@@ -76,7 +76,7 @@ namespace Bettenverwaltung.Tests
             db.Relocations.Add(Rel);
             db.SaveChanges();
 
-            pat = new Patient("Peter", "Enis", new DateTime(), false);
+            pat = new Patient("Peter", "Enis", new DateTime(), false, EStation.Orthopaedie);
             source = new Bed();
             source.bedId = 1;
             source.station = 1;
@@ -97,7 +97,7 @@ namespace Bettenverwaltung.Tests
             BVContext db = new BVContext();
             Controller control = new Controller();
 
-            Patient pat = new Patient("Maxine", "Musterfrau", DateTime.Now, true);
+            Patient pat = new Patient("Maxine", "Musterfrau", DateTime.Now, true, EStation.Orthopaedie);
             Bed bed = new Bed();
             bed.station = (int)EStation.Gynaekologie;
             bed.patient = pat;
@@ -122,12 +122,12 @@ namespace Bettenverwaltung.Tests
             Bed bed2 = new Bed();
             bed2.cleaningTime = new DateTime().ToString();
             bed2.station = (int)EStation.Innere_Medizin;
-            bed2.patient = new Patient("Lassmiranda", "Dennsiewillja", DateTime.Now, true);
+            bed2.patient = new Patient("Lassmiranda", "Dennsiewillja", DateTime.Now, true, EStation.Orthopaedie);
 
             Bed bed3 = new Bed();
             bed3.cleaningTime = new DateTime().ToString();
             bed3.station = (int)EStation.Orthopaedie;
-            bed3.patient = new Patient("Haldie", "Klappe", DateTime.Now, false);
+            bed3.patient = new Patient("Haldie", "Klappe", DateTime.Now, false, EStation.Orthopaedie);
 
             db.Beds.Add(bed1);
             db.Beds.Add(bed2);
@@ -151,17 +151,17 @@ namespace Bettenverwaltung.Tests
             Bed bed1 = new Bed();
             bed1.cleaningTime = new DateTime().ToString();
             bed1.station = (int)EStation.Gynaekologie;
-            bed1.patient = new Patient("Gute", "Miene", DateTime.Now, true); ;
+            bed1.patient = new Patient("Gute", "Miene", DateTime.Now, true, EStation.Orthopaedie);
 
             Bed bed2 = new Bed();
             bed2.cleaningTime = new DateTime().ToString();
             bed2.station = (int)EStation.Innere_Medizin;
-            bed2.patient = new Patient("Gute", "Miene", new DateTime(), true);
+            bed2.patient = new Patient("Gute", "Miene", new DateTime(), true, EStation.Orthopaedie);
 
             Bed bed3 = new Bed();
             bed3.cleaningTime = new DateTime().ToString();
             bed3.station = (int)EStation.Orthopaedie;
-            bed3.patient = new Patient("Gute", "nTag", DateTime.Now, false);
+            bed3.patient = new Patient("Gute", "nTag", DateTime.Now, false, EStation.Orthopaedie);
 
             db.Beds.Add(bed1);
             db.Beds.Add(bed2);
@@ -208,7 +208,7 @@ namespace Bettenverwaltung.Tests
             Bed bed1 = new Bed();
             bed1.cleaningTime = new DateTime().ToString();
             bed1.station = (int)EStation.Gynaekologie;
-            bed1.patient = new Patient("Julius", "Caesar", DateTime.Now, true);
+            bed1.patient = new Patient("Julius", "Caesar", DateTime.Now, true, EStation.Orthopaedie);
             bed1.cleaningTime = null;
             db.Beds.Add(bed1);
             db.SaveChanges();
@@ -222,7 +222,7 @@ namespace Bettenverwaltung.Tests
 
             
             //relocation dismiss test
-            Patient pat = new Patient("Thor", "mit dem Hammer", DateTime.Now, false);
+            Patient pat = new Patient("Thor", "mit dem Hammer", DateTime.Now, false, EStation.Orthopaedie);
             Bed sourceBed = new Bed();
             sourceBed.station = 1;
             sourceBed.patient = pat;

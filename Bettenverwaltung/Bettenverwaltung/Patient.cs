@@ -51,6 +51,12 @@ namespace Bettenverwaltung
             set;
         }
 
+        public virtual int correctStation
+        {
+            get;
+            set;
+        }
+
 
         public virtual int GetPatientId()
         {
@@ -82,12 +88,17 @@ namespace Bettenverwaltung
             return this.history;
         }
 
+        public virtual EStation GetCorrectStation()
+        {
+            return (EStation)correctStation;
+        }
+
         public Patient()
         {
 
         }
 
-        public Patient(string firstname, string lastname, DateTime birthday, bool isFemale)    //Konstruktor: Der Patient wird aus den Übergabewerten erstellt. Die ID wird aus dem Wert des letzten
+        public Patient(string firstname, string lastname, DateTime birthday, bool isFemale, EStation correctStation)    //Konstruktor: Der Patient wird aus den Übergabewerten erstellt. Die ID wird aus dem Wert des letzten
         {
             //DB eintrags generiert. Es wird ebenfalls eine neue Historie für den Patienten anglegt.
             this.firstname = firstname;
@@ -95,6 +106,7 @@ namespace Bettenverwaltung
             this.birthday = birthday.ToString();
             this.isFemale = isFemale;
             this.history = new History();
+            this.correctStation = (int)correctStation;
         }
     }
 }
