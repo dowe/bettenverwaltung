@@ -534,6 +534,25 @@
                 LastKnownLocation="UML_Model.uml" />
             </type_NamedElement>
           </property>
+          <property
+            Id="3bcbfecb-150d-4417-a0a9-5fb73191fee3"
+            name="correctStation"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="c5cf185f-763b-464c-80fb-21cc532df3dc"
+                LastKnownName="int"
+                LastKnownLocation="UML_Model.uml" />
+            </type_NamedElement>
+          </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation
@@ -671,7 +690,7 @@
             <ownedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="cdaa7df7-57f1-4d97-a744-41e60eec763e"
+                  Id="2e8f9f44-0ac4-4e85-a563-b75b71a81d0a"
                   name="firstname"
                   direction="In"
                   isUnique="false">
@@ -685,7 +704,7 @@
               </operationHasOwnedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="bb6c5ce9-5f5d-4a4d-a811-1866f01f2329"
+                  Id="8ffe28d5-3adc-4ca9-a2bd-874f46a360bd"
                   name="lastname"
                   direction="In"
                   isUnique="false">
@@ -699,7 +718,7 @@
               </operationHasOwnedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="4ed8bfca-67c1-4f80-80f2-de79a5072c46"
+                  Id="de787691-c5fe-42d5-8044-0e821f07560d"
                   name="Birthday"
                   direction="In"
                   isUnique="false">
@@ -713,7 +732,7 @@
               </operationHasOwnedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="671b3890-9f60-4b14-a6ea-c49365a1ca22"
+                  Id="e74ce97d-b136-4eb6-a5fc-fb2a03bd84fc"
                   name="isFemale"
                   direction="In"
                   isUnique="false">
@@ -727,43 +746,15 @@
               </operationHasOwnedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="26d46ba5-8759-4334-8347-5c79d19af20d"
-                  name="patId"
+                  Id="0594d074-8022-4d23-8e58-68274c5a370b"
+                  name="correctStation"
                   direction="In"
                   isUnique="false">
                   <type_NamedElement>
-                    <undefinedTypeMoniker
-                      Id="c5cf185f-763b-464c-80fb-21cc532df3dc"
-                      LastKnownName="int"
-                      LastKnownLocation="UML_Model.uml" />
-                  </type_NamedElement>
-                </parameter>
-              </operationHasOwnedParameters>
-              <operationHasOwnedParameters>
-                <parameter
-                  Id="bb2b337f-c391-417e-bad2-0b39151c8227"
-                  name="historyId"
-                  direction="In"
-                  isUnique="false">
-                  <type_NamedElement>
-                    <undefinedTypeMoniker
-                      Id="c5cf185f-763b-464c-80fb-21cc532df3dc"
-                      LastKnownName="int"
-                      LastKnownLocation="UML_Model.uml" />
-                  </type_NamedElement>
-                </parameter>
-              </operationHasOwnedParameters>
-              <operationHasOwnedParameters>
-                <parameter
-                  Id="f792ee78-13f1-4438-a601-4a53d6828283"
-                  name="historyItemId"
-                  direction="In"
-                  isUnique="false">
-                  <type_NamedElement>
-                    <undefinedTypeMoniker
-                      Id="c5cf185f-763b-464c-80fb-21cc532df3dc"
-                      LastKnownName="int"
-                      LastKnownLocation="UML_Model.uml" />
+                    <enumerationMoniker
+                      Id="ac3d0576-c03f-4bef-aae8-a9b67225bc95"
+                      LastKnownName="EStation"
+                      LastKnownLocation="Package_1722.uml" />
                   </type_NamedElement>
                 </parameter>
               </operationHasOwnedParameters>
@@ -884,6 +875,30 @@
                       Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
                       LastKnownName="String"
                       LastKnownLocation="UML_Model.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="d8b7ebbe-6fd8-4822-b28e-fa24b17678bd"
+            name="GetCorrectStation"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="efe1e241-9901-4429-b5b4-484f9563c693"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <enumerationMoniker
+                      Id="ac3d0576-c03f-4bef-aae8-a9b67225bc95"
+                      LastKnownName="EStation"
+                      LastKnownLocation="Package_1722.uml" />
                   </type_NamedElement>
                 </parameter>
               </operationHasOwnedParameters>

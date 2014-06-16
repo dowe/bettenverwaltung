@@ -2242,7 +2242,7 @@
             messageKind="Complete"
             messageSort="CreateMessage"
             createSelfMessage="false"
-            signatureText="+ Patient(firstname : String, lastname : String, Birthday : DateTime, isFemale : bool, patId : int, historyId : int, historyItemId : int)">
+            signatureText="+ Patient(firstname : String, lastname : String, Birthday : DateTime, isFemale : bool, correctStation : UML_Model::Bettenverwaltung::EStation)">
             <sendEvent>
               <messageOccurrenceSpecificationMoniker
                 Id="7e8341af-416c-430c-8551-bb25d95a8039"

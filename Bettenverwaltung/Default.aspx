@@ -36,7 +36,7 @@
                                             <span class="spanLabel">Name:</span>
                                             <asp:TextBox ID="txtBoxDetailsPatName" runat="server" ReadOnly="true" BackColor="LightGray"></asp:TextBox><br />
 
-                                            <span class="spanLabel">Name:Geschlecht:</span>
+                                            <span class="spanLabel">Geschlecht:</span>
                                             <asp:TextBox ID="txtBoxDetailsPatGender" runat="server" ReadOnly="true" BackColor="LightGray"></asp:TextBox><br />
 
                                             <span class="spanLabel">Geburtsdatum:</span>
@@ -87,13 +87,21 @@
                                             <asp:TextBox ID="txtBoxAddPatLastName" runat="server"></asp:TextBox><br />
 
                                             <asp:Label ID="lblAddPatGender" runat="server" Text="Geschlecht:" CssClass="spanLabel"></asp:Label>
-                                            <asp:TextBox ID="txtBoxAddPatGender" runat="server"></asp:TextBox><br />
+                                            <asp:DropDownList ID="dropDownListAddPatGender" runat="server">
+                                                <asp:ListItem>m</asp:ListItem>
+                                                <asp:ListItem>w</asp:ListItem>
+                                            </asp:DropDownList>
 
                                             <asp:Label ID="lblAddPatBirthday" runat="server" Text="Geburtsdatum:" CssClass="spanLabel"></asp:Label>
                                             <asp:TextBox ID="txtBoxAddPatBirthday" runat="server"></asp:TextBox><br />
 
                                             <asp:Label ID="lblAddPatStation" runat="server" Text="Station:" CssClass="spanLabel"></asp:Label>
-                                            <asp:TextBox ID="txtBoxAddPatCorrectStation" runat="server"></asp:TextBox>
+                                            <asp:DropDownList ID="dropDownListAddPatStation" runat="server">
+                                                <asp:ListItem>Pädiatrie</asp:ListItem>
+                                                <asp:ListItem>Gynäkologie</asp:ListItem>
+                                                <asp:ListItem>Innere Medizin</asp:ListItem>
+                                                <asp:ListItem>Orthopädie</asp:ListItem>
+                                            </asp:DropDownList>
                                         </div>
                                         <div class="divFormRight" style="padding-top: 189px;">
                                             <asp:LinkButton runat="server" ID="btnAddConfirm" CssClass="btnFormSubmit" OnClick="Add_Patient_Click">Patient hinzufügen</asp:LinkButton>

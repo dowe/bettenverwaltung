@@ -42,6 +42,7 @@ namespace Bettenverwaltung
 
 		protected virtual void Page_Load(object sender, EventArgs e)
 		{
+            //InitForm();
             if (!IsPostBack)
             {
                 SwitchToDetailsTab();
@@ -75,6 +76,12 @@ namespace Bettenverwaltung
             
 			//throw new System.NotImplementedException();*/
 		}
+
+        private void InitForm()
+        {
+            dropDownListAddPatGender.DataSource = new List<String>() { "m", "w" };
+            dropDownListAddPatGender.DataBind();
+        }
 
 		private void InitBeds()
 		{
@@ -155,7 +162,7 @@ namespace Bettenverwaltung
                 string firstName = txtBoxAddPatFirstName.Text;
                 string lastName = txtBoxAddPatLastName.Text;
                 EStation station;
-                switch (txtBoxAddPatCorrectStation.Text)
+                switch (dropDownListAddPatStation.Text)
                 {
                     case "Pädiatrie":
                         station = EStation.Paediatrie;
@@ -172,7 +179,7 @@ namespace Bettenverwaltung
                         break;
                 }
                 DateTime birthday = DateTime.Parse(txtBoxAddPatBirthday.Text);
-                bool isFemale = txtBoxAddPatGender.Text.Equals("w");
+                bool isFemale = dropDownListAddPatGender.Text.Equals("w");
 
                 IBedView destBed = controller.AddPatient(
                     firstName,
@@ -201,14 +208,8 @@ namespace Bettenverwaltung
             txtBoxAddPatLastName.BackColor = VALID_COLOR;
             txtBoxAddPatLastName.ToolTip = "";
 
-            txtBoxAddPatGender.BackColor = VALID_COLOR;
-            txtBoxAddPatGender.ToolTip = "";
-
             txtBoxAddPatBirthday.BackColor = VALID_COLOR;
             txtBoxAddPatBirthday.ToolTip = "";
-
-            txtBoxAddPatCorrectStation.BackColor = VALID_COLOR;
-            txtBoxAddPatCorrectStation.ToolTip = "";
         }
 
         private bool ValidateAddPatientInput()
@@ -240,18 +241,6 @@ namespace Bettenverwaltung
                 txtBoxAddPatLastName.ToolTip = "Darf maximal " + MAX_VARCHAR_LENGTH.ToString() + " Zeichen lang sein.";
             }
 
-            // validate gender
-            if (!ValidateTextBoxNotEmpty(txtBoxAddPatGender))
-            {
-                res = false;
-            }
-            if (!txtBoxAddPatGender.Text.Equals("m") && !txtBoxAddPatGender.Text.Equals("w"))
-            {
-                res = false;
-                txtBoxAddPatGender.BackColor = INVALID_COLOR;
-                txtBoxAddPatGender.ToolTip = "Muss entweder 'm' oder 'w' sein.";
-            }
-
             // validate birthday
             bool parseResult;
             DateTime parseDate;
@@ -263,21 +252,7 @@ namespace Bettenverwaltung
                 txtBoxAddPatBirthday.ToolTip = "Verwenden Sie das Format 'DD:MM:YYYY'.";
             }
 
-            // validate station
-            if (!ValidateTextBoxNotEmpty(txtBoxAddPatCorrectStation))
-            {
-                res = false;
-            }
-            if (!txtBoxAddPatCorrectStation.Text.Equals("Pädiatrie") &&
-                !txtBoxAddPatCorrectStation.Text.Equals("Gynäkologie") &&
-                !txtBoxAddPatCorrectStation.Text.Equals("Innere Medizin") &&
-                !txtBoxAddPatCorrectStation.Text.Equals("Orthopädie"))
-            {
-                res = false;
-                txtBoxAddPatCorrectStation.BackColor = INVALID_COLOR;
-                txtBoxAddPatCorrectStation.ToolTip = "Muss eine der Stationen 'Pädiatrie', 'Gynäkologie', 'Innere Medizin' oder 'Orthopädie' sein.";
-            }
-
+            // show message if necessary
             if (res == false)
             {
                 ShowMessageBox("Bitte überprüfen sie die eingegebenen Daten noch einmal.");

@@ -301,13 +301,13 @@ namespace Bettenverwaltung {
         protected global::System.Web.UI.WebControls.Label lblAddPatGender;
         
         /// <summary>
-        /// txtBoxAddPatGender-Steuerelement
+        /// dropDownListAddPatGender-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBoxAddPatGender;
+        protected global::System.Web.UI.WebControls.DropDownList dropDownListAddPatGender;
         
         /// <summary>
         /// lblAddPatBirthday-Steuerelement
@@ -337,13 +337,13 @@ namespace Bettenverwaltung {
         protected global::System.Web.UI.WebControls.Label lblAddPatStation;
         
         /// <summary>
-        /// txtBoxAddPatCorrectStation-Steuerelement
+        /// dropDownListAddPatStation-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBoxAddPatCorrectStation;
+        protected global::System.Web.UI.WebControls.DropDownList dropDownListAddPatStation;
         
         /// <summary>
         /// btnAddConfirm-Steuerelement

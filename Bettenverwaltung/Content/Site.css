@@ -355,6 +355,15 @@ textarea {
     right: 0px;
 }
 
+select {
+    width: 141px;
+    max-width: 141px;
+}
+
+option {
+    color: #000000;
+}
+
 .spanLabel {
     margin-bottom: 21px;
     display: inline-block;
