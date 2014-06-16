@@ -42,16 +42,10 @@ namespace Bettenverwaltung
             HistoryItem.Add(i);
         }
 
-        public History()
+        public History()                //Ein neues History-Objekt wird angelegt und das Erste History-Item
         {
-
-        }
-
-        public History(int historyId, int historyItemId)                //Ein neues History-Objekt wird angelegt und das Erste History-Item
-        {
-            this.historyId = historyId;
             HistoryItem = new List<HistoryItem>();
-            this.HistoryItem.Add(Bettenverwaltung.HistoryItem.CreateEntryItem(historyItemId));//für die Patientenaufnahme in die Liste eingefügt.
+            this.HistoryItem.Add(Bettenverwaltung.HistoryItem.CreateEntryItem());//für die Patientenaufnahme in die Liste eingefügt.
         }
     }
 }

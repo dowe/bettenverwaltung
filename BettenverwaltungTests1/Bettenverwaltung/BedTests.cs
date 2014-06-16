@@ -16,7 +16,7 @@ namespace Bettenverwaltung.Tests
         {
             Bed bed = new Bed();
             //initialize bed
-            Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false, 0, 0, 0);
+            Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false);
             bed.inRelocation = true;
             bed.station = 0;
             bed.bedId = 0;
@@ -36,7 +36,7 @@ namespace Bettenverwaltung.Tests
         {
             Bed bed = new Bed();
             //initialize bed
-            Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false, 0, 0, 0);
+            Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false);
             bed.patient = pat;
             bed.inRelocation = true;
             bed.station = 0;
@@ -56,7 +56,7 @@ namespace Bettenverwaltung.Tests
         {
             Bed bed = new Bed();
             //initialize bed
-            Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false, 0, 0, 0);
+            Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false);
             bed.patient = pat;
             bed.inRelocation = true;
             bed.station = 0;
@@ -77,7 +77,7 @@ namespace Bettenverwaltung.Tests
         {
             Bed bed = new Bed();
             //initialize bed
-            Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false, 0, 0, 0);
+            Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false);
             bed.patient = pat;
             bed.inRelocation = true;
             bed.station = 0;
@@ -97,7 +97,7 @@ namespace Bettenverwaltung.Tests
         {
             Bed bed = new Bed();
             //initialize bed
-            Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false, 0, 0, 0);
+            Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false);
             bed.patient = pat;
             bed.inRelocation = true;
             bed.station = 0;
@@ -129,7 +129,7 @@ namespace Bettenverwaltung.Tests
         {
             Bed bed = new Bed();
             //initialize bed
-            Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false, 0, 0, 0);
+            Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false);
             bed.patient = pat;
             bed.inRelocation = true;
             bed.station = 0;
@@ -144,7 +144,7 @@ namespace Bettenverwaltung.Tests
         {
             Bed bed = new Bed();
             //initialize bed
-            Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false, 0, 0, 0);
+            Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false);
             bed.patient = pat;
             bed.inRelocation = true;
             bed.station = 0;
@@ -159,7 +159,7 @@ namespace Bettenverwaltung.Tests
         {
             Bed bed = new Bed();
             //initialize bed
-            Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false, 0, 0, 0);
+            Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false);
             bed.patient = pat;
             bed.inRelocation = true;
             bed.station = 0;
@@ -174,7 +174,7 @@ namespace Bettenverwaltung.Tests
         {
             Bed bed = new Bed();
             //initialize bed
-            Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false, 0, 0, 0);
+            Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false);
             bed.patient = pat;
             bed.inRelocation = true;
             bed.station = 0;
@@ -191,7 +191,7 @@ namespace Bettenverwaltung.Tests
         {
             Bed bed = new Bed();
             //initialize bed
-            Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false, 0, 0, 0);
+            Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false);
             bed.patient = pat;
             bed.inRelocation = true;
             bed.station = 0;
@@ -208,7 +208,7 @@ namespace Bettenverwaltung.Tests
         {
             Bed bed = new Bed();
             //initialize bed
-            Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false, 0, 0, 0);
+            Patient pat = new Patient("Peter", "Mustermann", new DateTime(), false);
             bed.patient = pat;
             bed.inRelocation = true;
             bed.station = 0;
