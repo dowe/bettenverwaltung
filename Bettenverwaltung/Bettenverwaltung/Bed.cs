@@ -153,7 +153,11 @@ namespace Bettenverwaltung
 
         public int CompareTo(Bed other)
         {
-            return bedId.CompareTo(other.GetBedId());
+            int res;
+            if (bedId > other.bedId) res = 1;
+            else if (bedId < other.bedId) res = -1;
+            else res = 0;
+            return res;
         }
     }
 }

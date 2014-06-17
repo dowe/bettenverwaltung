@@ -5470,7 +5470,7 @@
           </operation>
           <operation
             Id="ddff4ff6-1f6e-4686-802b-6dcd786a39c9"
-            name="Print_Error_Message"
+            name="PrintErrorMessage"
             visibility="Protected"
             isLeaf="false"
             isStatic="false"
@@ -5543,7 +5543,7 @@
               </operationHasOwnedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="71023d8e-6e1a-49dc-8ce0-b48c6ad95b98"
+                  Id="fe83f4c4-a076-4323-bca3-3e1502213da4"
                   name="e"
                   direction="In"
                   isUnique="false">
@@ -5972,6 +5972,84 @@
                     <interfaceMoniker
                       Id="cec1c071-d679-4205-ab64-dbf2156dd98e"
                       LastKnownName="IController"
+                      LastKnownLocation="Package_1722.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="bcc1d9dc-82ab-458a-ae6f-e538d9b54f45"
+            name="ConvertStationToString"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="d2547c48-5086-4fd5-b92f-44284ca634de"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="9b9749a7-76d1-45ee-8552-8b8e87e2b589"
+                      LastKnownName="string"
+                      LastKnownLocation="Package_1722.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="4dc7f088-00cb-4f3f-a669-636f72a8e749"
+                  name="station"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <enumerationMoniker
+                      Id="ac3d0576-c03f-4bef-aae8-a9b67225bc95"
+                      LastKnownName="EStation"
+                      LastKnownLocation="Package_1722.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="ae380d0f-2578-48e8-96dc-b293d70f1a04"
+            name="ConvertStringToStation"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="d9850640-4216-433e-adc8-e362ff496ab2"
+                  name="strStation"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="9b9749a7-76d1-45ee-8552-8b8e87e2b589"
+                      LastKnownName="string"
+                      LastKnownLocation="Package_1722.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="73f65f42-fb50-4ea6-a956-0f80b836e8e8"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <enumerationMoniker
+                      Id="ac3d0576-c03f-4bef-aae8-a9b67225bc95"
+                      LastKnownName="EStation"
                       LastKnownLocation="Package_1722.uml" />
                   </type_NamedElement>
                 </parameter>

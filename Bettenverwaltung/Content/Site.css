@@ -336,13 +336,21 @@ body,
 }
 
 .btnAcceptRel,
-.btnCancelRel,
-.btnConfirmRel {
-    width: 133px;
-    float: right;
-    right: 0px;
+.btnConfirmRel,
+.btnCancelRel {
+    width: 75px;
     margin-top: 4px;
+}
+
+.btnAcceptRel,
+.btnConfirmRel {
+    float: right;
     margin-right: -4px;
+}
+
+.btnCancelRel {
+    float: left;
+    margin-left: -4px;
 }
 
 /* Set widths on the form inputs since otherwise they're 100% wide */
