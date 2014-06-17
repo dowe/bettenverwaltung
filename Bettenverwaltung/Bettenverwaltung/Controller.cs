@@ -151,8 +151,7 @@ namespace Bettenverwaltung
 		}
 
 		private Relocation CreateRelocation(int bedId, EStation station)    //Eine Relocation mit für das Angegebene bett in die Zielstation station wird erstellt und zurückgegeben. Wird beim Anlegen eines Patienten eventuell Aufgerufen.
-		{                                                                   //!!!!Ist die nicht unnötig? da kann ich auch gleich den Konstruktor aufrufen oder? !!!!
-            bvContext = new BVContext();
+		{                                                                   
             Relocation Rel = new Relocation(bvContext.Beds.Find(bedId), station);
             bvContext.Relocations.Add(Rel);
             return Rel;
@@ -167,7 +166,6 @@ namespace Bettenverwaltung
 
         private List<Relocation> GetInactiveRelocationList()            //Die Liste aller inaktiven Rückverlegungen wird aus der Datenbank geholt und zurückgegeben.
 		{
-            bvContext = new BVContext();
             var Rels = bvContext.Relocations.Where(R => R.destinationBed == null);
             List<Relocation> LRels = new List<Relocation>(Rels.ToArray());
             return LRels;
@@ -180,7 +178,96 @@ namespace Bettenverwaltung
         //wird kein anderes Bett gefunden wird die Rückverlegung auf Inaktiv gesetzt und das gefundene Bett zurückgegeben.
         private Bed FindBedFor(Patient p, EStation station)
         {
-            throw new System.NotImplementedException();
+            
+            List<EStation> stations = new List<EStation>();         //List wird mit der übergeben Station (als erstes Element!) und allen weiteren Stationen in die der Patient verlegt werden darf gefüllt
+            System.Linq.IQueryable<Bettenverwaltung.Bed> Beds;
+            List<Relocation> rel = this.GetActiveRelocationList();  //Holt die aktiven Verlegungen aus der DB.
+            switch (station)
+            {
+                case EStation.Gynaekologie:
+                    if (p.GetAge() > 12)
+                    {
+                        throw new BedException("Kinder müssen in die Kinderklinik.");
+                    }
+                    if (!p.isFemale)
+                    {
+                        throw new BedException("Ein männlicher Patient kann nicht in die Gynäkologie gelegt werden.");
+                    }
+                    stations.Add(EStation.Gynaekologie);
+                    stations.Add(EStation.Innere_Medizin);
+                    stations.Add(EStation.Orthopaedie);
+                    break;
+                case EStation.Innere_Medizin:
+                    if (p.GetAge() > 12)
+                    {
+                        throw new BedException("Kinder müssen in die Kinderklinik.");
+                    }
+                    stations.Add(EStation.Innere_Medizin);
+                    stations.Add(EStation.Orthopaedie);
+                    if(p.isFemale)
+                    {
+                        stations.Add(EStation.Gynaekologie);
+                    }
+                    break;
+                case EStation.Orthopaedie:
+                    if (p.GetAge() > 12)
+                    {
+                        throw new BedException("Kinder müssen in die Kinderklinik.");
+                    }
+                    stations.Add(EStation.Orthopaedie);
+                    stations.Add(EStation.Innere_Medizin);
+                    if (p.isFemale)
+                    {
+                        stations.Add(EStation.Gynaekologie);
+                    }
+                    break;
+                case EStation.Paediatrie:
+                    if(p.GetAge() > 12)
+                    {
+                        throw new BedException("Nur Kinder dürfen in die Pädiatrie.");
+                    }
+                    stations.Add(EStation.Paediatrie);
+                    stations.Add(EStation.Gynaekologie);
+                    break;
+                                                                            //stations wurde nun mit möglichen Stationen gefüllt.
+            }   
+            do                                                              //die Stationen werden durchgegangen bis eine Station mit mind einem freien Bett gefunden wurde.
+            {
+                Beds = bvContext.Beds.Where(B => B.station == (int)stations.First()).Where(B => B.patient == null).Where(B => B.inRelocation == false).Where(B => B.cleaningTime == null);
+                stations.RemoveAt(0);
+            } while (Beds.ToList().Count == 0 && stations.Count != 0);
+
+            if(Beds.ToList().Count == 0)           //falls keine freie Station gefunden wurde
+            {
+                return null;
+            }
+            foreach(Bed b in Beds)                  //jedes Bett wird nun überprüft ob es Ziel einer Verlegung ist.
+            {
+                bool check = false;                 //wird true wenn das Bett Ziel einer Verlegung ist.
+                foreach(Relocation r in rel)        
+                {
+                    if(r.GetDestinationBed().GetBedId() == b.GetBedId())    //ist das bett Ziel der Verlegung?
+                    {
+                        check = true;
+                        break;
+                    }
+                }
+                if(check!=true)                     //falls das Bett nicht Ziel einer Verlegung ist.
+                {
+                    return b;
+                }
+            }
+
+            Bed ret = Beds.ToArray()[0];  //fall alle Betten Ziel einer Verlegung. Nimm das erste Bett.
+            foreach (Relocation r in rel)  //suche Verlegung mit dem Bett als Ziel
+            {
+                if (r.GetDestinationBed().GetBedId() == ret.GetBedId())    //ist das bett Ziel der Verlegung?
+                {
+                    r.SetInactive();        //setze Verlegung inaktiv.
+                    break;
+                }
+            }
+            return ret;
         }                                              
 			                                                            
 
