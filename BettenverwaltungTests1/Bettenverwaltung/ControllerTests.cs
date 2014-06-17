@@ -254,5 +254,15 @@ namespace Bettenverwaltung.Tests
             db.SaveChanges();
             control.DismissPatient(bed2.bedId);
         }
+
+        [TestMethod()]
+        public void AddPatientTest()
+        {
+            Controller cont = new Controller();
+            IBedView Bed = cont.AddPatient("Peter", "Enis", EStation.Innere_Medizin, new DateTime(1990, 5, 5), false);
+            BVContext db = new BVContext();
+            Bed test = db.Beds.Find(Bed.GetBedId());
+            Assert.AreEqual("Peter", test.GetPatient().GetFirstName());
+        }
     }
 }

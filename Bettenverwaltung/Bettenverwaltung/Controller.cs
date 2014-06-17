@@ -23,11 +23,27 @@ namespace Bettenverwaltung
         {
            
         }
-
-        public virtual IBedView AddPatient(string firstname, string lastname, EStation station, DateTime birthday, bool isFemale)   //Legt ein Patientenobjekt an und weist diesem mit FindeBedfor ein Bett zu.
-        {                                                                                                                           //Wird von FindBed for null zurückgegeben, wird ein Krankenwagen gerufen.
-            throw new System.NotImplementedException();                                                                             //Bei Erfolg wird die Bettenid des Bettes, in dem der Patient nun liegt, zurückgegeben.
-        }                                                                                                                           //Stimmt die Station des Bettes, welches FindBedFor zurückgibt, und die Zielstation nicht überein muss eine Relocation angelegt werden.
+        //Legt ein Patientenobjekt an und weist diesem mit FindeBedfor ein Bett zu.
+        //Wird von FindBed for null zurückgegeben, wird ein Krankenwagen gerufen.
+        //Bei Erfolg wird die Bettenid des Bettes, in dem der Patient nun liegt, zurückgegeben.
+        //Stimmt die Station des Bettes, welches FindBedFor zurückgibt, und die Zielstation nicht überein muss eine Relocation angelegt werden.
+        public virtual IBedView AddPatient(string firstname, string lastname, EStation station, DateTime birthday, bool isFemale)
+        {
+            bvContext = new BVContext();
+            Patient p = new Patient(firstname, lastname, birthday, isFemale, station);
+            Bed bed = FindBedFor(p, station);
+            if(bed == null)
+            {
+                return null;
+            }
+            bed.SetPatient(p);
+            if(bed.GetStation() != station)             //anlegen einer Verlegung falls nötig.
+            {
+                CreateRelocation(bed.GetBedId(), station);
+            }
+            bvContext.SaveChanges();
+            return bed;
+        }
 
         public virtual IBedView DismissPatient(int bedId)               //Der Patient in dem Angegebenen Bett, sowie dessen Historie werden aus der DB gelöscht
         {                                                               //Bei Erfolg wird das angegebene Bett zurückgegeben und die CleaningTime gesetzt.
@@ -185,7 +201,7 @@ namespace Bettenverwaltung
             switch (station)
             {
                 case EStation.Gynaekologie:
-                    if (p.GetAge() > 12)
+                    if (p.GetAge() < 12)
                     {
                         throw new BedException("Kinder müssen in die Kinderklinik.");
                     }
@@ -198,7 +214,7 @@ namespace Bettenverwaltung
                     stations.Add(EStation.Orthopaedie);
                     break;
                 case EStation.Innere_Medizin:
-                    if (p.GetAge() > 12)
+                    if (p.GetAge() < 12)
                     {
                         throw new BedException("Kinder müssen in die Kinderklinik.");
                     }
@@ -210,7 +226,7 @@ namespace Bettenverwaltung
                     }
                     break;
                 case EStation.Orthopaedie:
-                    if (p.GetAge() > 12)
+                    if (p.GetAge() < 12)
                     {
                         throw new BedException("Kinder müssen in die Kinderklinik.");
                     }
@@ -233,7 +249,8 @@ namespace Bettenverwaltung
             }   
             do                                                              //die Stationen werden durchgegangen bis eine Station mit mind einem freien Bett gefunden wurde.
             {
-                Beds = bvContext.Beds.Where(B => B.station == (int)stations.First()).Where(B => B.patient == null).Where(B => B.inRelocation == false).Where(B => B.cleaningTime == null);
+                int istation = (int)(stations.FirstOrDefault());
+                Beds = bvContext.Beds.Where(B => B.station == istation).Where(B => B.patient == null).Where(B => B.inRelocation == false).Where(B => B.cleaningTime == null);
                 stations.RemoveAt(0);
             } while (Beds.ToList().Count == 0 && stations.Count != 0);
 
