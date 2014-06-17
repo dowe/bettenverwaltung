@@ -93,6 +93,23 @@ namespace Bettenverwaltung
             return (EStation)correctStation;
         }
 
+        public virtual int GetAge()
+        {
+            int age = DateTime.Now.Year - this.GetBirthday().Year;
+            if(this.GetBirthday().Month > DateTime.Now.Month)
+            {
+                age--;
+            }
+            else if (this.GetBirthday().Month == DateTime.Now.Month)
+            {
+                if(this.GetBirthday().Day > DateTime.Now.Day)
+                {
+                    age--;
+                }
+            }
+            return age;
+        }
+
         public Patient()
         {
 
