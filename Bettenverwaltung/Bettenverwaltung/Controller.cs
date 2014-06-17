@@ -52,9 +52,9 @@ namespace Bettenverwaltung
                                                                         //Falls es eine Verlegung mit diesem Bett als SourceBed gibt muss diese aus der Datenbank gelöscht werden.
             bvContext = new BVContext();
             Bed bed = bvContext.Beds.Find(bedId);
-            if (bed.patient == null)
+            if (bed.GetPatient() == null)
             {
-                String str = "Bett " + bed.bedId + " ist bereits leer.";
+                String str = "Bett " + bed.GetBedId() + " ist bereits leer.";
                 throw new BedException(str);
             }
             else
@@ -63,7 +63,7 @@ namespace Bettenverwaltung
                 var reloc = bvContext.Relocations.Where(r => r.sourceBed.bedId == bed.bedId).FirstOrDefault();
                 if (reloc != null)
                 {
-                    if (reloc.accepted)
+                    if (reloc.IsAccepted())
                     {
                         reloc.SetUnaccepted();
                         //delete relocation from DB
