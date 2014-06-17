@@ -70,6 +70,21 @@ namespace Bettenverwaltung.Tests
             Patient pat = new Patient("Erfundener", "Name", new DateTime(1993, 4, 15, 0, 0, 0, 0), false, EStation.Orthopaedie);
             Assert.AreEqual(pat.GetCorrectStation(), EStation.Orthopaedie);
         }
+
+        [TestMethod()]
+        public void GetAgeTest()
+        {
+            Patient pat = new Patient("Erfundener", "Name", new DateTime(DateTime.Now.Year - 21, DateTime.Now.Month + 1, DateTime.Now.Day, 0, 0, 0, 0), false, EStation.Orthopaedie);
+            Assert.AreEqual(20, pat.GetAge());
+            pat = new Patient("Erfundener", "Name", new DateTime(DateTime.Now.Year - 21, DateTime.Now.Month, DateTime.Now.Day + 1, 0, 0, 0, 0), false, EStation.Orthopaedie);
+            Assert.AreEqual(20, pat.GetAge());
+            pat = new Patient("Erfundener", "Name", new DateTime(DateTime.Now.Year - 21, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0, 0), false, EStation.Orthopaedie);
+            Assert.AreEqual(21, pat.GetAge());
+            pat = new Patient("Erfundener", "Name", new DateTime(DateTime.Now.Year - 21, DateTime.Now.Month -1, DateTime.Now.Day, 0, 0, 0, 0), false, EStation.Orthopaedie);
+            Assert.AreEqual(21, pat.GetAge());
+            pat = new Patient("Erfundener", "Name", new DateTime(DateTime.Now.Year - 21, DateTime.Now.Month, DateTime.Now.Day - 1, 0, 0, 0, 0), false, EStation.Orthopaedie);
+            Assert.AreEqual(21, pat.GetAge());
+        }
     }
 }
 
