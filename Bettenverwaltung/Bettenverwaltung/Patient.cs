@@ -115,9 +115,17 @@ namespace Bettenverwaltung
 
         }
 
-        public Patient(string firstname, string lastname, DateTime birthday, bool isFemale, EStation correctStation)    //Konstruktor: Der Patient wird aus den Übergabewerten erstellt. Die ID wird aus dem Wert des letzten
+        /// <summary>
+        /// Konstruktor der einen neuen Patienten inklusive History anlegt
+        /// </summary>
+        /// <param name="firstname">Vorname</param>
+        /// <param name="lastname">Nachname</param>
+        /// <param name="birthday">Geburtstag</param>
+        /// <param name="isFemale">Geschlecht</param>
+        /// <param name="correctStation">Zielstation</param>
+        public Patient(string firstname, string lastname, DateTime birthday, bool isFemale, EStation correctStation)   
         {
-            //DB eintrags generiert. Es wird ebenfalls eine neue Historie für den Patienten anglegt.
+            
             this.firstname = firstname;
             this.lastname = lastname;
             this.birthday = birthday.ToString();

@@ -28,7 +28,11 @@ namespace Bettenverwaltung
             set;
         }
 
-        public static HistoryItem CreateEntryItem()                                    //Ein History-Item für die Patientenaufnahme wird erstellt
+        /// <summary>
+        /// Ein History-Item für die Patientenaufnahme wird erstellt
+        /// </summary>
+        /// <returns>das erstellte HistoryItem (für HistoryItemListe in History Objekt)</returns>
+        public static HistoryItem CreateEntryItem()                                    
         {
             DateTime dat1 = DateTime.Now;
             CultureInfo culture = new CultureInfo("de-DE");     //German Date format
@@ -37,7 +41,13 @@ namespace Bettenverwaltung
             return historyItem;
         }
 
-        public static HistoryItem CreateRelocationItem(int sourceBed, int destBed)   //Ein History-Item für eine Verlegung wird erstellt
+        /// <summary>
+        /// Ein History-Item für eine Verlegung wird erstellt
+        /// </summary>
+        /// <param name="sourceBed">Quellbett ID</param>
+        /// <param name="destBed">Zielbett ID</param>
+        /// <returns>das erstellte HistoryItem (für HistoryItemListe in History Objekt)</returns>
+        public static HistoryItem CreateRelocationItem(int sourceBed, int destBed)   
         {
             DateTime dat1 = DateTime.Now;
             CultureInfo culture = new CultureInfo("de-DE");     //German Date format
@@ -51,7 +61,11 @@ namespace Bettenverwaltung
 
         }
 
-        public HistoryItem(string text)                                                         //Konstruktor für HistoryItem. Wird nur von den beiden oberen statischen Methoden genutzt.
+        /// <summary>
+        ///  Konstruktor für HistoryItem. Wird nur von den beiden oberen statischen Methoden genutzt.
+        /// </summary>
+        /// <param name="text">text der im attribut abgelegt wird</param>
+        public HistoryItem(string text)                                                        
         {
             this.text = text;//Text und id werden gespeichert sowie die aktuelle Zeit in timestamp.
         }

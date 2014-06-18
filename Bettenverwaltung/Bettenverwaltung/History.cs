@@ -27,26 +27,43 @@ namespace Bettenverwaltung
             set;
         }
 
-        public virtual HistoryItem GetHistoryItem(int index)            //Der History-Eintragmit dem index wird zurückgegeben
+        /// <summary>
+        /// Der History-Eintragmit dem index wird zurückgegeben
+        /// </summary>
+        /// <param name="index">Index des Eintrages in der Liste</param>
+        /// <returns>HistoryItem aus der Liste</returns>
+        public virtual HistoryItem GetHistoryItem(int index)            
         {
             return historyItem[index];
         }
 
-        public virtual int GetSize()                                    //Die Anzahl der History-Items in der Liste wird zurückgegeben
+        /// <summary>
+        /// Die Anzahl der History-Items in der Liste wird zurückgegeben
+        /// </summary>
+        /// <returns>Größe der historyItemListe</returns>
+        public virtual int GetSize()                                    
         {
             return historyItem.Count;
         }
 
-        public virtual void InsertHistoryItem(HistoryItem i)            //Das Angegebene HistroyItem wird hinten in die Liste eingetragen
+        /// <summary>
+        /// Das Angegebene HistroyItem wird hinten in die Liste eingetragen
+        /// </summary>
+        /// <param name="i">HistoryItem das in die Liste eingefügt werden soll</param>
+        public virtual void InsertHistoryItem(HistoryItem i)            
         {
             historyItem.Add(i);
         }
 
-        public History()                //Ein neues History-Objekt wird angelegt und das Erste History-Item
+        public History()                
         {
             
         }
 
+        /// <summary>
+        /// Ein neues History-Objekt wird angelegt und das Erste History-Item in die Liste eingefügt
+        /// </summary>
+        /// <returns></returns>
         public static History CreateNewHistory()
         {
             History res = new History();

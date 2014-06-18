@@ -22,7 +22,10 @@ namespace Bettenverwaltung
             set;
         }
 
-        public int station                                     //0 Innere_Medizin 1 Orthopädie 2 Pediatrie 3 Gynäkologie
+        /// <summary>
+        /// 0 Innere_Medizin 1 Orthopädie 2 Pediatrie 3 Gynäkologie, NUTZE EStation!!!
+        /// </summary>
+        public int station                                     
 		{
 			get;
 			set;
@@ -46,8 +49,13 @@ namespace Bettenverwaltung
 			set;
 		}
 
-		public virtual void SetPatient(Patient patient)             //legt eine Patienten in das Bett, Exception falls sich schon ein Patient in dem Bett
-		{                                                           //befindet oder es gesperrt ist.
+        /// <summary>
+        /// legt eine Patienten in das Bett, Exception falls sich schon ein Patient in dem Bett
+        /// befindet oder es gesperrt ist.
+        /// </summary>
+        /// <param name="patient">Patient der ins Bett gelegt wird oder null für leeres Bett</param>
+		public virtual void SetPatient(Patient patient)
+		{                                                        
             if (this.patient == null && this.cleaningTime == null)
             {
                 this.patient = patient;
@@ -85,7 +93,10 @@ namespace Bettenverwaltung
                 this.inRelocation = status;
 		}
 
-		public virtual void StartCleaning()                     //setzt die cleaningtime des Bettenobjekts. Das Bett ist für diese Zeit gesperrt.
+        /// <summary>
+        /// setzt die cleaningtime des Bettenobjekts. Das Bett ist für diese Zeit gesperrt.
+        /// </summary>
+		public virtual void StartCleaning()                     
 		{
 
             if (this.cleaningTime == null)
@@ -97,7 +108,10 @@ namespace Bettenverwaltung
             }
 		}
 
-		public virtual void StopCleaning()                      //setzt die cleaningtime zurück auf null. Diese Funktion wird nur vom DB_Cleaner verwendet
+        /// <summary>
+        ///  setzt die cleaningtime zurück auf null. Diese Funktion wird nur vom DB_Cleaner verwendet
+        /// </summary>
+		public virtual void StopCleaning()                     
 		{
             if (this.cleaningTime != null)
                 this.cleaningTime = null;
@@ -108,7 +122,11 @@ namespace Bettenverwaltung
             }
 		}
 
-		public virtual DateTime? GetCleaningTime()               //überprüfung der cleaingtime. Wird nur vom DB_Cleaner verwendet.
+        /// <summary>
+        /// Überprüfung der cleaningtime. Wird nur vom DB_Cleaner verwendet.
+        /// </summary>
+        /// <returns>CleaningTime geparsed von String in DateTime</returns>
+		public virtual DateTime? GetCleaningTime()               
 		{
             return DateTime.Parse(this.cleaningTime);
 		}
@@ -118,7 +136,7 @@ namespace Bettenverwaltung
             return this.patient;
 		}
 
-		public virtual EStation GetStation()                    //Map den Integer der Datenbank auf das Enum EStation (siehe dazu Kommentar der Variable Station oben)
+		public virtual EStation GetStation()                    
 		{
             return (EStation)this.station;
 		}
