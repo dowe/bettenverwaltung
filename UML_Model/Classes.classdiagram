@@ -7412,6 +7412,19 @@
                     </operationHasOwnedParameters>
                   </ownedParameters>
                 </operation>
+                <operation Id="4d6c072b-ebf8-4c86-9389-3f823164e5c9" name="GetText" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+                  <elementDefinition Id="57164d75-5c93-4a11-8d9b-c64e1941294e" />
+                  <ownedParameters>
+                    <operationHasOwnedParameters>
+                      <parameter Id="258942b8-3bcf-45a9-ba20-908e6273304c" direction="Return" isUnique="false">
+                        <elementDefinition Id="051e3a43-91d1-4c33-81a5-d940416eb764" />
+                        <type_NamedElement>
+                          <referencedTypeMoniker Id="faff84cb-c627-4365-8b12-d5c0dd2c0b56" LastKnownName="string" />
+                        </type_NamedElement>
+                      </parameter>
+                    </operationHasOwnedParameters>
+                  </ownedParameters>
+                </operation>
               </ownedOperationsInternal>
             </class>
           </packageHasNamedElement>

@@ -35,7 +35,7 @@
                             </asp:Panel>
                         </ContentTemplate>
                     </asp:UpdatePanel>
-                    <asp:UpdatePanel ID="updatePanelTabs" runat="server" UpdateMode="Always" class="divTabsContainer">
+                    <asp:UpdatePanel ID="updatePanelTabs" runat="server" class="divTabsContainer">
                         <ContentTemplate>
                             <asp:LinkButton ID="btnTabDetails" runat="server" OnClick="Tab_Details_Click" CssClass="btnTabActive">Details</asp:LinkButton><asp:LinkButton ID="btnTabSearch" runat="server" OnClick="Tab_Search_Click" CssClass="btnTabInactive">Suche</asp:LinkButton><asp:LinkButton ID="btnTabAdd" runat="server" OnClick="Tab_Add_Click" CssClass="btnTabInactive">Neuer Patient</asp:LinkButton>
                             <div class="divTabs">
@@ -67,7 +67,7 @@
                                                 <asp:TextBox ID="txtBoxDetailsBedStation" runat="server" ReadOnly="true" BackColor="LightGray"></asp:TextBox><br />
 
 
-                                                <asp:ListBox ID="ListBox1" runat="server" CssClass="listDetailsPatHistory"></asp:ListBox>
+                                                <asp:ListBox ID="listBoxDetailsPatHistory" runat="server" CssClass="listDetailsPatHistory"></asp:ListBox>
                                                 <br />
                                                 <br />
                                                 <asp:LinkButton runat="server" ID="btnDetailsDismiss" CssClass="btnFormSubmit">Patient entlassen</asp:LinkButton>
@@ -126,6 +126,9 @@
                                 </asp:Panel>
                             </div>
                         </ContentTemplate>
+                        <Triggers>
+                            <asp:PostBackTrigger ControlID="btnAddConfirm" />
+                        </Triggers>
                     </asp:UpdatePanel>
                 </div>
 
