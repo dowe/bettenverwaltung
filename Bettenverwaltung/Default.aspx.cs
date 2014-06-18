@@ -110,7 +110,7 @@ namespace Bettenverwaltung
                 if (bed.IsGettingCleaned()) {
                     btn.CssClass = CSS_CLASS_BED_CLEANING;
                 }
-                if (bed.IsInRelocation())
+                else if (bed.IsInRelocation())
                 {
                     btn.CssClass = CSS_CLASS_BED_IN_RELOCATION;
                 }
@@ -183,7 +183,15 @@ namespace Bettenverwaltung
 
 		protected virtual void Dismiss_Patient_Click(object sender, EventArgs e)
 		{
-			throw new System.NotImplementedException();
+            try
+            {
+                int selectedBedId = (int)ViewState[VSKEY_SELECTED_BED_INDEX_ONE_BASED];
+                DisplayBed(controller.DismissPatient(selectedBedId));
+            }
+            catch (BedException ex)
+            {
+                PrintErrorMessage(ex);
+            }
 		}
 
 		protected virtual void Add_Patient_Click(object sender, EventArgs e)
@@ -313,7 +321,6 @@ namespace Bettenverwaltung
                 {
                     AddSearchResultItem(bed);
                 }
-                InitTriggers();
             }
             catch (BedException ex)
             {
@@ -600,8 +607,6 @@ namespace Bettenverwaltung
             divTabDetails.CssClass = CSS_CLASS_DIV_TAB_INACTIVE;
             divTabSearch.CssClass = CSS_CLASS_DIV_TAB_ACTIVE;
             divTabAdd.CssClass = CSS_CLASS_DIV_TAB_INACTIVE;
-
-            SearchPatient();
         }
 
         private void SwitchToAddTab()

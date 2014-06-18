@@ -62,7 +62,7 @@
                                                 <asp:ListBox ID="listBoxDetailsPatHistory" runat="server" CssClass="listDetailsPatHistory"></asp:ListBox>
                                                 <br />
                                                 <br />
-                                                <asp:LinkButton runat="server" ID="btnDetailsDismiss" CssClass="btnFormSubmit">Patient entlassen</asp:LinkButton>
+                                                <asp:LinkButton runat="server" ID="btnDetailsDismiss" CssClass="btnFormSubmit" OnClick="Dismiss_Patient_Click">Patient entlassen</asp:LinkButton>
                                             </div>
                                         </div>
                                     </div>
@@ -115,6 +115,7 @@
                         </ContentTemplate>
                         <Triggers>
                             <asp:PostBackTrigger ControlID="btnAddConfirm"/>
+                            <asp:PostBackTrigger ControlID="btnDetailsDismiss"/>
                         </Triggers>
                     </asp:UpdatePanel>
                 </div>
