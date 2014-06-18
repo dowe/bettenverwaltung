@@ -65,6 +65,7 @@
     <Compile Include="Bettenverwaltung\PatientTests.cs" />
     <Compile Include="Bettenverwaltung\RelocationTests.cs" />
     <Compile Include="Bettenverwaltung\DBTests.cs" />
+    <Compile Include="Bettenverwaltung\DBCleanerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
