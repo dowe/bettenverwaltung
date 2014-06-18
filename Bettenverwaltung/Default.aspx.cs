@@ -505,7 +505,7 @@ namespace Bettenverwaltung
                 for (int i = 0; i < pat.GetHistory().GetSize(); i++)
                 {
                     HistoryItem historyItem = pat.GetHistory().GetHistoryItem(i);
-                    listBoxDetailsPatHistory.Items.Add(new ListItem(historyItem.GetText() + " - " + historyItem.historyItemId.ToString()));
+                    listBoxDetailsPatHistory.Items.Add(new ListItem(historyItem.GetText()));
                 }
             }
             else
