@@ -55,6 +55,11 @@ namespace Bettenverwaltung
         {
             this.text = text;//Text und id werden gespeichert sowie die aktuelle Zeit in timestamp.
         }
+
+        public string GetText()
+        {
+            return text;
+        }
     }
 }
 

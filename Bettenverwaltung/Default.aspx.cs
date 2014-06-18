@@ -44,9 +44,9 @@ namespace Bettenverwaltung
 
         private IController controller;
 
-        public _Default() : this(new TestController()) // "Mock" Test
+        public _Default()// : this(new TestController()) // "Mock" Test
         {
-            //this.controller = new Controller();
+            this.controller = new Controller();
         }
 
         public _Default(IController controller)
@@ -500,6 +500,13 @@ namespace Bettenverwaltung
                 txtBoxDetailsPatBirthday.Text = pat.GetBirthday().ToString();
                 
                 txtBoxDetailsPatCorrectStation.Text = ConvertStationToString(pat.GetCorrectStation());
+
+                listBoxDetailsPatHistory.Items.Clear();
+                for (int i = 0; i < pat.GetHistory().GetSize(); i++)
+                {
+                    HistoryItem historyItem = pat.GetHistory().GetHistoryItem(i);
+                    listBoxDetailsPatHistory.Items.Add(new ListItem(historyItem.GetText()));
+                }
             }
             else
             {
@@ -509,6 +516,7 @@ namespace Bettenverwaltung
                 txtBoxDetailsPatBirthday.Text = "";
                 txtBoxDetailsPatGender.Text = "";
                 txtBoxDetailsPatCorrectStation.Text = "";
+                listBoxDetailsPatHistory.Items.Clear();
             }
             // display bed info in any case
             txtBoxDetailsBedId.Text = bed.GetBedId().ToString();
