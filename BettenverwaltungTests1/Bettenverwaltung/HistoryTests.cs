@@ -15,7 +15,7 @@ namespace Bettenverwaltung.Tests
         public void HistoryTest()
         {
             //initialize a History
-            History hist = new History();
+            History hist = History.CreateNewHistory();
 
             Assert.AreEqual(hist.historyItem[0].historyItemId, 0);
 
@@ -26,7 +26,7 @@ namespace Bettenverwaltung.Tests
         public void GetHistoryItemTest()
         {
             //initialize a History
-            History hist = new History();
+            History hist = History.CreateNewHistory();
 
             HistoryItem item = hist.GetHistoryItem(0);
             Assert.AreEqual(item.historyItemId, 0);
@@ -37,7 +37,7 @@ namespace Bettenverwaltung.Tests
         public void InsertHistoryItemTest()
         {
             //initialize a History
-            History hist = new History();
+            History hist = History.CreateNewHistory();
 
             HistoryItem item = HistoryItem.CreateRelocationItem(2, 3);
             hist.InsertHistoryItem(item);
@@ -49,7 +49,7 @@ namespace Bettenverwaltung.Tests
         public void GetSizeTest()
         {
             //initialize a History
-            History hist = new History();
+            History hist = History.CreateNewHistory();
 
             Assert.AreEqual(hist.GetSize(), 1);
             HistoryItem item = HistoryItem.CreateRelocationItem(2, 3);
