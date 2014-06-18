@@ -12,6 +12,9 @@ namespace Bettenverwaltung
 	using System.Linq;
 	using System.Text;
 
+    /// <summary>
+    /// Verlegungsobjekt falls Patient kein Bett in der richtigen Station gefunden hat
+    /// </summary>
 	public class Relocation
 	{
         [Key]

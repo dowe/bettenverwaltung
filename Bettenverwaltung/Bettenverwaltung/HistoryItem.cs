@@ -13,6 +13,9 @@ namespace Bettenverwaltung
     using System.Linq;
     using System.Text;
 
+    /// <summary>
+    /// Verlegungs- oder ErzeugungsItem das zur Patientenhistory gehört
+    /// </summary>
     public class HistoryItem
     {
 

@@ -11,7 +11,10 @@ namespace Bettenverwaltung
 	using System.Linq;
 	using System.Text;
 
-    public class Controller : IController                            //Controller für die Kommunikation zwischen View und Anwendung.
+    /// <summary>
+    ///  Controller für die Kommunikation zwischen View und Anwendung.
+    /// </summary>
+    public class Controller : IController                           
 	{
 		public virtual BVContext bvContext
 		{

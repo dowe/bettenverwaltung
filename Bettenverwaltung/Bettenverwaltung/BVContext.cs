@@ -12,6 +12,9 @@ namespace Bettenverwaltung
     using System.Linq;
     using System.Text;
 
+    /// <summary>
+    /// Kontext für DB-Zugriff
+    /// </summary>
     public class BVContext : DbContext
     {
         public BVContext()

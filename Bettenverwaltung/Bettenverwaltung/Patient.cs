@@ -12,7 +12,10 @@ namespace Bettenverwaltung
     using System.Linq;
     using System.Text;
 
-    public class Patient                                     //Klasse zum speichern der Patientendaten. Alle Daten könne via getter-Methoden gelesen werden, jedoch nicht geändert werden.
+    /// <summary>
+    /// Patient der angelegt wird
+    /// </summary>
+    public class Patient                                    
     {
         [Key]
         public int patId

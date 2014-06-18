@@ -12,8 +12,10 @@ namespace Bettenverwaltung
     using System.Linq;
     using System.Text;
 
-   
-	public class Bed : IBedCleaner, IBedView, IComparable<Bed>      //Datenbankobjekt für die Betten des KHs
+    /// <summary>
+    /// Datenbankobjekt für die Betten des KHs
+    /// </summary>
+	public class Bed : IBedCleaner, IBedView, IComparable<Bed>      
 	{
         [Key]
         public int bedId
