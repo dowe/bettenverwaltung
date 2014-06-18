@@ -21,6 +21,11 @@ namespace Bettenverwaltung
         private readonly Color INVALID_COLOR =  Color.Yellow;
         private readonly Color VALID_COLOR =    Color.White;
 
+        // dynamic ID Prefixes
+        private const string DYN_PREFIX_BED = "bed";
+        private const string DYN_PREFIX_NOT = "not";
+        private const string DYN_PREFIX_SEARCH_RESULT = "res";
+
         // Css Classes
         private const String CSS_CLASS_BED_FREE = "btnBedFree";
         private const String CSS_CLASS_BED_IN_RELOCATION = "btnBedInRelocation";
@@ -40,7 +45,8 @@ namespace Bettenverwaltung
         private const String CSS_CLASS_BTN_NOT_CANCEL = "btnCancelRel";
         private const String CSS_CLASS_BTN_NOT_CONFIRM = "btnConfirmRel";
 
-        private Button[] bedButtons = new Button[NUMBER_OF_BEDS];
+        private const String CSS_CLASS_LBL_PAT_ID = "lblPatId";
+        private const String CSS_CLASS_BTN_SEARCH_RESULT_LIST_ITEM = "btnSearchResultListItem";
 
         private IController controller;
 
@@ -62,8 +68,10 @@ namespace Bettenverwaltung
                 SwitchToDetailsTab();
             }
 
+            SearchPatient();
             InitBeds();
             InitRelocations();
+            InitTriggers();
 		}
 
         private void InitViewState() {
@@ -76,7 +84,6 @@ namespace Bettenverwaltung
             try
             {
                 List<IBedView> beds = controller.GetBettList();
-                updatePanelTabs.Triggers.Clear();
                 divStationPaediatrieBeds.Controls.Clear();
                 divStationGynaekologieBeds.Controls.Clear();
                 divStationInnereMedizinBeds.Controls.Clear();
@@ -156,10 +163,6 @@ namespace Bettenverwaltung
                     divStationPaediatrieBeds.Controls.Add(btn);
                     break;
             }
-
-            // register trigger
-            UpdatePanelTrigger trigger = CreateTrigger(btn.ID);
-            updatePanelTabs.Triggers.Add(trigger);
         }
 
 		protected virtual void Bed_Buttons_Click(object sender, EventArgs e)
@@ -168,7 +171,7 @@ namespace Bettenverwaltung
             {
                 LinkButton btnSender = (LinkButton)sender;
                 string id = btnSender.ID;
-                id = id.Remove(0, "bed".Length);
+                id = id.Remove(0, DYN_PREFIX_BED.Length);
                 int idOneBased = Int32.Parse(id);
                 DisplayBed(controller.DisplayPatient(idOneBased));
             }
@@ -297,8 +300,52 @@ namespace Bettenverwaltung
 
 		protected virtual void Search_Click(object sender, EventArgs e)
 		{
-			throw new System.NotImplementedException();
+            SearchPatient();
 		}
+
+        private void SearchPatient()
+        {
+            try
+            {
+                divSearchResultList.Controls.Clear();
+                List<IBedView> result = controller.SearchPatient(txtBoxSearchQuery.Text);
+                foreach (IBedView bed in result)
+                {
+                    AddSearchResultItem(bed);
+                }
+                InitTriggers();
+            }
+            catch (BedException ex)
+            {
+                PrintErrorMessage(ex);
+            }
+        }
+
+        private void AddSearchResultItem(IBedView bed)
+        {
+            LinkButton resultLinkButton = new LinkButton();
+            resultLinkButton.ID = DYN_PREFIX_SEARCH_RESULT + bed.GetBedId();
+            resultLinkButton.CssClass = CSS_CLASS_BTN_SEARCH_RESULT_LIST_ITEM;
+            resultLinkButton.Click += Search_Item_Click;
+
+            Label lblPatId = new Label();
+            lblPatId.Text = bed.GetPatient().GetPatientId().ToString();
+            lblPatId.CssClass = CSS_CLASS_LBL_PAT_ID;
+            resultLinkButton.Controls.Add(lblPatId);
+
+            Label lblPatText = new Label();
+            StringBuilder sb = new StringBuilder();
+            sb.Append(" - ");
+            sb.Append(bed.GetPatient().GetLastName());
+            sb.Append(" ");
+            sb.Append(bed.GetPatient().GetFirstName());
+            sb.Append(", Station ");
+            sb.Append(bed.GetStation());
+            lblPatText.Text = sb.ToString();
+            resultLinkButton.Controls.Add(lblPatText);
+
+            divSearchResultList.Controls.Add(resultLinkButton);
+        }
 
 		protected virtual void Tab_Details_Click(object sender, EventArgs e)
 		{
@@ -332,7 +379,10 @@ namespace Bettenverwaltung
 
 		protected virtual void Search_Item_Click(object sender, EventArgs e)
 		{
-			throw new System.NotImplementedException();
+            int bedIdOneBased;
+            LinkButton btn = (LinkButton)sender;
+            bedIdOneBased = Int32.Parse(btn.ID.Remove(0, DYN_PREFIX_SEARCH_RESULT.Length));
+            DisplayBed(controller.DisplayPatient(bedIdOneBased));
 		}
 
 		private void InitRelocations()
@@ -421,7 +471,7 @@ namespace Bettenverwaltung
             content.Text = sb.ToString();
             panel.Controls.Add(content);
 
-            string btnId = "not" + relocation.GetId().ToString();
+            string btnId = DYN_PREFIX_NOT + relocation.GetId().ToString();
 
             if (relocation.IsAccepted())
             {
@@ -550,6 +600,8 @@ namespace Bettenverwaltung
             divTabDetails.CssClass = CSS_CLASS_DIV_TAB_INACTIVE;
             divTabSearch.CssClass = CSS_CLASS_DIV_TAB_ACTIVE;
             divTabAdd.CssClass = CSS_CLASS_DIV_TAB_INACTIVE;
+
+            SearchPatient();
         }
 
         private void SwitchToAddTab()
@@ -617,6 +669,59 @@ namespace Bettenverwaltung
             PostBackTrigger trigger = new PostBackTrigger();
             trigger.ControlID = controlId;
             return trigger;
+        }
+
+        private void InitTriggers()
+        {
+            InitOverviewTriggers();
+            InitTabTriggers();
+        }
+
+        private void InitOverviewTriggers()
+        {
+            UpdatePanel updatePanel = updatePanelOverview;
+            updatePanel.Triggers.Clear();
+            
+            // bedButtons
+            foreach (LinkButton bedBtn in divStationPaediatrieBeds.Controls)
+            {
+                AddTrigger(bedBtn, updatePanel);
+            }
+            foreach (LinkButton bedBtn in divStationGynaekologieBeds.Controls)
+            {
+                AddTrigger(bedBtn, updatePanel);
+            }
+            foreach (LinkButton bedBtn in divStationInnereMedizinBeds.Controls)
+            {
+                AddTrigger(bedBtn, updatePanel);
+            }
+            foreach (LinkButton bedBtn in divStationOrthopaedieBeds.Controls)
+            {
+                AddTrigger(bedBtn, updatePanel);
+            }
+
+            // resTriggers
+            foreach (LinkButton resBtn in divSearchResultList.Controls)
+            {
+                AddTrigger(resBtn, updatePanel);
+            }
+        }
+
+        private void InitTabTriggers()
+        {
+            UpdatePanel updatePanel = updatePanelTabs;
+            updatePanel.Triggers.Clear();
+
+            foreach (LinkButton btn in divSearchResultList.Controls)
+            {
+                AddTrigger(btn, updatePanel);
+            }
+        }
+
+        private void AddTrigger(Control ctrl, UpdatePanel panel)
+        {
+            UpdatePanelTrigger trigger = CreateTrigger(ctrl.ID);
+            panel.Triggers.Add(trigger);
         }
     }
 }

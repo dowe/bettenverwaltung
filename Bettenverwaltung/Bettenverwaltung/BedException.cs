@@ -13,17 +13,9 @@ namespace Bettenverwaltung
 
 	public class BedException : System.Exception      //Standartexeption der Bettenverwaltung. Wird von versch. Klassen geworfen   
 	{                              //und von der View ausgegeben.
-		public string message;
 
-		public virtual string Message
-		{
-			get;
-			set;
-		}
-
-        public BedException(String mess)
+        public BedException(String mess) : base(mess)
         {
-            this.message = mess;
         }
 
 	}

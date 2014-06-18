@@ -7,35 +7,27 @@
             <div class="divContent">
                 <div class="divLeft">
                     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-                    <asp:UpdatePanel ID="updatePanelOverview" runat="server" class="divOverview">
+                    <asp:UpdatePanel ID="updatePanelOverview" ChildrenAsTriggers="true" runat="server" class="divOverview">
                         <ContentTemplate>
                             <asp:Panel ID="divStationPaediatrie" runat="server" CssClass="divOverviewStation marginRight">
                                 <h2>Pädiatrie</h2>
-                                <asp:Panel ID="divStationPaediatrieBeds" runat="server">
-
-                                </asp:Panel>
+                                <asp:Panel ID="divStationPaediatrieBeds" runat="server"></asp:Panel>
                             </asp:Panel>
                             <asp:Panel ID="divStationGynaekologie" runat="server" CssClass="divOverviewStation marginRight">
                                 <h2>Gynäkologie</h2>
-                                <asp:Panel ID="divStationGynaekologieBeds" runat="server">
-
-                                </asp:Panel>
+                                <asp:Panel ID="divStationGynaekologieBeds" runat="server"></asp:Panel>
                             </asp:Panel>
                             <asp:Panel ID="divStationInnereMedizin" runat="server" CssClass="divOverviewStation marginRight">
                                 <h2>Innere Medizin</h2>
-                                <asp:Panel ID="divStationInnereMedizinBeds" runat="server">
-
-                                </asp:Panel>
+                                <asp:Panel ID="divStationInnereMedizinBeds" runat="server"></asp:Panel>
                             </asp:Panel>
                             <asp:Panel ID="divStationOrthopaedie" runat="server" CssClass="divOverviewStation">
                                 <h2>Orthopädie</h2>
-                                <asp:Panel ID="divStationOrthopaedieBeds" runat="server">
-                                
-                                </asp:Panel>
+                                <asp:Panel ID="divStationOrthopaedieBeds" runat="server"></asp:Panel>
                             </asp:Panel>
                         </ContentTemplate>
                     </asp:UpdatePanel>
-                    <asp:UpdatePanel ID="updatePanelTabs" runat="server" class="divTabsContainer">
+                    <asp:UpdatePanel ID="updatePanelTabs" ChildrenAsTriggers="true" runat="server" class="divTabsContainer">
                         <ContentTemplate>
                             <asp:LinkButton ID="btnTabDetails" runat="server" OnClick="Tab_Details_Click" CssClass="btnTabActive">Details</asp:LinkButton><asp:LinkButton ID="btnTabSearch" runat="server" OnClick="Tab_Search_Click" CssClass="btnTabInactive">Suche</asp:LinkButton><asp:LinkButton ID="btnTabAdd" runat="server" OnClick="Tab_Add_Click" CssClass="btnTabInactive">Neuer Patient</asp:LinkButton>
                             <div class="divTabs">
@@ -80,13 +72,8 @@
                                         <div style="margin: 21px;">
                                             <span class="spanLabel">Patientensuche (ID oder Name):</span>
                                             <asp:TextBox ID="txtBoxSearchQuery" runat="server" CssClass="txtBoxSearchQuery"></asp:TextBox>
-                                            <asp:LinkButton ID="btnSearch" runat="server" CssClass="btnSearch">Suche</asp:LinkButton>
-                                            <asp:Panel ID="divSearchResultList" runat="server" CssClass="divSearchResultList">
-                                                <asp:LinkButton ID="btnSearchResultListItem0" runat="server" CssClass="btnSearchResultListItem">
-                                                    <asp:Label ID="lblPatID0" runat="server" Text="1234" CssClass="lblPatId"></asp:Label>
-                                                    - Patrick Ewig, Station Orthopädie
-                                                </asp:LinkButton>
-                                            </asp:Panel>
+                                            <asp:LinkButton ID="btnSearch" runat="server" CssClass="btnSearch" OnClick="Search_Click">Suche</asp:LinkButton>
+                                            <asp:Panel ID="divSearchResultList" runat="server" CssClass="divSearchResultList"></asp:Panel>
                                         </div>
                                     </div>
                                 </asp:Panel>
@@ -127,13 +114,13 @@
                             </div>
                         </ContentTemplate>
                         <Triggers>
-                            <asp:PostBackTrigger ControlID="btnAddConfirm" />
+                            <asp:PostBackTrigger ControlID="btnAddConfirm"/>
                         </Triggers>
                     </asp:UpdatePanel>
                 </div>
 
                 <div class="divRight">
-                    <asp:UpdatePanel ID="updatePanelNot" UpdateMode="Always" runat="server" class="divNotList">
+                    <asp:UpdatePanel ID="updatePanelNot" ChildrenAsTriggers="true" runat="server" class="divNotList">
                         <ContentTemplate>
                             <asp:Panel ID="divNotifications" runat="server">
 
