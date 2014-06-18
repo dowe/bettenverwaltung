@@ -57,7 +57,7 @@
                                             <asp:ListBox ID="ListBox1" runat="server" CssClass="listDetailsPatHistory"></asp:ListBox>
                                             <br />
                                             <br />
-                                            <asp:LinkButton runat="server" ID="btnDetailsDismiss" CssClass="btnFormSubmit">Dismiss</asp:LinkButton>
+                                            <asp:LinkButton runat="server" ID="btnDetailsDismiss" CssClass="btnFormSubmit">Patient entlassen</asp:LinkButton>
                                         </div>
                                     </div>
                                 </div>
@@ -118,22 +118,7 @@
                 <div class="divRight">
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server" class="divNotList">
                         <ContentTemplate>
-                            <asp:Panel ID="not0" runat="server" CssClass="divNotListItem">
-                                Mustermann, Max (PID 4711)<br />
-                                Derzeit:    Bett 123,   Station Innere Medizin<br />
-                                Nach:       Bett 157,   Station Orthopädie
-                            <asp:LinkButton ID="rel0" runat="server" OnClick="Accept_Relocation_Click" CssClass="btnAcceptRel">
-                                Annehmen
-                            </asp:LinkButton>
-                            </asp:Panel>
-                            <asp:Panel ID="not1" runat="server" CssClass="divNotListItem">
-                                Mustermann2, Max (PID 4711)<br />
-                                Derzeit:    Bett 123,   Station Innere Medizin<br />
-                                Nach:       Bett 157,   Station Orthopädie
-                            <asp:LinkButton ID="rel1" runat="server" OnClick="Accept_Relocation_Click" CssClass="btnAcceptRel">
-                                Annehmen
-                            </asp:LinkButton>
-                            </asp:Panel>
+                            
                         </ContentTemplate>
                     </asp:UpdatePanel>
                     <script>

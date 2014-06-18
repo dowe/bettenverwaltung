@@ -254,5 +254,41 @@ namespace Bettenverwaltung.Tests
             db.SaveChanges();
             control.DismissPatient(bed2.bedId);
         }
+
+        [TestMethod()]
+        public void AddPatientTest()
+        {
+            Controller cont = new Controller();
+            IBedView Bed = cont.AddPatient("Peter", "Enis", EStation.Innere_Medizin, new DateTime(1990, 5, 5), false);
+            BVContext db = new BVContext();
+            Bed test = db.Beds.Find(Bed.GetBedId());
+            Assert.AreEqual("Peter", test.GetPatient().GetFirstName());
+            Assert.AreEqual(EStation.Innere_Medizin, test.GetStation());
+            Bed = cont.AddPatient("Petra", "Enis", EStation.Gynaekologie, new DateTime(1990, 5, 5), true);
+            db = new BVContext();
+            test = db.Beds.Find(Bed.GetBedId());
+            Assert.AreEqual("Petra", test.GetPatient().GetFirstName());
+            Assert.AreEqual(EStation.Gynaekologie, test.GetStation());
+            Bed = cont.AddPatient("Petra", "Enis", EStation.Orthopaedie, new DateTime(1990, 5, 5), true);
+            db = new BVContext();
+            test = db.Beds.Find(Bed.GetBedId());
+            Assert.AreEqual("Petra", test.GetPatient().GetFirstName());
+            Assert.AreEqual(EStation.Orthopaedie, test.GetStation());
+            Bed = cont.AddPatient("Peter", "Enis", EStation.Paediatrie, new DateTime(2004, 5, 5), true);
+            db = new BVContext();
+            test = db.Beds.Find(Bed.GetBedId());
+            Assert.AreEqual("Peter", test.GetPatient().GetFirstName());
+            Assert.AreEqual(EStation.Paediatrie, test.GetStation());
+            for(int i = 0;i<49;i++)
+            {
+                Bed = cont.AddPatient("Peter", "Enis", EStation.Paediatrie, new DateTime(2004, 5, 5), true);
+            }
+            Bed = cont.AddPatient("Peter", "Enis", EStation.Paediatrie, new DateTime(2004, 5, 5), true);
+            db = new BVContext();
+            test = db.Beds.Find(Bed.GetBedId());
+            Assert.AreEqual("Peter", test.GetPatient().GetFirstName());
+            Assert.AreEqual(EStation.Gynaekologie, test.GetStation());
+
+        }
     }
 }

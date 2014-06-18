@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Text;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -9,30 +10,43 @@ namespace Bettenverwaltung
 {
     public partial class _Default : Page
     {
+        private const string VSKEY_SELECTED_BED_INDEX_ONE_BASED = "selectedBedIndex";
+        private const string VSKEY_ACCEPTED_NOT_ID = "acceptedNotId";
+        private const int VSVAL_SELECTED_BED_INDEX_ONE_BASED_NONE = -1;
+        private const int VSVAL_ACCEPTED_NOT_ID_NONE = -1;
+
         private const int NUMBER_OF_BEDS = 200;
 
         private const int MAX_VARCHAR_LENGTH = 255;
-
         private readonly Color INVALID_COLOR =  Color.Yellow;
         private readonly Color VALID_COLOR =    Color.White;
 
         // Css Classes
-        private const String CSS_CLASS_BTN_ACTIVE = "btnTabActive";
-        private const String CSS_CLASS_BTN_INACTIVE = "btnTabInactive";
-        private const String CSS_CLASS_DIV_ACTIVE = "divTabActive";
-        private const String CSS_CLASS_DIV_INACTIVE = "divTabInactive";
+        private const String CSS_CLASS_BED_FREE = "btnBedFree";
+        private const String CSS_CLASS_BED_IN_RELOCATION = "btnBedInRelocation";
+        private const String CSS_CLASS_BED_WRONG_STATION = "btnBedWrongStation";
+        private const String CSS_CLASS_BED_CLEANING = "btnBedCleaning";
+        private const String CSS_CLASS_BED_OCCUPIED = "btnBedOccupied";
+        private const String CSS_CLASS_BED_SELECTED = "btnBedSelected";
+
+        private const String CSS_CLASS_NOT_LIST_ITEM = "divNotListItem";
+
+        private const String CSS_CLASS_BTN_TAB_ACTIVE = "btnTabActive";
+        private const String CSS_CLASS_BTN_TAB_INACTIVE = "btnTabInactive";
+        private const String CSS_CLASS_DIV_TAB_ACTIVE = "divTabActive";
+        private const String CSS_CLASS_DIV_TAB_INACTIVE = "divTabInactive";
+
+        private const String CSS_CLASS_BTN_NOT_ACCEPT = "btnAcceptRel";
+        private const String CSS_CLASS_BTN_NOT_CANCEL = "btnCancelRel";
+        private const String CSS_CLASS_BTN_NOT_CONFIRM = "btnConfirmRel";
 
         private Button[] bedButtons = new Button[NUMBER_OF_BEDS];
 
         private IController controller;
 
-        //Entity Test
-        //**********************************************
-        BVContext db;
-        //**********************************************
-        public _Default()
+        public _Default() : this(new TestController()) // "Mock" Test
         {
-            this.controller = new Controller();
+            //this.controller = new Controller();
         }
 
         public _Default(IController controller)
@@ -42,56 +56,36 @@ namespace Bettenverwaltung
 
 		protected virtual void Page_Load(object sender, EventArgs e)
 		{
-            //InitForm();
             if (!IsPostBack)
             {
+                InitViewState();
                 SwitchToDetailsTab();
             }
-            // TEST
-            not0.Style.Add("display", "none");
-            not1.Style.Add("display", "none");
-            // END TEST
+
             InitBeds();
-            /*db = new BVContext();
-            Bed b0 = new Bed();
-            b0.bedId = 0;
-            db.Beds.Add(b0);
-            Bed b1 = new Bed();
-            b1.bedId = 200;
-            db.Beds.Add(b1);
-
-            db.SaveChanges();
-
-            var beds = from b in db.Beds orderby b.bedId select b;
-            foreach (var bed in beds)
-            {
-                Console.WriteLine(bed.bedId);
-            }
-
-            DateTime dt = DateTime.Today;
-            Patient p1 = new Patient("peter", "enis", dt, true, 25, 0, 0);
-            db.Patients.Add(p1);
-            db.SaveChanges();
-            Patient patients = db.Patients.Find(25);
-            
-			//throw new System.NotImplementedException();*/
+            InitRelocations();
 		}
 
-        private void InitForm()
-        {
-            dropDownListAddPatGender.DataSource = new List<String>() { "m", "w" };
-            dropDownListAddPatGender.DataBind();
+        private void InitViewState() {
+            ViewState.Add(VSKEY_SELECTED_BED_INDEX_ONE_BASED, VSVAL_SELECTED_BED_INDEX_ONE_BASED_NONE);
+            ViewState.Add(VSKEY_ACCEPTED_NOT_ID, VSVAL_ACCEPTED_NOT_ID_NONE);
         }
 
 		private void InitBeds()
 		{
-            return; // For Testing because controller.GetBettList() is not implemented yet
-            List<IBedView> beds = controller.GetBettList();
+            try
+            {
+                List<IBedView> beds = controller.GetBettList();
 
-            beds.Sort(); // make sure the beds are added in correct order
+                //beds.Sort(); // make sure the beds are added in correct order
 
-            foreach (IBedView bed in beds) {
-                AddBed(bed);
+                foreach (IBedView bed in beds) {
+                    AddBed(bed);
+                }
+            }
+            catch (BedException e)
+            {
+                PrintErrorMessage(e);
             }
 		}
         private void AddBed(IBedView bed)
@@ -102,22 +96,39 @@ namespace Bettenverwaltung
             if (bed.IsEmpty())
             {
                 if (bed.IsGettingCleaned()) {
-                    btn.CssClass = "btnBedCleaning";
+                    btn.CssClass = CSS_CLASS_BED_CLEANING;
                 }
                 if (bed.IsInRelocation())
                 {
-                    btn.CssClass = "btnBedInRelocation";
+                    btn.CssClass = CSS_CLASS_BED_IN_RELOCATION;
                 }
                 else
                 {
                     // bed is not part of a relocation and is not getting cleaned
-                    btn.CssClass = "btnBedFree";
+                    btn.CssClass = CSS_CLASS_BED_FREE;
                 }
             }
             else
             {
-                // someone is in this bed
-                btn.CssClass = "btnBedOccupied";
+                if (bed.GetPatient().GetCorrectStation() != bed.GetStation())
+                {
+                    // bed is occupied but patient belongs to another station
+                    btn.CssClass = CSS_CLASS_BED_WRONG_STATION;
+                }
+                else
+                {
+                    // bed is occupied and patient is in correct station
+                    btn.CssClass = CSS_CLASS_BED_OCCUPIED;
+                }
+            }
+
+            // check if this bed is selected
+            if (bed.GetBedId() == (int)ViewState[VSKEY_SELECTED_BED_INDEX_ONE_BASED])
+            {
+                StringBuilder sb = new StringBuilder(btn.CssClass);
+                sb.Append(" ");
+                sb.Append(CSS_CLASS_BED_SELECTED);
+                btn.CssClass = sb.ToString();
             }
 
             // assign click event
@@ -144,9 +155,16 @@ namespace Bettenverwaltung
 
 		protected virtual void Bed_Buttons_Click(object sender, EventArgs e)
 		{
-            LinkButton btnSender = (LinkButton)sender;
-            int id = Int32.Parse(btnSender.ID);
-            DisplayBed(controller.DisplayPatient(id));
+            try
+            {
+                LinkButton btnSender = (LinkButton)sender;
+                int idOneBased = Int32.Parse(btnSender.ID);
+                DisplayBed(controller.DisplayPatient(idOneBased));
+            }
+            catch (BedException exception)
+            {
+                PrintErrorMessage(exception);
+            }
 		}
 
 		protected virtual void Dismiss_Patient_Click(object sender, EventArgs e)
@@ -156,47 +174,38 @@ namespace Bettenverwaltung
 
 		protected virtual void Add_Patient_Click(object sender, EventArgs e)
 		{
-            if (ValidateAddPatientInput() == true)
+            try
             {
-                // there should not be any parsing errors beyond this point
-                string firstName = txtBoxAddPatFirstName.Text;
-                string lastName = txtBoxAddPatLastName.Text;
-                EStation station;
-                switch (dropDownListAddPatStation.Text)
+                if (ValidateAddPatientInput() == true)
                 {
-                    case "Pädiatrie":
-                        station = EStation.Paediatrie;
-                        break;
-                    case "Gynäkologie":
-                        station = EStation.Gynaekologie;
-                        break;
-                    case "Innere Medizin":
-                        station = EStation.Innere_Medizin;
-                        break;
-                    case "Orthopädie":
-                    default:
-                        station = EStation.Orthopaedie;
-                        break;
-                }
-                DateTime birthday = DateTime.Parse(txtBoxAddPatBirthday.Text);
-                bool isFemale = dropDownListAddPatGender.Text.Equals("w");
+                    // there should not be any parsing errors beyond this point
+                    string firstName = txtBoxAddPatFirstName.Text;
+                    string lastName = txtBoxAddPatLastName.Text;
+                    EStation station = ConvertStringToStation(dropDownListAddPatStation.Text);
+                    DateTime birthday = DateTime.Parse(txtBoxAddPatBirthday.Text);
+                    bool isFemale = dropDownListAddPatGender.Text.Equals("w");
 
-                IBedView destBed = controller.AddPatient(
-                    firstName,
-                    lastName,
-                    station,
-                    birthday,
-                    isFemale);
+                    IBedView destBed = controller.AddPatient(
+                        firstName,
+                        lastName,
+                        station,
+                        birthday,
+                        isFemale);
 
-                if (destBed == null)
-                {
-                    ShowMessageBox("Es wurde kein geeignetes Bett für den Patienten gefunden. Er muss in ein anderes Krankenhaus verlegt werden.");
-                }
-                else
-                {
-                    DisplayBed(destBed);
-                }
+                    if (destBed == null)
+                    {
+                        ShowMessageBox("Es wurde kein geeignetes Bett für den Patienten gefunden. Er muss in ein anderes Krankenhaus verlegt werden.");
+                    }
+                    else
+                    {
+                        DisplayBed(destBed);
+                    }
 
+                }
+            }
+            catch (BedException exception)
+            {
+                PrintErrorMessage(exception);
             }
 		}
 
@@ -317,12 +326,120 @@ namespace Bettenverwaltung
 
 		private void InitRelocations()
 		{
-			throw new System.NotImplementedException();
+            try
+            {
+                List<Relocation> relocations = controller.GetActiveRelocationList();
+                // first update deprecated accepted relocation
+                if (ViewState[VSKEY_ACCEPTED_NOT_ID] != null && (int)ViewState[VSKEY_ACCEPTED_NOT_ID] != VSVAL_ACCEPTED_NOT_ID_NONE)
+                {
+                    // this client has accepted a notification
+                    bool foundAcceptedRelocation = false;
+                    foreach (Relocation relocation in relocations)
+                    {
+                        if (relocation.GetId() == (int)ViewState[VSKEY_ACCEPTED_NOT_ID] && relocation.IsActive())
+                        {
+                            // this is the relocation accepted by this client and it is still active
+                            foundAcceptedRelocation = true;
+                        }
+                    }
+                    if (!foundAcceptedRelocation)
+                    {
+                        // the relocation accepted by this client is not active anymore or has been deleted completely from db
+                        ViewState[VSKEY_ACCEPTED_NOT_ID] = VSVAL_ACCEPTED_NOT_ID_NONE;
+                    }
+                }
+
+                foreach (Relocation relocation in relocations)
+                {
+                    // display this relocation ?
+                    if (ViewState[VSKEY_ACCEPTED_NOT_ID] != null && (int)ViewState[VSKEY_ACCEPTED_NOT_ID] != VSVAL_ACCEPTED_NOT_ID_NONE)
+                    {
+                        // this client has accepted a notification
+                        if (relocation.GetId() == (int)ViewState[VSKEY_ACCEPTED_NOT_ID])
+                        {
+                            // this is the relocation accepted by this client
+                            AddRelocation(relocation);
+                        }
+                    }
+                    else
+                    {
+                        // this client has not accepted a notification
+                        if (relocation.IsAccepted() == false)
+                        {
+                            // only display relocations that are not accepted by other clients
+                            AddRelocation(relocation);
+                        }
+                    }
+                }
+            }
+            catch (BedException exception)
+            {
+                PrintErrorMessage(exception);
+            }
 		}
+
+        private void AddRelocation(Relocation relocation)
+        {
+            Panel panel = new Panel();
+            panel.ID = relocation.GetId().ToString();
+            panel.CssClass = CSS_CLASS_NOT_LIST_ITEM;
+
+            Label content = new Label();
+            StringBuilder sb = new StringBuilder();
+            Patient pat = relocation.GetSourceBed().GetPatient();
+
+            sb.Append(pat.GetLastName());
+            sb.Append(", ");
+            sb.Append(pat.GetFirstName());
+            sb.Append(" (PID ");
+            sb.Append(pat.GetPatientId().ToString());
+            sb.Append(")<br />");
+            
+            sb.Append("Derzeit: Bett ");
+            sb.Append(relocation.GetSourceBed().GetBedId().ToString());
+            sb.Append(", Station ");
+            sb.Append(ConvertStationToString(relocation.GetSourceBed().GetStation()));
+            sb.Append("<br />");
+            
+            sb.Append("Nach:    Bett ");
+            sb.Append(relocation.GetDestinationBed().GetBedId().ToString());
+            sb.Append(", Station ");
+            sb.Append(ConvertStationToString(relocation.GetDestinationBed().GetStation()));
+            sb.Append("<br />");
+
+            content.Text = sb.ToString();
+            panel.Controls.Add(content);
+
+            if (relocation.IsAccepted())
+            {
+                LinkButton btnCancel = new LinkButton();
+                btnCancel.Text = "Abbrechen";
+                btnCancel.ID = relocation.GetId().ToString();
+                btnCancel.CssClass = CSS_CLASS_BTN_NOT_CANCEL;
+                btnCancel.Click += Cancel_Relocation_Click;
+                panel.Controls.Add(btnCancel);
+
+                LinkButton btnConfirm = new LinkButton();
+                btnConfirm.Text = "Bestätigen";
+                btnConfirm.ID = relocation.GetId().ToString();
+                btnConfirm.CssClass = CSS_CLASS_BTN_NOT_CONFIRM;
+                btnConfirm.Click += Confirm_Relocation_Click;
+                panel.Controls.Add(btnConfirm);
+            }
+            else
+            {
+                LinkButton btnAccept = new LinkButton();
+                btnAccept.Text = "Annehmen";
+                btnAccept.ID = relocation.GetId().ToString();
+                btnAccept.CssClass = CSS_CLASS_BTN_NOT_ACCEPT;
+                btnAccept.Click += Accept_Relocation_Click;
+                panel.Controls.Add(btnAccept);
+            }
+        }
 
 		protected virtual void Update_Overview_Tick(object sender, EventArgs e)
 		{
-			throw new System.NotImplementedException();
+			InitBeds();
 		}
 
 		protected virtual void Update_Notification_Tick(object sender, EventArgs e)
@@ -330,9 +447,9 @@ namespace Bettenverwaltung
 			throw new System.NotImplementedException();
 		}
 
-		protected virtual void Print_Error_Message(BedException e)
+		protected virtual void PrintErrorMessage(BedException e)
 		{
-			throw new System.NotImplementedException();
+            ShowMessageBox(e.Message);
 		}
 
 		private void CheckPatientInput()
@@ -352,14 +469,13 @@ namespace Bettenverwaltung
 
 		private void DisplayBed(IBedView bed)
 		{
-			//throw new System.NotImplementedException();
             // display patient if there is one in the bed
             if (!bed.IsEmpty())
             {
                 Patient pat = bed.GetPatient();
                 txtBoxDetailsPatId.Text = pat.GetPatientId().ToString();
                 txtBoxDetailsPatName.Text = pat.GetLastName() + ", " + pat.GetFirstName();
-                String genderString;
+                string genderString;
                 if (pat.IsFemale()) {
                     genderString = "w";
                 }
@@ -368,41 +484,107 @@ namespace Bettenverwaltung
                 }
                 txtBoxDetailsPatGender.Text = genderString;
                 txtBoxDetailsPatBirthday.Text = pat.GetBirthday().ToString();
-                // TODO: station 
+                
+                txtBoxDetailsPatCorrectStation.Text = ConvertStationToString(pat.GetCorrectStation());
             }
+            else
+            {
+                // no patient is in the bed -> clear fields
+                txtBoxDetailsPatId.Text = "";
+                txtBoxDetailsPatName.Text = "";
+                txtBoxDetailsPatBirthday.Text = "";
+                txtBoxDetailsPatGender.Text = "";
+                txtBoxDetailsPatCorrectStation.Text = "";
+            }
+            // display bed info in any case
+            txtBoxDetailsBedId.Text = bed.GetBedId().ToString();
+            txtBoxDetailsBedStation.Text = ConvertStationToString(bed.GetStation());
+
+            // mark the bed as selected
+            ViewState.Add(VSKEY_SELECTED_BED_INDEX_ONE_BASED, bed.GetBedId());
+
+            SwitchToDetailsTab();
 		}
+
+        private string ConvertStationToString(EStation station)
+        {
+            string stationString;
+            switch (station)
+            {
+                case EStation.Paediatrie:
+                    stationString = "Pädiatrie";
+                    break;
+                case EStation.Gynaekologie:
+                    stationString = "Gynäkologie";
+                    break;
+                case EStation.Innere_Medizin:
+                    stationString = "Innere Medizin";
+                    break;
+                case EStation.Orthopaedie:
+                default:
+                    stationString = "Orthopädie";
+                    break;
+            }
+            return stationString;
+        }
+
+        private EStation ConvertStringToStation(string strStation)
+        {
+            EStation station;
+            switch (dropDownListAddPatStation.Text)
+            {
+                case "Pädiatrie":
+                    station = EStation.Paediatrie;
+                    break;
+                case "Gynäkologie":
+                    station = EStation.Gynaekologie;
+                    break;
+                case "Innere Medizin":
+                    station = EStation.Innere_Medizin;
+                    break;
+                case "Orthopädie":
+                default:
+                    station = EStation.Orthopaedie;
+                    break;
+            }
+            return station;
+        }
 
         private void SwitchToDetailsTab()
         {
-            btnTabDetails.CssClass = CSS_CLASS_BTN_ACTIVE;
-            btnTabSearch.CssClass = CSS_CLASS_BTN_INACTIVE;
-            btnTabAdd.CssClass = CSS_CLASS_BTN_INACTIVE;
+            btnTabDetails.CssClass = CSS_CLASS_BTN_TAB_ACTIVE;
+            btnTabSearch.CssClass = CSS_CLASS_BTN_TAB_INACTIVE;
+            btnTabAdd.CssClass = CSS_CLASS_BTN_TAB_INACTIVE;
 
-            divTabDetails.CssClass = CSS_CLASS_DIV_ACTIVE;
-            divTabSearch.CssClass = CSS_CLASS_DIV_INACTIVE;
-            divTabAdd.CssClass = CSS_CLASS_DIV_INACTIVE;
+            divTabDetails.CssClass = CSS_CLASS_DIV_TAB_ACTIVE;
+            divTabSearch.CssClass = CSS_CLASS_DIV_TAB_INACTIVE;
+            divTabAdd.CssClass = CSS_CLASS_DIV_TAB_INACTIVE;
         }
 
         private void SwitchToSearchTab()
         {
-            btnTabDetails.CssClass = CSS_CLASS_BTN_INACTIVE;
-            btnTabSearch.CssClass = CSS_CLASS_BTN_ACTIVE;
-            btnTabAdd.CssClass = CSS_CLASS_BTN_INACTIVE;
+            ViewState[VSKEY_SELECTED_BED_INDEX_ONE_BASED] = VSVAL_SELECTED_BED_INDEX_ONE_BASED_NONE;
+            
+            btnTabDetails.CssClass = CSS_CLASS_BTN_TAB_INACTIVE;
+            btnTabSearch.CssClass = CSS_CLASS_BTN_TAB_ACTIVE;
+            btnTabAdd.CssClass = CSS_CLASS_BTN_TAB_INACTIVE;
 
-            divTabDetails.CssClass = CSS_CLASS_DIV_INACTIVE;
-            divTabSearch.CssClass = CSS_CLASS_DIV_ACTIVE;
-            divTabAdd.CssClass = CSS_CLASS_DIV_INACTIVE;
+            divTabDetails.CssClass = CSS_CLASS_DIV_TAB_INACTIVE;
+            divTabSearch.CssClass = CSS_CLASS_DIV_TAB_ACTIVE;
+            divTabAdd.CssClass = CSS_CLASS_DIV_TAB_INACTIVE;
         }
 
         private void SwitchToAddTab()
         {
-            btnTabDetails.CssClass = CSS_CLASS_BTN_INACTIVE;
-            btnTabSearch.CssClass = CSS_CLASS_BTN_INACTIVE;
-            btnTabAdd.CssClass = CSS_CLASS_BTN_ACTIVE;
+            ViewState[VSKEY_SELECTED_BED_INDEX_ONE_BASED] = VSVAL_SELECTED_BED_INDEX_ONE_BASED_NONE;
 
-            divTabDetails.CssClass = CSS_CLASS_DIV_INACTIVE;
-            divTabSearch.CssClass = CSS_CLASS_DIV_INACTIVE;
-            divTabAdd.CssClass = CSS_CLASS_DIV_ACTIVE;
+            btnTabDetails.CssClass = CSS_CLASS_BTN_TAB_INACTIVE;
+            btnTabSearch.CssClass = CSS_CLASS_BTN_TAB_INACTIVE;
+            btnTabAdd.CssClass = CSS_CLASS_BTN_TAB_ACTIVE;
+
+            divTabDetails.CssClass = CSS_CLASS_DIV_TAB_INACTIVE;
+            divTabSearch.CssClass = CSS_CLASS_DIV_TAB_INACTIVE;
+            divTabAdd.CssClass = CSS_CLASS_DIV_TAB_ACTIVE;
         }
 
         private void ShowMessageBox(string message)

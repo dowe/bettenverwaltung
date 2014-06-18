@@ -17,19 +17,19 @@ namespace BedInit
                 Bed bed = new Bed();
                 if (i > 0 && i < 51)
                 {
-                    bed.station = (int)EStation.Gynaekologie;
+                    bed.station = (int)EStation.Paediatrie;
                 }
                 else if (i > 50 && i < 101)
                 {
-                    bed.station = (int)EStation.Innere_Medizin;
+                    bed.station = (int)EStation.Gynaekologie;
                 }
                 else if (i > 100 && i < 151)
                 {
-                    bed.station = (int)EStation.Orthopaedie;
+                    bed.station = (int)EStation.Innere_Medizin;
                 }
                 else if (i > 150 && i < 201)
                 {
-                    bed.station = (int)EStation.Paediatrie;
+                    bed.station = (int)EStation.Orthopaedie;
                 }
                 else if (i < 1 || i > 200)
                 {
