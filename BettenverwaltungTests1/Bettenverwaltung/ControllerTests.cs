@@ -282,8 +282,31 @@ namespace Bettenverwaltung.Tests
             test = db.Beds.Find(Bed.GetBedId());
             Assert.AreEqual("Peter", test.GetPatient().GetFirstName());
             Assert.AreEqual(EStation.Gynaekologie, test.GetStation());
+            Relocation rel = db.Relocations.ToList().FirstOrDefault();
+            Assert.AreEqual(EStation.Paediatrie, rel.GetStation());
+            Assert.AreEqual(Bed.GetBedId(), rel.GetSourceBed().GetBedId());
+
+            Bed abc = db.Beds.Find(50);
+            abc.RemovePatient();
+            abc = db.Beds.Find(49);
+            abc.RemovePatient();
+            rel.SetActive(abc);
+            db.SaveChanges();
+
+            Bed = cont.AddPatient("Peter", "Enis", EStation.Paediatrie, new DateTime(2004, 5, 5), true);
+            Assert.AreEqual(50, Bed.GetBedId());
+
+            Bed = cont.AddPatient("Peter", "Enis", EStation.Paediatrie, new DateTime(2004, 5, 5), true);
+            Assert.AreEqual(49, Bed.GetBedId());
+
+            db = new BVContext();
+            rel = db.Relocations.ToList().FirstOrDefault();
+            Assert.AreEqual(rel.IsActive(), false);
+
+
 
             ControllerTests.ClearDB();
+
         }
     }
 }
