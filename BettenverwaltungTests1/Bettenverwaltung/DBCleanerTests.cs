@@ -37,6 +37,8 @@ namespace Bettenverwaltung.Tests
         [TestMethod]
         public void SetRelocationActiveTest()
         {
+            ControllerTests.ClearDB();
+
             BVContext db = new BVContext();
             Patient p = new Patient("klaus", "Müller", DateTime.Now, false, EStation.Orthopaedie);
             db.Patients.Add(p);
