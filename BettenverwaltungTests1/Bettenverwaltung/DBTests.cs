@@ -38,7 +38,6 @@ namespace Bettenverwaltung.Tests
         [TestMethod]
         public void DBBedTest()
         {
-            ControllerTests.ClearDB();
 
             IQueryable<Bed> bedQuery = from b in db.Beds
                                        select b;

@@ -50,6 +50,8 @@ namespace Bettenverwaltung.Tests
             db = new BVContext();
             Rel = db.Relocations.Find(id);
             Assert.AreEqual(true, Rel.IsAccepted());
+
+            ControllerTests.ClearDB();
         }
 
         [TestMethod()]
@@ -89,6 +91,8 @@ namespace Bettenverwaltung.Tests
             List<Relocation> Rellist = cont.GetActiveRelocationList();
 
             Assert.AreEqual(2, Rellist.Count);
+
+            ControllerTests.ClearDB();
         }
 
         [TestMethod()]
@@ -106,6 +110,7 @@ namespace Bettenverwaltung.Tests
             var bedResult = db.Beds.Where(b => b.patient.firstname == "Maxine").FirstOrDefault();
             Assert.AreEqual(control.DisplayPatient(bedResult.bedId).GetPatient().firstname, "Maxine");
 
+            ControllerTests.ClearDB();
         }
 
         [TestMethod()]
@@ -134,6 +139,8 @@ namespace Bettenverwaltung.Tests
             Assert.AreEqual(bedList[0].GetStation(), EStation.Paediatrie);
             Assert.AreEqual(bedList[1].GetPatient().firstname, "Lassmiranda");
             Assert.AreEqual(bedList[2].GetPatient().lastname, "Klappe");
+
+            ControllerTests.ClearDB();
         }
 
         [TestMethod()]
@@ -180,6 +187,8 @@ namespace Bettenverwaltung.Tests
             bedList = control.SearchPatient(pat.patId.ToString());
             Assert.AreEqual(bedList[0].GetPatient().lastname, "nTag");
             Assert.AreEqual(bedList.Count, 1);
+
+            ControllerTests.ClearDB();
         }
 
         [TestMethod()]
@@ -234,6 +243,8 @@ namespace Bettenverwaltung.Tests
             bed2.patient = null;
             db.SaveChanges();
             control.DismissPatient(bed2.bedId);
+
+            ControllerTests.ClearDB();
         }
 
         [TestMethod()]
@@ -272,6 +283,7 @@ namespace Bettenverwaltung.Tests
             Assert.AreEqual("Peter", test.GetPatient().GetFirstName());
             Assert.AreEqual(EStation.Gynaekologie, test.GetStation());
 
+            ControllerTests.ClearDB();
         }
     }
 }

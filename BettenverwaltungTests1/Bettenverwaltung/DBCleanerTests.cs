@@ -60,6 +60,7 @@ namespace Bettenverwaltung.Tests
             Relocation rel2 = db.Relocations.Find(rel1.relocationId);
             Assert.AreEqual(rel2.destinationBed.bedId,b_orth.bedId);
 
+            ControllerTests.ClearDB();
         }
 
         [TestMethod]
