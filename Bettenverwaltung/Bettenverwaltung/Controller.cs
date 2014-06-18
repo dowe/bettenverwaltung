@@ -180,12 +180,6 @@ namespace Bettenverwaltung
             return bedList;
 		}
 
-        private List<Relocation> GetInactiveRelocationList()            //Die Liste aller inaktiven Rückverlegungen wird aus der Datenbank geholt und zurückgegeben.
-		{
-            var Rels = bvContext.Relocations.Where(R => R.destinationBed == null);
-            List<Relocation> LRels = new List<Relocation>(Rels.ToArray());
-            return LRels;
-		}
 
         //Findet ein passendes Bett für den Patienten. Die Daten werde zunächst auf plausibilität geprüft. Falls der angegebene Patient nicht
 		//in die Angegebene Station gelegt werden kann, wird eine Exception geworfen. Ist die Station voll, wird der Patient nach den Vorgaben
