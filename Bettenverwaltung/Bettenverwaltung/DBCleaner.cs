@@ -68,6 +68,7 @@ namespace Bettenverwaltung
             {
                 db.SaveChanges();
             }
+
         }
 
         /// <summary>
@@ -81,6 +82,11 @@ namespace Bettenverwaltung
             {
                 relocation.SetActive(bed);
             }
+        }
+
+        private void RemoveForgottenAcceptedRelocations()
+        {
+            //
         }
     }
 }
