@@ -11,7 +11,10 @@ namespace Bettenverwaltung
 	using System.Linq;
 	using System.Text;
 
-    public class Controller : IController                            //Controller für die Kommunikation zwischen View und Anwendung.
+    /// <summary>
+    ///  Controller für die Kommunikation zwischen View und Anwendung.
+    /// </summary>
+    public class Controller : IController                           
 	{
 		public virtual BVContext bvContext
 		{
@@ -23,10 +26,19 @@ namespace Bettenverwaltung
         {
            
         }
-        //Legt ein Patientenobjekt an und weist diesem mit FindeBedfor ein Bett zu.
-        //Wird von FindBed for null zurückgegeben, wird ein Krankenwagen gerufen.
-        //Bei Erfolg wird die Bettenid des Bettes, in dem der Patient nun liegt, zurückgegeben.
-        //Stimmt die Station des Bettes, welches FindBedFor zurückgibt, und die Zielstation nicht überein muss eine Relocation angelegt werden.
+        
+        /// <summary>
+        ///Legt ein Patientenobjekt an und weist diesem mit FindeBedfor ein Bett zu.
+        ///Wird von FindBed for null zurückgegeben, wird ein Krankenwagen gerufen.
+        ///Bei Erfolg wird die Bettenid des Bettes, in dem der Patient nun liegt, zurückgegeben.
+        ///Stimmt die Station des Bettes, welches FindBedFor zurückgibt, und die Zielstation nicht überein muss eine Relocation angelegt werden.
+        /// </summary>
+        /// <param name="firstname">Vorname</param>
+        /// <param name="lastname">Nachname</param>
+        /// <param name="station">Zielstation</param>
+        /// <param name="birthday">Geburtsdatum</param>
+        /// <param name="isFemale">Geschlecht als bool. Weiblich = true, Männlich = false</param>
+        /// <returns></returns>
         public virtual IBedView AddPatient(string firstname, string lastname, EStation station, DateTime birthday, bool isFemale)
         {
             bvContext = new BVContext();
@@ -45,11 +57,17 @@ namespace Bettenverwaltung
             return bed;
         }
 
-        public virtual IBedView DismissPatient(int bedId)               //Der Patient in dem Angegebenen Bett, sowie dessen Historie werden aus der DB gelöscht
-        {                                                               //Bei Erfolg wird das angegebene Bett zurückgegeben und die CleaningTime gesetzt.
-                                                                        //Falls das Bett leer ist wird eine Exception geworfen.
-                                                                        //Falls es gerade eine Angenommene verlegung für dieses Bett gibt, muss diese abgebrochen werden (setUnaccepted) um das Zielbett zu entsperren.
-                                                                        //Falls es eine Verlegung mit diesem Bett als SourceBed gibt muss diese aus der Datenbank gelöscht werden.
+        /// <summary>
+        /// //Der Patient in dem Angegebenen Bett, sowie dessen Historie werden aus der DB gelöscht
+        ///Bei Erfolg wird das angegebene Bett zurückgegeben und die CleaningTime gesetzt.
+        ///Falls das Bett leer ist wird eine Exception geworfen.
+        ///Falls es gerade eine Angenommene verlegung für dieses Bett gibt, muss diese abgebrochen werden (setUnaccepted) um das Zielbett zu entsperren.
+        ///Falls es eine Verlegung mit diesem Bett als SourceBed gibt muss diese aus der Datenbank gelöscht werden.
+        /// </summary>
+        /// <param name="bedId">BedID des Patienten der entlassen werden soll</param>
+        /// <returns>gibt des Bett via Interface zurück</returns>
+        public virtual IBedView DismissPatient(int bedId)               
+        {                                                               
             bvContext = new BVContext();
             Bed bed = bvContext.Beds.Find(bedId);
             if (bed.GetPatient() == null)
@@ -92,25 +110,40 @@ namespace Bettenverwaltung
             return (IBedView)bed;
         }
 
-		
-        public virtual void AcceptRelocation(int relocationId)          //Die Verlegung wird angenommen (noch nicht ausgeführt!). Das Relocation-Objekt mit der Angegebenen ID wird gesucht
+		/// <summary>
+        /// Die Verlegung wird angenommen (noch nicht ausgeführt!). Das Relocation-Objekt mit der Angegebenen ID wird gesucht
+        /// und dessen annaheme-Funktion ausgefürht.
+		/// </summary>
+		/// <param name="relocationId">ID der Verlegung die angenommen wurde</param>
+        public virtual void AcceptRelocation(int relocationId)          
 		{
-            bvContext = new BVContext();                                //und dessen annaheme-Funktion ausgefürht.
+            bvContext = new BVContext();                                
             Relocation Rel = GetRelocation(relocationId);
             Rel.SetAccepted();
             bvContext.SaveChanges();		
         }
 
-		public virtual IBedView DisplayPatient(int bedId)               //Das mit bedId angegeben Bett wird aus der Datenbank geholt und zurückgegeben
+        /// <summary>
+        /// Das mit bedId angegeben Bett wird aus der Datenbank geholt und zurückgegeben
+        /// </summary>
+        /// <param name="bedId">ID des Bettes das angezeigt werden soll</param>
+        /// <returns>Bett via Interface</returns>
+		public virtual IBedView DisplayPatient(int bedId)               
 		{
             bvContext = new BVContext();
             IBedView bed = (IBedView) bvContext.Beds.Find(bedId);
             return bed;
 		}
 
-		public virtual List<IBedView> SearchPatient(string term)        //Der Term wird überprüft ob es sicht um eine Zahl (Pat. ID) oder eine Buchstabenkette(Vorname,Nachname) handelt
-		{                                                               //Es wird eine Liste an Betten zurückgegeben, die den Patienten enthalten, deren Name oder Pat. ID mit dem
-                                                                        //Suchterm übereinstimmen. Wird nichts gefunden wird eine leere Liste zurückgegeben.
+        /// <summary>
+        ///Der Term wird überprüft ob es sicht um eine Zahl (Pat. ID) oder eine Buchstabenkette(Vorname,Nachname) handelt
+		///Es wird eine Liste an Betten zurückgegeben, die den Patienten enthalten, deren Name oder Pat. ID mit dem
+        ///Suchterm übereinstimmen. Wird nichts gefunden wird eine leere Liste zurückgegeben.
+        /// </summary>
+        /// <param name="term">Term nach dem gesucht wird, ID oder Name</param>
+        /// <returns>IBedView BettenListe mit Suchergebnissen</returns>
+		public virtual List<IBedView> SearchPatient(string term)        
+        {
             bvContext = new BVContext();
             List<IBedView> resultList = new List<IBedView>();
             term = term.Trim();
@@ -141,23 +174,37 @@ namespace Bettenverwaltung
             return resultList;
 		}
 
-		public virtual void ConfirmRelocation(int relocationId)        //Die Rückverlegung mit der angegebenen ID wird bestätigt. Das passende Rückverlegungsobjekt wird in der Datenbank
-		{                                                               //gesucht und die Execute-Funktion aufgerufen
+        /// <summary>
+        ///Die Rückverlegung mit der angegebenen ID wird bestätigt. Das passende Rückverlegungsobjekt wird in der Datenbank
+		///gesucht und die Execute-Funktion aufgerufen
+        /// </summary>
+        /// <param name="relocationId">ID der Verlegung die durchgeführt wurde</param>
+		public virtual void ConfirmRelocation(int relocationId)        
+        {
             bvContext = new BVContext();
             Relocation Rel = GetRelocation(relocationId);
             Rel.ExecuteRelocation();
             bvContext.SaveChanges();
 		}
 
-        public virtual void CancelRelocation(int relocationId)         //Die Rückverlegung mit der angegebenen ID wird abgebrochen. Das passende Rückverlegungsobjekt wird in der Datenbank
-        {                                                               //gesucht und dessen Cancel-Funktion aufgerufen.
+        /// <summary>
+        ///Die Rückverlegung mit der angegebenen ID wird abgebrochen. Das passende Rückverlegungsobjekt wird in der Datenbank
+        ///gesucht und dessen Cancel-Funktion aufgerufen.
+        /// </summary>
+        /// <param name="relocationId">ID der Verlegung die abgebrochen wird</param>
+        public virtual void CancelRelocation(int relocationId)         
+        {
             bvContext = new BVContext();
             Relocation Rel = GetRelocation(relocationId);
             Rel.SetUnaccepted();
             bvContext.SaveChanges();
 		}
 
-        public virtual List<Relocation> GetActiveRelocationList()        //Die Liste aller aktiven Rückverlegungen wird aus der Datenbank geholt und zurückgegeben.
+        /// <summary>
+        /// Die Liste aller aktiven Rückverlegungen wird aus der Datenbank geholt und zurückgegeben.
+        /// </summary>
+        /// <returns>Liste mit allen aktiven Verlegungen</returns>
+        public virtual List<Relocation> GetActiveRelocationList()        
 		{
             bvContext = new BVContext();
             var Rels = bvContext.Relocations.Where(R => R.destinationBed != null);
@@ -166,32 +213,42 @@ namespace Bettenverwaltung
 
 		}
 
-		private Relocation CreateRelocation(int bedId, EStation station)    //Eine Relocation mit für das Angegebene bett in die Zielstation station wird erstellt und zurückgegeben. Wird beim Anlegen eines Patienten eventuell Aufgerufen.
+        /// <summary>
+        /// Eine Relocation mit für das Angegebene bett in die Zielstation station wird erstellt und zurückgegeben. Wird beim Anlegen eines Patienten eventuell Aufgerufen.
+        /// </summary>
+        /// <param name="bedId">Bett ID für die die Verlegung angelegt werden soll</param>
+        /// <param name="station">Zielstation der Verlegung</param>
+        /// <returns>angelegte Verlegung</returns>
+		private Relocation CreateRelocation(int bedId, EStation station)    
 		{                                                                   
             Relocation Rel = new Relocation(bvContext.Beds.Find(bedId), station);
             bvContext.Relocations.Add(Rel);
             return Rel;
 		}
 
-		public virtual List<IBedView> GetBettList()                         //Eine Liste aller Betten wird aus der Datenbank geholt und zurückgegeben.
+        /// <summary>
+        /// Eine Liste aller Betten wird aus der Datenbank geholt und zurückgegeben.
+        /// </summary>
+        /// <returns>Interface Liste mit 200 Betten</returns>
+		public virtual List<IBedView> GetBettList()                         
 		{
             bvContext = new BVContext();
             List<IBedView> bedList = new List<IBedView>(bvContext.Beds.ToList());
             return bedList;
 		}
 
-        private List<Relocation> GetInactiveRelocationList()            //Die Liste aller inaktiven Rückverlegungen wird aus der Datenbank geholt und zurückgegeben.
-		{
-            var Rels = bvContext.Relocations.Where(R => R.destinationBed == null);
-            List<Relocation> LRels = new List<Relocation>(Rels.ToArray());
-            return LRels;
-		}
 
-        //Findet ein passendes Bett für den Patienten. Die Daten werde zunächst auf plausibilität geprüft. Falls der angegebene Patient nicht
-		//in die Angegebene Station gelegt werden kann, wird eine Exception geworfen. Ist die Station voll, wird der Patient nach den Vorgaben
-		//im Lasten/Pflichtenheft verlegt. Wird kein Bett gefunden wird null zurückgegeben (Krankenwagen!!)
-		//Die Funktion prüft ob für ein gefundenes Bett Ziel eine Rückverlegung ist und falls ja wird versucht ein neues Bett in der selben Station zu finden
-        //wird kein anderes Bett gefunden wird die Rückverlegung auf Inaktiv gesetzt und das gefundene Bett zurückgegeben.
+        
+        /// <summary>
+        ///Findet ein passendes Bett für den Patienten. Die Daten werde zunächst auf plausibilität geprüft. Falls der angegebene Patient nicht
+        ///in die Angegebene Station gelegt werden kann, wird eine Exception geworfen. Ist die Station voll, wird der Patient nach den Vorgaben
+        ///im Lasten/Pflichtenheft verlegt. Wird kein Bett gefunden wird null zurückgegeben (Krankenwagen!!)
+        ///Die Funktion prüft ob für ein gefundenes Bett Ziel eine Rückverlegung ist und falls ja wird versucht ein neues Bett in der selben Station zu finden
+        ///wird kein anderes Bett gefunden wird die Rückverlegung auf Inaktiv gesetzt und das gefundene Bett zurückgegeben.
+        /// </summary>
+        /// <param name="p">Patient für den ein Bett gefunden werden soll</param>
+        /// <param name="station">Zielstation in der das gesuchte Bett liegen soll</param>
+        /// <returns>Bett in das der Patient gelegt werden kann</returns>
         private Bed FindBedFor(Patient p, EStation station)
         {
             
@@ -287,33 +344,12 @@ namespace Bettenverwaltung
             return ret;
         }                                              
 			                                                            
-
-		private int GetNextHistoryId()                                  //Die getNext****Id Funktionen, suchen sich das jeweilige Objekt mit der höchsten ID aus der DB und geben diese ID inkrementiert zurück
-		{
-			throw new System.NotImplementedException();
-		}
-
-		private int GetNextHistoryItemId()
-		{
-			throw new System.NotImplementedException();
-		}
-
-		private int GetNextRelocationId()
-		{
-			throw new System.NotImplementedException();
-		}
-
-		private int GetNextBedId()
-		{
-			throw new System.NotImplementedException();
-		}
-
-		private int GetNextPatientId()
-		{
-			throw new System.NotImplementedException();
-		}
-
-        private Relocation GetRelocation(int relId)                        //Die Relocation mit der Angegebenen ID wird aus der Datenbank gesucht und zurückgegeben.
+        /// <summary>
+        ///Die Relocation mit der Angegebenen ID wird aus der Datenbank gesucht und zurückgegeben.
+        /// </summary>
+        /// <param name="relId">VerlegungsID nach der gesucht wird</param>
+        /// <returns>Verlegung mit der übergebenen ID</returns>
+        private Relocation GetRelocation(int relId)                        
         {
             Relocation Rel = bvContext.Relocations.Find(relId);
             if (Rel == null)

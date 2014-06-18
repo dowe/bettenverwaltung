@@ -46,6 +46,7 @@ namespace Bettenverwaltung
         {
             db = new BVContext();           // lege immer neuen DBContext an um Änderungen an der db zu sehen
             this.CleanBeds();
+            this.RemoveForgottenAcceptedRelocations();
         }
 
         /// <summary>
@@ -68,6 +69,7 @@ namespace Bettenverwaltung
             {
                 db.SaveChanges();
             }
+
         }
 
         /// <summary>
@@ -76,11 +78,27 @@ namespace Bettenverwaltung
         /// <param name="bed"></param>
         private void SetRelocationActive(Bed bed)
         {
-            Relocation relocation = db.Relocations.Where(r => r.sourceBed.patient.correctStation ==  bed.station).FirstOrDefault();
+            Relocation relocation = db.Relocations.Where(r => r.sourceBed.patient.correctStation == bed.station).Where(r => r.destinationBed == null).FirstOrDefault();
             if (relocation != null)
             {
                 relocation.SetActive(bed);
             }
+        }
+
+        /// <summary>
+        /// Setzt vergessene Relocations nach einiger Zeit wieder auf Unaccepted, so dass diese erneut angenommen werden können
+        /// </summary>
+        private void RemoveForgottenAcceptedRelocations()
+        {
+            var relocations = db.Relocations.Where(r => r.timestamp != null);
+            foreach (var relocation in relocations)
+            {
+                if ((DateTime.Now - relocation.GetTimestamp()) > new TimeSpan(0, 20, 0))
+                {
+                    relocation.SetUnaccepted();
+                }
+            }
+            db.SaveChanges();
         }
     }
 }

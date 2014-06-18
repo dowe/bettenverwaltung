@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
 
-namespace BettenverwaltungTests1.Bettenverwaltung
+namespace Bettenverwaltung.Tests
 {
     [TestClass]
     public class DBTests
@@ -18,6 +18,8 @@ namespace BettenverwaltungTests1.Bettenverwaltung
         [TestMethod]
         public void DBPatientTest()
         {
+            ControllerTests.ClearDB();
+
             DateTime dt = new DateTime(2000, 5, 7);
             Patient p1 = new Patient("peter", "enis", dt, true, EStation.Orthopaedie);
             db.Patients.Add(p1);
@@ -36,25 +38,26 @@ namespace BettenverwaltungTests1.Bettenverwaltung
         [TestMethod]
         public void DBBedTest()
         {
+
             IQueryable<Bed> bedQuery = from b in db.Beds
                                        select b;
             foreach (var bed in bedQuery)
             {
                 if ((0 < bed.bedId) && (bed.bedId < 51))
                 {
-                    Assert.AreEqual(bed.station, (int)EStation.Gynaekologie);
+                    Assert.AreEqual(bed.station, (int)EStation.Paediatrie);
                 }
                 else if ((50 < bed.bedId) && (bed.bedId < 101))
                 {
-                    Assert.AreEqual(bed.station, (int)EStation.Innere_Medizin);
+                    Assert.AreEqual(bed.station, (int)EStation.Gynaekologie);
                 }
                 else if ((100 < bed.bedId) && (bed.bedId < 151))
                 {
-                    Assert.AreEqual(bed.station, (int)EStation.Orthopaedie);
+                    Assert.AreEqual(bed.station, (int)EStation.Innere_Medizin);
                 }
                 else if ((150 < bed.bedId) && (bed.bedId < 201))
                 {
-                    Assert.AreEqual(bed.station, (int)EStation.Paediatrie);
+                    Assert.AreEqual(bed.station, (int)EStation.Orthopaedie);
                 }
             }
         }
