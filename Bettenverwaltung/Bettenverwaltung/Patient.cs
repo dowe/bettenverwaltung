@@ -122,7 +122,7 @@ namespace Bettenverwaltung
             this.lastname = lastname;
             this.birthday = birthday.ToString();
             this.isFemale = isFemale;
-            this.history = new History();
+            this.history = History.CreateNewHistory();
             this.correctStation = (int)correctStation;
         }
     }
