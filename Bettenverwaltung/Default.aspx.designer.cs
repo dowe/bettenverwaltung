@@ -31,13 +31,13 @@ namespace Bettenverwaltung {
         protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
-        /// divOverview-Steuerelement
+        /// updatePanelOverview-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel divOverview;
+        protected global::System.Web.UI.UpdatePanel updatePanelOverview;
         
         /// <summary>
         /// divStationPaediatrie-Steuerelement
@@ -49,6 +49,15 @@ namespace Bettenverwaltung {
         protected global::System.Web.UI.WebControls.Panel divStationPaediatrie;
         
         /// <summary>
+        /// divStationPaediatrieBeds-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel divStationPaediatrieBeds;
+        
+        /// <summary>
         /// divStationGynaekologie-Steuerelement
         /// </summary>
         /// <remarks>
@@ -56,6 +65,15 @@ namespace Bettenverwaltung {
         /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel divStationGynaekologie;
+        
+        /// <summary>
+        /// divStationGynaekologieBeds-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel divStationGynaekologieBeds;
         
         /// <summary>
         /// divStationInnereMedizin-Steuerelement
@@ -67,6 +85,15 @@ namespace Bettenverwaltung {
         protected global::System.Web.UI.WebControls.Panel divStationInnereMedizin;
         
         /// <summary>
+        /// divStationInnereMedizinBeds-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel divStationInnereMedizinBeds;
+        
+        /// <summary>
         /// divStationOrthopaedie-Steuerelement
         /// </summary>
         /// <remarks>
@@ -74,6 +101,24 @@ namespace Bettenverwaltung {
         /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel divStationOrthopaedie;
+        
+        /// <summary>
+        /// divStationOrthopaedieBeds-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel divStationOrthopaedieBeds;
+        
+        /// <summary>
+        /// updatePanelTabs-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel updatePanelTabs;
         
         /// <summary>
         /// btnTabDetails-Steuerelement
@@ -355,12 +400,21 @@ namespace Bettenverwaltung {
         protected global::System.Web.UI.WebControls.LinkButton btnAddConfirm;
         
         /// <summary>
-        /// UpdatePanel1-Steuerelement
+        /// updatePanelNot-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.UpdatePanel updatePanelNot;
+        
+        /// <summary>
+        /// divNotifications-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel divNotifications;
     }
 }

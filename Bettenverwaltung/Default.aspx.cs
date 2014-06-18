@@ -76,6 +76,11 @@ namespace Bettenverwaltung
             try
             {
                 List<IBedView> beds = controller.GetBettList();
+                updatePanelTabs.Triggers.Clear();
+                divStationPaediatrieBeds.Controls.Clear();
+                divStationGynaekologieBeds.Controls.Clear();
+                divStationInnereMedizinBeds.Controls.Clear();
+                divStationOrthopaedieBeds.Controls.Clear();
 
                 //beds.Sort(); // make sure the beds are added in correct order
 
@@ -132,25 +137,29 @@ namespace Bettenverwaltung
             }
 
             // assign click event
-            btn.ID = bed.GetBedId().ToString();
+            btn.ID = "bed" + bed.GetBedId().ToString();
             btn.Click += Bed_Buttons_Click;
 
             // add to div
             switch (bed.GetStation())
             {
                 case EStation.Gynaekologie:
-                    divStationGynaekologie.Controls.Add(btn);
+                    divStationGynaekologieBeds.Controls.Add(btn);
                     break;
                 case EStation.Innere_Medizin:
-                    divStationInnereMedizin.Controls.Add(btn);
+                    divStationInnereMedizinBeds.Controls.Add(btn);
                     break;
                 case EStation.Orthopaedie:
-                    divStationOrthopaedie.Controls.Add(btn);
+                    divStationOrthopaedieBeds.Controls.Add(btn);
                     break;
                 case EStation.Paediatrie:
-                    divStationPaediatrie.Controls.Add(btn);
+                    divStationPaediatrieBeds.Controls.Add(btn);
                     break;
             }
+
+            // register trigger
+            UpdatePanelTrigger trigger = CreateTrigger(btn.ID);
+            updatePanelTabs.Triggers.Add(trigger);
         }
 
 		protected virtual void Bed_Buttons_Click(object sender, EventArgs e)
@@ -158,7 +167,9 @@ namespace Bettenverwaltung
             try
             {
                 LinkButton btnSender = (LinkButton)sender;
-                int idOneBased = Int32.Parse(btnSender.ID);
+                string id = btnSender.ID;
+                id = id.Remove(0, "bed".Length);
+                int idOneBased = Int32.Parse(id);
                 DisplayBed(controller.DisplayPatient(idOneBased));
             }
             catch (BedException exception)
@@ -410,18 +421,20 @@ namespace Bettenverwaltung
             content.Text = sb.ToString();
             panel.Controls.Add(content);
 
+            string btnId = "not" + relocation.GetId().ToString();
+
             if (relocation.IsAccepted())
             {
                 LinkButton btnCancel = new LinkButton();
                 btnCancel.Text = "Abbrechen";
-                btnCancel.ID = relocation.GetId().ToString();
+                btnCancel.ID = btnId;
                 btnCancel.CssClass = CSS_CLASS_BTN_NOT_CANCEL;
                 btnCancel.Click += Cancel_Relocation_Click;
                 panel.Controls.Add(btnCancel);
 
                 LinkButton btnConfirm = new LinkButton();
                 btnConfirm.Text = "Bestätigen";
-                btnConfirm.ID = relocation.GetId().ToString();
+                btnConfirm.ID = btnId;
                 btnConfirm.CssClass = CSS_CLASS_BTN_NOT_CONFIRM;
                 btnConfirm.Click += Confirm_Relocation_Click;
                 panel.Controls.Add(btnConfirm);
@@ -430,11 +443,12 @@ namespace Bettenverwaltung
             {
                 LinkButton btnAccept = new LinkButton();
                 btnAccept.Text = "Annehmen";
-                btnAccept.ID = relocation.GetId().ToString();
+                btnAccept.ID = btnId;
                 btnAccept.CssClass = CSS_CLASS_BTN_NOT_ACCEPT;
                 btnAccept.Click += Accept_Relocation_Click;
                 panel.Controls.Add(btnAccept);
             }
+            divNotifications.Controls.Add(panel);
         }
 
 		protected virtual void Update_Overview_Tick(object sender, EventArgs e)
@@ -503,8 +517,48 @@ namespace Bettenverwaltung
             // mark the bed as selected
             ViewState.Add(VSKEY_SELECTED_BED_INDEX_ONE_BASED, bed.GetBedId());
 
+            InitBeds();
+
             SwitchToDetailsTab();
 		}
+
+        private void SwitchToDetailsTab()
+        {
+            btnTabDetails.CssClass = CSS_CLASS_BTN_TAB_ACTIVE;
+            btnTabSearch.CssClass = CSS_CLASS_BTN_TAB_INACTIVE;
+            btnTabAdd.CssClass = CSS_CLASS_BTN_TAB_INACTIVE;
+
+            divTabDetails.CssClass = CSS_CLASS_DIV_TAB_ACTIVE;
+            divTabSearch.CssClass = CSS_CLASS_DIV_TAB_INACTIVE;
+            divTabAdd.CssClass = CSS_CLASS_DIV_TAB_INACTIVE;
+        }
+
+        private void SwitchToSearchTab()
+        {
+            btnTabDetails.CssClass = CSS_CLASS_BTN_TAB_INACTIVE;
+            btnTabSearch.CssClass = CSS_CLASS_BTN_TAB_ACTIVE;
+            btnTabAdd.CssClass = CSS_CLASS_BTN_TAB_INACTIVE;
+
+            divTabDetails.CssClass = CSS_CLASS_DIV_TAB_INACTIVE;
+            divTabSearch.CssClass = CSS_CLASS_DIV_TAB_ACTIVE;
+            divTabAdd.CssClass = CSS_CLASS_DIV_TAB_INACTIVE;
+        }
+
+        private void SwitchToAddTab()
+        {
+            btnTabDetails.CssClass = CSS_CLASS_BTN_TAB_INACTIVE;
+            btnTabSearch.CssClass = CSS_CLASS_BTN_TAB_INACTIVE;
+            btnTabAdd.CssClass = CSS_CLASS_BTN_TAB_ACTIVE;
+
+            divTabDetails.CssClass = CSS_CLASS_DIV_TAB_INACTIVE;
+            divTabSearch.CssClass = CSS_CLASS_DIV_TAB_INACTIVE;
+            divTabAdd.CssClass = CSS_CLASS_DIV_TAB_ACTIVE;
+        }
+
+        private void ShowMessageBox(string message)
+        {
+            System.Web.HttpContext.Current.Response.Write("<script>alert('" + message + "')</script>");
+        }
 
         private string ConvertStationToString(EStation station)
         {
@@ -550,46 +604,11 @@ namespace Bettenverwaltung
             return station;
         }
 
-        private void SwitchToDetailsTab()
+        private UpdatePanelTrigger CreateTrigger(string controlId)
         {
-            btnTabDetails.CssClass = CSS_CLASS_BTN_TAB_ACTIVE;
-            btnTabSearch.CssClass = CSS_CLASS_BTN_TAB_INACTIVE;
-            btnTabAdd.CssClass = CSS_CLASS_BTN_TAB_INACTIVE;
-
-            divTabDetails.CssClass = CSS_CLASS_DIV_TAB_ACTIVE;
-            divTabSearch.CssClass = CSS_CLASS_DIV_TAB_INACTIVE;
-            divTabAdd.CssClass = CSS_CLASS_DIV_TAB_INACTIVE;
-        }
-
-        private void SwitchToSearchTab()
-        {
-            ViewState[VSKEY_SELECTED_BED_INDEX_ONE_BASED] = VSVAL_SELECTED_BED_INDEX_ONE_BASED_NONE;
-            
-            btnTabDetails.CssClass = CSS_CLASS_BTN_TAB_INACTIVE;
-            btnTabSearch.CssClass = CSS_CLASS_BTN_TAB_ACTIVE;
-            btnTabAdd.CssClass = CSS_CLASS_BTN_TAB_INACTIVE;
-
-            divTabDetails.CssClass = CSS_CLASS_DIV_TAB_INACTIVE;
-            divTabSearch.CssClass = CSS_CLASS_DIV_TAB_ACTIVE;
-            divTabAdd.CssClass = CSS_CLASS_DIV_TAB_INACTIVE;
-        }
-
-        private void SwitchToAddTab()
-        {
-            ViewState[VSKEY_SELECTED_BED_INDEX_ONE_BASED] = VSVAL_SELECTED_BED_INDEX_ONE_BASED_NONE;
-
-            btnTabDetails.CssClass = CSS_CLASS_BTN_TAB_INACTIVE;
-            btnTabSearch.CssClass = CSS_CLASS_BTN_TAB_INACTIVE;
-            btnTabAdd.CssClass = CSS_CLASS_BTN_TAB_ACTIVE;
-
-            divTabDetails.CssClass = CSS_CLASS_DIV_TAB_INACTIVE;
-            divTabSearch.CssClass = CSS_CLASS_DIV_TAB_INACTIVE;
-            divTabAdd.CssClass = CSS_CLASS_DIV_TAB_ACTIVE;
-        }
-
-        private void ShowMessageBox(string message)
-        {
-            System.Web.HttpContext.Current.Response.Write("<script>alert('" + message + "')</script>");
+            PostBackTrigger trigger = new PostBackTrigger();
+            trigger.ControlID = controlId;
+            return trigger;
         }
     }
 }
