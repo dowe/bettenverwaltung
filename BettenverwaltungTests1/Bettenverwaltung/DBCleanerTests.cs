@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Bettenverwaltung;
 
-namespace BettenverwaltungTests1.Bettenverwaltung
+namespace Bettenverwaltung.Tests
 {
     [TestClass]
     public class DBCleanerTests
@@ -10,6 +10,8 @@ namespace BettenverwaltungTests1.Bettenverwaltung
         [TestMethod]
         public void CleanBedTest()
         {
+            ControllerTests.ClearDB();
+
             BVContext db = new BVContext();
             Bed b1 = db.Beds.Find(1);
             DateTime now = DateTime.Now;

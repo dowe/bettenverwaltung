@@ -10,7 +10,7 @@ namespace Bettenverwaltung.Tests
     [TestClass()]
     public class ControllerTests
     {
-        public void ClearDB()
+        public static void ClearDB()
         {
             BVContext db = new BVContext();
             db.Relocations.RemoveRange(db.Relocations.ToArray());
@@ -33,16 +33,14 @@ namespace Bettenverwaltung.Tests
         [TestMethod()]
         public void AcceptRelocationTest()
         {
+            ControllerTests.ClearDB();
+
             BVContext db = new BVContext();
             Patient pat = new Patient("Peter", "Enis", new DateTime(), false, EStation.Orthopaedie);
-            Bed source = new Bed();
-            source.bedId = 1;
-            source.station = 1;
+            Bed source = db.Beds.Find(151);
             source.patient = pat;
             Relocation Rel = new Relocation(source,EStation.Paediatrie);
-            Bed dest = new Bed();
-            dest.bedId = 2;
-            dest.station = (int)EStation.Paediatrie;
+            Bed dest = db.Beds.Find(1);
             Rel.SetActive(dest);
             db.Relocations.Add(Rel);
             db.SaveChanges();
@@ -57,38 +55,31 @@ namespace Bettenverwaltung.Tests
         [TestMethod()]
         public void GetActiveRelocationListTest()
         {
+
+            ControllerTests.ClearDB();
+
             BVContext db = new BVContext();
             db.Relocations.RemoveRange(db.Relocations.ToArray());
             Patient pat = new Patient("Peter", "Enis", new DateTime(), false, EStation.Orthopaedie);
-            Bed source = new Bed();
-            source.bedId = 1;
-            source.station = 1;
+            Bed source = db.Beds.Find(170);
             source.patient = pat;
             Relocation Rel = new Relocation(source, EStation.Paediatrie);
-            Bed dest = new Bed();
-            dest.bedId = 2;
-            dest.station = (int)EStation.Paediatrie;
+            Bed dest = db.Beds.Find(22);
             Rel.SetActive(dest);
             db.Relocations.Add(Rel);
             db.SaveChanges();
 
             pat = new Patient("Peter", "Enis", new DateTime(), false, EStation.Orthopaedie);
-            source = new Bed();
-            source.bedId = 1;
-            source.station = 1;
+            source = db.Beds.Find(155);
             source.patient = pat;
             Rel = new Relocation(source, EStation.Paediatrie);
-            dest = new Bed();
-            dest.bedId = 2;
-            dest.station = (int)EStation.Paediatrie;
+            dest = db.Beds.Find(5);
             Rel.SetActive(dest);
             db.Relocations.Add(Rel);
             db.SaveChanges();
 
             pat = new Patient("Peter", "Enis", new DateTime(), false, EStation.Orthopaedie);
-            source = new Bed();
-            source.bedId = 1;
-            source.station = 1;
+            source = db.Beds.Find(160);
             source.patient = pat;
             Rel = new Relocation(source, EStation.Paediatrie);
             db.Relocations.Add(Rel);
@@ -103,72 +94,65 @@ namespace Bettenverwaltung.Tests
         [TestMethod()]
         public void DisplayPatientTest()
         {
+            ControllerTests.ClearDB();
             BVContext db = new BVContext();
             Controller control = new Controller();
 
             Patient pat = new Patient("Maxine", "Musterfrau", DateTime.Now, true, EStation.Orthopaedie);
             Bed bed = db.Beds.Find(1);
-            bed.station = (int)EStation.Gynaekologie;
             bed.patient = pat;
             db.SaveChanges();
 
             var bedResult = db.Beds.Where(b => b.patient.firstname == "Maxine").FirstOrDefault();
             Assert.AreEqual(control.DisplayPatient(bedResult.bedId).GetPatient().firstname, "Maxine");
 
-            this.ClearDB();
         }
 
         [TestMethod()]
         public void GetBettListTest()
         {
+            ControllerTests.ClearDB();
             BVContext db = new BVContext();
             Controller control = new Controller();
 
             Bed bed1 = db.Beds.Find(1);
             bed1.cleaningTime = new DateTime().ToString();
-            bed1.station = (int)EStation.Gynaekologie;
             bed1.patient = null;
 
             Bed bed2 = db.Beds.Find(2);
             bed2.cleaningTime = new DateTime().ToString();
-            bed2.station = (int)EStation.Innere_Medizin;
             bed2.patient = new Patient("Lassmiranda", "Dennsiewillja", DateTime.Now, true, EStation.Orthopaedie);
 
             Bed bed3 = db.Beds.Find(3);
             bed3.cleaningTime = new DateTime().ToString();
-            bed3.station = (int)EStation.Orthopaedie;
             bed3.patient = new Patient("Haldie", "Klappe", DateTime.Now, false, EStation.Orthopaedie);
 
             db.SaveChanges();
 
             List<IBedView> bedList = control.GetBettList();
 
-            Assert.AreEqual(bedList[bedList.Count-3].GetStation(), EStation.Gynaekologie);
-            Assert.AreEqual(bedList[bedList.Count - 2].GetPatient().firstname, "Lassmiranda");
-            Assert.AreEqual(bedList[bedList.Count - 1].GetPatient().lastname, "Klappe");
-
-            this.ClearDB();
+            Assert.AreEqual(bedList[0].GetStation(), EStation.Paediatrie);
+            Assert.AreEqual(bedList[1].GetPatient().firstname, "Lassmiranda");
+            Assert.AreEqual(bedList[2].GetPatient().lastname, "Klappe");
         }
 
         [TestMethod()]
         public void SearchPatientTest()
         {
+            ControllerTests.ClearDB();
             BVContext db = new BVContext();
             Controller control = new Controller();
 
             Bed bed1 = db.Beds.Find(1);
             bed1.cleaningTime = new DateTime().ToString();
-            bed1.station = (int)EStation.Gynaekologie;
             bed1.patient = new Patient("Gute", "Miene", DateTime.Now, true, EStation.Orthopaedie);
 
             Bed bed2 = db.Beds.Find(2);
             bed2.cleaningTime = new DateTime().ToString();
-            bed2.station = (int)EStation.Innere_Medizin;
             bed2.patient = new Patient("Gute", "Miene", new DateTime(), true, EStation.Orthopaedie);
 
             Bed bed3 = db.Beds.Find(3);
             bed3.cleaningTime = new DateTime().ToString();
-            bed3.station = (int)EStation.Orthopaedie;
             bed3.patient = new Patient("Gute", "nTag", DateTime.Now, false, EStation.Orthopaedie);
 
             db.SaveChanges();
@@ -196,14 +180,13 @@ namespace Bettenverwaltung.Tests
             bedList = control.SearchPatient(pat.patId.ToString());
             Assert.AreEqual(bedList[0].GetPatient().lastname, "nTag");
             Assert.AreEqual(bedList.Count, 1);
-
-            this.ClearDB();
         }
 
         [TestMethod()]
         [ExpectedException(typeof(BedException))]
         public void DismissPatientTest()
         {
+            ControllerTests.ClearDB();
             BVContext db = new BVContext();
             Controller control = new Controller();
 
@@ -211,7 +194,6 @@ namespace Bettenverwaltung.Tests
             //normal dismiss test
             Bed bed1 = db.Beds.Find(1);
             bed1.cleaningTime = new DateTime().ToString();
-            bed1.station = (int)EStation.Gynaekologie;
             bed1.patient = new Patient("Julius", "Caesar", DateTime.Now, true, EStation.Orthopaedie);
             bed1.cleaningTime = null;
             db.SaveChanges();
@@ -227,12 +209,10 @@ namespace Bettenverwaltung.Tests
             //relocation dismiss test
             Patient pat = new Patient("Thor", "mit dem Hammer", DateTime.Now, false, EStation.Orthopaedie);
             Bed sourceBed = db.Beds.Find(2);
-            sourceBed.station = 1;
             sourceBed.patient = pat;
             Relocation Rel = new Relocation(sourceBed, EStation.Paediatrie);
             Bed destBed = db.Beds.Find(3);
             destBed.patient = null;
-            destBed.station = (int)EStation.Paediatrie;
             Rel.SetActive(destBed);
             Rel.SetAccepted();
             db.Relocations.Add(Rel);
@@ -251,17 +231,16 @@ namespace Bettenverwaltung.Tests
             //Exception
             Bed bed2 = db.Beds.Find(4);
             bed2.cleaningTime = new DateTime().ToString();
-            bed2.station = (int)EStation.Innere_Medizin;
             bed2.patient = null;
             db.SaveChanges();
             control.DismissPatient(bed2.bedId);
-
-            this.ClearDB();
         }
 
         [TestMethod()]
         public void AddPatientTest()
         {
+            ControllerTests.ClearDB();
+
             Controller cont = new Controller();
             IBedView Bed = cont.AddPatient("Peter", "Enis", EStation.Innere_Medizin, new DateTime(1990, 5, 5), false);
             BVContext db = new BVContext();
