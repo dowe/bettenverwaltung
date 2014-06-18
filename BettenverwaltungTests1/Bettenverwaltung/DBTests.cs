@@ -29,6 +29,8 @@ namespace BettenverwaltungTests1.Bettenverwaltung
             {
                 Assert.AreEqual(pat.lastname, "enis");
             }
+            db.Patients.Remove(patients[0]);
+            db.SaveChanges();
         }
 
         [TestMethod]
