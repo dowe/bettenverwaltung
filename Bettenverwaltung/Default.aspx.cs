@@ -523,11 +523,6 @@ namespace Bettenverwaltung
             ShowMessageBox(e.Message);
 		}
 
-		private void CheckPatientInput()
-		{
-			throw new System.NotImplementedException();
-		}
-
 		private int GetAcceptedRelocationId()
 		{
 			throw new System.NotImplementedException();

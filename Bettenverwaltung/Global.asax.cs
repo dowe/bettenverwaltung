@@ -7,6 +7,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
+using System.Threading;
 
 namespace Bettenverwaltung
 {
@@ -20,7 +21,6 @@ namespace Bettenverwaltung
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             cleaner = new DBCleaner(10);
             cleaner.Start();
-
         }
     }
 }

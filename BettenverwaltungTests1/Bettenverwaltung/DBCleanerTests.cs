@@ -73,7 +73,7 @@ namespace Bettenverwaltung.Tests
             Relocation r = new Relocation(b, EStation.Innere_Medizin);
             r.destinationBed = db.Beds.Find(2);
             DateTime now = DateTime.Now;
-            r.timestamp = (now -  new TimeSpan(1, 0, 0)).ToString();
+            r.timestamp = (now - new TimeSpan(1, 0, 0)).ToString();
             r.accepted = true;
             db.Relocations.Add(r);
             db.SaveChanges();

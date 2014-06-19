@@ -188,7 +188,7 @@ namespace Bettenverwaltung
 		}
         
         /// <summary>
-        /// die Rückverlegung wird abgebrochen.
+        /// Die Rückverlegung wird abgebrochen.
         /// </summary>
 		public virtual void SetUnaccepted()                 
 		{

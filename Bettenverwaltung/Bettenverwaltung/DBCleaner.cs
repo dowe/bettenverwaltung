@@ -12,8 +12,8 @@ namespace Bettenverwaltung
 
     public class DBCleaner
     {
-        Timer t;
-        BVContext db;
+        private Timer t;
+        private BVContext db;
 
         /// <summary>
         /// Erstellt einen neuen DBCleaner
@@ -54,22 +54,27 @@ namespace Bettenverwaltung
         /// </summary>
         private void CleanBeds()
         {
-            bool cleanedBedFound = false;
             var beds = db.Beds.Where(b => b.cleaningTime != null);
+            List<Bed> freedBeds = new List<Bed>();
+            // set beds free
             foreach (var bed in beds)
             {
                 if ((DateTime.Now - bed.GetCleaningTime()) > new TimeSpan(2, 0, 0))
                 {
-                    cleanedBedFound = true;
                     bed.StopCleaning();
-                    this.SetRelocationActive(bed);
+                    freedBeds.Add(bed);
                 }
             }
-            if (cleanedBedFound)
+            // no multiple active result sets anymore as it did not allow to save the changes in SetRelocationActive
+            foreach (Bed bed in freedBeds)
+            {
+                SetRelocationActive(bed);
+            }
+
+            if (freedBeds.Count != 0)
             {
                 db.SaveChanges();
             }
-
         }
 
         /// <summary>
@@ -82,6 +87,7 @@ namespace Bettenverwaltung
             if (relocation != null)
             {
                 relocation.SetActive(bed);
+                db.SaveChanges();
             }
         }
 
