@@ -26,7 +26,7 @@ namespace Bettenverwaltung.Tests
                 bed.inRelocation = false;
                 bed.patient = null;
                 db.SaveChanges();
-            }   
+            }
         }
 
 
@@ -39,7 +39,7 @@ namespace Bettenverwaltung.Tests
             Patient pat = new Patient("Peter", "Enis", new DateTime(), false, EStation.Orthopaedie);
             Bed source = db.Beds.Find(151);
             source.patient = pat;
-            Relocation Rel = new Relocation(source,EStation.Paediatrie);
+            Relocation Rel = new Relocation(source, EStation.Paediatrie);
             Bed dest = db.Beds.Find(1);
             Rel.SetActive(dest);
             db.Relocations.Add(Rel);
@@ -209,12 +209,12 @@ namespace Bettenverwaltung.Tests
             int histItemID = bed1.patient.history.historyItem[0].historyItemId;
             control.DismissPatient(bed1.bedId);
             db = new BVContext();
-            var bedResult = db.Beds.Where(b=>b.patient.firstname == "Julius").FirstOrDefault();
+            var bedResult = db.Beds.Where(b => b.patient.firstname == "Julius").FirstOrDefault();
             Assert.IsNull(bedResult, "bed1 testdata existiert noch in der DB");
             var histItem = db.HistoryItems.Find(histItemID);
             Assert.IsNull(histItem, "history Item existiert noch");
 
-            
+
             //relocation dismiss test
             Patient pat = new Patient("Thor", "mit dem Hammer", DateTime.Now, false, EStation.Orthopaedie);
             Bed sourceBed = db.Beds.Find(2);
@@ -247,6 +247,7 @@ namespace Bettenverwaltung.Tests
             ControllerTests.ClearDB();
         }
 
+        //Entscheidungstabellen Test
         [TestMethod()]
         public void AddPatientTest()
         {
@@ -273,7 +274,7 @@ namespace Bettenverwaltung.Tests
             test = db.Beds.Find(Bed.GetBedId());
             Assert.AreEqual("Peter", test.GetPatient().GetFirstName());
             Assert.AreEqual(EStation.Paediatrie, test.GetStation());
-            for(int i = 0;i<49;i++)
+            for (int i = 0; i < 49; i++)
             {
                 Bed = cont.AddPatient("Peter", "Enis", EStation.Paediatrie, new DateTime(2004, 5, 5), true);
             }
@@ -303,10 +304,113 @@ namespace Bettenverwaltung.Tests
             rel = db.Relocations.ToList().FirstOrDefault();
             Assert.AreEqual(rel.IsActive(), false);
 
+            ControllerTests.ClearDB();
+            for (int i = 0; i < 50; i++)
+            {
+                Bed = cont.AddPatient("Peter", "Enis", EStation.Paediatrie, new DateTime(2004, 5, 5), true);
+            }
+            Bed = cont.AddPatient("Peter", "Enis", EStation.Paediatrie, new DateTime(2004, 5, 5), true);
 
+            Assert.AreEqual(EStation.Gynaekologie, Bed.GetStation());
+
+            for (int i = 0; i < 49; i++)
+            {
+                Bed = cont.AddPatient("Peter", "Enis", EStation.Gynaekologie, new DateTime(1990, 5, 5), true);
+            }
+            Bed = cont.AddPatient("Peter", "Enis", EStation.Paediatrie, new DateTime(2004, 5, 5), true);
+
+            Assert.IsNull(Bed);
 
             ControllerTests.ClearDB();
 
+            Bed = cont.AddPatient("Peter", "Enis", EStation.Gynaekologie, new DateTime(1990, 5, 5), true);
+
+            Assert.AreEqual(EStation.Gynaekologie, Bed.GetStation());
+
+            for (int i = 0; i < 49; i++)
+            {
+                Bed = cont.AddPatient("Peter", "Enis", EStation.Gynaekologie, new DateTime(1990, 5, 5), true);
+            }
+
+            Bed = cont.AddPatient("Peter", "Enis", EStation.Gynaekologie, new DateTime(1990, 5, 5), true);
+
+            Assert.AreEqual(EStation.Innere_Medizin, Bed.GetStation());
+
+            for (int i = 0; i < 49; i++)
+            {
+                Bed = cont.AddPatient("Peter", "Enis", EStation.Innere_Medizin, new DateTime(1990, 5, 5), true);
+            }
+
+            Bed = cont.AddPatient("Peter", "Enis", EStation.Gynaekologie, new DateTime(1990, 5, 5), true);
+
+            Assert.AreEqual(EStation.Orthopaedie, Bed.GetStation());
+
+            for (int i = 0; i < 49; i++)
+            {
+                Bed = cont.AddPatient("Peter", "Enis", EStation.Orthopaedie, new DateTime(1990, 5, 5), true);
+            }
+
+            Bed = cont.AddPatient("Peter", "Enis", EStation.Gynaekologie, new DateTime(1990, 5, 5), true);
+
+            Assert.IsNull(Bed);
+
+            ControllerTests.ClearDB();
+
+            Bed = cont.AddPatient("Peter", "Enis", EStation.Innere_Medizin, new DateTime(1990, 5, 5), true);
+
+            Assert.AreEqual(EStation.Innere_Medizin, Bed.GetStation());
+
+            for (int i = 0; i < 49; i++)
+            {
+                Bed = cont.AddPatient("Peter", "Enis", EStation.Innere_Medizin, new DateTime(1990, 5, 5), true);
+            }
+
+            Bed = cont.AddPatient("Peter", "Enis", EStation.Innere_Medizin, new DateTime(1990, 5, 5), true);
+
+            Assert.AreEqual(EStation.Orthopaedie, Bed.GetStation());
+
+            for (int i = 0; i < 49; i++)
+            {
+                Bed = cont.AddPatient("Peter", "Enis", EStation.Orthopaedie, new DateTime(1990, 5, 5), true);
+            }
+
+            Bed = cont.AddPatient("Peter", "Enis", EStation.Innere_Medizin, new DateTime(1990, 5, 5), true);
+
+            Assert.AreEqual(EStation.Gynaekologie, Bed.GetStation());
+
+            Bed = cont.AddPatient("Peter", "Enis", EStation.Innere_Medizin, new DateTime(1990, 5, 5), false);
+
+            Assert.IsNull(Bed);
+
+            ControllerTests.ClearDB();
+
+            Bed = cont.AddPatient("Peter", "Enis", EStation.Orthopaedie, new DateTime(1990, 5, 5), true);
+
+            Assert.AreEqual(EStation.Orthopaedie, Bed.GetStation());
+
+            for (int i = 0; i < 49; i++)
+            {
+                Bed = cont.AddPatient("Peter", "Enis", EStation.Orthopaedie, new DateTime(1990, 5, 5), true);
+            }
+
+            Bed = cont.AddPatient("Peter", "Enis", EStation.Orthopaedie, new DateTime(1990, 5, 5), true);
+
+            Assert.AreEqual(EStation.Innere_Medizin, Bed.GetStation());
+
+            for (int i = 0; i < 49; i++)
+            {
+                Bed = cont.AddPatient("Peter", "Enis", EStation.Innere_Medizin, new DateTime(1990, 5, 5), true);
+            }
+
+            Bed = cont.AddPatient("Peter", "Enis", EStation.Orthopaedie, new DateTime(1990, 5, 5), true);
+
+            Assert.AreEqual(EStation.Gynaekologie, Bed.GetStation());
+
+            Bed = cont.AddPatient("Peter", "Enis", EStation.Orthopaedie, new DateTime(1990, 5, 5), false);
+
+            Assert.IsNull(Bed);
+
+            ControllerTests.ClearDB();
         }
     }
 }

@@ -95,7 +95,7 @@ namespace Bettenverwaltung.Tests
         {
             Relocation Test = new Relocation(new Bed(), EStation.Gynaekologie);
             Assert.AreEqual(false, Test.IsAccepted());
-            Test.accepted = true;
+            Test.timestamp = "19.5.2004";
             Assert.AreEqual(true, Test.IsAccepted());
         }
 
