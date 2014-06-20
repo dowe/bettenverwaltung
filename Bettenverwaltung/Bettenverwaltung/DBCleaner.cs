@@ -95,7 +95,7 @@ namespace Bettenverwaltung
         /// </summary>
         private void RemoveForgottenAcceptedRelocations()
         {
-            var relocations = db.Relocations.Where(r => r.timestamp != null && r.destinationBed != null && r.accepted == true);
+            var relocations = db.Relocations.Where(r => r.timestamp != null);
             foreach (var relocation in relocations)
             {
                 if ((DateTime.Now - relocation.GetTimestamp()) > TIMEOUT_REMOVE_FORGOTTEN_RELOCATION)
