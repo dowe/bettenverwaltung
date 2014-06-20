@@ -6,53 +6,53 @@
 //------------------------------------------------------------------------------
 namespace Bettenverwaltung
 {
-	using System;
-	using System.Collections.Generic;
+    using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-	using System.Linq;
-	using System.Text;
+    using System.Linq;
+    using System.Text;
 
     /// <summary>
     /// Verlegungsobjekt falls Patient kein Bett in der richtigen Station gefunden hat
     /// </summary>
-	public class Relocation
-	{
+    public class Relocation
+    {
         [Key]
         public int relocationId
-		{
-			get;
-			set;
-		}
-
-		public int station
-		{
-			get;
-			set;
-		}
-
-		public bool accepted
         {
             get;
             set;
         }
 
-		public string timestamp
-		{
-			get;
-			set;
-		}
+        public int station
+        {
+            get;
+            set;
+        }
 
-		public virtual Bed sourceBed
-		{
-			get;
-			set;
-		}
+        public bool accepted
+        {
+            get;
+            set;
+        }
 
-		public virtual Bed destinationBed
-		{
-			get;
-			set;
-		}
+        public string timestamp
+        {
+            get;
+            set;
+        }
+
+        public virtual Bed sourceBed
+        {
+            get;
+            set;
+        }
+
+        public virtual Bed destinationBed
+        {
+            get;
+            set;
+        }
 
         public Relocation()
         {
@@ -61,27 +61,27 @@ namespace Bettenverwaltung
 
         /// <summary>
         ///Konstruktor: Die übergebenen Werte werden zugewiesen
-		///weitere Werte werden zunächst mit null oder false initialisiert.
+        ///weitere Werte werden zunächst mit null oder false initialisiert.
         /// </summary>
         /// <param name="bed">Quellbett</param>
         /// <param name="station">Zielstation</param>
-		public Relocation(Bed bed, EStation station) 
+        public Relocation(Bed bed, EStation station)
         {
             this.sourceBed = bed;
             this.station = (int)station;
             this.destinationBed = null;
             this.accepted = false;
             this.timestamp = null;
-		}
+        }
 
         /// <summary>
         ///Der Interger Wert Station wird auf das Enum EStation gemappt.
         ///Wirft eine BedException falls der Wert nicht zwischen 0 und 3 liegt.
         /// </summary>
         /// <returns>Station als EStation</returns>
-        public virtual EStation GetStation()        
+        public virtual EStation GetStation()
         {
-            if(station < 0 || station > 3)
+            if (station < 0 || station > 3)
             {
                 throw new BedException("Die in der Verlegung eingetragene Station existiert nicht.");
             }
@@ -90,41 +90,41 @@ namespace Bettenverwaltung
 
         /// <summary>
         ///Diese Funktion wird aufgerufen wenn eine Rückverlegung möglich ist.
-		///Das Zielbett wird eingetragen jedoch noch nicht gesperrt.
+        ///Das Zielbett wird eingetragen jedoch noch nicht gesperrt.
         /// </summary>
         /// <param name="bed">Zielbett für die Verlegung</param>
-		public virtual void SetActive(Bed bed)       
+        public virtual void SetActive(Bed bed)
         {
-			if(!bed.IsEmpty()||bed.IsGettingCleaned()||bed.IsInRelocation())
+            if (!bed.IsEmpty() || bed.IsGettingCleaned() || bed.IsInRelocation())
             {
                 throw new BedException("Das Zielbett der Verlegung ist bereits gesperrt.");
             }
-            if(this.destinationBed != null)
+            if (this.destinationBed != null)
             {
                 throw new BedException("Die Verlegung ist bereits aktiv");
             }
             this.destinationBed = bed;
-		}
+        }
 
         /// <summary>
         /// Das Zielbett wird wieder auf Null gesetzt. Die Rückverlegung ist inaktiv.
         /// </summary>
-		public virtual void SetInactive()                   
-		{
-            if(this.destinationBed == null)
+        public virtual void SetInactive()
+        {
+            if (this.destinationBed == null)
             {
                 throw new BedException("Die Verlegung ist nicht aktiv");
             }
             this.destinationBed = null;
-		}
+        }
 
         /// <summary>
         /// Führt die Rückverlegung durch.
         /// </summary>
         /// <returns></returns>
-		public virtual bool ExecuteRelocation() 
-		{
-            if(this.accepted == false || this.destinationBed == null)
+        public virtual bool ExecuteRelocation()
+        {
+            if (this.accepted == false || this.destinationBed == null)
             {
                 throw new BedException("Die auszuführende Verlegung ist nicht angenommen/aktiv");
             }
@@ -137,75 +137,79 @@ namespace Bettenverwaltung
 
         /// <summary>
         ///Abfrage ob die Rückverlegung aktiv ist
-		///false(inaktiv) falls destBed = null
+        ///false(inaktiv) falls destBed = null
         /// </summary>
         /// <returns>true falls aktiv, false falls inaktiv</returns>
-		public virtual bool IsActive()                          
+        public virtual bool IsActive()
         {
-			if(destinationBed == null)
+            if (destinationBed == null)
             {
                 return false;
             }
             return true;
-		}
+        }
 
         /// <summary>
         /// Abfrage ob Rückverlegung angenommen wurde
         /// </summary>
         /// <returns>true falls akzeptiert, sonst false</returns>
-		public virtual bool IsAccepted()                    
-		{                                                   
-            return accepted;
-		}
+        public virtual bool IsAccepted()
+        {
+            if (timestamp != null)
+            {
+                return true;
+            }
+            return false;
+        }
 
         /// <summary>
         /// die Rückverlegung wird angenommen. Wirft eine Exception falls die Rückverlegung nicht aktiv ist.
         /// </summary>
-		public virtual void SetAccepted()                   
-		{
-            if(this.destinationBed == null)
+        public virtual void SetAccepted()
+        {
+            if (this.destinationBed == null)
             {
                 throw new BedException("Die Verlegung kann nicht angenommen werden, da sie nicht aktiv ist.");
             }
             this.accepted = true;
             destinationBed.SetInRelocation(true);           //Das Bett wird gesperrt.
             this.timestamp = (DateTime.Now.ToString());                  //Zeitpunkt der Annahme wird gesetzt.
-		}
+        }
 
-		public virtual Bed GetSourceBed()
-		{
+        public virtual Bed GetSourceBed()
+        {
             return sourceBed;
-		}
+        }
 
-		public virtual Bed GetDestinationBed()
-		{
+        public virtual Bed GetDestinationBed()
+        {
             return destinationBed;
-		}
+        }
 
-		public virtual DateTime? GetTimestamp()
-		{
+        public virtual DateTime? GetTimestamp()
+        {
             return DateTime.Parse(timestamp);
-		}
-        
+        }
+
         /// <summary>
         /// Die Rückverlegung wird abgebrochen.
         /// </summary>
-		public virtual void SetUnaccepted()                 
-		{
-            if(this.accepted == false)
+        public virtual void SetUnaccepted()
+        {
+            if (this.timestamp == null)
             {
                 throw new BedException("Die Verlegung ist nicht angenommen.");
             }
             this.accepted = false;
             destinationBed.SetInRelocation(false);          //Das Bett wird entsperrt.
             this.timestamp = null;                          //setzt Annahmezeit auf null.
-		}
+        }
 
-		public virtual int GetId()
-		{
+        public virtual int GetId()
+        {
             return this.relocationId;
-		}
+        }
 
-	}
+    }
 }
 
