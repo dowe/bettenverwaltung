@@ -233,7 +233,8 @@ body,
     width: 295px;
 }
 
-.listDetailsPatHistory {
+.txtBoxDetailsPatHistory {
+    resize: none;
     max-width: 299px;
     width: 100%;
     height: 67px;

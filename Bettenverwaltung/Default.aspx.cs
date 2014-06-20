@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -68,7 +69,6 @@ namespace Bettenverwaltung
                 InitViewState();
                 SwitchToDetailsTab();
             }
-
             InitAll();
 		}
 
@@ -191,8 +191,11 @@ namespace Bettenverwaltung
 		{
             try
             {
-                int selectedBedId = (int)ViewState[VSKEY_SELECTED_BED_INDEX_ONE_BASED];
-                DisplayBed(controller.DismissPatient(selectedBedId));
+                if ((int)ViewState[VSKEY_SELECTED_BED_INDEX_ONE_BASED] != VSVAL_SELECTED_BED_INDEX_ONE_BASED_NONE)
+                {
+                    int selectedBedId = (int)ViewState[VSKEY_SELECTED_BED_INDEX_ONE_BASED];
+                    DisplayBed(controller.DismissPatient(selectedBedId));
+                }
             }
             catch (BedException ex)
             {
@@ -353,7 +356,7 @@ namespace Bettenverwaltung
             sb.Append(" ");
             sb.Append(bed.GetPatient().GetFirstName());
             sb.Append(", Station ");
-            sb.Append(bed.GetStation());
+            sb.Append(ConvertStationToString(bed.GetStation()));
             lblPatText.Text = sb.ToString();
             resultLinkButton.Controls.Add(lblPatText);
 
@@ -556,7 +559,8 @@ namespace Bettenverwaltung
 
 		protected virtual void Update_Notification_Tick(object sender, EventArgs e)
 		{
-			throw new System.NotImplementedException();
+            InitRelocations();
+            InitTriggers();
 		}
 
 		protected virtual void PrintErrorMessage(BedException e)

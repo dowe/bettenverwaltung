@@ -167,6 +167,10 @@ namespace Bettenverwaltung
         /// </summary>
         public virtual void SetAccepted()
         {
+            if (this.accepted)
+            {
+                throw new BedException("Die Verlegung wurde bereits von jemandem angenommen.");
+            }
             if (this.destinationBed == null)
             {
                 throw new BedException("Die Verlegung kann nicht angenommen werden, da sie nicht aktiv ist.");

@@ -25,6 +25,7 @@
                                 <h2>Orthopädie</h2>
                                 <asp:Panel ID="divStationOrthopaedieBeds" runat="server"></asp:Panel>
                             </asp:Panel>
+                            <asp:Timer ID="timerOverview" runat="server" Interval="10000" OnTick="Update_Overview_Tick"></asp:Timer>
                         </ContentTemplate>
                     </asp:UpdatePanel>
                     <asp:UpdatePanel ID="updatePanelTabs" ChildrenAsTriggers="true" runat="server" class="divTabsContainer">
