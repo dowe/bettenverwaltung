@@ -68,11 +68,16 @@ namespace Bettenverwaltung
                 SwitchToDetailsTab();
             }
 
-            SearchPatient();
+            InitAll();
+		}
+
+        private void InitAll()
+        {
+            InitSearchResults();
             InitBeds();
             InitRelocations();
             InitTriggers();
-		}
+        }
 
         private void InitViewState() {
             ViewState.Add(VSKEY_SELECTED_BED_INDEX_ONE_BASED, VSVAL_SELECTED_BED_INDEX_ONE_BASED_NONE);
@@ -308,10 +313,10 @@ namespace Bettenverwaltung
 
 		protected virtual void Search_Click(object sender, EventArgs e)
 		{
-            SearchPatient();
+            InitSearchResults();
 		}
 
-        private void SearchPatient()
+        private void InitSearchResults()
         {
             try
             {
@@ -371,7 +376,18 @@ namespace Bettenverwaltung
 
 		protected virtual void Accept_Relocation_Click(object sender, EventArgs e)
 		{
-			throw new System.NotImplementedException();
+            try
+            {
+                LinkButton btn = (LinkButton)sender;
+                int relId = Int32.Parse(btn.ID.Remove(0, DYN_PREFIX_NOT.Length));
+                controller.AcceptRelocation(relId);
+                ViewState[VSKEY_ACCEPTED_NOT_ID] = relId;
+                InitAll();
+            }
+            catch (BedException ex)
+            {
+                PrintErrorMessage(ex);
+            }
 		}
 
 		protected virtual void Cancel_Relocation_Click(object sender, EventArgs e)
@@ -396,9 +412,10 @@ namespace Bettenverwaltung
 		{
             try
             {
+                divNotifications.Controls.Clear();
                 List<Relocation> relocations = controller.GetActiveRelocationList();
                 // first update deprecated accepted relocation
-                if (ViewState[VSKEY_ACCEPTED_NOT_ID] != null && (int)ViewState[VSKEY_ACCEPTED_NOT_ID] != VSVAL_ACCEPTED_NOT_ID_NONE)
+                if ((int)ViewState[VSKEY_ACCEPTED_NOT_ID] != VSVAL_ACCEPTED_NOT_ID_NONE)
                 {
                     // this client has accepted a notification
                     bool foundAcceptedRelocation = false;
@@ -449,7 +466,7 @@ namespace Bettenverwaltung
         private void AddRelocation(Relocation relocation)
         {
             Panel panel = new Panel();
-            panel.ID = relocation.GetId().ToString();
+            panel.ID = DYN_PREFIX_NOT + relocation.GetId().ToString();
             panel.CssClass = CSS_CLASS_NOT_LIST_ITEM;
 
             Label content = new Label();
@@ -511,6 +528,7 @@ namespace Bettenverwaltung
 		protected virtual void Update_Overview_Tick(object sender, EventArgs e)
 		{
 			InitBeds();
+            InitTriggers();
 		}
 
 		protected virtual void Update_Notification_Tick(object sender, EventArgs e)
@@ -675,6 +693,7 @@ namespace Bettenverwaltung
         {
             InitOverviewTriggers();
             InitTabTriggers();
+            InitRelocationTriggers();
         }
 
         private void InitOverviewTriggers()
@@ -715,6 +734,23 @@ namespace Bettenverwaltung
             foreach (LinkButton btn in divSearchResultList.Controls)
             {
                 AddTrigger(btn, updatePanel);
+            }
+        }
+
+        private void InitRelocationTriggers()
+        {
+            UpdatePanel updatePanel = updatePanelNot;
+            updatePanel.Triggers.Clear();
+
+            var updatePanelPanels = divNotifications.Controls.OfType<Panel>();
+            foreach (Panel pnl in updatePanelPanels)
+            {
+                var btns = pnl.Controls.OfType<LinkButton>();
+                foreach (LinkButton btn in btns)
+                {
+                    UpdatePanelTrigger trigger = CreateTrigger(btn.ID);
+                    updatePanel.Triggers.Add(trigger);
+                }
             }
         }
 

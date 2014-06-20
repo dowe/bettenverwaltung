@@ -123,9 +123,7 @@
                 <div class="divRight">
                     <asp:UpdatePanel ID="updatePanelNot" ChildrenAsTriggers="true" runat="server" class="divNotList">
                         <ContentTemplate>
-                            <asp:Panel ID="divNotifications" runat="server">
-
-                            </asp:Panel>
+                            <asp:Panel ID="divNotifications" runat="server"></asp:Panel>
                         </ContentTemplate>
                     </asp:UpdatePanel>
                     <script>

@@ -12,6 +12,9 @@ namespace Bettenverwaltung
 
     public class DBCleaner
     {
+
+        public static readonly TimeSpan TIMEOUT_CLEANING = new TimeSpan(0, 0, 5);
+        public static readonly TimeSpan TIMEOUT_REMOVE_FORGOTTEN_RELOCATION = new TimeSpan(0, 30, 0);
         private Timer t;
         private BVContext db;
 
@@ -59,21 +62,17 @@ namespace Bettenverwaltung
             // set beds free
             foreach (var bed in beds)
             {
-                if ((DateTime.Now - bed.GetCleaningTime()) > new TimeSpan(2, 0, 0))
+                if ((DateTime.Now - bed.GetCleaningTime()) > TIMEOUT_CLEANING)
                 {
                     bed.StopCleaning();
                     freedBeds.Add(bed);
                 }
             }
+            db.SaveChanges();
             // no multiple active result sets anymore as it did not allow to save the changes in SetRelocationActive
             foreach (Bed bed in freedBeds)
             {
                 SetRelocationActive(bed);
-            }
-
-            if (freedBeds.Count != 0)
-            {
-                db.SaveChanges();
             }
         }
 
@@ -96,10 +95,10 @@ namespace Bettenverwaltung
         /// </summary>
         private void RemoveForgottenAcceptedRelocations()
         {
-            var relocations = db.Relocations.Where(r => r.timestamp != null);
+            var relocations = db.Relocations.Where(r => r.timestamp != null && r.destinationBed != null && r.accepted == true);
             foreach (var relocation in relocations)
             {
-                if ((DateTime.Now - relocation.GetTimestamp()) > new TimeSpan(0, 20, 0))
+                if ((DateTime.Now - relocation.GetTimestamp()) > TIMEOUT_REMOVE_FORGOTTEN_RELOCATION)
                 {
                     relocation.SetUnaccepted();
                 }

@@ -69,6 +69,7 @@ body,
 .btnBedCleaning,
 .btnBedWrongStation,
 .btnBedFree,
+.btnBedInRelocation,
 .btnTabActive,
 .btnTabInactive,
 .btnFormSubmit,
@@ -132,7 +133,8 @@ body,
 .btnBedOccupied,
 .btnBedCleaning,
 .btnBedWrongStation,
-.btnBedFree {
+.btnBedFree,
+.btnBedInRelocation {
     width: 20px;
     height: 20px;
     margin: 3px;

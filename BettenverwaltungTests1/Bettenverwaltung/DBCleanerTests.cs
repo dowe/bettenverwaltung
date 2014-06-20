@@ -71,10 +71,9 @@ namespace Bettenverwaltung.Tests
             BVContext db = new BVContext();
             Bed b = db.Beds.Find(1);
             Relocation r = new Relocation(b, EStation.Innere_Medizin);
-            r.destinationBed = db.Beds.Find(2);
+            r.SetActive(db.Beds.Find(2));
             DateTime now = DateTime.Now;
             r.timestamp = (now - new TimeSpan(1, 0, 0)).ToString();
-            r.accepted = true;
             db.Relocations.Add(r);
             db.SaveChanges();
 
