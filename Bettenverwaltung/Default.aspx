@@ -59,7 +59,7 @@
                                                 <asp:TextBox ID="txtBoxDetailsBedStation" runat="server" ReadOnly="true" BackColor="LightGray"></asp:TextBox><br />
 
 
-                                                <asp:ListBox ID="listBoxDetailsPatHistory" runat="server" CssClass="listDetailsPatHistory"></asp:ListBox>
+                                                <asp:TextBox ID="txtBoxDetailsPatHistory" runat="server" CssClass="txtBoxDetailsPatHistory" TextMode="MultiLine" Wrap="False"></asp:TextBox>
                                                 <br />
                                                 <br />
                                                 <asp:LinkButton runat="server" ID="btnDetailsDismiss" CssClass="btnFormSubmit" OnClick="Dismiss_Patient_Click">Patient entlassen</asp:LinkButton>

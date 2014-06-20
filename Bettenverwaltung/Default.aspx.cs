@@ -24,6 +24,7 @@ namespace Bettenverwaltung
         // dynamic ID Prefixes
         private const string DYN_PREFIX_BED = "bed";
         private const string DYN_PREFIX_NOT = "not";
+        private const string DYN_PREFIX_NOT_CANCEL = "notCancel";
         private const string DYN_PREFIX_SEARCH_RESULT = "res";
 
         // Css Classes
@@ -392,12 +393,34 @@ namespace Bettenverwaltung
 
 		protected virtual void Cancel_Relocation_Click(object sender, EventArgs e)
 		{
-			throw new System.NotImplementedException();
+            try
+            {
+                LinkButton btn = (LinkButton)sender;
+                int relId = Int32.Parse(btn.ID.Remove(0, DYN_PREFIX_NOT_CANCEL.Length));
+                controller.CancelRelocation(relId);
+                ViewState[VSKEY_ACCEPTED_NOT_ID] = VSVAL_ACCEPTED_NOT_ID_NONE;
+                InitAll();
+            }
+            catch (BedException ex)
+            {
+                PrintErrorMessage(ex);
+            }
 		}
 
 		protected virtual void Confirm_Relocation_Click(object sender, EventArgs e)
 		{
-			throw new System.NotImplementedException();
+            try
+            {
+                LinkButton btn = (LinkButton)sender;
+                int relId = Int32.Parse(btn.ID.Remove(0, DYN_PREFIX_NOT.Length));
+                controller.ConfirmRelocation(relId);
+                ViewState[VSKEY_ACCEPTED_NOT_ID] = VSVAL_ACCEPTED_NOT_ID_NONE;
+                InitAll();
+            }
+            catch (BedException ex)
+            {
+                PrintErrorMessage(ex);
+            }
 		}
 
 		protected virtual void Search_Item_Click(object sender, EventArgs e)
@@ -466,7 +489,6 @@ namespace Bettenverwaltung
         private void AddRelocation(Relocation relocation)
         {
             Panel panel = new Panel();
-            panel.ID = DYN_PREFIX_NOT + relocation.GetId().ToString();
             panel.CssClass = CSS_CLASS_NOT_LIST_ITEM;
 
             Label content = new Label();
@@ -496,12 +518,13 @@ namespace Bettenverwaltung
             panel.Controls.Add(content);
 
             string btnId = DYN_PREFIX_NOT + relocation.GetId().ToString();
+            string btnIdCancel = DYN_PREFIX_NOT_CANCEL + relocation.GetId().ToString();
 
             if (relocation.IsAccepted())
             {
                 LinkButton btnCancel = new LinkButton();
                 btnCancel.Text = "Abbrechen";
-                btnCancel.ID = btnId;
+                btnCancel.ID = btnIdCancel;
                 btnCancel.CssClass = CSS_CLASS_BTN_NOT_CANCEL;
                 btnCancel.Click += Cancel_Relocation_Click;
                 panel.Controls.Add(btnCancel);
@@ -571,12 +594,14 @@ namespace Bettenverwaltung
                 
                 txtBoxDetailsPatCorrectStation.Text = ConvertStationToString(pat.GetCorrectStation());
 
-                listBoxDetailsPatHistory.Items.Clear();
+                txtBoxDetailsPatHistory.Text = "";
+                StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < pat.GetHistory().GetSize(); i++)
                 {
                     HistoryItem historyItem = pat.GetHistory().GetHistoryItem(i);
-                    listBoxDetailsPatHistory.Items.Add(new ListItem(historyItem.GetText()));
+                    sb.AppendLine(historyItem.GetText());
                 }
+                txtBoxDetailsPatHistory.Text = sb.ToString();
             }
             else
             {
@@ -586,7 +611,7 @@ namespace Bettenverwaltung
                 txtBoxDetailsPatBirthday.Text = "";
                 txtBoxDetailsPatGender.Text = "";
                 txtBoxDetailsPatCorrectStation.Text = "";
-                listBoxDetailsPatHistory.Items.Clear();
+                txtBoxDetailsPatHistory.Text = "";
             }
             // display bed info in any case
             txtBoxDetailsBedId.Text = bed.GetBedId().ToString();

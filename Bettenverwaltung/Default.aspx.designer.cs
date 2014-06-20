@@ -220,13 +220,13 @@ namespace Bettenverwaltung {
         protected global::System.Web.UI.WebControls.TextBox txtBoxDetailsBedStation;
         
         /// <summary>
-        /// listBoxDetailsPatHistory-Steuerelement
+        /// txtBoxDetailsPatHistory-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox listBoxDetailsPatHistory;
+        protected global::System.Web.UI.WebControls.TextBox txtBoxDetailsPatHistory;
         
         /// <summary>
         /// btnDetailsDismiss-Steuerelement
