@@ -14,7 +14,7 @@ namespace Bettenverwaltung
     {
 
         public static readonly TimeSpan TIMEOUT_CLEANING = new TimeSpan(0, 0, 5);
-        public static readonly TimeSpan TIMEOUT_REMOVE_FORGOTTEN_RELOCATION = new TimeSpan(0, 30, 0);
+        public static readonly TimeSpan TIMEOUT_REMOVE_FORGOTTEN_RELOCATION = new TimeSpan(0, 0, 10);
         private Timer t;
         private BVContext db;
 

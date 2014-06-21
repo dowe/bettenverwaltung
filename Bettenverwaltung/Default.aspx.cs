@@ -240,14 +240,14 @@ namespace Bettenverwaltung
             {
                 ClearRelocationControls();
                 List<Relocation> relocations = controller.GetActiveRelocationList();
-                // first update deprecated accepted relocation
+                // first of all update deprecated accepted relocation id in viewstate
                 if ((int)ViewState[VSKEY_ACCEPTED_NOT_ID] != VSVAL_ACCEPTED_NOT_ID_NONE)
                 {
                     // this client has accepted a notification
                     bool foundAcceptedRelocation = false;
                     foreach (Relocation relocation in relocations)
                     {
-                        if (relocation.GetId() == (int)ViewState[VSKEY_ACCEPTED_NOT_ID] && relocation.IsActive())
+                        if (relocation.GetId() == (int)ViewState[VSKEY_ACCEPTED_NOT_ID] && relocation.IsAccepted())
                         {
                             // this is the relocation accepted by this client and it is still active
                             foundAcceptedRelocation = true;
@@ -260,6 +260,7 @@ namespace Bettenverwaltung
                     }
                 }
 
+                // display the relocations that shall be displayed for this client
                 foreach (Relocation relocation in relocations)
                 {
                     if (shallRelocationBeDisplayed(relocation))

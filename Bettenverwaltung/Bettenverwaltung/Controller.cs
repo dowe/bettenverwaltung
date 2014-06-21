@@ -184,6 +184,7 @@ namespace Bettenverwaltung
             bvContext = new BVContext();
             Relocation Rel = GetRelocation(relocationId);
             Rel.ExecuteRelocation();
+            bvContext.Relocations.Remove(Rel);
             bvContext.SaveChanges();
 		}
 
