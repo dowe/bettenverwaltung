@@ -18,7 +18,7 @@ namespace Bettenverwaltung
 
         private const int NUMBER_OF_BEDS = 200;
 
-        private const int MAX_VARCHAR_LENGTH = 255;
+        private const int MAX_VARCHAR_LENGTH = 128;
         private readonly Color INVALID_COLOR =  Color.Yellow;
         private readonly Color VALID_COLOR =    Color.White;
 
@@ -353,9 +353,9 @@ namespace Bettenverwaltung
             StringBuilder sb = new StringBuilder();
             sb.Append(" - ");
             sb.Append(bed.GetPatient().GetLastName());
-            sb.Append(" ");
+            sb.Append(", ");
             sb.Append(bed.GetPatient().GetFirstName());
-            sb.Append(", Station ");
+            sb.Append("; Station ");
             sb.Append(ConvertStationToString(bed.GetStation()));
             lblPatText.Text = sb.ToString();
             resultLinkButton.Controls.Add(lblPatText);

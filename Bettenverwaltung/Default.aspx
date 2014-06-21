@@ -1,9 +1,9 @@
-﻿<%@ Page Title="Bettenverwaltung" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Bettenverwaltung._Default" %>
+﻿<%@ Page Title="Bettenverwaltung" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Bettenverwaltung._Default" MaintainScrollPositionOnPostback="true" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <form id="form1" runat="server">
         <div class="divCenter">
-            <h1>Bettenverwaltung 0.01</h1>
+            <h1>Bettenverwaltung 0.8</h1>
             <div class="divContent">
                 <div class="divLeft">
                     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
