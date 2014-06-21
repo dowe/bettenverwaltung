@@ -15,6 +15,7 @@ namespace Bettenverwaltung
     /// <summary>
     /// Patient der angelegt wird
     /// </summary>
+    [Serializable]
     public class Patient                                    
     {
         [Key]

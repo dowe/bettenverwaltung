@@ -15,6 +15,7 @@ namespace Bettenverwaltung
     /// <summary>
     ///  Hier wird die Verlegungshistorie des Patienten gespreichert. Jede History Klasse ist einem Patienten zugeordnet.
     /// </summary>
+    [Serializable]
     public class History                                               
     {
         [Key]

@@ -11,18 +11,25 @@ namespace Bettenverwaltung
 {
     public partial class _Default : Page
     {
+        // ViewState Keys (must be unique)
+        // Keys for values that represent the current state of the view
         private const string VSKEY_SELECTED_BED_INDEX_ONE_BASED = "selectedBedIndex";
         private const string VSKEY_ACCEPTED_NOT_ID = "acceptedNotId";
+        // Magic values for default state
         private const int VSVAL_SELECTED_BED_INDEX_ONE_BASED_NONE = -1;
         private const int VSVAL_ACCEPTED_NOT_ID_NONE = -1;
 
-        private const int NUMBER_OF_BEDS = 200;
+        // Keys for the objects for recreation of controls after postback
+        private const string VSKEY_POSTBACK_BEDS = "postbackBeds";
+        private const string VSKEY_POSTBACK_RELOCATIONS = "postbackRelocations";
+        private const string VSKEY_POSTBACK_SEARCH_RESULTS = "postbackSearchResults";
 
+        // Constants for validation of user input
         private const int MAX_VARCHAR_LENGTH = 128;
-        private readonly Color INVALID_COLOR =  Color.Yellow;
-        private readonly Color VALID_COLOR =    Color.White;
+        private readonly Color INVALID_COLOR = Color.Yellow;
+        private readonly Color VALID_COLOR = Color.White;
 
-        // dynamic ID Prefixes
+        // Prefixes for id of dynamically generated controls (must be unique)
         private const string DYN_PREFIX_BED = "bed";
         private const string DYN_PREFIX_NOT = "not";
         private const string DYN_PREFIX_NOT_CANCEL = "notCancel";
@@ -62,58 +69,114 @@ namespace Bettenverwaltung
             this.controller = controller;
         }
 
-		protected virtual void Page_Load(object sender, EventArgs e)
-		{
+        protected virtual void Page_Load(object sender, EventArgs e)
+        {
             if (!IsPostBack)
             {
+                // Is No Postback
                 InitViewState();
                 SwitchToDetailsTab();
+                InitAllFromDB();
             }
-            InitAll();
-		}
+            else
+            {
+                // Is Postback
+                InitAllFromViewState();
+            }
+        }
 
-        private void InitAll()
+        #region Init
+
+        private void InitViewState()
         {
-            InitSearchResults();
-            InitBeds();
-            InitRelocations();
+            ViewState.Add(VSKEY_SELECTED_BED_INDEX_ONE_BASED, VSVAL_SELECTED_BED_INDEX_ONE_BASED_NONE);
+            ViewState.Add(VSKEY_ACCEPTED_NOT_ID, VSVAL_ACCEPTED_NOT_ID_NONE);
+            ViewState.Add(VSKEY_POSTBACK_BEDS, null);
+            ViewState.Add(VSKEY_POSTBACK_RELOCATIONS, null);
+            ViewState.Add(VSKEY_POSTBACK_SEARCH_RESULTS, null);
+        }
+
+        private void InitAllFromDB()
+        {
+            InitBedControlsFromDB();
+            InitSearchResultControlsFromDB();
+            InitRelocationControlsFromDB();
+            InitTriggers();
+        }
+        /// <summary>
+        /// Restores the dynamic controls from the viewstate if there are entries.
+        /// If not the controls are recreated from the database.
+        /// </summary>
+        private void InitAllFromViewState()
+        {
+            InitBedControlsFromViewState();
+            InitSearchResultControlsFromViewState();
+            InitRelocationControlsFromViewState();
             InitTriggers();
         }
 
-        private void InitViewState() {
-            ViewState.Add(VSKEY_SELECTED_BED_INDEX_ONE_BASED, VSVAL_SELECTED_BED_INDEX_ONE_BASED_NONE);
-            ViewState.Add(VSKEY_ACCEPTED_NOT_ID, VSVAL_ACCEPTED_NOT_ID_NONE);
+        private void ClearBedControls()
+        {
+            divStationPaediatrieBeds.Controls.Clear();
+            divStationGynaekologieBeds.Controls.Clear();
+            divStationInnereMedizinBeds.Controls.Clear();
+            divStationOrthopaedieBeds.Controls.Clear();
+        }
+        private void ClearSearchResultControls()
+        {
+            divSearchResultList.Controls.Clear();
+        }
+        private void ClearRelocationControls()
+        {
+            divNotifications.Controls.Clear();
         }
 
-		private void InitBeds()
-		{
+        private void InitBedControlsFromDB()
+        {
             try
             {
                 List<IBedView> beds = controller.GetBettList();
-                divStationPaediatrieBeds.Controls.Clear();
-                divStationGynaekologieBeds.Controls.Clear();
-                divStationInnereMedizinBeds.Controls.Clear();
-                divStationOrthopaedieBeds.Controls.Clear();
+                ClearBedControls();
 
-                //beds.Sort(); // make sure the beds are added in correct order
-
-                foreach (IBedView bed in beds) {
-                    AddBed(bed);
+                foreach (IBedView bed in beds)
+                {
+                    AddBedControl(bed);
                 }
+
+                // Store in ViewState
+                ViewState[VSKEY_POSTBACK_BEDS] = beds.ToArray();
             }
             catch (BedException e)
             {
                 PrintErrorMessage(e);
             }
-		}
-        private void AddBed(IBedView bed)
+        }
+        private void InitBedControlsFromViewState()
+        {
+            if (ViewState[VSKEY_POSTBACK_BEDS] != null)
+            {
+                ClearBedControls();
+                IBedView[] beds = (IBedView[])ViewState[VSKEY_POSTBACK_BEDS];
+                foreach (Bed b in beds)
+                {
+                    AddBedControl(b);
+                }
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("Beds where not in ViewState -> load from DB.");
+                InitBedControlsFromDB();
+            }
+        }
+        private void AddBedControl(IBedView bed)
         {
             LinkButton btn = new LinkButton();
 
             // select CssClass
             if (bed.IsEmpty())
             {
-                if (bed.IsGettingCleaned()) {
+                if (bed.IsGettingCleaned())
+                {
                     btn.CssClass = CSS_CLASS_BED_CLEANING;
                 }
                 else if (bed.IsInRelocation())
@@ -171,274 +234,11 @@ namespace Bettenverwaltung
             }
         }
 
-		protected virtual void Bed_Buttons_Click(object sender, EventArgs e)
-		{
-            try
-            {
-                LinkButton btnSender = (LinkButton)sender;
-                string id = btnSender.ID;
-                id = id.Remove(0, DYN_PREFIX_BED.Length);
-                int idOneBased = Int32.Parse(id);
-                DisplayBed(controller.DisplayPatient(idOneBased));
-            }
-            catch (BedException exception)
-            {
-                PrintErrorMessage(exception);
-            }
-		}
-
-		protected virtual void Dismiss_Patient_Click(object sender, EventArgs e)
-		{
-            try
-            {
-                if ((int)ViewState[VSKEY_SELECTED_BED_INDEX_ONE_BASED] != VSVAL_SELECTED_BED_INDEX_ONE_BASED_NONE)
-                {
-                    int selectedBedId = (int)ViewState[VSKEY_SELECTED_BED_INDEX_ONE_BASED];
-                    DisplayBed(controller.DismissPatient(selectedBedId));
-                }
-            }
-            catch (BedException ex)
-            {
-                PrintErrorMessage(ex);
-            }
-		}
-
-		protected virtual void Add_Patient_Click(object sender, EventArgs e)
-		{
-            try
-            {
-                if (ValidateAddPatientInput() == true)
-                {
-                    // there should not be any parsing errors beyond this point
-                    string firstName = txtBoxAddPatFirstName.Text;
-                    string lastName = txtBoxAddPatLastName.Text;
-                    EStation station = ConvertStringToStation(dropDownListAddPatStation.Text);
-                    DateTime birthday = DateTime.Parse(txtBoxAddPatBirthday.Text);
-                    bool isFemale = dropDownListAddPatGender.Text.Equals("w");
-
-                    IBedView destBed = controller.AddPatient(
-                        firstName,
-                        lastName,
-                        station,
-                        birthday,
-                        isFemale);
-
-                    if (destBed == null)
-                    {
-                        ShowMessageBox("Es wurde kein geeignetes Bett für den Patienten gefunden. Er muss in ein anderes Krankenhaus verlegt werden.");
-                    }
-                    else
-                    {
-                        DisplayBed(destBed);
-                    }
-
-                }
-            }
-            catch (BedException exception)
-            {
-                PrintErrorMessage(exception);
-            }
-		}
-
-        private void ResetValidationWarnings()
-        {
-            txtBoxAddPatFirstName.BackColor = VALID_COLOR;
-            txtBoxAddPatFirstName.ToolTip = "";
-
-            txtBoxAddPatLastName.BackColor = VALID_COLOR;
-            txtBoxAddPatLastName.ToolTip = "";
-
-            txtBoxAddPatBirthday.BackColor = VALID_COLOR;
-            txtBoxAddPatBirthday.ToolTip = "";
-        }
-
-        private bool ValidateAddPatientInput()
-        {
-            bool res = true;
-
-            ResetValidationWarnings();
-            // validate first name
-            if (!ValidateTextBoxNotEmpty(txtBoxAddPatFirstName))
-            {
-                res = false;
-            }
-            if (txtBoxAddPatFirstName.Text.Length > MAX_VARCHAR_LENGTH)
-            {
-                res = false;
-                txtBoxAddPatFirstName.BackColor = INVALID_COLOR;
-                txtBoxAddPatFirstName.ToolTip = "Darf maximal " + MAX_VARCHAR_LENGTH.ToString() + " Zeichen lang sein.";
-            }
-            
-            // validate last name
-            if (!ValidateTextBoxNotEmpty(txtBoxAddPatLastName))
-            {
-                res = false;
-            }
-            if (txtBoxAddPatLastName.Text.Length > MAX_VARCHAR_LENGTH)
-            {
-                res = false;
-                txtBoxAddPatLastName.BackColor = INVALID_COLOR;
-                txtBoxAddPatLastName.ToolTip = "Darf maximal " + MAX_VARCHAR_LENGTH.ToString() + " Zeichen lang sein.";
-            }
-
-            // validate birthday
-            bool parseResult;
-            DateTime parseDate;
-            parseResult = DateTime.TryParse(txtBoxAddPatBirthday.Text, out parseDate);
-            if (!parseResult)
-            {
-                res = false;
-                txtBoxAddPatBirthday.BackColor = INVALID_COLOR;
-                txtBoxAddPatBirthday.ToolTip = "Verwenden Sie das Format 'DD:MM:YYYY'.";
-            }
-
-            // show message if necessary
-            if (res == false)
-            {
-                ShowMessageBox("Bitte überprüfen sie die eingegebenen Daten noch einmal.");
-            }
-            
-            return res;
-        }
-
-        private bool ValidateTextBoxNotEmpty(TextBox box)
-        {
-            bool res = true;
-
-            if (box.Text.Length == 0)
-            {
-                res = false;
-                box.BackColor = INVALID_COLOR;
-                box.ToolTip = "Darf nicht leer sein.";
-            }
-
-            return res;
-        }
-
-		protected virtual void Search_Click(object sender, EventArgs e)
-		{
-            InitSearchResults();
-		}
-
-        private void InitSearchResults()
+        private void InitRelocationControlsFromDB()
         {
             try
             {
-                divSearchResultList.Controls.Clear();
-                List<IBedView> result = controller.SearchPatient(txtBoxSearchQuery.Text);
-                foreach (IBedView bed in result)
-                {
-                    AddSearchResultItem(bed);
-                }
-            }
-            catch (BedException ex)
-            {
-                PrintErrorMessage(ex);
-            }
-        }
-
-        private void AddSearchResultItem(IBedView bed)
-        {
-            LinkButton resultLinkButton = new LinkButton();
-            resultLinkButton.ID = DYN_PREFIX_SEARCH_RESULT + bed.GetBedId();
-            resultLinkButton.CssClass = CSS_CLASS_BTN_SEARCH_RESULT_LIST_ITEM;
-            resultLinkButton.Click += Search_Item_Click;
-
-            Label lblPatId = new Label();
-            lblPatId.Text = bed.GetPatient().GetPatientId().ToString();
-            lblPatId.CssClass = CSS_CLASS_LBL_PAT_ID;
-            resultLinkButton.Controls.Add(lblPatId);
-
-            Label lblPatText = new Label();
-            StringBuilder sb = new StringBuilder();
-            sb.Append(" - ");
-            sb.Append(bed.GetPatient().GetLastName());
-            sb.Append(", ");
-            sb.Append(bed.GetPatient().GetFirstName());
-            sb.Append("; Station ");
-            sb.Append(ConvertStationToString(bed.GetStation()));
-            lblPatText.Text = sb.ToString();
-            resultLinkButton.Controls.Add(lblPatText);
-
-            divSearchResultList.Controls.Add(resultLinkButton);
-        }
-
-		protected virtual void Tab_Details_Click(object sender, EventArgs e)
-		{
-            SwitchToDetailsTab();
-		}
-
-		protected virtual void Tab_Search_Click(object sender, EventArgs e)
-		{
-            SwitchToSearchTab();
-		}
-
-		protected virtual void Tab_Add_Click(object sender, EventArgs e)
-		{
-            SwitchToAddTab();
-		}
-
-		protected virtual void Accept_Relocation_Click(object sender, EventArgs e)
-		{
-            try
-            {
-                LinkButton btn = (LinkButton)sender;
-                int relId = Int32.Parse(btn.ID.Remove(0, DYN_PREFIX_NOT.Length));
-                controller.AcceptRelocation(relId);
-                ViewState[VSKEY_ACCEPTED_NOT_ID] = relId;
-                InitAll();
-            }
-            catch (BedException ex)
-            {
-                PrintErrorMessage(ex);
-            }
-		}
-
-		protected virtual void Cancel_Relocation_Click(object sender, EventArgs e)
-		{
-            try
-            {
-                LinkButton btn = (LinkButton)sender;
-                int relId = Int32.Parse(btn.ID.Remove(0, DYN_PREFIX_NOT_CANCEL.Length));
-                controller.CancelRelocation(relId);
-                ViewState[VSKEY_ACCEPTED_NOT_ID] = VSVAL_ACCEPTED_NOT_ID_NONE;
-                InitAll();
-            }
-            catch (BedException ex)
-            {
-                PrintErrorMessage(ex);
-            }
-		}
-
-		protected virtual void Confirm_Relocation_Click(object sender, EventArgs e)
-		{
-            try
-            {
-                LinkButton btn = (LinkButton)sender;
-                int relId = Int32.Parse(btn.ID.Remove(0, DYN_PREFIX_NOT.Length));
-                controller.ConfirmRelocation(relId);
-                ViewState[VSKEY_ACCEPTED_NOT_ID] = VSVAL_ACCEPTED_NOT_ID_NONE;
-                InitAll();
-            }
-            catch (BedException ex)
-            {
-                PrintErrorMessage(ex);
-            }
-		}
-
-		protected virtual void Search_Item_Click(object sender, EventArgs e)
-		{
-            int bedIdOneBased;
-            LinkButton btn = (LinkButton)sender;
-            bedIdOneBased = Int32.Parse(btn.ID.Remove(0, DYN_PREFIX_SEARCH_RESULT.Length));
-            DisplayBed(controller.DisplayPatient(bedIdOneBased));
-		}
-
-		private void InitRelocations()
-		{
-            try
-            {
-                divNotifications.Controls.Clear();
+                ClearRelocationControls();
                 List<Relocation> relocations = controller.GetActiveRelocationList();
                 // first update deprecated accepted relocation
                 if ((int)ViewState[VSKEY_ACCEPTED_NOT_ID] != VSVAL_ACCEPTED_NOT_ID_NONE)
@@ -462,34 +262,64 @@ namespace Bettenverwaltung
 
                 foreach (Relocation relocation in relocations)
                 {
-                    // display this relocation ?
-                    if (ViewState[VSKEY_ACCEPTED_NOT_ID] != null && (int)ViewState[VSKEY_ACCEPTED_NOT_ID] != VSVAL_ACCEPTED_NOT_ID_NONE)
+                    if (shallRelocationBeDisplayed(relocation))
                     {
-                        // this client has accepted a notification
-                        if (relocation.GetId() == (int)ViewState[VSKEY_ACCEPTED_NOT_ID])
-                        {
-                            // this is the relocation accepted by this client
-                            AddRelocation(relocation);
-                        }
-                    }
-                    else
-                    {
-                        // this client has not accepted a notification
-                        if (relocation.IsAccepted() == false)
-                        {
-                            // only display relocations that are not accepted by other clients
-                            AddRelocation(relocation);
-                        }
+                        AddRelocationControl(relocation);
                     }
                 }
+                ViewState[VSKEY_POSTBACK_RELOCATIONS] = relocations.ToArray();
             }
             catch (BedException exception)
             {
                 PrintErrorMessage(exception);
             }
-		}
+        }
+        private void InitRelocationControlsFromViewState()
+        {
+            if (ViewState[VSKEY_POSTBACK_RELOCATIONS] != null)
+            {
+                ClearRelocationControls();
+                Relocation[] relocations = (Relocation[])ViewState[VSKEY_POSTBACK_RELOCATIONS];
+                foreach (Relocation relocation in relocations)
+                {
+                    if (shallRelocationBeDisplayed(relocation))
+                    {
+                        AddRelocationControl(relocation);
+                    }
+                }
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("Relocations where not in ViewState -> load from DB.");
+                InitRelocationControlsFromDB();
+            }
+        }
+        private bool shallRelocationBeDisplayed(Relocation relocation)
+        {
+            bool res = false;
+            // display this relocation ?
+            if (ViewState[VSKEY_ACCEPTED_NOT_ID] != null && (int)ViewState[VSKEY_ACCEPTED_NOT_ID] != VSVAL_ACCEPTED_NOT_ID_NONE)
+            {
+                // this client has accepted a notification
+                if (relocation.GetId() == (int)ViewState[VSKEY_ACCEPTED_NOT_ID])
+                {
+                    // this is the relocation accepted by this client
+                    res = true;
+                }
+            }
+            else
+            {
+                // this client has not accepted a notification
+                if (relocation.IsAccepted() == false)
+                {
+                    // only display relocations that are not accepted by other clients
+                    res = true;
+                }
+            }
 
-        private void AddRelocation(Relocation relocation)
+            return res;
+        }
+        private void AddRelocationControl(Relocation relocation)
         {
             Panel panel = new Panel();
             panel.CssClass = CSS_CLASS_NOT_LIST_ITEM;
@@ -504,13 +334,13 @@ namespace Bettenverwaltung
             sb.Append(" (PID ");
             sb.Append(pat.GetPatientId().ToString());
             sb.Append(")<br />");
-            
+
             sb.Append("Derzeit: Bett ");
             sb.Append(relocation.GetSourceBed().GetBedId().ToString());
             sb.Append(", Station ");
             sb.Append(ConvertStationToString(relocation.GetSourceBed().GetStation()));
             sb.Append("<br />");
-            
+
             sb.Append("Nach:    Bett ");
             sb.Append(relocation.GetDestinationBed().GetBedId().ToString());
             sb.Append(", Station ");
@@ -551,35 +381,392 @@ namespace Bettenverwaltung
             divNotifications.Controls.Add(panel);
         }
 
-		protected virtual void Update_Overview_Tick(object sender, EventArgs e)
-		{
-			InitBeds();
-            InitTriggers();
-		}
+        private void InitSearchResultControlsFromDB()
+        {
+            try
+            {
+                ClearSearchResultControls();
+                List<IBedView> result = controller.SearchPatient(txtBoxSearchQuery.Text);
+                foreach (IBedView bed in result)
+                {
+                    AddSearchResultControl(bed);
+                }
 
-		protected virtual void Update_Notification_Tick(object sender, EventArgs e)
-		{
-            InitRelocations();
-            InitTriggers();
-		}
+                // store in ViewState
+                ViewState[VSKEY_POSTBACK_SEARCH_RESULTS] = result.ToArray();
+            }
+            catch (BedException ex)
+            {
+                PrintErrorMessage(ex);
+            }
+        }
+        private void InitSearchResultControlsFromViewState()
+        {
+            if (ViewState[VSKEY_POSTBACK_SEARCH_RESULTS] != null)
+            {
+                ClearSearchResultControls();
+                IBedView[] results = (IBedView[])ViewState[VSKEY_POSTBACK_SEARCH_RESULTS];
+                foreach (IBedView res in results)
+                {
+                    AddSearchResultControl(res);
+                }
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("Relocations where not in ViewState -> load from DB.");
+                InitSearchResultControlsFromDB();
+            }
+        }
+        private void AddSearchResultControl(IBedView bed)
+        {
+            LinkButton resultLinkButton = new LinkButton();
+            resultLinkButton.ID = DYN_PREFIX_SEARCH_RESULT + bed.GetBedId();
+            resultLinkButton.CssClass = CSS_CLASS_BTN_SEARCH_RESULT_LIST_ITEM;
+            resultLinkButton.Click += Search_Item_Click;
 
-		protected virtual void PrintErrorMessage(BedException e)
-		{
+            Label lblPatId = new Label();
+            lblPatId.Text = bed.GetPatient().GetPatientId().ToString();
+            lblPatId.CssClass = CSS_CLASS_LBL_PAT_ID;
+            resultLinkButton.Controls.Add(lblPatId);
+
+            Label lblPatText = new Label();
+            StringBuilder sb = new StringBuilder();
+            sb.Append(" - ");
+            sb.Append(bed.GetPatient().GetLastName());
+            sb.Append(", ");
+            sb.Append(bed.GetPatient().GetFirstName());
+            sb.Append("; Station ");
+            sb.Append(ConvertStationToString(bed.GetStation()));
+            lblPatText.Text = sb.ToString();
+            resultLinkButton.Controls.Add(lblPatText);
+
+            divSearchResultList.Controls.Add(resultLinkButton);
+        }
+
+        private void InitTriggers()
+        {
+            InitOverviewTriggers();
+            InitTabTriggers();
+            InitRelocationTriggers();
+        }
+
+        private void InitOverviewTriggers()
+        {
+            UpdatePanel updatePanel = updatePanelOverview;
+            updatePanel.Triggers.Clear();
+
+            // bedButtons
+            foreach (LinkButton bedBtn in divStationPaediatrieBeds.Controls)
+            {
+                AddTrigger(bedBtn, updatePanel);
+            }
+            foreach (LinkButton bedBtn in divStationGynaekologieBeds.Controls)
+            {
+                AddTrigger(bedBtn, updatePanel);
+            }
+            foreach (LinkButton bedBtn in divStationInnereMedizinBeds.Controls)
+            {
+                AddTrigger(bedBtn, updatePanel);
+            }
+            foreach (LinkButton bedBtn in divStationOrthopaedieBeds.Controls)
+            {
+                AddTrigger(bedBtn, updatePanel);
+            }
+
+            // resTriggers
+            foreach (LinkButton resBtn in divSearchResultList.Controls)
+            {
+                AddTrigger(resBtn, updatePanel);
+            }
+        }
+        private void InitTabTriggers()
+        {
+            UpdatePanel updatePanel = updatePanelTabs;
+            updatePanel.Triggers.Clear();
+
+            foreach (LinkButton btn in divSearchResultList.Controls)
+            {
+                AddTrigger(btn, updatePanel);
+            }
+        }
+        private void InitRelocationTriggers()
+        {
+            UpdatePanel updatePanel = updatePanelNot;
+            updatePanel.Triggers.Clear();
+
+            var updatePanelPanels = divNotifications.Controls.OfType<Panel>();
+            foreach (Panel pnl in updatePanelPanels)
+            {
+                var btns = pnl.Controls.OfType<LinkButton>();
+                foreach (LinkButton btn in btns)
+                {
+                    UpdatePanelTrigger trigger = CreateTrigger(btn.ID);
+                    updatePanel.Triggers.Add(trigger);
+                }
+            }
+        }
+
+        private void AddTrigger(Control ctrl, UpdatePanel panel)
+        {
+            UpdatePanelTrigger trigger = CreateTrigger(ctrl.ID);
+            panel.Triggers.Add(trigger);
+        }
+        private UpdatePanelTrigger CreateTrigger(string controlId)
+        {
+            PostBackTrigger trigger = new PostBackTrigger();
+            trigger.ControlID = controlId;
+            return trigger;
+        }
+
+        #endregion Init
+
+        protected virtual void Bed_Buttons_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LinkButton btnSender = (LinkButton)sender;
+                string id = btnSender.ID;
+                id = id.Remove(0, DYN_PREFIX_BED.Length);
+                int idOneBased = Int32.Parse(id);
+                DisplayBed(controller.DisplayPatient(idOneBased));
+            }
+            catch (BedException exception)
+            {
+                PrintErrorMessage(exception);
+            }
+        }
+
+        protected virtual void Dismiss_Patient_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if ((int)ViewState[VSKEY_SELECTED_BED_INDEX_ONE_BASED] != VSVAL_SELECTED_BED_INDEX_ONE_BASED_NONE)
+                {
+                    int selectedBedId = (int)ViewState[VSKEY_SELECTED_BED_INDEX_ONE_BASED];
+                    DisplayBed(controller.DismissPatient(selectedBedId));
+                }
+            }
+            catch (BedException ex)
+            {
+                PrintErrorMessage(ex);
+            }
+        }
+
+        protected virtual void Add_Patient_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ValidateAddPatientInput() == true)
+                {
+                    // there should not be any parsing errors beyond this point
+                    string firstName = txtBoxAddPatFirstName.Text;
+                    string lastName = txtBoxAddPatLastName.Text;
+                    EStation station = ConvertStringToStation(dropDownListAddPatStation.Text);
+                    DateTime birthday = DateTime.Parse(txtBoxAddPatBirthday.Text);
+                    bool isFemale = dropDownListAddPatGender.Text.Equals("w");
+
+                    IBedView destBed = controller.AddPatient(
+                        firstName,
+                        lastName,
+                        station,
+                        birthday,
+                        isFemale);
+
+                    if (destBed == null)
+                    {
+                        ShowMessageBox("Es wurde kein geeignetes Bett für den Patienten gefunden. Er muss in ein anderes Krankenhaus verlegt werden.");
+                    }
+                    else
+                    {
+                        DisplayBed(destBed);
+                    }
+
+                }
+            }
+            catch (BedException exception)
+            {
+                PrintErrorMessage(exception);
+            }
+        }
+
+        private void ResetValidationWarnings()
+        {
+            txtBoxAddPatFirstName.BackColor = VALID_COLOR;
+            txtBoxAddPatFirstName.ToolTip = "";
+
+            txtBoxAddPatLastName.BackColor = VALID_COLOR;
+            txtBoxAddPatLastName.ToolTip = "";
+
+            txtBoxAddPatBirthday.BackColor = VALID_COLOR;
+            txtBoxAddPatBirthday.ToolTip = "";
+        }
+
+        private bool ValidateAddPatientInput()
+        {
+            bool res = true;
+
+            ResetValidationWarnings();
+            // validate first name
+            if (!ValidateTextBoxNotEmpty(txtBoxAddPatFirstName))
+            {
+                res = false;
+            }
+            if (txtBoxAddPatFirstName.Text.Length > MAX_VARCHAR_LENGTH)
+            {
+                res = false;
+                txtBoxAddPatFirstName.BackColor = INVALID_COLOR;
+                txtBoxAddPatFirstName.ToolTip = "Darf maximal " + MAX_VARCHAR_LENGTH.ToString() + " Zeichen lang sein.";
+            }
+
+            // validate last name
+            if (!ValidateTextBoxNotEmpty(txtBoxAddPatLastName))
+            {
+                res = false;
+            }
+            if (txtBoxAddPatLastName.Text.Length > MAX_VARCHAR_LENGTH)
+            {
+                res = false;
+                txtBoxAddPatLastName.BackColor = INVALID_COLOR;
+                txtBoxAddPatLastName.ToolTip = "Darf maximal " + MAX_VARCHAR_LENGTH.ToString() + " Zeichen lang sein.";
+            }
+
+            // validate birthday
+            bool parseResult;
+            DateTime parseDate;
+            parseResult = DateTime.TryParse(txtBoxAddPatBirthday.Text, out parseDate);
+            if (!parseResult)
+            {
+                res = false;
+                txtBoxAddPatBirthday.BackColor = INVALID_COLOR;
+                txtBoxAddPatBirthday.ToolTip = "Verwenden Sie das Format 'DD:MM:YYYY'.";
+            }
+
+            // show message if necessary
+            if (res == false)
+            {
+                ShowMessageBox("Bitte überprüfen sie die eingegebenen Daten noch einmal.");
+            }
+
+            return res;
+        }
+
+        private bool ValidateTextBoxNotEmpty(TextBox box)
+        {
+            bool res = true;
+
+            if (box.Text.Length == 0)
+            {
+                res = false;
+                box.BackColor = INVALID_COLOR;
+                box.ToolTip = "Darf nicht leer sein.";
+            }
+
+            return res;
+        }
+
+        protected virtual void Search_Click(object sender, EventArgs e)
+        {
+            InitSearchResultControlsFromDB();
+        }
+
+        protected virtual void Tab_Details_Click(object sender, EventArgs e)
+        {
+            SwitchToDetailsTab();
+        }
+
+        protected virtual void Tab_Search_Click(object sender, EventArgs e)
+        {
+            SwitchToSearchTab();
+        }
+
+        protected virtual void Tab_Add_Click(object sender, EventArgs e)
+        {
+            SwitchToAddTab();
+        }
+
+        protected virtual void Accept_Relocation_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LinkButton btn = (LinkButton)sender;
+                int relId = Int32.Parse(btn.ID.Remove(0, DYN_PREFIX_NOT.Length));
+
+                controller.AcceptRelocation(relId);
+                ViewState[VSKEY_ACCEPTED_NOT_ID] = relId;
+                InitAllFromDB();
+            }
+            catch (BedException ex)
+            {
+                PrintErrorMessage(ex);
+            }
+        }
+
+        protected virtual void Cancel_Relocation_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LinkButton btn = (LinkButton)sender;
+                int relId = Int32.Parse(btn.ID.Remove(0, DYN_PREFIX_NOT_CANCEL.Length));
+
+                controller.CancelRelocation(relId);
+                ViewState[VSKEY_ACCEPTED_NOT_ID] = VSVAL_ACCEPTED_NOT_ID_NONE;
+                InitAllFromDB();
+            }
+            catch (BedException ex)
+            {
+                PrintErrorMessage(ex);
+            }
+        }
+
+        protected virtual void Confirm_Relocation_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LinkButton btn = (LinkButton)sender;
+                int relId = Int32.Parse(btn.ID.Remove(0, DYN_PREFIX_NOT.Length));
+
+                controller.ConfirmRelocation(relId);
+                ViewState[VSKEY_ACCEPTED_NOT_ID] = VSVAL_ACCEPTED_NOT_ID_NONE;
+                InitAllFromDB();
+            }
+            catch (BedException ex)
+            {
+                PrintErrorMessage(ex);
+            }
+        }
+
+        protected virtual void Search_Item_Click(object sender, EventArgs e)
+        {
+            int bedIdOneBased;
+            LinkButton btn = (LinkButton)sender;
+            bedIdOneBased = Int32.Parse(btn.ID.Remove(0, DYN_PREFIX_SEARCH_RESULT.Length));
+            DisplayBed(controller.DisplayPatient(bedIdOneBased));
+        }
+
+        protected virtual void Update_Overview_And_Notifications_Tick(object sender, EventArgs e)
+        {
+            InitBedControlsFromDB();
+            InitRelocationControlsFromDB();
+            InitTriggers();
+        }
+
+        protected virtual void PrintErrorMessage(BedException e)
+        {
             ShowMessageBox(e.Message);
-		}
+        }
 
-		private int GetAcceptedRelocationId()
-		{
-			throw new System.NotImplementedException();
-		}
+        private int GetAcceptedRelocationId()
+        {
+            throw new System.NotImplementedException();
+        }
 
-		private void SetAcceptedRelocationId(int? id)
-		{
-			throw new System.NotImplementedException();
-		}
+        private void SetAcceptedRelocationId(int? id)
+        {
+            throw new System.NotImplementedException();
+        }
 
-		private void DisplayBed(IBedView bed)
-		{
+        private void DisplayBed(IBedView bed)
+        {
             // display patient if there is one in the bed
             if (!bed.IsEmpty())
             {
@@ -587,15 +774,17 @@ namespace Bettenverwaltung
                 txtBoxDetailsPatId.Text = pat.GetPatientId().ToString();
                 txtBoxDetailsPatName.Text = pat.GetLastName() + ", " + pat.GetFirstName();
                 string genderString;
-                if (pat.IsFemale()) {
+                if (pat.IsFemale())
+                {
                     genderString = "w";
                 }
-                else {
+                else
+                {
                     genderString = "m";
                 }
                 txtBoxDetailsPatGender.Text = genderString;
                 txtBoxDetailsPatBirthday.Text = pat.GetBirthday().ToString();
-                
+
                 txtBoxDetailsPatCorrectStation.Text = ConvertStationToString(pat.GetCorrectStation());
 
                 txtBoxDetailsPatHistory.Text = "";
@@ -624,10 +813,10 @@ namespace Bettenverwaltung
             // mark the bed as selected
             ViewState.Add(VSKEY_SELECTED_BED_INDEX_ONE_BASED, bed.GetBedId());
 
-            InitBeds();
+            InitBedControlsFromDB();
 
             SwitchToDetailsTab();
-		}
+        }
 
         private void SwitchToDetailsTab()
         {
@@ -709,84 +898,6 @@ namespace Bettenverwaltung
                     break;
             }
             return station;
-        }
-
-        private UpdatePanelTrigger CreateTrigger(string controlId)
-        {
-            PostBackTrigger trigger = new PostBackTrigger();
-            trigger.ControlID = controlId;
-            return trigger;
-        }
-
-        private void InitTriggers()
-        {
-            InitOverviewTriggers();
-            InitTabTriggers();
-            InitRelocationTriggers();
-        }
-
-        private void InitOverviewTriggers()
-        {
-            UpdatePanel updatePanel = updatePanelOverview;
-            updatePanel.Triggers.Clear();
-            
-            // bedButtons
-            foreach (LinkButton bedBtn in divStationPaediatrieBeds.Controls)
-            {
-                AddTrigger(bedBtn, updatePanel);
-            }
-            foreach (LinkButton bedBtn in divStationGynaekologieBeds.Controls)
-            {
-                AddTrigger(bedBtn, updatePanel);
-            }
-            foreach (LinkButton bedBtn in divStationInnereMedizinBeds.Controls)
-            {
-                AddTrigger(bedBtn, updatePanel);
-            }
-            foreach (LinkButton bedBtn in divStationOrthopaedieBeds.Controls)
-            {
-                AddTrigger(bedBtn, updatePanel);
-            }
-
-            // resTriggers
-            foreach (LinkButton resBtn in divSearchResultList.Controls)
-            {
-                AddTrigger(resBtn, updatePanel);
-            }
-        }
-
-        private void InitTabTriggers()
-        {
-            UpdatePanel updatePanel = updatePanelTabs;
-            updatePanel.Triggers.Clear();
-
-            foreach (LinkButton btn in divSearchResultList.Controls)
-            {
-                AddTrigger(btn, updatePanel);
-            }
-        }
-
-        private void InitRelocationTriggers()
-        {
-            UpdatePanel updatePanel = updatePanelNot;
-            updatePanel.Triggers.Clear();
-
-            var updatePanelPanels = divNotifications.Controls.OfType<Panel>();
-            foreach (Panel pnl in updatePanelPanels)
-            {
-                var btns = pnl.Controls.OfType<LinkButton>();
-                foreach (LinkButton btn in btns)
-                {
-                    UpdatePanelTrigger trigger = CreateTrigger(btn.ID);
-                    updatePanel.Triggers.Add(trigger);
-                }
-            }
-        }
-
-        private void AddTrigger(Control ctrl, UpdatePanel panel)
-        {
-            UpdatePanelTrigger trigger = CreateTrigger(ctrl.ID);
-            panel.Triggers.Add(trigger);
         }
     }
 }

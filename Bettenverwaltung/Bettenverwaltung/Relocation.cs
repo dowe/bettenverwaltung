@@ -15,6 +15,7 @@ namespace Bettenverwaltung
     /// <summary>
     /// Verlegungsobjekt falls Patient kein Bett in der richtigen Station gefunden hat
     /// </summary>
+    [Serializable]
     public class Relocation
     {
         [Key]

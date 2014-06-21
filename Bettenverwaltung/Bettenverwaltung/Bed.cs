@@ -15,7 +15,8 @@ namespace Bettenverwaltung
     /// <summary>
     /// Datenbankobjekt für die Betten des KHs
     /// </summary>
-	public class Bed : IBedCleaner, IBedView, IComparable<Bed>      
+    [Serializable]
+	public class Bed : IBedCleaner, IBedView   
 	{
         [Key]
         public int bedId
@@ -169,16 +170,6 @@ namespace Bettenverwaltung
 		{
             return this.inRelocation;
 		}
-
-
-        public int CompareTo(Bed other)
-        {
-            int res;
-            if (bedId > other.bedId) res = 1;
-            else if (bedId < other.bedId) res = -1;
-            else res = 0;
-            return res;
-        }
     }
 }
 

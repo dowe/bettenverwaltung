@@ -6,12 +6,13 @@
 //------------------------------------------------------------------------------
 namespace Bettenverwaltung
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Text;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Runtime.Serialization;
+    using System.Text;
 
-	public interface IBedView : IComparable<Bed>
+	public interface IBedView
 	{
 		int GetBedId();
 

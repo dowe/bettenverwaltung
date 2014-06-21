@@ -16,6 +16,7 @@ namespace Bettenverwaltung
     /// <summary>
     /// Verlegungs- oder ErzeugungsItem das zur Patientenhistory gehört
     /// </summary>
+    [Serializable]
     public class HistoryItem
     {
 
