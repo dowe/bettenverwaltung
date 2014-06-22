@@ -7,7 +7,7 @@
             <div class="divContent">
                 <div class="divLeft">
                     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-                    <asp:Timer ID="timerUpdate" runat="server" Interval="10000" OnTick="Update_Overview_And_Notifications_Tick"></asp:Timer>
+                    <asp:Timer ID="timerUpdate" runat="server" Interval="30000" OnTick="Update_Overview_And_Notifications_Tick"></asp:Timer>
                     <asp:UpdatePanel ID="updatePanelOverview" ChildrenAsTriggers="true" runat="server" class="divOverview">
                         <ContentTemplate>
                             <asp:Panel ID="divStationPaediatrie" runat="server" CssClass="divOverviewStation marginRight">
@@ -118,8 +118,8 @@
                             </div>
                         </ContentTemplate>
                         <Triggers>
-                            <asp:PostBackTrigger ControlID="btnAddConfirm"/>
-                            <asp:PostBackTrigger ControlID="btnDetailsDismiss"/>
+                            <asp:PostBackTrigger ControlID="btnAddConfirm" />
+                            <asp:PostBackTrigger ControlID="btnDetailsDismiss" />
                         </Triggers>
                     </asp:UpdatePanel>
                 </div>
@@ -139,5 +139,16 @@
                 </div>
             </div>
         </div>
+        <asp:Panel ID="divOverlay" runat="server" CssClass="divOverlay">
+            <asp:Panel ID="divMessageBox" runat="server" CssClass="divMessageBox">
+                <div style="margin: 10px;">
+                    <asp:Label ID="lblMessageBoxText" Text="TestNachricht 123123123123 sadf sadfjvb hababababable.?" runat="server" CssClass="spanMessageBoxText"></asp:Label>
+                    <div style="margin: 10px">
+                        <asp:Button ID="btnMessageBoxOkay" Text="OK" runat="server" CssClass="btnMessageBoxOkay" />
+                        <asp:Button ID="btnMessageBoxCancel" Text="Abbrechen" Visible="false" runat="server" CssClass="btnMessageBoxCancel" />
+                    </div>
+                </div>
+            </asp:Panel>
+        </asp:Panel>
     </form>
 </asp:Content>
