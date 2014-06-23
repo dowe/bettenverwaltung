@@ -15,14 +15,9 @@ function openClosedNotifications() {
     }
 }
 
-// Stop timerUpdate to prevent the control from losing the focus
-function pauseTimer() {
-    var timerUpdate = $find('MainContent_timerUpdate');
-    timerUpdate._stopTimer();
-}
-
-// Restart timerUpdate so the overview and relocations are updated every X secs again
+// Restart timerUpdate
 function restartTimer() {
     var timerUpdate = $find('MainContent_timerUpdate');
+    timerUpdate._stopTimer();
     timerUpdate._startTimer();
 }

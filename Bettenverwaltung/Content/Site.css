@@ -262,6 +262,9 @@ body,
     height: 154px;
     overflow: auto;
 }
+.divSearchResultList > span {
+    color: #000000;
+}
 
 .lblPatId {
     width: 70px;
@@ -350,7 +353,7 @@ body,
 .btnConfirmRel,
 .btnCancelRel {
     width: 75px;
-    margin-top: 4px;
+    margin-top: 2px;
 }
 
 .btnAcceptRel,
