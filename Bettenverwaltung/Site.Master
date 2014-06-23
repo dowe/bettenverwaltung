@@ -15,7 +15,7 @@
     </asp:PlaceHolder>
 
     <webopt:bundlereference runat="server" path="~/Content/css" />
-    <link href="~/good-sleep.gif" rel="shortcut icon" type="image/gif" />
+    <link href="~/favicon.gif" rel="shortcut icon" type="image/gif" />
 
 </head>
 <body>
