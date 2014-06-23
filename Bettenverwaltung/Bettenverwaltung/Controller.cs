@@ -81,12 +81,25 @@ namespace Bettenverwaltung
                 var reloc = bvContext.Relocations.Where(r => r.sourceBed.bedId == bed.bedId).FirstOrDefault();
                 if (reloc != null)
                 {
+                    //if relocation was accepted by a client, set unaccepted
                     if (reloc.IsAccepted())
                     {
                         reloc.SetUnaccepted();
-                        //delete relocation from DB
                     }
+                    //delete relocation from DB
+                    Bed destinationBed = reloc.destinationBed;  //for new relocation needed
                     bvContext.Relocations.Remove(reloc);
+                    bvContext.SaveChanges();
+
+                    //search for a new relocation for the free destination bed
+                    if (destinationBed != null)
+                    {
+                        reloc = bvContext.Relocations.Where(r => r.sourceBed.patient.correctStation == bed.patient.correctStation).Where(r => r.destinationBed == null).FirstOrDefault();
+                        if (reloc != null)
+                        {
+                            reloc.SetActive(destinationBed);
+                        }
+                    }
                 }
 
                 
