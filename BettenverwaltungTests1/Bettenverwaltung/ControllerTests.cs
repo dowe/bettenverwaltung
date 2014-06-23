@@ -216,17 +216,27 @@ namespace Bettenverwaltung.Tests
 
 
             //relocation dismiss test
-            Patient pat = new Patient("Thor", "mit dem Hammer", DateTime.Now, false, EStation.Orthopaedie);
-            Bed sourceBed = db.Beds.Find(2);
+            
+            
+            Patient pat = new Patient("Thor", "mit dem Hammer", DateTime.Now, false, EStation.Paediatrie);
+            Bed sourceBed = db.Beds.Find(58);
             sourceBed.patient = pat;
             Relocation Rel = new Relocation(sourceBed, EStation.Paediatrie);
-            Bed destBed = db.Beds.Find(3);
+
+            Patient pat2 = new Patient("Yggdrasil", "Leben", DateTime.Now, false, EStation.Paediatrie);
+            Bed sourceBed2 = db.Beds.Find(59);
+            sourceBed2.patient = pat2;
+            Relocation Rel2 = new Relocation(sourceBed2, EStation.Paediatrie);
+
+            Bed destBed = db.Beds.Find(2);
             destBed.patient = null;
             Rel.SetActive(destBed);
             Rel.SetAccepted();
             db.Relocations.Add(Rel);
+            db.Relocations.Add(Rel2);
             db.SaveChanges();
             int relID = Rel.relocationId;
+            int relID2 = Rel2.relocationId;
             control.DismissPatient(sourceBed.bedId);
             db = new BVContext();
             destBed = db.Beds.Find(destBed.bedId);
@@ -235,6 +245,11 @@ namespace Bettenverwaltung.Tests
             Assert.IsNull(bedResult, "relBed testdata existiert noch in der DB");
             Rel = db.Relocations.Find(relID);
             Assert.IsNull(Rel);
+            Rel2 = db.Relocations.Find(relID2);
+            Assert.AreEqual(Rel2.destinationBed.bedId, 2);
+
+
+
 
 
             //Exception

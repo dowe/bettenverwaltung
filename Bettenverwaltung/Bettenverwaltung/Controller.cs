@@ -63,6 +63,7 @@ namespace Bettenverwaltung
         ///Falls das Bett leer ist wird eine Exception geworfen.
         ///Falls es gerade eine Angenommene verlegung für dieses Bett gibt, muss diese abgebrochen werden (setUnaccepted) um das Zielbett zu entsperren.
         ///Falls es eine Verlegung mit diesem Bett als SourceBed gibt muss diese aus der Datenbank gelöscht werden.
+        ///Falls Verlegung aktiv war, wird für das Zielbett eine neue Relocation gesucht
         /// </summary>
         /// <param name="bedId">BedID des Patienten der entlassen werden soll</param>
         /// <returns>gibt des Bett via Interface zurück</returns>
