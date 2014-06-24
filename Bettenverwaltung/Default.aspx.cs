@@ -625,6 +625,7 @@ namespace Bettenverwaltung
                     }
                     else
                     {
+                        InitBedControlsFromDB();
                         DisplayBed(destBed);
                     }
 
