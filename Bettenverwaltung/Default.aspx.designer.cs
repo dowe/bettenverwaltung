@@ -409,6 +409,15 @@ namespace Bettenverwaltung {
         protected global::System.Web.UI.WebControls.Panel divNotifications;
         
         /// <summary>
+        /// updatePanelMessage-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel updatePanelMessage;
+        
+        /// <summary>
         /// divOverlay-Steuerelement
         /// </summary>
         /// <remarks>

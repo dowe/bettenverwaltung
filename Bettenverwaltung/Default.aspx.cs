@@ -470,6 +470,7 @@ namespace Bettenverwaltung
             InitOverviewTriggers();
             InitTabTriggers();
             InitRelocationTriggers();
+            InitMessageTriggers();
         }
 
         private void InitOverviewTriggers()
@@ -478,6 +479,38 @@ namespace Bettenverwaltung
             updatePanel.Triggers.Clear();
 
             // bedButtons
+            AddBedButtonsTriggers(updatePanel);
+
+            // resTriggers
+            AddSearchResultTriggers(updatePanel);
+        }
+        private void InitTabTriggers()
+        {
+            UpdatePanel updatePanel = updatePanelTabs;
+            updatePanel.Triggers.Clear();
+
+            AddSearchResultTriggers(updatePanel);
+        }
+        private void InitRelocationTriggers()
+        {
+            UpdatePanel updatePanel = updatePanelNot;
+            updatePanel.Triggers.Clear();
+
+            AddRelocationButtonsTriggers(updatePanel);
+        }
+
+        private void InitMessageTriggers()
+        {
+            UpdatePanel updatePanel = updatePanelMessage;
+            updatePanel.Triggers.Clear();
+
+            AddRelocationButtonsTriggers(updatePanel);
+            AddBedButtonsTriggers(updatePanel);
+            AddSearchResultTriggers(updatePanel);
+        }
+
+        private void AddBedButtonsTriggers(UpdatePanel updatePanel)
+        {
             foreach (LinkButton bedBtn in divStationPaediatrieBeds.Controls)
             {
                 AddTrigger(bedBtn, updatePanel);
@@ -494,30 +527,10 @@ namespace Bettenverwaltung
             {
                 AddTrigger(bedBtn, updatePanel);
             }
-
-            // resTriggers
-            var resButtons = divSearchResultList.Controls.OfType<LinkButton>();
-            foreach (LinkButton resBtn in resButtons)
-            {
-                AddTrigger(resBtn, updatePanel);
-            }
         }
-        private void InitTabTriggers()
-        {
-            UpdatePanel updatePanel = updatePanelTabs;
-            updatePanel.Triggers.Clear();
 
-            var resButtons = divSearchResultList.Controls.OfType<LinkButton>();
-            foreach (LinkButton btn in resButtons)
-            {
-                AddTrigger(btn, updatePanel);
-            }
-        }
-        private void InitRelocationTriggers()
+        private void AddRelocationButtonsTriggers(UpdatePanel updatePanel)
         {
-            UpdatePanel updatePanel = updatePanelNot;
-            updatePanel.Triggers.Clear();
-
             var updatePanelPanels = divNotifications.Controls.OfType<Panel>();
             foreach (Panel pnl in updatePanelPanels)
             {
@@ -527,6 +540,15 @@ namespace Bettenverwaltung
                     UpdatePanelTrigger trigger = CreateTrigger(btn.ID);
                     updatePanel.Triggers.Add(trigger);
                 }
+            }
+        }
+
+        private void AddSearchResultTriggers(UpdatePanel updatePanel)
+        {
+            var resButtons = divSearchResultList.Controls.OfType<LinkButton>();
+            foreach (LinkButton btn in resButtons)
+            {
+                AddTrigger(btn, updatePanel);
             }
         }
 

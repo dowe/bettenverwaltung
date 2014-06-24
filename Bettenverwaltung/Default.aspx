@@ -140,16 +140,25 @@
                 </div>
             </div>
         </div>
-        <asp:Panel ID="divOverlay" Visible="false" runat="server" CssClass="divOverlay">
-            <asp:Panel ID="divMessageBox" runat="server" CssClass="divMessageBox">
-                <div style="margin: 10px;">
-                    <asp:Label ID="lblMessageBoxText" Text="TestNachricht 123123123123 sadf sadfjvb hababababable.?" runat="server" CssClass="spanMessageBoxText"></asp:Label>
-                    <div style="margin: 10px">
-                        <asp:Button ID="btnMessageBoxOkay" Text="OK" runat="server" OnClick="MessageBox_Okay_Click" CssClass="btnMessageBoxOkay" />
-                        <asp:Button ID="btnMessageBoxCancel" Text="Abbrechen" Visible="false" runat="server" CssClass="btnMessageBoxCancel" />
-                    </div>
-                </div>
-            </asp:Panel>
-        </asp:Panel>
+        <asp:UpdatePanel ID="updatePanelMessage" runat="server">
+            <ContentTemplate>
+                <asp:Panel ID="divOverlay" Visible="false" runat="server" CssClass="divOverlay">
+                    <asp:Panel ID="divMessageBox" runat="server" CssClass="divMessageBox">
+                        <div style="margin: 10px;">
+                            <asp:Label ID="lblMessageBoxText" Text="TestNachricht 123123123123 sadf sadfjvb hababababable.?" runat="server" CssClass="spanMessageBoxText"></asp:Label>
+                            <div style="margin: 10px">
+                                <asp:Button ID="btnMessageBoxOkay" Text="OK" runat="server" OnClick="MessageBox_Okay_Click" CssClass="btnMessageBoxOkay" />
+                                <asp:Button ID="btnMessageBoxCancel" Text="Abbrechen" Visible="false" runat="server" CssClass="btnMessageBoxCancel" />
+                            </div>
+                        </div>
+                    </asp:Panel>
+                </asp:Panel>
+            </ContentTemplate>
+            <Triggers>
+                <asp:AsyncPostBackTrigger ControlID="btnAddConfirm" />
+                <asp:AsyncPostBackTrigger ControlID="btnDetailsDismiss" />
+                <asp:AsyncPostBackTrigger ControlID="btnSearch" />
+            </Triggers>
+        </asp:UpdatePanel>
     </form>
 </asp:Content>
