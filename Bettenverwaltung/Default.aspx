@@ -7,9 +7,9 @@
             <div class="divContent">
                 <div class="divLeft">
                     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-                    <asp:Timer ID="timerUpdate" runat="server" Interval="10000" OnTick="Update_Overview_And_Notifications_Tick"></asp:Timer>
-                    <asp:UpdatePanel ID="updatePanelOverview" ChildrenAsTriggers="true" runat="server" class="divOverview">
+                    <asp:UpdatePanel ID="updatePanelOverview" runat="server" class="divOverview">
                         <ContentTemplate>
+                            <asp:Timer ID="timerUpdate" runat="server" Interval="15000" OnTick="Update_Overview_And_Notifications_Tick"></asp:Timer>
                             <asp:Panel ID="divStationPaediatrie" runat="server" CssClass="divOverviewStation marginRight">
                                 <h2>Pädiatrie</h2>
                                 <asp:Panel ID="divStationPaediatrieBeds" runat="server"></asp:Panel>
@@ -28,7 +28,8 @@
                             </asp:Panel>
                         </ContentTemplate>
                         <Triggers>
-                            <asp:PostBackTrigger ControlID="timerUpdate" />
+                            <asp:AsyncPostBackTrigger ControlID="timerUpdate" />
+                            <asp:AsyncPostBackTrigger ControlID="btnAddConfirm" />
                         </Triggers>
                     </asp:UpdatePanel>
                     <asp:UpdatePanel ID="updatePanelTabs" ChildrenAsTriggers="true" runat="server" class="divTabsContainer">
@@ -40,27 +41,27 @@
                                         <div style="margin: 21px;">
                                             <div class="divFormLeft">
                                                 <span class="spanLabel">PatientenId:</span>
-                                                <asp:TextBox ID="txtBoxDetailsPatId" runat="server" ReadOnly="true" BackColor="LightGray" onfocus="pauseTimer();" onblur="restartTimer();"></asp:TextBox><br />
+                                                <asp:TextBox ID="txtBoxDetailsPatId" runat="server" ReadOnly="true" BackColor="LightGray" onfocus="restartTimer();" onkeypress="restartTimer();"></asp:TextBox><br />
 
                                                 <span class="spanLabel">Name:</span>
-                                                <asp:TextBox ID="txtBoxDetailsPatName" runat="server" ReadOnly="true" BackColor="LightGray" onfocus="pauseTimer();" onblur="restartTimer();"></asp:TextBox><br />
+                                                <asp:TextBox ID="txtBoxDetailsPatName" runat="server" ReadOnly="true" BackColor="LightGray" onfocus="restartTimer();" onkeypress="restartTimer();"></asp:TextBox><br />
 
                                                 <span class="spanLabel">Geschlecht:</span>
-                                                <asp:TextBox ID="txtBoxDetailsPatGender" runat="server" ReadOnly="true" BackColor="LightGray" onfocus="pauseTimer();" onblur="restartTimer();"></asp:TextBox><br />
+                                                <asp:TextBox ID="txtBoxDetailsPatGender" runat="server" ReadOnly="true" BackColor="LightGray" onfocus="restartTimer();" onkeypress="restartTimer();"></asp:TextBox><br />
 
                                                 <span class="spanLabel">Geburtsdatum:</span>
-                                                <asp:TextBox ID="txtBoxDetailsPatBirthday" runat="server" ReadOnly="true" BackColor="LightGray" onfocus="pauseTimer();" onblur="restartTimer();"></asp:TextBox><br />
+                                                <asp:TextBox ID="txtBoxDetailsPatBirthday" runat="server" ReadOnly="true" BackColor="LightGray" onfocus="restartTimer();" onkeypress="restartTimer();"></asp:TextBox><br />
 
                                                 <span class="spanLabel">Korrekte Station:</span>
-                                                <asp:TextBox ID="txtBoxDetailsPatCorrectStation" runat="server" ReadOnly="true" BackColor="LightGray" onfocus="pauseTimer();" onblur="restartTimer();"></asp:TextBox><br />
+                                                <asp:TextBox ID="txtBoxDetailsPatCorrectStation" runat="server" ReadOnly="true" BackColor="LightGray" onfocus="restartTimer();" onkeypress="restartTimer();"></asp:TextBox><br />
 
                                             </div>
                                             <div class="divFormRight">
                                                 <span class="spanLabel">BettID:</span>
-                                                <asp:TextBox ID="txtBoxDetailsBedId" runat="server" ReadOnly="true" BackColor="LightGray" onfocus="pauseTimer();" onblur="restartTimer();"></asp:TextBox><br />
+                                                <asp:TextBox ID="txtBoxDetailsBedId" runat="server" ReadOnly="true" BackColor="LightGray" onfocus="restartTimer();" onkeypress="restartTimer();"></asp:TextBox><br />
 
                                                 <span class="spanLabel">Station des Bettes:</span>
-                                                <asp:TextBox ID="txtBoxDetailsBedStation" runat="server" ReadOnly="true" BackColor="LightGray" onfocus="pauseTimer();" onblur="restartTimer();"></asp:TextBox><br />
+                                                <asp:TextBox ID="txtBoxDetailsBedStation" runat="server" ReadOnly="true" BackColor="LightGray" onfocus="restartTimer();" onkeypress="restartTimer();"></asp:TextBox><br />
 
 
                                                 <asp:TextBox ID="txtBoxDetailsPatHistory" runat="server" CssClass="txtBoxDetailsPatHistory" TextMode="MultiLine" Wrap="False"></asp:TextBox>
@@ -75,7 +76,7 @@
                                     <div class="divTabContent">
                                         <div style="margin: 21px;">
                                             <span class="spanLabel">Patientensuche (ID oder Name):</span>
-                                            <asp:TextBox ID="txtBoxSearchQuery" runat="server" CssClass="txtBoxSearchQuery" onfocus="pauseTimer();" onblur="restartTimer();"></asp:TextBox>
+                                            <asp:TextBox ID="txtBoxSearchQuery" runat="server" CssClass="txtBoxSearchQuery" onfocus="restartTimer();" onkeypress="restartTimer();"></asp:TextBox>
                                             <asp:LinkButton ID="btnSearch" runat="server" CssClass="btnSearch" OnClick="Search_Click">Suche</asp:LinkButton>
                                             <asp:Panel ID="divSearchResultList" runat="server" CssClass="divSearchResultList"></asp:Panel>
                                         </div>
@@ -86,22 +87,22 @@
                                         <div style="margin: 21px;">
                                             <div class="divFormLeft">
                                                 <asp:Label ID="lblAddPatFirstName" runat="server" Text="Vorname:" CssClass="spanLabel"></asp:Label>
-                                                <asp:TextBox ID="txtBoxAddPatFirstName" runat="server" onfocus="pauseTimer();" onblur="restartTimer();"></asp:TextBox><br />
+                                                <asp:TextBox ID="txtBoxAddPatFirstName" runat="server" onfocus="restartTimer();" onkeypress="restartTimer();"></asp:TextBox><br />
 
                                                 <asp:Label ID="lblAddPatLastName" runat="server" Text="Nachname:" CssClass="spanLabel"></asp:Label>
-                                                <asp:TextBox ID="txtBoxAddPatLastName" runat="server" onfocus="pauseTimer();" onblur="restartTimer();"></asp:TextBox><br />
+                                                <asp:TextBox ID="txtBoxAddPatLastName" runat="server" onfocus="restartTimer();" onkeypress="restartTimer();"></asp:TextBox><br />
 
                                                 <asp:Label ID="lblAddPatGender" runat="server" Text="Geschlecht:" CssClass="spanLabel"></asp:Label>
-                                                <asp:DropDownList ID="dropDownListAddPatGender" runat="server" onfocus="pauseTimer();" onblur="restartTimer();">
+                                                <asp:DropDownList ID="dropDownListAddPatGender" runat="server" onfocus="restartTimer();" onkeypress="restartTimer();">
                                                     <asp:ListItem>m</asp:ListItem>
                                                     <asp:ListItem>w</asp:ListItem>
                                                 </asp:DropDownList>
 
                                                 <asp:Label ID="lblAddPatBirthday" runat="server" Text="Geburtsdatum:" CssClass="spanLabel"></asp:Label>
-                                                <asp:TextBox ID="txtBoxAddPatBirthday" runat="server" onfocus="pauseTimer();" onblur="restartTimer();"></asp:TextBox><br />
+                                                <asp:TextBox ID="txtBoxAddPatBirthday" runat="server" onfocus="restartTimer();" onkeypress="restartTimer();"></asp:TextBox><br />
 
                                                 <asp:Label ID="lblAddPatStation" runat="server" Text="Station:" CssClass="spanLabel"></asp:Label>
-                                                <asp:DropDownList ID="dropDownListAddPatStation" runat="server" onfocus="pauseTimer();" onblur="restartTimer();">
+                                                <asp:DropDownList ID="dropDownListAddPatStation" runat="server" onfocus="restartTimer();" onkeypress="restartTimer();">
                                                     <asp:ListItem>Pädiatrie</asp:ListItem>
                                                     <asp:ListItem>Gynäkologie</asp:ListItem>
                                                     <asp:ListItem>Innere Medizin</asp:ListItem>
@@ -118,8 +119,8 @@
                             </div>
                         </ContentTemplate>
                         <Triggers>
-                            <asp:PostBackTrigger ControlID="btnAddConfirm"/>
-                            <asp:PostBackTrigger ControlID="btnDetailsDismiss"/>
+                            <asp:AsyncPostBackTrigger ControlID="btnAddConfirm" />
+                            <asp:AsyncPostBackTrigger ControlID="btnDetailsDismiss" />
                         </Triggers>
                     </asp:UpdatePanel>
                 </div>
@@ -130,7 +131,7 @@
                             <asp:Panel ID="divNotifications" runat="server"></asp:Panel>
                         </ContentTemplate>
                         <Triggers>
-                            <asp:PostBackTrigger ControlID="timerUpdate" />
+                            <asp:AsyncPostBackTrigger ControlID="timerUpdate" />
                         </Triggers>
                     </asp:UpdatePanel>
                     <script>
@@ -139,5 +140,25 @@
                 </div>
             </div>
         </div>
+        <asp:UpdatePanel ID="updatePanelMessage" runat="server">
+            <ContentTemplate>
+                <asp:Panel ID="divOverlay" Visible="false" runat="server" CssClass="divOverlay">
+                    <asp:Panel ID="divMessageBox" runat="server" CssClass="divMessageBox">
+                        <div style="margin: 10px;">
+                            <asp:Label ID="lblMessageBoxText" Text="TestNachricht 123123123123 sadf sadfjvb hababababable.?" runat="server" CssClass="spanMessageBoxText"></asp:Label>
+                            <div style="margin: 10px">
+                                <asp:Button ID="btnMessageBoxOkay" Text="OK" runat="server" OnClick="MessageBox_Okay_Click" CssClass="btnMessageBoxOkay" />
+                                <asp:Button ID="btnMessageBoxCancel" Text="Abbrechen" Visible="false" runat="server" CssClass="btnMessageBoxCancel" />
+                            </div>
+                        </div>
+                    </asp:Panel>
+                </asp:Panel>
+            </ContentTemplate>
+            <Triggers>
+                <asp:AsyncPostBackTrigger ControlID="btnAddConfirm" />
+                <asp:AsyncPostBackTrigger ControlID="btnDetailsDismiss" />
+                <asp:AsyncPostBackTrigger ControlID="btnSearch" />
+            </Triggers>
+        </asp:UpdatePanel>
     </form>
 </asp:Content>
