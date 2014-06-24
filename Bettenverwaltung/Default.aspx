@@ -69,6 +69,7 @@
                                                 <br />
                                                 <asp:LinkButton runat="server" ID="btnDetailsDismiss" CssClass="btnFormSubmit" OnClick="Dismiss_Patient_Click">Patient entlassen</asp:LinkButton>
                                             </div>
+                                            <div style="clear: both;"></div>
                                         </div>
                                     </div>
                                 </asp:Panel>
@@ -109,7 +110,7 @@
                                                     <asp:ListItem>Orthopädie</asp:ListItem>
                                                 </asp:DropDownList>
                                             </div>
-                                            <div class="divFormRight" style="padding-top: 189px;">
+                                            <div class="divFormRight" style="height: 194px">
                                                 <asp:LinkButton runat="server" ID="btnAddConfirm" CssClass="btnFormSubmit" OnClick="Add_Patient_Click">Patient hinzufügen</asp:LinkButton>
                                             </div>
                                             <div style="clear: both;"></div>
