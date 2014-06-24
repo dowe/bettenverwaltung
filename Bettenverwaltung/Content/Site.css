@@ -30,8 +30,9 @@ h2 {
 .divTabs,
 .divNotList,
 .divSearchResultList,
-.btnTabActive {
-    background-color: #D8D8D8;
+.btnTabActive,
+.btnBedInRelocation {
+    background-color: #C1C1C1;
 }
 
 /* LIGHT BLUE color for this divs */
@@ -157,10 +158,6 @@ body,
 
 .btnBedWrongStation {
     background-color: #C05046;
-}
-
-.btnBedInRelocation {
-    background-color: #D8D8D8;
 }
 
 .btnBedFree {
