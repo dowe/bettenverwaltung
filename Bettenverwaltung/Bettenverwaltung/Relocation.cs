@@ -98,7 +98,7 @@ namespace Bettenverwaltung
         {
             if (!bed.IsEmpty() || bed.IsGettingCleaned() || bed.IsInRelocation())
             {
-                throw new BedException("Das Zielbett der Verlegung ist bereits gesperrt.");
+                throw new BedException("Das Zielbett der Verlegung ist bereits für eine Reinigung/Verlegung gesperrt.");
             }
             if (this.destinationBed != null)
             {

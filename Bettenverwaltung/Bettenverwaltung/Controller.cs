@@ -275,7 +275,7 @@ namespace Bettenverwaltung
                 case EStation.Gynaekologie:
                     if (p.GetAge() < 12)
                     {
-                        throw new BedException("Kinder müssen in die Pädiatrie.");
+                        throw new BedException("Kinder unter 12 Jahre müssen in die Pädiatrie.");
                     }
                     if (!p.isFemale)
                     {
@@ -288,7 +288,7 @@ namespace Bettenverwaltung
                 case EStation.Innere_Medizin:
                     if (p.GetAge() < 12)
                     {
-                        throw new BedException("Kinder müssen in die Pädiatrie.");
+                        throw new BedException("Kinder unter 12 Jahre müssen in die Pädiatrie.");
                     }
                     stations.Add(EStation.Innere_Medizin);
                     stations.Add(EStation.Orthopaedie);
@@ -300,7 +300,7 @@ namespace Bettenverwaltung
                 case EStation.Orthopaedie:
                     if (p.GetAge() < 12)
                     {
-                        throw new BedException("Kinder müssen in die Pädiatrie.");
+                        throw new BedException("Kinder unter 12 Jahre müssen in die Pädiatrie.");
                     }
                     stations.Add(EStation.Orthopaedie);
                     stations.Add(EStation.Innere_Medizin);
@@ -312,7 +312,7 @@ namespace Bettenverwaltung
                 case EStation.Paediatrie:
                     if(p.GetAge() > 12)
                     {
-                        throw new BedException("Nur Kinder dürfen in die Pädiatrie.");
+                        throw new BedException("Nur Kinder unter 12 Jahre dürfen in die Pädiatrie.");
                     }
                     stations.Add(EStation.Paediatrie);
                     stations.Add(EStation.Gynaekologie);
