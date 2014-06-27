@@ -855,7 +855,7 @@ namespace Bettenverwaltung
                     genderString = "m";
                 }
                 txtBoxDetailsPatGender.Text = genderString;
-                txtBoxDetailsPatBirthday.Text = pat.GetBirthday().ToString();
+                txtBoxDetailsPatBirthday.Text = pat.GetBirthday().ToShortDateString();
 
                 txtBoxDetailsPatCorrectStation.Text = ConvertStationToString(pat.GetCorrectStation());
 

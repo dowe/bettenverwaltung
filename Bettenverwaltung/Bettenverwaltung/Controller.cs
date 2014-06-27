@@ -42,14 +42,18 @@ namespace Bettenverwaltung
         public virtual IBedView AddPatient(string firstname, string lastname, EStation station, DateTime birthday, bool isFemale)
         {
             bvContext = new BVContext();
+            if (birthday > DateTime.Today)
+            {
+                throw new BedException("Das Geburtsdatum darf nicht in der Zukunft liegen!");
+            }
             Patient p = new Patient(firstname, lastname, birthday, isFemale, station);
             Bed bed = FindBedFor(p, station);
-            if(bed == null)
+            if (bed == null)
             {
                 return null;
             }
             bed.SetPatient(p);
-            if(bed.GetStation() != station)             //anlegen einer Verlegung falls nötig.
+            if (bed.GetStation() != station)             //anlegen einer Verlegung falls nötig.
             {
                 CreateRelocation(bed.GetBedId(), station);
             }
@@ -102,15 +106,12 @@ namespace Bettenverwaltung
                         }
                     }
                 }
-
-                
-
                 //remove patient from bed
                 Patient patToRemove = bed.RemovePatient();
                 //delete History and HistoryItems from DB
                 var history = bvContext.Histories.Find(patToRemove.history.historyId);
                 int size = history.GetSize();
-                for (int i = 0; i < size; i++ )
+                for (int i = 0; i < size; i++)
                 {
                     bvContext.HistoryItems.Remove(history.GetHistoryItem(0));
                 }
@@ -134,7 +135,7 @@ namespace Bettenverwaltung
             bvContext = new BVContext();                                
             Relocation Rel = GetRelocation(relocationId);
             Rel.SetAccepted();
-            bvContext.SaveChanges();
+            bvContext.SaveChanges();		
 
             return Rel;
         }
@@ -147,7 +148,7 @@ namespace Bettenverwaltung
 		public virtual IBedView GetBedFromId(int bedId)               
 		{
             bvContext = new BVContext();
-            IBedView bed = (IBedView) bvContext.Beds.Find(bedId);
+            IBedView bed = (IBedView)bvContext.Beds.Find(bedId);
             return bed;
 		}
 
@@ -173,7 +174,7 @@ namespace Bettenverwaltung
             else
             {
                 //search for name
-                var names = term.Split(new char[] {' '}, 2);
+                var names = term.Split(new char[] { ' ' }, 2);
                 if (names.Count() > 1)
                 {
                     string firstName = names[0];
@@ -186,7 +187,6 @@ namespace Bettenverwaltung
                     resultList = bvContext.Beds.Where(b => b.patient.firstname == term || b.patient.lastname == term).ToList<IBedView>();
                 }
             }
-
             return resultList;
 		}
 
@@ -296,7 +296,7 @@ namespace Bettenverwaltung
                     }
                     stations.Add(EStation.Innere_Medizin);
                     stations.Add(EStation.Orthopaedie);
-                    if(p.isFemale)
+                    if (p.isFemale)
                     {
                         stations.Add(EStation.Gynaekologie);
                     }
@@ -314,7 +314,7 @@ namespace Bettenverwaltung
                     }
                     break;
                 case EStation.Paediatrie:
-                    if(p.GetAge() > 12)
+                    if (p.GetAge() > 12)
                     {
                         throw new BedException("Nur Kinder unter 12 Jahre dürfen in die Pädiatrie.");
                     }
@@ -330,22 +330,22 @@ namespace Bettenverwaltung
                 stations.RemoveAt(0);
             } while (Beds.ToList().Count == 0 && stations.Count != 0);
 
-            if(Beds.ToList().Count == 0)           //falls keine freie Station gefunden wurde
+            if (Beds.ToList().Count == 0)           //falls keine freie Station gefunden wurde
             {
                 return null;
             }
-            foreach(Bed b in Beds)                  //jedes Bett wird nun überprüft ob es Ziel einer Verlegung ist.
+            foreach (Bed b in Beds)                  //jedes Bett wird nun überprüft ob es Ziel einer Verlegung ist.
             {
                 bool check = false;                 //wird true wenn das Bett Ziel einer Verlegung ist.
-                foreach(Relocation r in rel)        
+                foreach (Relocation r in rel)
                 {
-                    if(r.GetDestinationBed().GetBedId() == b.GetBedId())    //ist das bett Ziel der Verlegung?
+                    if (r.GetDestinationBed().GetBedId() == b.GetBedId())    //ist das bett Ziel der Verlegung?
                     {
                         check = true;
                         break;
                     }
                 }
-                if(check!=true)                     //falls das Bett nicht Ziel einer Verlegung ist.
+                if (check != true)                     //falls das Bett nicht Ziel einer Verlegung ist.
                 {
                     return b;
                 }
