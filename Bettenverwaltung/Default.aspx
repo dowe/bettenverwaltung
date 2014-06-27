@@ -7,7 +7,7 @@
             <div class="divContent">
                 <div class="divLeft">
                     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-                    <asp:Timer ID="timerUpdate" runat="server" Interval="10000" OnTick="Update_Overview_And_Notifications_Tick"></asp:Timer>
+                    <asp:Timer ID="timerUpdate" runat="server" Interval="15000" OnTick="Update_Overview_And_Notifications_Tick"></asp:Timer>
                     <asp:UpdatePanel ID="updatePanelOverview" runat="server" class="divOverview">
                         <ContentTemplate>
                             <asp:Panel ID="divStationPaediatrie" runat="server" CssClass="divOverviewStation marginRight">
