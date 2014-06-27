@@ -403,11 +403,6 @@
           <messageOccurrenceSpecification
             Id="faa6aa12-2c96-4754-97ae-26765bf0026e"
             name="MessageOccurrenceSpecification8">
-            <event>
-              <receiveOperationEventMoniker
-                Id="8f44e1c8-b863-4edb-b3a9-1c614c4b7620"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="6e26632e-58b6-4275-ae3d-1936db68d307"
@@ -418,11 +413,6 @@
           <messageOccurrenceSpecification
             Id="5fce7f78-35fa-4a05-a2a7-a9cfa44c772e"
             name="MessageOccurrenceSpecification7">
-            <event>
-              <sendOperationEventMoniker
-                Id="e858783f-7b45-43f1-acca-52d98177c534"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="eb6b9288-a53c-4294-8ba4-3516c822f073"
@@ -743,11 +733,6 @@
           <messageOccurrenceSpecification
             Id="17bf0d6b-cefa-4de1-888c-fcc74c8e6b0b"
             name="MessageOccurrenceSpecification30">
-            <event>
-              <receiveOperationEventMoniker
-                Id="eb6c0038-6d5d-49fd-b74a-60349a405e9f"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="7a1b294c-e7c2-43ec-a7df-652b8d108a64"
@@ -758,11 +743,6 @@
           <messageOccurrenceSpecification
             Id="7e8341af-416c-430c-8551-bb25d95a8039"
             name="MessageOccurrenceSpecification29">
-            <event>
-              <sendOperationEventMoniker
-                Id="4174059d-4ad6-45a3-847e-123ed88751ae"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="6e26632e-58b6-4275-ae3d-1936db68d307"
@@ -831,11 +811,6 @@
           <messageOccurrenceSpecification
             Id="4fe7e3c5-a769-4583-92e3-ec5459b83d12"
             name="MessageOccurrenceSpecification67">
-            <event>
-              <sendOperationEventMoniker
-                Id="3b6d0186-dcc7-4283-a720-d6c762d1375c"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="7a1b294c-e7c2-43ec-a7df-652b8d108a64"
@@ -846,11 +821,6 @@
           <messageOccurrenceSpecification
             Id="63968e39-9836-4e55-bc1c-95c83105e71e"
             name="MessageOccurrenceSpecification68">
-            <event>
-              <receiveOperationEventMoniker
-                Id="c538fef5-e536-4b3e-afc4-42466a6d4024"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="23bdc79d-2bf1-4de2-a5fa-6b3dcd6b7b4c"
@@ -911,11 +881,6 @@
           <messageOccurrenceSpecification
             Id="5770df31-6832-4221-b5cc-32f3414eb04b"
             name="MessageOccurrenceSpecification71">
-            <event>
-              <sendOperationEventMoniker
-                Id="aa7a5333-c78a-4f08-b0ff-b9f0b0d8712f"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="23bdc79d-2bf1-4de2-a5fa-6b3dcd6b7b4c"
@@ -926,11 +891,6 @@
           <messageOccurrenceSpecification
             Id="0bf6b6a8-dad6-4668-8e5d-6a5ca0e84877"
             name="MessageOccurrenceSpecification72">
-            <event>
-              <receiveOperationEventMoniker
-                Id="ee2b187b-c4b5-409a-9b75-02775ba6acb7"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="4e037278-e58f-4ceb-b194-556902a46a1c"
@@ -1779,11 +1739,6 @@
           <messageOccurrenceSpecification
             Id="40e10c5e-fc72-4be9-9617-78fc95d4697a"
             name="MessageOccurrenceSpecification53">
-            <event>
-              <sendOperationEventMoniker
-                Id="5423ae36-3387-4164-b034-38ea4e9438c0"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="6e26632e-58b6-4275-ae3d-1936db68d307"
@@ -1794,11 +1749,6 @@
           <messageOccurrenceSpecification
             Id="be90e95b-5133-4a21-8181-83f836f0d036"
             name="MessageOccurrenceSpecification54">
-            <event>
-              <receiveOperationEventMoniker
-                Id="f5e74b26-1707-45f2-8f4f-5cadd0e20aa1"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="4c336f94-1340-44f5-ac1d-d25a87bef490"
@@ -2167,8 +2117,7 @@
             Id="1900ee45-b85d-4769-a368-317358de0cdc"
             messageKind="Complete"
             messageSort="SynchCall"
-            createSelfMessage="false"
-            signatureText="+ AddPatient(firstname : String, lastname : String, station : UML_Model::Bettenverwaltung::EStation, birthday : DateTime, isFemale : bool) : UML_Model::Bettenverwaltung::IBedView">
+            createSelfMessage="false">
             <sendEvent>
               <messageOccurrenceSpecificationMoniker
                 Id="5fce7f78-35fa-4a05-a2a7-a9cfa44c772e"
@@ -2241,8 +2190,7 @@
             name="&lt;&lt;create&gt;&gt;"
             messageKind="Complete"
             messageSort="CreateMessage"
-            createSelfMessage="false"
-            signatureText="+ Patient(firstname : String, lastname : String, Birthday : DateTime, isFemale : bool, correctStation : UML_Model::Bettenverwaltung::EStation)">
+            createSelfMessage="false">
             <sendEvent>
               <messageOccurrenceSpecificationMoniker
                 Id="7e8341af-416c-430c-8551-bb25d95a8039"
@@ -2261,8 +2209,7 @@
             name="&lt;&lt;create&gt;&gt;"
             messageKind="Complete"
             messageSort="CreateMessage"
-            createSelfMessage="false"
-            signatureText="+ History(historyId : int, historyItemId : int)">
+            createSelfMessage="false">
             <sendEvent>
               <messageOccurrenceSpecificationMoniker
                 Id="4fe7e3c5-a769-4583-92e3-ec5459b83d12"
@@ -2281,8 +2228,7 @@
             name="&lt;&lt;create&gt;&gt;"
             messageKind="Complete"
             messageSort="CreateMessage"
-            createSelfMessage="false"
-            signatureText="+ CreateEntryItem(historyItemId : int) : UML_Model::Bettenverwaltung::HistoryItem">
+            createSelfMessage="false">
             <sendEvent>
               <messageOccurrenceSpecificationMoniker
                 Id="5770df31-6832-4221-b5cc-32f3414eb04b"
@@ -2377,7 +2323,7 @@
             messageKind="Complete"
             messageSort="SynchCall"
             createSelfMessage="false"
-            signatureText="+ IsEmpty() : bool">
+            signatureText="+ IsEmpty() : Boolean">
             <sendEvent>
               <messageOccurrenceSpecificationMoniker
                 Id="18426652-180c-4afd-8098-683d9c9100ee"
@@ -2415,7 +2361,7 @@
             messageKind="Complete"
             messageSort="SynchCall"
             createSelfMessage="false"
-            signatureText="+ IsInRelocation() : bool">
+            signatureText="+ IsInRelocation() : Boolean">
             <sendEvent>
               <messageOccurrenceSpecificationMoniker
                 Id="534d4e83-6d5b-4e1c-bb1c-7809347e108e"
@@ -2453,7 +2399,7 @@
             messageKind="Complete"
             messageSort="SynchCall"
             createSelfMessage="false"
-            signatureText="+ IsGettingCleaned() : bool">
+            signatureText="+ IsGettingCleaned() : Boolean">
             <sendEvent>
               <messageOccurrenceSpecificationMoniker
                 Id="3fc4c2c5-7b15-4df6-ac7e-bbd43a3fba9f"
@@ -2547,8 +2493,7 @@
             name="&lt;&lt;create&gt;&gt;"
             messageKind="Complete"
             messageSort="CreateMessage"
-            createSelfMessage="false"
-            signatureText="+ Relocation(bed : UML_Model::Bettenverwaltung::IBedRelocation, station : UML_Model::Bettenverwaltung::EStation, relId : int)">
+            createSelfMessage="false">
             <sendEvent>
               <messageOccurrenceSpecificationMoniker
                 Id="40e10c5e-fc72-4be9-9617-78fc95d4697a"
@@ -2788,50 +2733,6 @@
     </packageHasNamedElement>
     <packageHasNamedElement>
       <sendOperationEvent
-        Id="e858783f-7b45-43f1-acca-52d98177c534">
-        <operation>
-          <operationMoniker
-            Id="c2ba2969-1bf0-4cfe-a02b-1ee2ffadad55"
-            LastKnownName="AddPatient"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </sendOperationEvent>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <receiveOperationEvent
-        Id="8f44e1c8-b863-4edb-b3a9-1c614c4b7620">
-        <operation>
-          <operationMoniker
-            Id="c2ba2969-1bf0-4cfe-a02b-1ee2ffadad55"
-            LastKnownName="AddPatient"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </receiveOperationEvent>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <sendOperationEvent
-        Id="4174059d-4ad6-45a3-847e-123ed88751ae">
-        <operation>
-          <operationMoniker
-            Id="503a42db-d9fb-484d-b252-d5b139932db5"
-            LastKnownName="Patient"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </sendOperationEvent>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <receiveOperationEvent
-        Id="eb6c0038-6d5d-49fd-b74a-60349a405e9f">
-        <operation>
-          <operationMoniker
-            Id="503a42db-d9fb-484d-b252-d5b139932db5"
-            LastKnownName="Patient"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </receiveOperationEvent>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <sendOperationEvent
         Id="4449066c-789b-4a95-bf13-f86551a59d32">
         <operation>
           <operationMoniker
@@ -2907,28 +2808,6 @@
         name="ExecutionEvent" />
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <sendOperationEvent
-        Id="5423ae36-3387-4164-b034-38ea4e9438c0">
-        <operation>
-          <operationMoniker
-            Id="41ead064-83e8-4910-b658-19635f73d6cf"
-            LastKnownName="Relocation"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </sendOperationEvent>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <receiveOperationEvent
-        Id="f5e74b26-1707-45f2-8f4f-5cadd0e20aa1">
-        <operation>
-          <operationMoniker
-            Id="41ead064-83e8-4910-b658-19635f73d6cf"
-            LastKnownName="Relocation"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </receiveOperationEvent>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
       <interaction
         Id="796d10ce-b4d3-4f28-b1d0-c95b415b5b6b"
         name="PatientDisplay"
@@ -3001,11 +2880,6 @@
           <messageOccurrenceSpecification
             Id="30d66d8d-625c-453b-a88a-451095ef801c"
             name="MessageOccurrenceSpecification1">
-            <event>
-              <sendOperationEventMoniker
-                Id="24775862-02b4-40ef-b5cb-0a45e5e352b4"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="f2a790e6-f88c-4b78-b5d8-caf6867eafc5"
@@ -3016,11 +2890,6 @@
           <messageOccurrenceSpecification
             Id="71e9197e-317c-40e9-893a-e99f3c2a92b9"
             name="MessageOccurrenceSpecification2">
-            <event>
-              <receiveOperationEventMoniker
-                Id="4dfc510a-4385-4df2-9b45-71c0cd4904f0"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="97e6d323-4a3c-4e0f-aa7a-99b5d81e4c58"
@@ -3223,8 +3092,7 @@
             name="Message1"
             messageKind="Complete"
             messageSort="SynchCall"
-            createSelfMessage="false"
-            signatureText="+ GetBedFromId(bedId : int) : UML_Model::Bettenverwaltung::IBedView">
+            createSelfMessage="false">
             <sendEvent>
               <messageOccurrenceSpecificationMoniker
                 Id="30d66d8d-625c-453b-a88a-451095ef801c"
@@ -3338,28 +3206,6 @@
       <executionEvent
         Id="960cc46e-c877-4751-83b2-3d2984c84399"
         name="ExecutionEvent" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <sendOperationEvent
-        Id="24775862-02b4-40ef-b5cb-0a45e5e352b4">
-        <operation>
-          <operationMoniker
-            Id="471f95a3-4921-4649-8d17-4ab9ebad0d94"
-            LastKnownName="GetBedFromId"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </sendOperationEvent>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <receiveOperationEvent
-        Id="4dfc510a-4385-4df2-9b45-71c0cd4904f0">
-        <operation>
-          <operationMoniker
-            Id="471f95a3-4921-4649-8d17-4ab9ebad0d94"
-            LastKnownName="GetBedFromId"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </receiveOperationEvent>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <interaction
@@ -3491,11 +3337,6 @@ Update:
           <messageOccurrenceSpecification
             Id="88307121-e38b-45f5-837e-02b616c1bfce"
             name="MessageOccurrenceSpecification1">
-            <event>
-              <sendOperationEventMoniker
-                Id="2d22bfe0-95a0-418d-8e0c-5ab52f089860"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="e780f110-0b43-4d68-a538-f9521d32b62e"
@@ -3506,11 +3347,6 @@ Update:
           <messageOccurrenceSpecification
             Id="0c5d5a6e-172a-4cc4-8f41-8004b3f80821"
             name="MessageOccurrenceSpecification2">
-            <event>
-              <receiveOperationEventMoniker
-                Id="c0224e9a-9b11-4f08-a5d3-852d0a3cde32"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="3d2e03fb-27f4-4b27-a795-600246250b10"
@@ -3807,11 +3643,6 @@ Update:
           <messageOccurrenceSpecification
             Id="348a9a4d-99ce-4979-816d-b80cc3edefaa"
             name="MessageOccurrenceSpecification13">
-            <event>
-              <sendOperationEventMoniker
-                Id="6a6f5ba0-1bd9-4bba-9097-69032a6d7b66"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="3d2e03fb-27f4-4b27-a795-600246250b10"
@@ -3822,11 +3653,6 @@ Update:
           <messageOccurrenceSpecification
             Id="546a4b0b-4b40-434d-8e34-0d27826e1031"
             name="MessageOccurrenceSpecification14">
-            <event>
-              <receiveOperationEventMoniker
-                Id="ad81717e-79fe-4744-8477-b6ee27d72566"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="36450e5a-f2da-41f6-a734-173ac1271093"
@@ -4149,11 +3975,6 @@ Update:
           <messageOccurrenceSpecification
             Id="3c035d20-da53-4cdd-9cd6-13e75d834ac6"
             name="MessageOccurrenceSpecification21">
-            <event>
-              <sendOperationEventMoniker
-                Id="cc03c2fe-f91e-4259-8b80-fc036bbf52c4"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="e780f110-0b43-4d68-a538-f9521d32b62e"
@@ -4210,11 +4031,6 @@ Update:
           <messageOccurrenceSpecification
             Id="036571e9-2740-4a68-be55-1c0b78b23891"
             name="MessageOccurrenceSpecification22">
-            <event>
-              <receiveOperationEventMoniker
-                Id="0a790e85-4e6c-4356-ae7c-f940bcab00b6"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="e780f110-0b43-4d68-a538-f9521d32b62e"
@@ -4500,8 +4316,7 @@ Update:
             Id="d8f550f3-5120-43a5-86a9-ffeada43c365"
             messageKind="Complete"
             messageSort="SynchCall"
-            createSelfMessage="false"
-            signatureText="+ DismissPatient(bedId : int) : UML_Model::Bettenverwaltung::IBedView">
+            createSelfMessage="false">
             <sendEvent>
               <messageOccurrenceSpecificationMoniker
                 Id="88307121-e38b-45f5-837e-02b616c1bfce"
@@ -4596,8 +4411,7 @@ Update:
             name="Get All HistoryItems"
             messageKind="Complete"
             messageSort="SynchCall"
-            createSelfMessage="false"
-            signatureText="+ GetHistoryItem(index : int) : UML_Model::Bettenverwaltung::HistoryItem">
+            createSelfMessage="false">
             <sendEvent>
               <messageOccurrenceSpecificationMoniker
                 Id="348a9a4d-99ce-4979-816d-b80cc3edefaa"
@@ -4729,8 +4543,7 @@ Update:
             Id="87624ba1-b8c7-437d-b587-afddca5c39ca"
             messageKind="Complete"
             messageSort="SynchCall"
-            createSelfMessage="true"
-            signatureText="- InitBeds() : void">
+            createSelfMessage="true">
             <sendEvent>
               <messageOccurrenceSpecificationMoniker
                 Id="3c035d20-da53-4cdd-9cd6-13e75d834ac6"
@@ -4876,28 +4689,6 @@ Update:
         name="ExecutionEvent" />
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <sendOperationEvent
-        Id="2d22bfe0-95a0-418d-8e0c-5ab52f089860">
-        <operation>
-          <operationMoniker
-            Id="3f8ae18e-2530-463c-a36f-0b597e09f050"
-            LastKnownName="DismissPatient"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </sendOperationEvent>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <receiveOperationEvent
-        Id="c0224e9a-9b11-4f08-a5d3-852d0a3cde32">
-        <operation>
-          <operationMoniker
-            Id="3f8ae18e-2530-463c-a36f-0b597e09f050"
-            LastKnownName="DismissPatient"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </receiveOperationEvent>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
       <executionEvent
         Id="8bfde3c6-aaf4-4e68-aac8-37cf81a8fc36"
         name="ExecutionEvent" />
@@ -4972,28 +4763,6 @@ Update:
         name="ExecutionEvent" />
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <sendOperationEvent
-        Id="6a6f5ba0-1bd9-4bba-9097-69032a6d7b66">
-        <operation>
-          <operationMoniker
-            Id="cc1026a5-a447-488c-9386-334b2becac27"
-            LastKnownName="GetHistoryItem"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </sendOperationEvent>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <receiveOperationEvent
-        Id="ad81717e-79fe-4744-8477-b6ee27d72566">
-        <operation>
-          <operationMoniker
-            Id="cc1026a5-a447-488c-9386-334b2becac27"
-            LastKnownName="GetHistoryItem"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </receiveOperationEvent>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
       <interaction
         Id="d8c90cd5-55b0-4d7b-ac12-dac1c863071e"
         name="UpdateOverview"
@@ -5016,11 +4785,6 @@ Update:
           <messageOccurrenceSpecification
             Id="923506dd-3ed2-4852-8d26-cf8648e8d1bd"
             name="MessageOccurrenceSpecification5">
-            <event>
-              <sendOperationEventMoniker
-                Id="f724464a-b0f3-480a-9014-ea95d2e4a4e5"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="0e89cde1-500a-40ce-8e89-0002646a6166"
@@ -5109,11 +4873,6 @@ Update:
           <messageOccurrenceSpecification
             Id="24111822-a98a-4331-a5cb-236c2d675a9b"
             name="MessageOccurrenceSpecification6">
-            <event>
-              <receiveOperationEventMoniker
-                Id="d3272521-efc1-4698-a8d6-5d05dd98d298"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="0e89cde1-500a-40ce-8e89-0002646a6166"
@@ -5713,8 +5472,7 @@ Update:
             Id="d301f6b4-8a8c-493b-a1b6-fffa8e48532c"
             messageKind="Complete"
             messageSort="SynchCall"
-            createSelfMessage="true"
-            signatureText="- InitBeds() : void">
+            createSelfMessage="true">
             <sendEvent>
               <messageOccurrenceSpecificationMoniker
                 Id="923506dd-3ed2-4852-8d26-cf8648e8d1bd"
@@ -5733,7 +5491,7 @@ Update:
             messageKind="Complete"
             messageSort="SynchCall"
             createSelfMessage="false"
-            signatureText="+ GetBettList() : UML_Model::Bettenverwaltung::IBedView[200]">
+            signatureText="+ GetBettList() : UML_Model::System::Collections::Generic::List&lt;IBedView‎&gt;[200]">
             <sendEvent>
               <messageOccurrenceSpecificationMoniker
                 Id="51a27923-cdf8-4859-b3e2-4575f4bff1b3"
@@ -5772,7 +5530,7 @@ Update:
             messageKind="Complete"
             messageSort="SynchCall"
             createSelfMessage="false"
-            signatureText="+ IsEmpty() : bool">
+            signatureText="+ IsEmpty() : Boolean">
             <sendEvent>
               <messageOccurrenceSpecificationMoniker
                 Id="9b85ca06-c200-435f-802b-d81788c830d0"
@@ -5810,7 +5568,7 @@ Update:
             messageKind="Complete"
             messageSort="SynchCall"
             createSelfMessage="false"
-            signatureText="+ IsGettingCleaned() : bool">
+            signatureText="+ IsGettingCleaned() : Boolean">
             <sendEvent>
               <messageOccurrenceSpecificationMoniker
                 Id="fe93e506-4ba0-40bd-86fa-208ec6a400b1"
@@ -5849,7 +5607,7 @@ Update:
             messageKind="Complete"
             messageSort="SynchCall"
             createSelfMessage="false"
-            signatureText="+ IsInRelocation() : bool">
+            signatureText="+ IsInRelocation() : Boolean">
             <sendEvent>
               <messageOccurrenceSpecificationMoniker
                 Id="0b3d2f2a-9d7a-4aa2-897a-f2889b26fe61"
@@ -5983,11 +5741,6 @@ Update:
           <messageOccurrenceSpecification
             Id="0c0235fa-02b4-47cb-944e-18aeded917ec"
             name="MessageOccurrenceSpecification5">
-            <event>
-              <sendOperationEventMoniker
-                Id="da96036f-4ce3-4e75-bb92-0053cf7c5082"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="fdd565af-0661-4daa-80a3-4818a07d091b"
@@ -6076,11 +5829,6 @@ Update:
           <messageOccurrenceSpecification
             Id="36cf66e0-198b-4340-93cc-97f7a49587dc"
             name="MessageOccurrenceSpecification6">
-            <event>
-              <receiveOperationEventMoniker
-                Id="09c1c0e0-29a6-403a-9695-ba15fa001cb1"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="fdd565af-0661-4daa-80a3-4818a07d091b"
@@ -6446,8 +6194,7 @@ Update:
             Id="5959f1ce-f542-4480-8dcb-4b6123bd6f6a"
             messageKind="Complete"
             messageSort="SynchCall"
-            createSelfMessage="true"
-            signatureText="- InitRelocations() : void">
+            createSelfMessage="true">
             <sendEvent>
               <messageOccurrenceSpecificationMoniker
                 Id="0c0235fa-02b4-47cb-944e-18aeded917ec"
@@ -6466,7 +6213,7 @@ Update:
             messageKind="Complete"
             messageSort="SynchCall"
             createSelfMessage="false"
-            signatureText="+ GetActiveRelocationList() : List&lt;Relocation&gt;">
+            signatureText="+ GetActiveRelocationList() : UML_Model::System::Collections::Generic::List&lt;Relocation‎&gt;">
             <sendEvent>
               <messageOccurrenceSpecificationMoniker
                 Id="53ed199f-7e1f-42e4-8ffd-d499c177a4ff"
@@ -6615,11 +6362,6 @@ Update:
           <messageOccurrenceSpecification
             Id="4955ebe6-7e2c-4928-99c1-108e88f38ffd"
             name="MessageOccurrenceSpecification1">
-            <event>
-              <sendOperationEventMoniker
-                Id="a0f61b89-4d03-40ba-aa9d-4e7ef27a7b6f"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="e7955db4-283d-47ba-9302-1bfe4a0be7d3"
@@ -6676,11 +6418,6 @@ Update:
           <messageOccurrenceSpecification
             Id="ca7e51cb-8ef8-4098-8283-6348d1e92cfe"
             name="MessageOccurrenceSpecification2">
-            <event>
-              <receiveOperationEventMoniker
-                Id="c0a381ec-4bc2-4a06-97d8-c2311c9dc307"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="e7955db4-283d-47ba-9302-1bfe4a0be7d3"
@@ -6709,11 +6446,6 @@ Update:
           <messageOccurrenceSpecification
             Id="2abe2862-c703-4a33-9dec-1954baf820fb"
             name="MessageOccurrenceSpecification3">
-            <event>
-              <sendOperationEventMoniker
-                Id="44b6214e-1487-40b2-b8a2-25624c15f232"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="e7955db4-283d-47ba-9302-1bfe4a0be7d3"
@@ -6770,11 +6502,6 @@ Update:
           <messageOccurrenceSpecification
             Id="bb8be6ee-5a23-4bd0-86cd-9da22323bc7a"
             name="MessageOccurrenceSpecification4">
-            <event>
-              <receiveOperationEventMoniker
-                Id="94f97021-dc7a-4dcb-b0f9-9b14a9d747f2"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="e7955db4-283d-47ba-9302-1bfe4a0be7d3"
@@ -6845,8 +6572,7 @@ Update:
             Id="5b6d14e7-1ce7-4b8f-b836-72b8b0807d5a"
             messageKind="Complete"
             messageSort="SynchCall"
-            createSelfMessage="true"
-            signatureText="- InitBeds() : void">
+            createSelfMessage="true">
             <sendEvent>
               <messageOccurrenceSpecificationMoniker
                 Id="4955ebe6-7e2c-4928-99c1-108e88f38ffd"
@@ -6865,8 +6591,7 @@ Update:
             name="Message1"
             messageKind="Complete"
             messageSort="SynchCall"
-            createSelfMessage="true"
-            signatureText="- InitRelocations() : void">
+            createSelfMessage="true">
             <sendEvent>
               <messageOccurrenceSpecificationMoniker
                 Id="2abe2862-c703-4a33-9dec-1954baf820fb"
@@ -6944,28 +6669,6 @@ Update:
       </receiveOperationEvent>
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <sendOperationEvent
-        Id="da96036f-4ce3-4e75-bb92-0053cf7c5082">
-        <operation>
-          <operationMoniker
-            Id="f2a1b4e4-ade4-48c8-8f98-55a4c56e2b62"
-            LastKnownName="InitRelocations"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </sendOperationEvent>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <receiveOperationEvent
-        Id="09c1c0e0-29a6-403a-9695-ba15fa001cb1">
-        <operation>
-          <operationMoniker
-            Id="f2a1b4e4-ade4-48c8-8f98-55a4c56e2b62"
-            LastKnownName="InitRelocations"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </receiveOperationEvent>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
       <executionEvent
         Id="8825e0dd-2524-4f0a-951c-ad718cf297e9"
         name="ExecutionEvent" />
@@ -6974,28 +6677,6 @@ Update:
       <executionEvent
         Id="6e027498-8d09-478a-9f3f-1cad53794d75"
         name="ExecutionEvent" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <sendOperationEvent
-        Id="f724464a-b0f3-480a-9014-ea95d2e4a4e5">
-        <operation>
-          <operationMoniker
-            Id="46094600-5083-42f0-8adf-2f1625f92a58"
-            LastKnownName="InitBeds"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </sendOperationEvent>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <receiveOperationEvent
-        Id="d3272521-efc1-4698-a8d6-5d05dd98d298">
-        <operation>
-          <operationMoniker
-            Id="46094600-5083-42f0-8adf-2f1625f92a58"
-            LastKnownName="InitBeds"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </receiveOperationEvent>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <executionEvent
@@ -7040,28 +6721,6 @@ Update:
         name="ExecutionEvent" />
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <sendOperationEvent
-        Id="a0f61b89-4d03-40ba-aa9d-4e7ef27a7b6f">
-        <operation>
-          <operationMoniker
-            Id="46094600-5083-42f0-8adf-2f1625f92a58"
-            LastKnownName="InitBeds"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </sendOperationEvent>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <receiveOperationEvent
-        Id="c0a381ec-4bc2-4a06-97d8-c2311c9dc307">
-        <operation>
-          <operationMoniker
-            Id="46094600-5083-42f0-8adf-2f1625f92a58"
-            LastKnownName="InitBeds"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </receiveOperationEvent>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
       <executionEvent
         Id="055dbbd2-375c-4840-8014-81ad8aa4a2fe"
         name="ExecutionEvent" />
@@ -7070,28 +6729,6 @@ Update:
       <executionEvent
         Id="18b21466-34e3-4461-9b63-15eff97dcdf8"
         name="ExecutionEvent" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <sendOperationEvent
-        Id="44b6214e-1487-40b2-b8a2-25624c15f232">
-        <operation>
-          <operationMoniker
-            Id="f2a1b4e4-ade4-48c8-8f98-55a4c56e2b62"
-            LastKnownName="InitRelocations"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </sendOperationEvent>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <receiveOperationEvent
-        Id="94f97021-dc7a-4dcb-b0f9-9b14a9d747f2">
-        <operation>
-          <operationMoniker
-            Id="f2a1b4e4-ade4-48c8-8f98-55a4c56e2b62"
-            LastKnownName="InitRelocations"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </receiveOperationEvent>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <interaction
@@ -7180,11 +6817,6 @@ Bed</body>
           <messageOccurrenceSpecification
             Id="6441cd98-bba6-4728-b4f7-20f734f02b87"
             name="MessageOccurrenceSpecification1">
-            <event>
-              <sendOperationEventMoniker
-                Id="0f4650a7-d34b-4e89-b71b-49f316172c2e"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="b7e55518-c644-43ab-bd1a-432480a6e3d1"
@@ -7195,11 +6827,6 @@ Bed</body>
           <messageOccurrenceSpecification
             Id="da7cb93c-7cc7-4347-b411-a8a67ea6e352"
             name="MessageOccurrenceSpecification2">
-            <event>
-              <receiveOperationEventMoniker
-                Id="0252c065-2e64-4aa9-a372-9dbc965e6d9f"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="8cd3c7ab-d5f7-400a-b465-809df092e866"
@@ -7576,11 +7203,6 @@ Bed</body>
           <messageOccurrenceSpecification
             Id="16bcfd56-be42-4524-8e40-abdf446c8d5f"
             name="MessageOccurrenceSpecification9">
-            <event>
-              <sendOperationEventMoniker
-                Id="08375004-5839-4fb3-8d11-02900defbc8e"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="b7e55518-c644-43ab-bd1a-432480a6e3d1"
@@ -7637,11 +7259,6 @@ Bed</body>
           <messageOccurrenceSpecification
             Id="b86c8011-003d-4b8b-a570-f90cd5aa7d11"
             name="MessageOccurrenceSpecification10">
-            <event>
-              <receiveOperationEventMoniker
-                Id="717c5b10-346a-4e7c-8288-f9cdd35d8122"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="b7e55518-c644-43ab-bd1a-432480a6e3d1"
@@ -7783,8 +7400,7 @@ Bed</body>
             Id="08bf4a8f-9dcd-4dc9-ae2d-01924c5bdba2"
             messageKind="Complete"
             messageSort="SynchCall"
-            createSelfMessage="false"
-            signatureText="+ CancelRelocation(realocationId : int) : UML_Model::Bettenverwaltung::Relocation">
+            createSelfMessage="false">
             <sendEvent>
               <messageOccurrenceSpecificationMoniker
                 Id="6441cd98-bba6-4728-b4f7-20f734f02b87"
@@ -7915,8 +7531,7 @@ Bed</body>
             Id="0e9e4503-3ed3-4691-9309-26d92ecc581c"
             messageKind="Complete"
             messageSort="SynchCall"
-            createSelfMessage="true"
-            signatureText="- InitRelocations() : void">
+            createSelfMessage="true">
             <sendEvent>
               <messageOccurrenceSpecificationMoniker
                 Id="16bcfd56-be42-4524-8e40-abdf446c8d5f"
@@ -8008,28 +7623,6 @@ Bed</body>
       <executionEvent
         Id="c0b07a95-56f6-4902-9c3d-7f1ca96ae638"
         name="ExecutionEvent" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <sendOperationEvent
-        Id="0f4650a7-d34b-4e89-b71b-49f316172c2e">
-        <operation>
-          <operationMoniker
-            Id="61c0cb90-63ca-4341-a232-e1f01de44206"
-            LastKnownName="CancelRelocation"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </sendOperationEvent>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <receiveOperationEvent
-        Id="0252c065-2e64-4aa9-a372-9dbc965e6d9f">
-        <operation>
-          <operationMoniker
-            Id="61c0cb90-63ca-4341-a232-e1f01de44206"
-            LastKnownName="CancelRelocation"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </receiveOperationEvent>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <executionEvent
@@ -8168,11 +7761,6 @@ Bed</body>
           <messageOccurrenceSpecification
             Id="821685a0-df75-486d-9ba4-a6d5f11abee7"
             name="MessageOccurrenceSpecification1">
-            <event>
-              <sendOperationEventMoniker
-                Id="f6aaf31a-b965-4592-9d57-6e8c748149ba"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="342f9b27-d268-4081-9893-e49cdd642b01"
@@ -8183,11 +7771,6 @@ Bed</body>
           <messageOccurrenceSpecification
             Id="9e944c7f-61a1-45d5-bf79-46e2786ae9f3"
             name="MessageOccurrenceSpecification2">
-            <event>
-              <receiveOperationEventMoniker
-                Id="0e905bab-5892-4559-98c3-131b880c1c44"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="47c710aa-43eb-4cad-bbae-c812852c47e4"
@@ -8336,11 +7919,6 @@ Bed</body>
           <messageOccurrenceSpecification
             Id="1d91e7ae-ba48-4417-b38b-c478dc91599a"
             name="MessageOccurrenceSpecification12">
-            <event>
-              <receiveOperationEventMoniker
-                Id="c6a92cc8-9843-43cf-a908-a97f4e3ef838"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="4771fe26-030b-42a8-9f03-fe12f5c8a518"
@@ -8351,11 +7929,6 @@ Bed</body>
           <messageOccurrenceSpecification
             Id="bc126788-ff9e-4d49-813c-9eacc4e05243"
             name="MessageOccurrenceSpecification11">
-            <event>
-              <sendOperationEventMoniker
-                Id="4e2dc423-3e6a-4703-aeed-57e2a194d76b"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="cc3de030-464c-45f3-8e3d-1eb1bd0b8dc1"
@@ -8564,11 +8137,6 @@ Bed</body>
           <messageOccurrenceSpecification
             Id="7519abf0-5110-45e5-90ca-cad920a1dbf1"
             name="MessageOccurrenceSpecification5">
-            <event>
-              <sendOperationEventMoniker
-                Id="b7336269-b242-45c9-8e4c-c9e66c712d48"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="342f9b27-d268-4081-9893-e49cdd642b01"
@@ -8625,11 +8193,6 @@ Bed</body>
           <messageOccurrenceSpecification
             Id="bd6ad608-d752-4e75-8329-f74ab0b7e34e"
             name="MessageOccurrenceSpecification6">
-            <event>
-              <receiveOperationEventMoniker
-                Id="8501d255-7939-4f3b-b917-4c56d8711a4f"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="342f9b27-d268-4081-9893-e49cdd642b01"
@@ -8771,8 +8334,7 @@ Bed</body>
             Id="3cf7af85-9f4f-424f-9a42-4b561dc1c791"
             messageKind="Complete"
             messageSort="SynchCall"
-            createSelfMessage="false"
-            signatureText="+ AcceptRelocation(relocationId : int) : UML_Model::Bettenverwaltung::Relocation">
+            createSelfMessage="false">
             <sendEvent>
               <messageOccurrenceSpecificationMoniker
                 Id="821685a0-df75-486d-9ba4-a6d5f11abee7"
@@ -8809,8 +8371,7 @@ Bed</body>
             Id="4d27862b-0d16-4e38-b113-4ee8e82cef1e"
             messageKind="Complete"
             messageSort="SynchCall"
-            createSelfMessage="false"
-            signatureText="+ SetInRelocation(status : bool) : void">
+            createSelfMessage="false">
             <sendEvent>
               <messageOccurrenceSpecificationMoniker
                 Id="bc126788-ff9e-4d49-813c-9eacc4e05243"
@@ -8903,8 +8464,7 @@ Bed</body>
             Id="1ebba7b7-e928-4e24-961b-5ad3a09bdcb9"
             messageKind="Complete"
             messageSort="SynchCall"
-            createSelfMessage="true"
-            signatureText="- InitRelocations() : void">
+            createSelfMessage="true">
             <sendEvent>
               <messageOccurrenceSpecificationMoniker
                 Id="7519abf0-5110-45e5-90ca-cad920a1dbf1"
@@ -8998,28 +8558,6 @@ Bed</body>
         name="ExecutionEvent" />
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <sendOperationEvent
-        Id="08375004-5839-4fb3-8d11-02900defbc8e">
-        <operation>
-          <operationMoniker
-            Id="f2a1b4e4-ade4-48c8-8f98-55a4c56e2b62"
-            LastKnownName="InitRelocations"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </sendOperationEvent>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <receiveOperationEvent
-        Id="717c5b10-346a-4e7c-8288-f9cdd35d8122">
-        <operation>
-          <operationMoniker
-            Id="f2a1b4e4-ade4-48c8-8f98-55a4c56e2b62"
-            LastKnownName="InitRelocations"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </receiveOperationEvent>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
       <executionEvent
         Id="91bea9b8-f904-4381-953c-32650301e59c"
         name="ExecutionEvent" />
@@ -9028,28 +8566,6 @@ Bed</body>
       <executionEvent
         Id="884d1a72-e3fe-4222-9817-fd18f2402453"
         name="ExecutionEvent" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <sendOperationEvent
-        Id="cc03c2fe-f91e-4259-8b80-fc036bbf52c4">
-        <operation>
-          <operationMoniker
-            Id="46094600-5083-42f0-8adf-2f1625f92a58"
-            LastKnownName="InitBeds"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </sendOperationEvent>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <receiveOperationEvent
-        Id="0a790e85-4e6c-4356-ae7c-f940bcab00b6">
-        <operation>
-          <operationMoniker
-            Id="46094600-5083-42f0-8adf-2f1625f92a58"
-            LastKnownName="InitBeds"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </receiveOperationEvent>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <executionEvent
@@ -9062,28 +8578,6 @@ Bed</body>
         name="ExecutionEvent" />
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <sendOperationEvent
-        Id="f6aaf31a-b965-4592-9d57-6e8c748149ba">
-        <operation>
-          <operationMoniker
-            Id="a1b34f70-a692-4083-acec-555d2b40ef60"
-            LastKnownName="AcceptRelocation"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </sendOperationEvent>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <receiveOperationEvent
-        Id="0e905bab-5892-4559-98c3-131b880c1c44">
-        <operation>
-          <operationMoniker
-            Id="a1b34f70-a692-4083-acec-555d2b40ef60"
-            LastKnownName="AcceptRelocation"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </receiveOperationEvent>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
       <executionEvent
         Id="f1a45747-f840-4c29-8703-a2c53eee38e5"
         name="ExecutionEvent" />
@@ -9092,28 +8586,6 @@ Bed</body>
       <executionEvent
         Id="25d137ab-c5a6-49f3-bc5f-3f8a2472d6f1"
         name="ExecutionEvent" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <sendOperationEvent
-        Id="b7336269-b242-45c9-8e4c-c9e66c712d48">
-        <operation>
-          <operationMoniker
-            Id="f2a1b4e4-ade4-48c8-8f98-55a4c56e2b62"
-            LastKnownName="InitRelocations"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </sendOperationEvent>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <receiveOperationEvent
-        Id="8501d255-7939-4f3b-b917-4c56d8711a4f">
-        <operation>
-          <operationMoniker
-            Id="f2a1b4e4-ade4-48c8-8f98-55a4c56e2b62"
-            LastKnownName="InitRelocations"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </receiveOperationEvent>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <executionEvent
@@ -9277,11 +8749,6 @@ delete Relocation aus DB</body>
           <messageOccurrenceSpecification
             Id="d621bb1e-680e-4603-a17c-4b4e19512506"
             name="MessageOccurrenceSpecification1">
-            <event>
-              <sendOperationEventMoniker
-                Id="f6bcffe3-f062-4474-a7e8-974b852b6ff5"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="c0105c8a-411f-44f9-9c19-72d2565805f2"
@@ -9292,11 +8759,6 @@ delete Relocation aus DB</body>
           <messageOccurrenceSpecification
             Id="835f95a6-b52d-4c9b-abce-bfa5cb5c0441"
             name="MessageOccurrenceSpecification2">
-            <event>
-              <receiveOperationEventMoniker
-                Id="427e798a-2dc6-452d-8ff7-4b064bc5a627"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="8e581fc3-3b95-478b-85c8-76fa6abf9755"
@@ -9489,11 +8951,6 @@ delete Relocation aus DB</body>
           <messageOccurrenceSpecification
             Id="f74eaab0-4ebe-4206-babf-c93f6f125fb1"
             name="MessageOccurrenceSpecification5">
-            <event>
-              <sendOperationEventMoniker
-                Id="631092eb-fcd8-4a06-b1a7-6de2b412eac5"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="8e581fc3-3b95-478b-85c8-76fa6abf9755"
@@ -9504,11 +8961,6 @@ delete Relocation aus DB</body>
           <messageOccurrenceSpecification
             Id="84e6f96a-2df9-4190-904c-08951c2f2b90"
             name="MessageOccurrenceSpecification6">
-            <event>
-              <receiveOperationEventMoniker
-                Id="74ac1049-09b8-4aab-8e9c-e28c48c3422a"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="5e193b52-887b-4e42-bf33-da325f655a6f"
@@ -10041,11 +9493,6 @@ delete Relocation aus DB</body>
           <messageOccurrenceSpecification
             Id="1ea2de41-520c-43d8-885d-7c1a954b9a39"
             name="MessageOccurrenceSpecification52">
-            <event>
-              <receiveOperationEventMoniker
-                Id="48dcf4ed-4ac8-4a38-a11a-439debfa9e94"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="54a8f116-46f4-4e84-899c-19277cd58ce2"
@@ -10056,11 +9503,6 @@ delete Relocation aus DB</body>
           <messageOccurrenceSpecification
             Id="346c69a4-f578-4d2e-bf48-be21827e1ede"
             name="MessageOccurrenceSpecification51">
-            <event>
-              <sendOperationEventMoniker
-                Id="3ee3d3e1-6ceb-49fa-984f-7fb42f404739"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="5e193b52-887b-4e42-bf33-da325f655a6f"
@@ -10303,11 +9745,6 @@ delete Relocation aus DB</body>
           <messageOccurrenceSpecification
             Id="3d2195be-83b4-4ddb-ad15-e8fed32bd601"
             name="MessageOccurrenceSpecification59">
-            <event>
-              <sendOperationEventMoniker
-                Id="c5b21bfc-55b2-4e9f-b839-f94187b9e4c6"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="c0105c8a-411f-44f9-9c19-72d2565805f2"
@@ -10364,11 +9801,6 @@ delete Relocation aus DB</body>
           <messageOccurrenceSpecification
             Id="7dacf45c-f9d8-4985-8e30-b58c8da6208e"
             name="MessageOccurrenceSpecification60">
-            <event>
-              <receiveOperationEventMoniker
-                Id="d11d9819-8d49-44fd-8a1a-f0584dd84626"
-                LastKnownLocation="UML_Model.uml" />
-            </event>
             <covered>
               <lifelineMoniker
                 Id="c0105c8a-411f-44f9-9c19-72d2565805f2"
@@ -10591,8 +10023,7 @@ delete Relocation aus DB</body>
             name="Message1"
             messageKind="Complete"
             messageSort="SynchCall"
-            createSelfMessage="false"
-            signatureText="+ ConfirmRelocation(realocationId : int) : void">
+            createSelfMessage="false">
             <sendEvent>
               <messageOccurrenceSpecificationMoniker
                 Id="d621bb1e-680e-4603-a17c-4b4e19512506"
@@ -10629,8 +10060,7 @@ delete Relocation aus DB</body>
             name="Message2"
             messageKind="Complete"
             messageSort="SynchCall"
-            createSelfMessage="false"
-            signatureText="+ ExecuteRelocation(historyItemId : int) : bool">
+            createSelfMessage="false">
             <sendEvent>
               <messageOccurrenceSpecificationMoniker
                 Id="f74eaab0-4ebe-4206-babf-c93f6f125fb1"
@@ -10801,8 +10231,7 @@ delete Relocation aus DB</body>
             name="&lt;&lt;create&gt;&gt;"
             messageKind="Complete"
             messageSort="CreateMessage"
-            createSelfMessage="false"
-            signatureText="+ CreateRelocationItem(historyItemId : int, sourceBed : int, destBed : int) : UML_Model::Bettenverwaltung::HistoryItem">
+            createSelfMessage="false">
             <sendEvent>
               <messageOccurrenceSpecificationMoniker
                 Id="346c69a4-f578-4d2e-bf48-be21827e1ede"
@@ -10915,8 +10344,7 @@ delete Relocation aus DB</body>
             Id="db171fd6-01b4-4f9c-8b43-5ac345bf666c"
             messageKind="Complete"
             messageSort="SynchCall"
-            createSelfMessage="true"
-            signatureText="- InitRelocations() : void">
+            createSelfMessage="true">
             <sendEvent>
               <messageOccurrenceSpecificationMoniker
                 Id="3d2195be-83b4-4ddb-ad15-e8fed32bd601"
@@ -11074,28 +10502,6 @@ delete Relocation aus DB</body>
         name="ExecutionEvent" />
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <sendOperationEvent
-        Id="f6bcffe3-f062-4474-a7e8-974b852b6ff5">
-        <operation>
-          <operationMoniker
-            Id="d1a6f063-99e5-455a-9329-7fd5c4b174c3"
-            LastKnownName="ConfirmRelocation"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </sendOperationEvent>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <receiveOperationEvent
-        Id="427e798a-2dc6-452d-8ff7-4b064bc5a627">
-        <operation>
-          <operationMoniker
-            Id="d1a6f063-99e5-455a-9329-7fd5c4b174c3"
-            LastKnownName="ConfirmRelocation"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </receiveOperationEvent>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
       <executionEvent
         Id="f2e14cd1-eeec-4faf-a00c-3e789170d3b8"
         name="ExecutionEvent" />
@@ -11104,28 +10510,6 @@ delete Relocation aus DB</body>
       <executionEvent
         Id="921f499c-3985-4f0b-8668-af255fafec89"
         name="ExecutionEvent" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <sendOperationEvent
-        Id="631092eb-fcd8-4a06-b1a7-6de2b412eac5">
-        <operation>
-          <operationMoniker
-            Id="50ef7ff6-8ce7-4d69-b64e-f99293f358cf"
-            LastKnownName="ExecuteRelocation"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </sendOperationEvent>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <receiveOperationEvent
-        Id="74ac1049-09b8-4aab-8e9c-e28c48c3422a">
-        <operation>
-          <operationMoniker
-            Id="50ef7ff6-8ce7-4d69-b64e-f99293f358cf"
-            LastKnownName="ExecuteRelocation"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </receiveOperationEvent>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <executionEvent
@@ -11244,28 +10628,6 @@ delete Relocation aus DB</body>
         name="ExecutionEvent" />
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <sendOperationEvent
-        Id="3b6d0186-dcc7-4283-a720-d6c762d1375c">
-        <operation>
-          <operationMoniker
-            Id="daf9ad2a-4023-4db9-8f0a-f1a870ca0c16"
-            LastKnownName="History"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </sendOperationEvent>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <receiveOperationEvent
-        Id="c538fef5-e536-4b3e-afc4-42466a6d4024">
-        <operation>
-          <operationMoniker
-            Id="daf9ad2a-4023-4db9-8f0a-f1a870ca0c16"
-            LastKnownName="History"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </receiveOperationEvent>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
       <executionEvent
         Id="c1010b9a-16b2-4ab9-9914-138d6de634be"
         name="ExecutionEvent" />
@@ -11274,28 +10636,6 @@ delete Relocation aus DB</body>
       <executionEvent
         Id="034e1eef-d4ac-4795-9c35-f95d5210c0bd"
         name="ExecutionEvent" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <sendOperationEvent
-        Id="aa7a5333-c78a-4f08-b0ff-b9f0b0d8712f">
-        <operation>
-          <operationMoniker
-            Id="8718bc37-6fa6-45de-b501-d3f8d9370a00"
-            LastKnownName="CreateEntryItem"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </sendOperationEvent>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <receiveOperationEvent
-        Id="ee2b187b-c4b5-409a-9b75-02775ba6acb7">
-        <operation>
-          <operationMoniker
-            Id="8718bc37-6fa6-45de-b501-d3f8d9370a00"
-            LastKnownName="CreateEntryItem"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </receiveOperationEvent>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <executionEvent
@@ -11338,28 +10678,6 @@ delete Relocation aus DB</body>
       <executionEvent
         Id="a27221af-25dd-4fc5-9c1d-9e5e0ac5b5e7"
         name="ExecutionEvent" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <sendOperationEvent
-        Id="4e2dc423-3e6a-4703-aeed-57e2a194d76b">
-        <operation>
-          <operationMoniker
-            Id="f4f1930d-3e93-4eab-a2c5-f1b72c94e2dd"
-            LastKnownName="SetInRelocation"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </sendOperationEvent>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <receiveOperationEvent
-        Id="c6a92cc8-9843-43cf-a908-a97f4e3ef838">
-        <operation>
-          <operationMoniker
-            Id="f4f1930d-3e93-4eab-a2c5-f1b72c94e2dd"
-            LastKnownName="SetInRelocation"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </receiveOperationEvent>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <executionEvent
@@ -11510,28 +10828,6 @@ delete Relocation aus DB</body>
         name="ExecutionEvent" />
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <sendOperationEvent
-        Id="3ee3d3e1-6ceb-49fa-984f-7fb42f404739">
-        <operation>
-          <operationMoniker
-            Id="5dc82fe9-d03b-4123-8553-ff05eaf4d3c0"
-            LastKnownName="CreateRelocationItem"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </sendOperationEvent>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <receiveOperationEvent
-        Id="48dcf4ed-4ac8-4a38-a11a-439debfa9e94">
-        <operation>
-          <operationMoniker
-            Id="5dc82fe9-d03b-4123-8553-ff05eaf4d3c0"
-            LastKnownName="CreateRelocationItem"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </receiveOperationEvent>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
       <executionEvent
         Id="3744b2bd-33a6-407a-b786-a0851edd88d3"
         name="ExecutionEvent" />
@@ -11572,28 +10868,6 @@ delete Relocation aus DB</body>
       <executionEvent
         Id="3ab53986-bd87-46d4-9885-0acb3476d61a"
         name="ExecutionEvent" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <sendOperationEvent
-        Id="c5b21bfc-55b2-4e9f-b839-f94187b9e4c6">
-        <operation>
-          <operationMoniker
-            Id="f2a1b4e4-ade4-48c8-8f98-55a4c56e2b62"
-            LastKnownName="InitRelocations"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </sendOperationEvent>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <receiveOperationEvent
-        Id="d11d9819-8d49-44fd-8a1a-f0584dd84626">
-        <operation>
-          <operationMoniker
-            Id="f2a1b4e4-ade4-48c8-8f98-55a4c56e2b62"
-            LastKnownName="InitRelocations"
-            LastKnownLocation="Package_1722.uml" />
-        </operation>
-      </receiveOperationEvent>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <executionEvent
@@ -11990,7 +11264,7 @@ delete Relocation aus DB</body>
             messageKind="Complete"
             messageSort="SynchCall"
             createSelfMessage="false"
-            signatureText="+ SearchPatient(term : String) : List&lt;IBedView&gt;">
+            signatureText="+ SearchPatient(term : String) : UML_Model::System::Collections::Generic::List&lt;IBedView‎&gt;">
             <sendEvent>
               <messageOccurrenceSpecificationMoniker
                 Id="61839c6c-a780-4632-b6b7-8d7c9bcdaf6e"
@@ -12123,6 +11397,12 @@ delete Relocation aus DB</body>
             LastKnownLocation="Package_1722.uml" />
         </operation>
       </receiveOperationEvent>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="c7f84b52-d5d6-4b55-92a4-0a7d48f50b36"
+        LastKnownName="System"
+        LastKnownLocation="Package_1424.uml" />
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType
