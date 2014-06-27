@@ -7,9 +7,9 @@
             <div class="divContent">
                 <div class="divLeft">
                     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                    <asp:Timer ID="timerUpdate" runat="server" Interval="15000" OnTick="Update_Overview_And_Notifications_Tick"></asp:Timer>
                     <asp:UpdatePanel ID="updatePanelOverview" runat="server" class="divOverview">
                         <ContentTemplate>
-                            <asp:Timer ID="timerUpdate" runat="server" Interval="15000" OnTick="Update_Overview_And_Notifications_Tick"></asp:Timer>
                             <asp:Panel ID="divStationPaediatrie" runat="server" CssClass="divOverviewStation marginRight">
                                 <h2>Pädiatrie</h2>
                                 <asp:Panel ID="divStationPaediatrieBeds" runat="server"></asp:Panel>
@@ -159,6 +159,8 @@
                 <asp:AsyncPostBackTrigger ControlID="btnAddConfirm" />
                 <asp:AsyncPostBackTrigger ControlID="btnDetailsDismiss" />
                 <asp:AsyncPostBackTrigger ControlID="btnSearch" />
+                <asp:PostBackTrigger ControlID="btnMessageBoxOkay" />
+                <asp:PostBackTrigger ControlID="btnMessageBoxCancel" />
             </Triggers>
         </asp:UpdatePanel>
     </form>

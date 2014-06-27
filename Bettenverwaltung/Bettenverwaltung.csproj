@@ -179,7 +179,6 @@
     <Compile Include="Bettenverwaltung\IController.cs" />
     <Compile Include="Bettenverwaltung\Patient.cs" />
     <Compile Include="Bettenverwaltung\Relocation.cs" />
-    <Compile Include="Bettenverwaltung\TestController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

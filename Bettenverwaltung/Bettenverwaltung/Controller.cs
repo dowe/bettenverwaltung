@@ -129,12 +129,14 @@ namespace Bettenverwaltung
         /// und dessen annaheme-Funktion ausgefürht.
 		/// </summary>
 		/// <param name="relocationId">ID der Verlegung die angenommen wurde</param>
-        public virtual void AcceptRelocation(int relocationId)          
+        public virtual Relocation AcceptRelocation(int relocationId)          
 		{
             bvContext = new BVContext();                                
             Relocation Rel = GetRelocation(relocationId);
             Rel.SetAccepted();
-            bvContext.SaveChanges();		
+            bvContext.SaveChanges();
+
+            return Rel;
         }
 
         /// <summary>
@@ -142,7 +144,7 @@ namespace Bettenverwaltung
         /// </summary>
         /// <param name="bedId">ID des Bettes das angezeigt werden soll</param>
         /// <returns>Bett via Interface</returns>
-		public virtual IBedView DisplayPatient(int bedId)               
+		public virtual IBedView GetBedFromId(int bedId)               
 		{
             bvContext = new BVContext();
             IBedView bed = (IBedView) bvContext.Beds.Find(bedId);
@@ -207,12 +209,14 @@ namespace Bettenverwaltung
         ///gesucht und dessen Cancel-Funktion aufgerufen.
         /// </summary>
         /// <param name="relocationId">ID der Verlegung die abgebrochen wird</param>
-        public virtual void CancelRelocation(int relocationId)         
+        public virtual Relocation CancelRelocation(int relocationId)         
         {
             bvContext = new BVContext();
             Relocation Rel = GetRelocation(relocationId);
             Rel.SetUnaccepted();
             bvContext.SaveChanges();
+
+            return Rel;
 		}
 
         /// <summary>

@@ -13,17 +13,17 @@ namespace Bettenverwaltung
 
 	public interface IController 
 	{
-		void AcceptRelocation(int relocationId);
+		Relocation AcceptRelocation(int relocationId);
 
 		IBedView AddPatient(string firstname, string lastname, EStation station, DateTime birthday, bool isFemale);
 
-		void CancelRelocation(int realocationId);
+		Relocation CancelRelocation(int realocationId);
 
 		void ConfirmRelocation(int realocationId);
 
 		IBedView DismissPatient(int bedId);
 
-		IBedView DisplayPatient(int bedId);
+		IBedView GetBedFromId(int bedId);
 
 		List<Relocation> GetActiveRelocationList();
 

@@ -171,6 +171,28 @@ namespace Bettenverwaltung
                 InitBedControlsFromDB();
             }
         }
+        private void ReInitBedControlFromDB(int bedId)
+        {
+            IBedView[] beds = (IBedView[])GetSiteState(KEY_POSTBACK_BEDS);
+            bool found = false;
+            for (int i = 0; i < beds.Length && !found; i++)
+            {
+                if (beds[i].GetBedId() == bedId)
+                {
+                    beds[i] = controller.GetBedFromId(bedId);
+                    found = true;
+                }
+            }
+            if (found)
+            {
+                SetSiteState(KEY_POSTBACK_BEDS, beds);
+                InitBedControlsFromSiteState();
+            }
+            else
+            {
+                InitBedControlsFromDB();
+            }
+        }
         private void AddBedControls(IBedView[] beds)
         {
             foreach (IBedView b in beds)
@@ -293,7 +315,7 @@ namespace Bettenverwaltung
                 InitRelocationControlsFromDB();
             }
         }
-        
+
         private void AddRelocationControls(Relocation[] relocations)
         {
             foreach (Relocation relocation in relocations)
@@ -574,7 +596,7 @@ namespace Bettenverwaltung
                 string id = btnSender.ID;
                 id = id.Remove(0, DYN_PREFIX_BED.Length);
                 int idOneBased = Int32.Parse(id);
-                DisplayBed(controller.DisplayPatient(idOneBased));
+                DisplayBed(controller.GetBedFromId(idOneBased));
             }
             catch (BedException exception)
             {
@@ -590,7 +612,7 @@ namespace Bettenverwaltung
                 {
                     int selectedBedId = (int)GetSiteState(KEY_SELECTED_BED_INDEX_ONE_BASED);
                     DisplayBed(controller.DismissPatient(selectedBedId));
-                    InitBedControlsFromDB();
+                    ReInitBedControlFromDB(selectedBedId);
                 }
             }
             catch (BedException ex)
@@ -625,7 +647,7 @@ namespace Bettenverwaltung
                     }
                     else
                     {
-                        InitBedControlsFromDB();
+                        ReInitBedControlFromDB(destBed.GetBedId());
                         DisplayBed(destBed);
                     }
 
@@ -737,10 +759,10 @@ namespace Bettenverwaltung
                 LinkButton btn = (LinkButton)sender;
                 int relId = Int32.Parse(btn.ID.Remove(0, DYN_PREFIX_NOT.Length));
 
-                controller.AcceptRelocation(relId);
+                Relocation rel = controller.AcceptRelocation(relId);
                 SetSiteState(KEY_ACCEPTED_NOT_ID, relId);
-                
-                InitBedControlsFromDB();
+
+                ReInitBedControlFromDB(rel.GetDestinationBed().GetBedId());
                 InitRelocationControlsFromDB();
             }
             catch (BedException ex)
@@ -756,15 +778,17 @@ namespace Bettenverwaltung
                 LinkButton btn = (LinkButton)sender;
                 int relId = Int32.Parse(btn.ID.Remove(0, DYN_PREFIX_NOT_CANCEL.Length));
 
-                controller.CancelRelocation(relId);
+                Relocation rel = controller.CancelRelocation(relId);
                 SetSiteState(KEY_ACCEPTED_NOT_ID, VAL_ACCEPTED_NOT_ID_NONE);
 
-                InitBedControlsFromDB();
+                ReInitBedControlFromDB(rel.GetDestinationBed().GetBedId());
                 InitRelocationControlsFromDB();
             }
             catch (BedException ex)
             {
                 PrintErrorMessage(ex);
+                InitBedControlsFromDB();
+                InitRelocationControlsFromDB();
             }
         }
 
@@ -783,6 +807,7 @@ namespace Bettenverwaltung
             }
             catch (BedException ex)
             {
+                InitBedControlsFromDB();
                 PrintErrorMessage(ex);
             }
         }
@@ -792,7 +817,7 @@ namespace Bettenverwaltung
             int bedIdOneBased;
             LinkButton btn = (LinkButton)sender;
             bedIdOneBased = Int32.Parse(btn.ID.Remove(0, DYN_PREFIX_SEARCH_RESULT.Length));
-            DisplayBed(controller.DisplayPatient(bedIdOneBased));
+            DisplayBed(controller.GetBedFromId(bedIdOneBased));
         }
 
         protected virtual void MessageBox_Okay_Click(object sender, EventArgs e)
@@ -810,16 +835,6 @@ namespace Bettenverwaltung
         protected virtual void PrintErrorMessage(BedException e)
         {
             ShowMessageBox(e.Message);
-        }
-
-        private int GetAcceptedRelocationId()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        private void SetAcceptedRelocationId(int? id)
-        {
-            throw new System.NotImplementedException();
         }
 
         private void DisplayBed(IBedView bed)
@@ -916,7 +931,7 @@ namespace Bettenverwaltung
             SetSiteState(KEY_POSTBACK_MESSAGEBOX_TEXT, message);
             SetSiteState(KEY_POSTBACK_MESSAGEBOX_SHOW, true);
         }
-        
+
         private void DisplayMessageBox(string message)
         {
             divOverlay.Visible = true;

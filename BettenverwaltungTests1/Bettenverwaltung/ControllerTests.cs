@@ -96,7 +96,7 @@ namespace Bettenverwaltung.Tests
         }
 
         [TestMethod()]
-        public void DisplayPatientTest()
+        public void GetBedFromIdTest()
         {
             ControllerTests.ClearDB();
             BVContext db = new BVContext();
@@ -108,7 +108,7 @@ namespace Bettenverwaltung.Tests
             db.SaveChanges();
 
             var bedResult = db.Beds.Where(b => b.patient.firstname == "Maxine").FirstOrDefault();
-            Assert.AreEqual(control.DisplayPatient(bedResult.bedId).GetPatient().firstname, "Maxine");
+            Assert.AreEqual(control.GetBedFromId(bedResult.bedId).GetPatient().firstname, "Maxine");
 
             ControllerTests.ClearDB();
         }
