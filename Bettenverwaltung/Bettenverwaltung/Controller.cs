@@ -199,8 +199,15 @@ namespace Bettenverwaltung
         {
             bvContext = new BVContext();
             Relocation Rel = GetRelocation(relocationId);
+            Bed oldBed = Rel.sourceBed;
             Rel.ExecuteRelocation();
             bvContext.Relocations.Remove(Rel);
+            bvContext.SaveChanges();
+            Relocation reloc = bvContext.Relocations.Where(r => r.sourceBed.patient.correctStation == oldBed.station).Where(r => r.destinationBed == null).FirstOrDefault();
+            if (reloc != null)
+            {
+                reloc.SetActive(oldBed);
+            }
             bvContext.SaveChanges();
 		}
 
